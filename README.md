@@ -14,20 +14,20 @@
 
 ## 설치 (5분)
 
-비공개 저장소라서 이 저장소에 초대받은 GitHub 계정이 필요해요. 방법은 둘 중 하나입니다.
+비공개 저장소라서 먼저 **GitHub 초대를 수락**해야 해요. 초대 메일의 [View invitation] > [Accept invitation]을 누르고, 브라우저가 그 GitHub 계정으로 로그인된 상태여야 저장소 페이지가 보여요(로그인 안 돼 있으면 "페이지를 찾을 수 없음"이 떠요). 그다음 방법은 둘 중 하나입니다.
 
 **방법 1. AI에게 맡기기 (Claude Code·Codex 등).** 이 저장소 링크를 주고 "설치해줘"라고 하면 됩니다. 아래 [AI 에이전트용](#ai-에이전트에게-설치를-맡길-때) 절차를 따라요.
 
 **방법 2. 직접.**
 
-1. 이 저장소 페이지에서 초록색 **Code** 버튼 > **Download ZIP**을 누르고, 받은 파일을 더블클릭해 압축을 풉니다.
+1. 이 저장소 페이지에서 초록색 **Code** 버튼 > **Download ZIP**을 누릅니다. **다운로드** 폴더에 생긴 `threads-replies-main.zip`을 더블클릭하면 같은 곳에 `threads-replies-main` 폴더가 생겨요.
 2. **터미널**을 엽니다. `⌘ + 스페이스` > "터미널"(Terminal) > Enter.
 3. `cd `(뒤에 한 칸 띄우기)를 입력하고, 압축을 푼 폴더를 터미널 창으로 끌어다 놓은 뒤 Enter.
 4. `bash install.sh`를 입력하고 Enter.
 
 Homebrew, 관리자 비밀번호, 개발 도구는 필요 없어요. 앱을 돌리는 엔진(Node.js)도 공식 사이트에서 알아서 받습니다. `설치 완료`가 나오면 끝이고, 인터넷 속도에 따라 2~6분 걸려요. 맥 오른쪽 위에 "백그라운드 항목이 추가됨" 알림이 뜨면, 앱이 로그인 때 자동으로 켜지게 등록한 것이니 그대로 두세요.
 
-`gh`(GitHub CLI)에 로그인돼 있다면 한 줄로도 됩니다.
+개발자라서 `gh`(GitHub 명령줄 도구)에 이미 로그인돼 있다면 위 1~4 대신 한 줄로도 됩니다. `gh`가 뭔지 모르면 건너뛰세요.
 
 ```bash
 gh api repos/henryoon0/threads-replies/contents/install.sh -H "Accept: application/vnd.github.raw" | bash
@@ -37,20 +37,20 @@ gh api repos/henryoon0/threads-replies/contents/install.sh -H "Accept: applicati
 
 설치가 끝나면 브라우저에 연결 화면이 열려요. 메타가 본인만 할 수 있게 막아 둔 일이라 두 가지 방법이 있어요.
 
-**AI에게 맡기기 (Aside 브라우저가 있을 때).** 터미널에 붙여넣으세요.
+**AI에게 맡기기 (Aside 브라우저가 있을 때).** Aside 브라우저 앱이 설치돼 있어야 해요. 터미널에 `aside --version`을 쳐서 숫자가 나오면 있는 거예요. 있으면 아래 한 줄을 **직접 터미널에 붙여넣으세요.** 그러면 AI가 떠서 나머지를 진행해요.
 
 ```bash
 bash ~/.threads-replies/app/scripts/connect-with-aside.sh
 ```
 
-AI가 Aside 브라우저로 메타 앱을 만들고, 토큰을 받아 연결 화면에 바로 붙여넣어요. 로그인이 필요할 때만 멈추고 알려 줍니다. 비밀번호는 AI가 치지 않고, 토큰은 채팅에 나오지 않아요. AI가 따라 하는 순서는 [docs/connect-playbook.md](docs/connect-playbook.md)에 있어요.
+AI가 Aside 브라우저 창에서 메타 앱을 만들고, 토큰을 받아 연결 화면에 바로 붙여넣어요. 로그인이 필요할 때만 멈추고 알려 줍니다. 비밀번호는 AI가 치지 않고, 토큰은 채팅에 나오지 않아요. AI가 따라 하는 순서는 [docs/connect-playbook.md](docs/connect-playbook.md)에 있어요.
 
-**직접 하기.** 연결 화면의 5단계를 따라 하세요. 요약하면 이렇습니다.
+**직접 하기.** 연결 화면(`http://localhost:3457`)에 단계마다 정확한 메뉴 경로와 바로가기 링크가 있어요. 그 화면을 보며 따라 하세요. 요약하면 이렇습니다.
 
-1. 스레드 계정을 **공개**로 둡니다. 비공개 계정은 토큰을 만들 수 없어요.
+1. 스레드 계정을 **공개**로 둡니다. 비공개 계정은 토큰을 만들 수 없고, 쓰는 동안에도 공개여야 토큰이 연장돼요(메타 규칙: 비공개로 바꾸면 90일 뒤 다시 연결해야 해요).
 2. [메타 개발자 사이트](https://developers.facebook.com/apps/creation/)에서 앱을 만들고, 사용 사례로 **Threads API 액세스**를 고릅니다. 내 계정만 쓰는 앱이라 앱 심사는 필요 없어요.
-3. 권한 5개(`threads_basic`, `threads_read_replies`, `threads_manage_replies`, `threads_content_publish`, `threads_manage_insights`)를 **토큰을 만들기 전에** 추가합니다.
-4. 앱 역할 > 역할 > 사람 추가 > **Threads 테스터**에 내 아이디를 넣고, 스레드 앱 > 설정 > 계정 > 웹사이트 권한 > 초대에서 수락합니다.
+3. 사용 사례 > Threads API 액세스 > 맞춤 설정 > 권한에서 권한 5개(`threads_basic`, `threads_read_replies`, `threads_manage_replies`, `threads_content_publish`, `threads_manage_insights`)를 **토큰을 만들기 전에** 추가합니다.
+4. 앱 역할 > 역할 > 사람 추가 > **Threads 테스터**에 내 아이디를 넣고, 스레드 설정 > 계정 > 웹사이트 권한 > 초대에서 수락합니다. 휴대폰 스레드 앱이나 웹([threads.com/settings/account](https://www.threads.com/settings/account)) 어느 쪽이든 돼요.
 5. 사용 사례 설정 맨 아래 **User Token Generator**에서 토큰을 만들어 복사한 뒤, 연결 화면에 붙여넣고 [연결하기]를 누릅니다.
 
 초록색 **"@내아이디 연결됐어요"**가 뜨면 성공이에요. 바로 뒤에서 말투 익히기가 시작돼요(몇 분). 토큰은 60일짜리인데, 앱이 켜져 있으면 알아서 연장합니다.

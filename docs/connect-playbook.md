@@ -18,7 +18,7 @@
 4. 앱 만들기: 앱 이름은 "threads-replies-<아이디>"처럼 짓는다. 사용 사례(Use case)는 "Threads API 액세스(Access the Threads API)"를 고른다. 비즈니스 포트폴리오는 연결하지 않는다.
 5. 권한: 사용 사례 > Threads API 액세스 > 맞춤 설정(Customize) > 권한(Permissions)에서 threads_basic, threads_read_replies, threads_manage_replies, threads_content_publish, threads_manage_insights 를 모두 추가한다. **토큰을 만들기 전에** 추가해야 한다.
 6. 테스터: 앱 대시보드 > 앱 역할(App roles) > 역할(Roles) > 사람 추가(Add People) > Threads 테스터(Threads Tester)에 2번에서 받은 아이디를 넣는다. 사용 사례 설정 화면의 "Threads 테스터 추가/삭제"를 써도 된다.
-7. 초대 수락: https://www.threads.com/settings/account 를 연다(로그인 화면이면 사용자에게 부탁). 웹사이트 권한(Website permissions) > 초대(Invites)에서 방금 만든 앱의 수락(Accept)을 누른다. 수락 버튼 없이 "삭제"만 보이면 메타 쪽 알려진 오류다. 사용자에게 알리고, 4번부터 새 앱으로 다시 한다.
+7. 초대 수락: https://www.threads.com/settings/account 를 연다(휴대폰 스레드 앱의 설정 > 계정 > 웹사이트 권한과 같은 화면)(로그인 화면이면 사용자에게 부탁). 웹사이트 권한(Website permissions) > 초대(Invites)에서 방금 만든 앱의 수락(Accept)을 누른다. 수락 버튼 없이 "삭제"만 보이면 메타 쪽 알려진 오류다. 사용자에게 알리고, 4번부터 새 앱으로 다시 한다.
 8. 토큰: 사용 사례 > Threads API 액세스 > 설정(Settings) 맨 아래 User Token Generator 에서 해당 아이디 옆 Generate Access Token 을 누른다. 뜨는 창에서 계속(Continue), "I understand" 체크 후 토큰을 복사한다. 창의 계정이 2번 아이디와 같은지 확인한다.
 9. http://localhost:3457 탭으로 돌아가 "복사한 토큰을 붙여넣으세요" 칸에 붙여넣는다. 사용자에게 한 줄 소개를 물어 "나를 한 줄로 소개해 주세요" 칸에 넣고(없으면 비워 둔다) [연결하기]를 누른다.
 10. 초록색 "@아이디 연결됐어요"가 보이면 성공이다. [시작하기]를 누르고 사용자에게 "연결됐어요. 지금부터 지난 답글로 말투를 익혀요(몇 분)"라고 알린다. 빨간 글씨가 보이면 그 문구대로 고친다(대부분 5번 권한을 빠뜨린 경우라 권한 추가 후 8번부터 다시).
