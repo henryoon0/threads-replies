@@ -1,0 +1,11 @@
+node_modules
+.next
+data
+.env*
+*.log
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store
+data-backup-*
+public/threads-evidence
+.wrangler
