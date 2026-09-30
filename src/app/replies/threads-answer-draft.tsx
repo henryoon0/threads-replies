@@ -330,6 +330,32 @@ function useCardDrop(p: DraftCardProps, frozen: boolean, link: (url: string) => 
   return useDropLink(enabled, p.isQuestion ? link : null, p.onImage);
 }
 
+/**
+ * 초안 확인 칸: 근거가 없어 뺀 문장 · 예전 답과 어긋나는 문장.
+ * 어긋남은 그 결과를 잰 글이 지금 글과 같을 때만 보인다 (고치면 옛 결과라 숨긴다).
+ */
+export function DraftChecks({ answer, draft }: { answer?: ReplyAnswer; draft: string }) {
+  const dropped = answer?.dropped ?? [];
+  const conflicts = answer && answer.consistencyFor === draft ? answer.consistency ?? [] : [];
+  if (!dropped.length && !conflicts.length) return null;
+  return (
+    <div className="space-y-1.5 px-3 pb-2 text-[11.5px] leading-relaxed text-neutral-600 break-keep">
+      {conflicts.map((c) => (
+        <p key={`c-${c.sentenceStart}`}>
+          <span className="font-medium text-neutral-800">예전 답과 다름:</span> &ldquo;{draft.slice(c.sentenceStart, c.sentenceEnd)}&rdquo;
+          {" · "}
+          {c.note} (예전엔 &ldquo;{c.past.text}&rdquo;{c.past.date ? `, ${c.past.date}` : ""})
+        </p>
+      ))}
+      {dropped.map((d) => (
+        <p key={`d-${d.text}`}>
+          <span className="font-medium text-neutral-800">근거 없어 뺀 문장:</span> &ldquo;{d.text}&rdquo; · {d.reason}
+        </p>
+      ))}
+    </div>
+  );
+}
+
 export function ThreadsDraftCard(p: DraftCardProps) {
   const { answer, isQuestion, busy, drafting, regenerate } = p;
   const [open, setOpen] = useState<string | null>(null);
@@ -353,6 +379,7 @@ export function ThreadsDraftCard(p: DraftCardProps) {
           onSubmit={p.onSubmit}
         />
       </div>
+      <DraftChecks answer={answer} draft={p.draft} />
       {p.attachment}
       {ask ? <MyAsk ask={ask} disabled={frozen} onAnswer={(note) => regenerate({ myNote: note })} /> : null}
       <CardFooter p={p} />
