@@ -43,7 +43,7 @@ const AICC_RULES: GateRules = {
 };
 
 /** 팩에 처음 심는 규칙이자, 팩 파일이 없을 때의 바닥값. */
-export const SEED_GATE_RULES: Readonly<Record<string, GateRules>> = { me: AICC_RULES, strict: GLP1_RULES };
+export const SEED_GATE_RULES: Readonly<Record<string, GateRules>> = { glp1: GLP1_RULES, me: AICC_RULES, aicc: AICC_RULES };
 
 export function gateRulesPath(id: PersonaId): string {
   return packFile(id, "gate-rules.json");

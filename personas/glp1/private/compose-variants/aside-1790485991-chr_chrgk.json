@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485991-chr_chrgk",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:44:42.392Z",
+  "updatedAt": "2026-09-30T07:45:51.005Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "160에 53이면 BMI 20.7이야. 안 맞는게 맞아. 뺄 지방이 없어서 맞으면 근육부터 빠지고 기초대사가 떨어져 요요 직행이거든. 무서운 게 정답이야. 라인이 고민이면 근력운동 주 3회에 단백질 하루 70g부터 챙겨-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 123
+        }
+      ],
+      "products": [],
+      "ms": 7141,
+      "sessionId": "b5058af6-5b90-4668-9cfb-aed7967f0c97"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "무서운 게 맞는 감이야. 160에 53이면 BMI 20.7, 정상 범위 한가운데라 마운자로 맞을 몸이 아니야. 처방 기준이 BMI 30 이상, 동반질환 있으면 27 이상인데 한참 멀어. 안 맞는 게 정답이야.\n\n뺄 지방이 없는 몸에 맞으면 빠지는 건 거의 근육이야. 근육이 줄면 기초대사량이 떨어져서 끊는 순간 요요가 오고, 못 먹으니 영양이 모자라서 머리카락부터 빠져. 숫자는 줄었는데 라인은 더 안좋아지는 최악의 코스야.\n\n체형이 고민이면 방향을 바꿔.\n\n1/ 단백질 체중 1kg당 1.2~1.5g. 53kg이면 하루 65~80g이야. 끼니마다 20~25g씩 나눠 먹어.\n2/ 근력운동 주 3회. 하체랑 등 위주로.\n3/ 인바디 한번 재고 몸무게 말고 근육량·체지방률을 목표로 잡아.\n\n몸무게는 그대로여도 라인은 바뀌어-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 116
+        },
+        {
+          "kind": "principle",
+          "start": 118,
+          "end": 237
+        },
+        {
+          "kind": "ingredient",
+          "start": 239,
+          "end": 405
+        }
+      ],
+      "products": [],
+      "ms": 10847,
+      "sessionId": "5e3ec490-005e-4d4e-8d73-54d82394fe33"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "안 맞는 게 맞아. 160에 53이면 BMI 20.7, 정상 한가운데야. 처방 기준은 30, 동반질환이 있어도 27이거든. 뺄 지방이 없는데 맞으면 빠지는 건 근육이라 기초대사 떨어지고 요요 와. 무섭다는 감이 정답이야-\n\n라인이 고민이면 답은 단백질이야. 체중 1kg당 1.2~1.5g, 53kg이면 하루 65~80g. 끼니마다 20g씩 나눠먹고 근력운동 주 3회 붙여.\n\n온라인이면 마이프로틴 임팩트 웨이 1스쿱 21g 정도로 무난해. 직구는 옵티멈 골드스탠다드 웨이 1스쿱 24g, 난 운동 끝나고 30분 안에 이거 타먹어.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 123
+        },
+        {
+          "kind": "ingredient",
+          "start": 125,
+          "end": 208
+        },
+        {
+          "kind": "product",
+          "start": 210,
+          "end": 296
+        }
+      ],
+      "products": [],
+      "ms": 14330,
+      "sessionId": "ed7f6261-351f-4c22-adb8-1aa302e094b6"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "160에 53이면 BMI 20.7이야. 정상 범위 한가운데라 처방 대상 아니고, 안 맞는 게 맞아. 이 몸무게에서 맞으면 빠지는 건 근육이라 무서워한 게 정답이야.\n\n라인이 고민이면 단백질 하루 65~80g을 끼니마다 나눠 챙겨먹고 근력운동 주 3회 해. 몸무게 말고 인바디 체지방률을 목표로 잡아-\n\n끼니로 단백질이 모자라면 온라인이면 셀렉스 프로핏 드링크(단백질 20g), 운동 끝나고 하나 마시면 무난해. 직구는 옵티멈 뉴트리션 골드스탠다드 웨이, 1스쿱에 24g이야. 난 이게 젤 좋아.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 167
+        },
+        {
+          "kind": "product",
+          "start": 169,
+          "end": 276
+        }
+      ],
+      "products": [],
+      "ms": 17654,
+      "sessionId": "21061c05-6210-4ee9-bdba-696e1853b310"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "20.7이면 정상 한가운데라 안 맞는 게 맞아. 맞으면 빠지는 건 근육이야.\n약국은 셀렉스 코어프로틴 하루 1회분, 운동 끝나고 바로.\n온라인이면 마이프로틴 임팩트웨이 1스쿱 21g 정도면 무난해.\n직구는 옵티멈 골드스탠다드 웨이 1스쿱 24g, 난 이거 먹어-\n대신 근력운동 주 3회가 먼저야.",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 165
+        }
+      ],
+      "products": [],
+      "ms": 12207,
+      "sessionId": "329fc8f4-12c1-4909-957f-ff75ee7486a7"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "160에 53이면 BMI 20.7이야. 뺄 살이 없으니 맞지마. 주사값으로 PT 끊는게 백배 나아-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 55
+        }
+      ],
+      "products": [],
+      "ms": 6410,
+      "sessionId": "80a102e6-d107-447d-87fb-c31356edfffc"
+    }
+  ],
+  "failed": [],
+  "sessionId": "80a102e6-d107-447d-87fb-c31356edfffc"
+}

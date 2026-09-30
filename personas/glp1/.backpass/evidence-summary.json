@@ -1,0 +1,402 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-29T06:22:29.149Z",
+  "analyzedSessions": 25,
+  "totals": {
+    "positive": 54,
+    "negative": 23,
+    "gapClusters": 0,
+    "droppedGapSingletons": 9,
+    "usedRawTranscript": 0
+  },
+  "instructions": [
+    {
+      "instruction": "AG-003",
+      "positive": 8,
+      "negative": 12,
+      "sessions": 18,
+      "relevance": 0.72,
+      "tokens": 25,
+      "section": "박약사 스레드 답글 말투 규칙책 > 공통 말투",
+      "known": true,
+      "quotes": [
+        {
+          "polarity": "positive",
+          "text": "1/ 두통 오는 날이랑 생리 주기를 한 달만 기록해봐",
+          "effect": "used numbered list for the two suggested actions when reasons got longer",
+          "moment": "turn 2",
+          "source": "claude · 04edc6bf · 2026-09-29"
+        },
+        {
+          "polarity": "negative",
+          "text": "생리 전 두통이 매달 반복되는 거면 영양제 더 얹기 전에 진료부터 받아보는 게 먼저야.",
+          "effect": "draft opened with a conclusion about seeing a doctor first, but didn't lead with the actual diagnostic pattern (hormonal headache tied to bleeding onset) that the real answer put first, making the draft's conclusion less sharp and causing the real answer to feel like a different, better-targeted response",
+          "moment": "turn 2 vs turn 3",
+          "source": "claude · 04edc6bf · 2026-09-29"
+        },
+        {
+          "polarity": "negative",
+          "text": "어긴 규칙: \"결론을 첫 문장에 둔다. 이유는 한두 문장, 길어지면 \"1/ 2/\" 번호로 나눈다.\"",
+          "effect": "draft buried the conclusion under two sentences of hedging before the numbered list, and used 1/2/3 numbering for a short answer instead of keeping it to one/two sentences, producing a 307-char draft vs the real 102-char reply",
+          "moment": "turn 4",
+          "source": "claude · 1432323e · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "1/ 흰머리가 갑자기 늘었으면 영양제보다 피검사가 먼저야.",
+          "effect": "put the conclusion up front and split reasoning into numbered points as instructed",
+          "moment": "turn 2",
+          "source": "claude · 1ce78834 · 2026-09-29"
+        },
+        {
+          "polarity": "negative",
+          "text": "어긴 규칙: \"결론을 첫 문장에 둔다. 이유는 한두 문장, 길어지면 '1/ 2/' 번호로 나눈다.\" (실제 답은 첫 문장에 원인 진단과 확인 질문(\"약이 흡수가 안되는건데. 혹시 아침 공복에 먹어?\")을 두고 복용법 한 동작씩만 짧게 말했는데, 초안은 공감 한 줄 뒤에 근거 강도 설명과 번호 세 개로 길게 늘어놨어.)",
+          "effect": "Draft delayed the actionable conclusion behind a sympathy line and an evidence-strength caveat, producing a 493-character reply versus the owner's 133-character direct answer.",
+          "moment": "turn 4",
+          "source": "claude · 218a1dda · 2026-09-29"
+        },
+        {
+          "polarity": "negative",
+          "text": "어긴 규칙: \"결론을 첫 문장에 둔다. 이유는 한두 문장, 길어지면 '1/ 2/' 번호로 나눈다.\" (댓글이 묻지도 않은 안전 안내까지 412자로 길게 쓰고, 상대가 쓰는 멜라토닌이 어떤 건지 먼저 되묻지 않았다.)",
+          "effect": "draft ran to 412 characters with multiple safety caveats instead of a short 1-2 sentence answer, causing the real persona to discard it entirely and reply with an 18-character question instead",
+          "moment": "turn 4",
+          "source": "claude · 2c198b4d · 2026-09-29"
+        }
+      ]
+    },
+    {
+      "instruction": "AG-005",
+      "positive": 11,
+      "negative": 3,
+      "sessions": 14,
+      "relevance": 0.56,
+      "tokens": 20,
+      "section": "박약사 스레드 답글 말투 규칙책 > 공통 말투",
+      "known": true,
+      "quotes": [
+        {
+          "polarity": "positive",
+          "text": "너무 아프면 참지 말고 빨리 가봐-",
+          "effect": "closed with the prescribed casual ending",
+          "moment": "turn 2",
+          "source": "claude · 04edc6bf · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "지금 먹는 것부터 하나씩 적어봐-",
+          "effect": "closed the draft with the prescribed casual ending",
+          "moment": "turn 2",
+          "source": "claude · 067e4ed7 · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "확정은 못 해-",
+          "effect": "closed lines with the prescribed casual ending particle",
+          "moment": "turn 2",
+          "source": "claude · 1432323e · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "지금 먹는 게 있으면 성분표부터 같이 봐줄게-",
+          "effect": "closed the draft with the prescribed casual sign-off",
+          "moment": "turn 2",
+          "source": "claude · 1ce78834 · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "약 조절은 내가 답할 수 없는 부분이야-",
+          "effect": "Reply closed with the prescribed casual dash ending instead of a formal closing.",
+          "moment": "turn 2",
+          "source": "claude · 218a1dda · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "언제든 편하게 물어봐-",
+          "effect": "closed the reply with the light dash ending the rulebook specifies",
+          "moment": "turn 2",
+          "source": "claude · 4bf887ad · 2026-09-29"
+        }
+      ]
+    },
+    {
+      "instruction": "AG-004",
+      "positive": 7,
+      "negative": 3,
+      "sessions": 9,
+      "relevance": 0.36,
+      "tokens": 29,
+      "section": "박약사 스레드 답글 말투 규칙책 > 공통 말투",
+      "known": true,
+      "quotes": [
+        {
+          "polarity": "negative",
+          "text": "지금 철분, 마그네슘, 비타민 B·C, 이노시톨까지 다 먹고 있는데도 그러면 성분이 부족해서라기보다 호르몬 변화 쪽일 수도 있어.",
+          "effect": "instruction says to speak in ingredient names and give one action for checking labels, but the user already listed the ingredients as exhausted (all taken) — the draft still treated it as an ingredient-checking situation by naming supplements and hedging on inositol instead of pivoting away from ingredients entirely, which the real answer did instead",
+          "moment": "turn 2",
+          "source": "claude · 04edc6bf · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "셀레늄이 하시모토에서 제일 많이 얘기되는 성분이야. 그래도 효과 근거는 약한 편이라 \"꼭 먹어야 해\"는 아니야. 먹는다면 성분표에서 셀레늄 함량이 하루 200μg을 넘지 않는지만 확인해봐.",
+          "effect": "Agent named specific active ingredients (셀레늄, 철분, 비타민D, B12) rather than vague supplement categories.",
+          "moment": "turn 2",
+          "source": "claude · 218a1dda · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "1/ 이노시톨은 PCOS나 인슐린 저항성 쪽에서 근거가 꽤 있는 편인데, 그게 없는 사람한테도 도움이 되는지는 아직 확실하지 않아. 2/ NMN은 난자 질 쪽으로 기대는 많지만 사람 대상 근거는 약한 편이야.",
+          "effect": "discussed ingredients by name (이노시톨, NMN) rather than product names",
+          "moment": "turn 2",
+          "source": "claude · 7fd630d1 · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "철분(페리틴)·비타민D·B12·갑상선 수치 정도 보면 되고, 한 달 넘게 이어졌으면 더더욱.",
+          "effect": "Speaks in specific ingredient/marker names and tells the reader exactly what to check, rather than vague advice.",
+          "moment": "turn 2",
+          "source": "claude · 9b16c978 · 2026-09-29"
+        },
+        {
+          "polarity": "negative",
+          "text": "영양제는 유산균 (람노서스 GG나 파라카제이) 추천하고, 비타민 D 드랍 챙겨줘.",
+          "effect": "draft avoided naming any actual ingredients (유산균, 비타민D) despite the rule requiring ingredient-level specificity, producing a vaguer, less useful answer than the real reply",
+          "moment": "turn 4",
+          "source": "claude · 9f79bf25 · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "베르베린은 혈당 약이나 다른 약이랑 겹칠 수 있어서 복용 중인 약이 있으면 꼭 말해줘. 간 수치 걱정되면 영양제 줄이기 전에 피검사로 먼저 확인해봐-",
+          "effect": "spoke in ingredient names and pointed to a concrete check (blood test) as instructed",
+          "moment": "turn 2",
+          "source": "claude · d7f4883b · 2026-09-29"
+        }
+      ]
+    },
+    {
+      "instruction": "AG-008",
+      "positive": 4,
+      "negative": 2,
+      "sessions": 5,
+      "relevance": 0.2,
+      "tokens": 21,
+      "section": "박약사 스레드 답글 말투 규칙책 > 잡담·반응",
+      "known": true,
+      "quotes": [
+        {
+          "polarity": "positive",
+          "text": "ㅎㅎ 고마워, 그렇게 봐주니 힘난다. 궁금한 거 있으면 언제든 편하게 물어봐-",
+          "effect": "responded to a compliment with a short one-line warm reaction as instructed",
+          "moment": "turn 2",
+          "source": "claude · 4bf887ad · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "ㅋㅋ 고마워, 시원하게 쓰려고 노력 중이야ㅎㅎ 영양제 궁금한 거 있으면 편하게 물어봐-",
+          "effect": "agent opened with a one-line friendly reaction to praise using laughter markers, matching the instruction to keep praise/small-talk to one warm line",
+          "moment": "turn 2",
+          "source": "claude · 57129c95 · 2026-09-29"
+        },
+        {
+          "polarity": "negative",
+          "text": "영양제 궁금한 거 있으면 편하게 물어봐-",
+          "effect": "the draft did not stay to a one-line warm reaction as instructed; it appended an extra invitation to ask about supplements, which the real answer never did and which the actual owner's reply avoided entirely",
+          "moment": "turn 2",
+          "source": "claude · 57129c95 · 2026-09-29"
+        },
+        {
+          "polarity": "negative",
+          "text": "우와 마음 먹었구나ㅎㅎ 시작 전에 딱 하나만 챙겨봐-\n주사 종류나 용량은 내가 네 상태를 알 수는 없으니 처방해주는 의사쌤이랑 얘기하고, 병원 가면 지금 먹는 약이랑 영양제 있으면 같이 말해줘.\n시작하면 먹는 양이 줄어드니까 단백질이랑 물은 의식해서 챙기면 좋아, 나머지는 그때그때 물어봐 참고해-",
+          "effect": "The comment was pure enthusiastic chitchat (excited announcement, no actual question), which AG-008 calls for a one-line warm reaction with just \"ㅋㅋ\"/\"ㅎㅎ\"; instead the agent produced a full multi-sentence pharmacist-style advice draft (166 chars) with numbered guidance, causing a large mismatch with the owner's actual 6-char reply \"화이팅이야!\"",
+          "moment": "turn 2",
+          "source": "claude · 641123f3 · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "ㅋㅋ 위치는 비밀이야 ㅎㅎ",
+          "effect": "opened with a one-line friendly reaction using ㅋㅋ/ㅎㅎ as instructed for banter",
+          "moment": "turn 2",
+          "source": "claude · a7a95b2b · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "ㅎㅎ 나 행복하지~ 너도 오늘 좀 행복했으면 좋겠다-",
+          "effect": "opened with a one-line friendly reaction to the casual comment as instructed",
+          "moment": "turn 2",
+          "source": "claude · ea205e57 · 2026-09-29"
+        }
+      ]
+    },
+    {
+      "instruction": "AG-009",
+      "positive": 0,
+      "negative": 2,
+      "sessions": 2,
+      "relevance": 0.08,
+      "tokens": 16,
+      "section": "박약사 스레드 답글 말투 규칙책 > 잡담·반응",
+      "known": true,
+      "quotes": [
+        {
+          "polarity": "negative",
+          "text": "없던 규칙: 약국 위치를 물으면 \"비밀\"로 닫지 말고 페이약사라 여러 곳에서 일한다고 가볍게 밝히고, 친해지면 알려주겠다는 여지를 남긴다.",
+          "effect": "the instruction only said to deflect location/personal questions lightly, but gave no guidance on how the real persona actually deflects (revealing part-time/substitute pharmacist status while withholding location) — agent's draft closed off with '비밀' instead of the actual lighter, more revealing deflection style, causing a real divergence from the account's true voice",
+          "moment": "turn 4",
+          "source": "claude · a7a95b2b · 2026-09-29"
+        },
+        {
+          "polarity": "negative",
+          "text": "주사제 쁘로 먹여주는 곳은 내가 알 수는 없어 ㅎㅎ 주사제는 처방한 의사쌤한테 어디서 어떻게 맞을지 먼저 물어봐-",
+          "effect": "the question was about business/wholesale margin (약국 운영 사정), not personal info/location, but the agent's draft routed it to a doctor referral instead of a direct pharmacist-voiced answer, missing the real owner's blunt in-character response",
+          "moment": "turn 4",
+          "source": "claude · f11e4988 · 2026-09-29"
+        }
+      ]
+    },
+    {
+      "instruction": "AG-006",
+      "positive": 4,
+      "negative": 1,
+      "sessions": 5,
+      "relevance": 0.2,
+      "tokens": 33,
+      "section": "박약사 스레드 답글 말투 규칙책 > 공통 말투",
+      "known": true,
+      "quotes": [
+        {
+          "polarity": "negative",
+          "text": "1/ 셀레늄이 하시모토에서 제일 많이 얘기되는 성분이야. 그래도 효과 근거는 약한 편이라 \"꼭 먹어야 해\"는 아니야.",
+          "effect": "Draft inverted the prescribed judgment order (지금 먹는 것 → 겹치는 것 → 부족할 만한 것 → 병원 확인), leading with the 부족할 만한 것 (셀레늄) item and only reaching the 지금 먹는 것/겹치는 것 (dosing-timing interaction) point third, whereas the owner's real reply led with dosing timing first.",
+          "moment": "turn 2",
+          "source": "claude · 218a1dda · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "임신·수유 중이거나 항응고제 먹거나 신장 질환 있으면 먼저 의사쌤이나 약사한테 물어보고",
+          "effect": "followed the 판단 순서 by covering current regimen (멜라토닌) then flagging what to check (병원)",
+          "moment": "turn 2",
+          "source": "claude · 2c198b4d · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "지금 먹는 게 있으면 그거부터 성분표 확인해봐. 뭘 더 넣는 것보다 겹치는 걸 먼저 보는 게 약사식이야.",
+          "effect": "agent applied the pharmacist judgment order, checking current intake before adding anything",
+          "moment": "turn 2",
+          "source": "claude · 9fb5d967 · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "1/ 성분표에서 철분 형태 확인해봐. 비스글리시네이트 같은 킬레이트 형태가 황산제일철보다 위가 덜 불편한 편이야.",
+          "effect": "draft follows 지금 먹는 것 → 겹치는 것 → 부족할 만한 것 → 병원에서 확인할 것 order (implicitly via 성분/함량 checks then 병원 referral)",
+          "moment": "turn 2",
+          "source": "claude · b2cdb2a9 · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "1/ 엽산은 임신 준비 때 흔히 챙기는 성분이라 방향은 이상하지 않아. 근데 지금 먹는 게 많아서 뭘 계속 먹을지는 내가 네 상태를 알 수는 없으니 진료 때 정리하는 게 맞아.",
+          "effect": "assistant followed the pharmacist judgment order (current meds → overlaps → hospital check) in structuring the draft",
+          "moment": "turn 2",
+          "source": "claude · e237b243 · 2026-09-29"
+        }
+      ]
+    },
+    {
+      "instruction": "AG-007",
+      "positive": 17,
+      "negative": 0,
+      "sessions": 17,
+      "relevance": 0.68,
+      "tokens": 32,
+      "section": "박약사 스레드 답글 말투 규칙책 > 공통 말투",
+      "known": true,
+      "quotes": [
+        {
+          "polarity": "positive",
+          "text": "내가 네 상태를 알 수는 없으니 확실하진 않지만",
+          "effect": "agent correctly hedged personal-state uncertainty using the mandated phrase",
+          "moment": "turn 2",
+          "source": "claude · 04edc6bf · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "내가 네 상태를 알 수는 없으니 확정은 못 해-",
+          "effect": "agent used the exact prescribed hedge phrase for personal-state disclaimers",
+          "moment": "turn 2",
+          "source": "claude · 1432323e · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "내가 네 상태를 알 수는 없으니",
+          "effect": "used the exact hedging phrase for personal-state disclaimers",
+          "moment": "turn 2",
+          "source": "claude · 1ce78834 · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "내가 네 상태를 알 수는 없으니까 \"~일 수 있어\" 선에서만 말할게.",
+          "effect": "Agent explicitly hedged on personal medical state using the exact prescribed phrase, correctly declining to diagnose the user's specific case.",
+          "moment": "turn 2",
+          "source": "claude · 218a1dda · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "멜라토닌은 먹는 시간이 효과를 좌우해서 지금 방식이 맞는지는 내가 네 상태를 알 수는 없으니 참고만 해줘",
+          "effect": "used the exact hedging phrase required by the rule when discussing personal melatonin timing",
+          "moment": "turn 2",
+          "source": "claude · 2c198b4d · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "근데 내가 네 상태를 알 수는 없으니 \"그래서 효과 있다\"까지는 말 못 해",
+          "effect": "agent correctly hedged personal-state uncertainty using the prescribed phrase",
+          "moment": "turn 2",
+          "source": "claude · 716fbb0a · 2026-09-29"
+        }
+      ]
+    },
+    {
+      "instruction": "AG-002",
+      "positive": 3,
+      "negative": 0,
+      "sessions": 3,
+      "relevance": 0.12,
+      "tokens": 23,
+      "section": "박약사 스레드 답글 말투 규칙책 > 공통 말투",
+      "known": true,
+      "quotes": [
+        {
+          "polarity": "positive",
+          "text": "ㅠㅠ 어렵지, 처음엔 다 그래. 한 번에 다 하려고 하지 말고 지금 먹는 것부터 하나씩 적어봐-",
+          "effect": "opened with a one-line acknowledgment of the commenter's situation before answering, matching 반말/친구처럼 tone",
+          "moment": "turn 2",
+          "source": "claude · 067e4ed7 · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "플라시보만은 아닐 수 있어ㅎㅎ 비타민C는 몸에서 부족하면 컨디션 차이를 느끼는 사람도 있거든",
+          "effect": "used casual 반말 tone throughout the draft as instructed",
+          "moment": "turn 2",
+          "source": "claude · 716fbb0a · 2026-09-29"
+        },
+        {
+          "polarity": "positive",
+          "text": "가족 넷이라 한 번에 다 챙기려면 헷갈리지ㅎㅎ 내가 가족 상태를 알 수는 없으니까 큰 순서만 말해줄게-",
+          "effect": "used casual banmal and opened by acknowledging the commenter's situation before answering",
+          "moment": "turn 2",
+          "source": "claude · beaa203b · 2026-09-29"
+        }
+      ]
+    },
+    {
+      "instruction": "AG-001",
+      "positive": 0,
+      "negative": 0,
+      "sessions": 0,
+      "relevance": 0,
+      "tokens": 71,
+      "section": "박약사 스레드 답글 말투 규칙책",
+      "known": true,
+      "quotes": []
+    }
+  ],
+  "gaps": []
+}

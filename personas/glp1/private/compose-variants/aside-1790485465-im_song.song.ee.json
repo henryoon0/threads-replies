@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485465-im_song.song.ee",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:03:48.686Z",
+  "updatedAt": "2026-09-30T08:05:02.102Z",
+  "planned": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "둘 다 괜찮은 선택인데 고르는 기준은 따로 있어. 마그네슘+테아닌 조합은 보통 잠이나 긴장 때문에 찾는데, 자기 전 1시간은 폰 끄고 커피는 오후 2시 전에 끊는 게 먼저야. 그거부터 해놓고 먹어야 효과가 있는지 알수가 있어.\n\n복합제는 라벨에서 함량부터 봐.\n1/ 마그네슘은 원소 기준 100~300mg. 산화마그네슘보다 글리시네이트가 흡수가 잘돼.\n2/ 테아닌은 200mg 안팎.\n한 알에 둘 다 넣으면 함량이 애매해지기 쉬워서, 하나라도 모자라면 따로 사서 먹는 게 나아. 저녁 식후에 먹으면 되고, 테아닌은 긴장 푸는 쪽 근거는 좀 있는데 잠 자체를 늘려주는 효과는 크지 않어.\n\n바닐라향 오메가3는 먹기 편한 게 장점인데, 향이 비린내를 가려버려서 산패됐는지 알기가 어려워. 오메가3는 기름이라 햇빛이나 열 받으면 쉽게 산패되거든. 그래서 향 말고 IFOS 같은 산패도 인증이 있는지, rTG 형태인지, EPA+DHA 합이 하루 1000mg 전후인지 보고 골라. 서늘한 데 두고 개봉하면 빨리 먹어-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 126
+        },
+        {
+          "kind": "ingredient",
+          "start": 128,
+          "end": 327
+        },
+        {
+          "kind": "principle",
+          "start": 329,
+          "end": 508
+        }
+      ],
+      "products": [],
+      "ms": 16966,
+      "sessionId": "309d75d9-79e9-4bb9-9f53-cf6aa3edb5ad"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "마그네슘+테아닌 조합 자체는 좋아. 근데 한 알에 같이 넣으면 둘 다 함량이 애매해지기 쉬워. 바닐라향 오메가3는 먹기 편한 대신 향이 산패된 비린내를 가려서, 상했는지 알수가 없어-\n\n라벨에서 마그네슘 원소량 200mg 안팎, 테아닌 200mg인지 봐. 자기 1시간 전에 먹으면 돼. 오메가3는 향 말고 rTG, EPA+DHA 합 1000mg, 산패 인증부터 봐. 잠 때문이면 자기 전에 폰부터 내려놔.\n\n약국은 마그비 저녁 식후 1알.\n온라인은 복합제 라벨에 둘 다 200mg 가까우면 무난해.\n직구는 나우푸드 엘테아닌 200mg에 닥터스베스트 마그네슘 글리시네이트 100mg 두 알, 자기 전에. 따로 사는 게 결국 싸게 먹혀.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 102
+        },
+        {
+          "kind": "ingredient",
+          "start": 104,
+          "end": 226
+        },
+        {
+          "kind": "product",
+          "start": 228,
+          "end": 354
+        }
+      ],
+      "products": [],
+      "ms": 14319,
+      "sessionId": "c30d51c8-4761-4e23-b7a5-163147b4cb08"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "마그네슘+테아닌 조합은 좋은데 한 알에 합치면 둘 다 함량이 애매해지기 쉬워. 라벨에서 테아닌 200mg 들었는지 봐. 바닐라향 오메가3는 향이 산패된 비린내를 가려서 상했는지 알수가 없어. 그리고 자기 전에 폰 내려놓는 게 테아닌보다 세-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 134
+        }
+      ],
+      "products": [],
+      "ms": 8199,
+      "sessionId": "8fb1a815-80f0-49d0-a406-914d7992aa65"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "마그네슘 테아닌 복합제는 편하긴 한데 둘 다 함량이 애매한 게 많어. 라벨에서 마그네슘 원소 200mg 안팎, 테아닌 200mg인지 확인하고 모자라면 따로 사. 바닐라향 오메가3는 향이 산패 냄새를 가려. 향 말고 rTG, EPA+DHA 합 1000mg, 산패도 인증을 봐. 그리고 자기 전 폰 끄는 게 테아닌보다 세다-\n\n약국은 마그비 저녁 식후 1알, 오메가3는 종근당 알티지 오메가3 아침 식후.\n\n직구는 나우푸드 엘테아닌 200mg 자기 전 + 닥터스베스트 마그네슘 글리시네이트 저녁 식후. 이 조합이 복합제보다 낫다.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 179
+        },
+        {
+          "kind": "product",
+          "start": 181,
+          "end": 294
+        }
+      ],
+      "products": [],
+      "ms": 14302,
+      "sessionId": "2783545b-cb93-4929-8570-1dcbe42d336e"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 마그비 저녁 식후 1알, 테아닌은 따로 사.\n온라인이면 복합제는 테아닌 200mg 채운 거면 무난해.\n직구는 나우푸드 마그네슘 글리시네이트 200mg + 나우 L-테아닌 200mg 자기 전. 오메가3는 노르딕내추럴 얼티메이트 오메가 2알(EPA+DHA 1280mg). 바닐라향은 산패 냄새를 가려서 난 안사.\n\n자기 전 폰부터 끊어-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 190
+        }
+      ],
+      "products": [],
+      "ms": 12688,
+      "sessionId": "cd806821-488f-45ef-86f1-c2b5871d03c7"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "바닐라향은 비린내도 가리지만 산패도 가려서 그게 함정이야. 테아닌 찾기 전에 자기 전 폰부터 끄는게 젤 싸-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "products": [],
+      "ms": 6928,
+      "sessionId": "e638267d-8556-47a1-ac37-5061a65bb757"
+    }
+  ],
+  "failed": [],
+  "sessionId": "e638267d-8556-47a1-ac37-5061a65bb757"
+}

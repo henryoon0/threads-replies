@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483082-mii_vvvv",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:33:26.198Z",
+  "updatedAt": "2026-09-30T08:34:45.096Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "갑상선 수질암이나 MEN2 계열만 아니면 GLP-1이 암을 키운다는 근거는 없어. 근데 치료 막 끝난 몸은 살 뺄 때가 아니라 근육 지킬 때거든. 입맛 떨어지면 단백질부터 무너지니까 체중 1kg당 1.2g 챙겨먹고 가벼운 근력운동은 꼭 같이 해. 남은 펜 알아서 맞는 건 담당 종양내과쌤한테 한 번 묻고 해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 172
+        }
+      ],
+      "products": [],
+      "ms": 8233,
+      "sessionId": "38101eb3-6861-4de2-8008-3f123f4e0911"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "암 이력이 있다고 무조건 못 맞는 건 아니야. 근데 전이까지 갔던 사람이 남은 펜을 알아서 이어 맞는 건 안좋아. 치료를 막 끝낸 몸은 살을 빼는 것보다 근육이랑 체중을 지키는 게 먼저인 시기거든. 담당 종양내과 선생님한테 한 번은 꼭 확인받으라고 전해줘.\n\n암 종류부터 확인해야 돼. 갑상선 수질암이나 MEN2 계열이면 GLP-1은 절대 금기라서 바로 끊어야 돼. 그 밖의 암이면 GLP-1이 암을 키운다는 근거는 지금 없어. 오히려 비만이 여러 암의 재발 위험 인자라서 연구 쪽에서는 좋게 보는 흐름도 있어.\n\n그래도 계속 맞을 거면\n1/ 쉬었다가 다시 맞는 거면 원래 쓰던 용량 말고 제일 낮은 용량부터 다시 올려\n2/ 단백질은 체중 1kg당 1.2g 이상 먹어. 60kg이면 하루 72g이야\n3/ 가벼운 근력운동을 주 2~3번 같이 하고 체중이 빠지는 속도를 매주 체크해\n\n식욕이 떨어져서 밥을 거르기 시작하면 근육부터 빠져-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 143
+        },
+        {
+          "kind": "principle",
+          "start": 145,
+          "end": 286
+        },
+        {
+          "kind": "ingredient",
+          "start": 288,
+          "end": 466
+        }
+      ],
+      "products": [],
+      "ms": 15080,
+      "sessionId": "ae936ad6-4bd7-455d-934c-1450f144fb59"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "갑상선 수질암이나 MEN2 이력이면 위고비는 절대 금기라 바로 끊어야 돼. 그 외 암이면 GLP-1이 암을 키운다는 근거는 없어. 근데 전이·재발 치료 막 끝난 몸은 살 뺄 때가 아니라 근육 지킬 때거든. 남은 펜 알아서 맞는 건 종양내과 쌤한테 한 번은 확인받아.\n\n그래도 계속 맞을 거면 단백질은 체중 1kg당 1.2g 이상 끼니마다 나눠 먹고, 가벼운 근력운동도 주 2~3회는 같이 해야 돼-\n\n약국은 뉴케어 올프로틴을 하루 1팩 간식으로 먹어. 온라인이면 셀렉스 프로핏 드링크 정도가 무난해. 직구는 옵티멈 골드스탠다드 웨이 1스쿱(단백질 24g)을 운동 끝나고 타먹어.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 148
+        },
+        {
+          "kind": "ingredient",
+          "start": 150,
+          "end": 222
+        },
+        {
+          "kind": "product",
+          "start": 224,
+          "end": 323
+        }
+      ],
+      "products": [],
+      "ms": 18121,
+      "sessionId": "16e8e7a0-9886-4688-b6ce-7311030790b2"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "갑상선 수질암 계열만 아니면 암 이력 자체는 금기 아냐. 대신 지금은 근육 지킬 때야.\n\n약국은 뉴케어 올프로틴 하루 1팩, 끼니 사이에.\n온라인이면 셀렉스 코어프로틴 하루 한 번, 이 정도면 무난해.\n직구는 옵티멈 골드스탠다드 웨이 1스쿱(단백질 24g), 근력운동 끝나고.\n\n남은 펜 알아서 맞는 건 안돼. 종양내과쌤한테 한번은 물어봐-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 190
+        }
+      ],
+      "products": [],
+      "ms": 12834,
+      "sessionId": "1a6192ec-057c-4ed8-8ca2-2be7cdf5f6a2"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "갑상선 수질암이나 MEN2였으면 바로 끊어. 그 외 암 이력만으로 GLP-1이 암을 키운다는 근거는 없어. 근데 전이까지 갔던 몸은 지금 살 뺄 때가 아니라 근육 지킬 때야. 남은 펜 알아서 맞지 말고 종양내과에 한 번 확인받아. 맞더라도 저용량부터 다시 올리고, 단백질 체중 1kg당 1.2g 이상 + 주 2-3회 근력운동은 꼭.\n\n약국은 뉴케어 액티브 골든밸런스 하루 1팩 식사 사이에.\n온라인이면 셀렉스 프로핏 웨이프로틴 정도면 무난해.\n직구는 옵티멈 골드스탠다드 웨이 1스쿱(단백질 24g) 운동 끝나고-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 185
+        },
+        {
+          "kind": "product",
+          "start": 187,
+          "end": 286
+        }
+      ],
+      "products": [],
+      "ms": 15332,
+      "sessionId": "aa50cc22-466a-478e-8f9b-cc3f22b5ab90"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "갑상선 수질암만 아니면 금기는 아닌데, 남은 거 아깝다고 맞을 몸은 아니야. 지금은 잘먹고 근육 붙일 때-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 59
+        }
+      ],
+      "products": [],
+      "ms": 9282,
+      "sessionId": "987b3b53-7bf8-4b7e-b45d-8b450ffd3159"
+    }
+  ],
+  "failed": [],
+  "sessionId": "987b3b53-7bf8-4b7e-b45d-8b450ffd3159"
+}

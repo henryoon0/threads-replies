@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483305-hoyaho3",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:28:45.717Z",
+  "updatedAt": "2026-09-30T08:29:49.232Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "광고만큼은 아니야. 먹는 아르기닌은 장이랑 간에서 상당 부분 분해돼서 피까지 얼마 안 올라가거든. 비싼 거라고 달라지는 거 거의 없어. 액상 스틱은 반쯤 당이랑 향료값이고.\n\n혈관이나 운동 쪽이 목적이면 L-시트룰린이 나아. 몸에 들어가서 아르기닌으로 바뀌는데 이게 혈중 아르기닌을 더 잘 올려. 운동 1시간 전 3~6g. 혈압약·협심증약·발기부전약 먹고 있으면 혈압이 같이 떨어질 수 있어서 빼.\n\n직구는 나우푸드 L-시트룰린 750mg, 운동 1시간 전 4알. 근데 피로가 목적이면 잠 7시간이랑 주 3번 빠르게 걷기가 이거보다 넘 쎄-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 96
+        },
+        {
+          "kind": "ingredient",
+          "start": 98,
+          "end": 222
+        },
+        {
+          "kind": "product",
+          "start": 224,
+          "end": 302
+        }
+      ],
+      "products": [],
+      "ms": 15219,
+      "sessionId": "81b00788-8b6d-4bc2-a11a-e0e04e95c108"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "먹는 아르기닌은 장이랑 간에서 거의 다 분해돼서 근거가 약해. 비싼 거라고 달라지는 거 없어.\n온라인이면 스틱은 당·향료값이니 1포에 아르기닌 3g 넘는 것만 봐.\n직구는 차라리 나우푸드 L-시트룰린 750mg, 운동 30분 전 4알.\n피로가 목적이면 그 돈보다 잠 7시간이 훨씬 세다-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 160
+        }
+      ],
+      "products": [],
+      "ms": 12872,
+      "sessionId": "ae9184d2-66f5-4011-bbe1-d1a8b76e6091"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "근거 약해. 먹는 아르기닌은 장이랑 간에서 대부분 분해돼서 피까지 얼마 안 올라가거든. 비싼 거라고 달라지는 건 거의 없어. 혈액순환이 목적이면 매일 유산소 30분이 훨씬 확실해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 100
+        }
+      ],
+      "products": [],
+      "ms": 6626,
+      "sessionId": "e5732059-7398-472c-9b3f-5c604a27dd12"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "먹는 아르기닌은 근거가 약해. 장이랑 간에서 거의 분해돼서 혈중까지 잘 안 올라가. 비싼 거라고 달라지는 거 없어. 혈행이 목적이면 L-시트룰린 하루 3~6g이 더 낫고, 그보다 유산소 30분이 훨씬 세다-\n\n온라인 아르기닌 스틱은 1포 함량부터 봐. 1g도 안되면 당이랑 향료값이야.\n직구는 나우푸드 L-시트룰린 750mg, 운동 1시간 전에 4알.\n혈압약이나 발기부전약 먹으면 혈압이 같이 떨어질 수 있으니 먹지마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 115
+        },
+        {
+          "kind": "product",
+          "start": 117,
+          "end": 234
+        }
+      ],
+      "products": [],
+      "ms": 10714,
+      "sessionId": "f7eee129-7c9b-4dce-b995-54a878b38df5"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "비싼 아르기닌이라고 효과가 달라지진 않아. 피로나 혈액순환 때문에 찾는 거면 잠 7시간 확보하고 빠르게 걷기 30분을 주 4번 하는 게 훨씬 확실해. 돈은 운동화에 쓰는 게 낫다.\n\n먹는 아르기닌은 장이랑 간에서 상당 부분 분해돼서 피 속까지 많이 안 올라가거든. 그래서 성장호르몬이니 피로회복이니 하는 광고는 근거가 약해.\n\n혈관이나 운동 효과를 보고 싶으면 차라리 L-시트룰린이 좋을꺼같아. 몸에 들어가서 아르기닌으로 바뀌는데, 피 속 아르기닌을 오히려 더 잘 올려. 운동 1시간 전에 3~6g 정도 먹으면 돼. 액상 스틱은 1회 함량이 g 단위로 얼마나 되는지부터 봐. 대부분은 당이랑 향료값이야. 혈압약, 협심증약, 발기부전약을 먹고 있으면 혈압이 같이 떨어질 수 있으니까 둘 다 먹지 마 -",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 100
+        },
+        {
+          "kind": "principle",
+          "start": 102,
+          "end": 181
+        },
+        {
+          "kind": "ingredient",
+          "start": 183,
+          "end": 391
+        }
+      ],
+      "products": [],
+      "ms": 12014,
+      "sessionId": "d07943d8-41ad-4164-93ab-38ec874e468a"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "먹는 아르기닌은 비싼거나 싼거나 근거가 약해. 그 돈으로 수박 사먹고 저녁에 30분 걸어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 50
+        }
+      ],
+      "products": [],
+      "ms": 6051,
+      "sessionId": "e530a37f-9a64-42ec-856b-f6b583a5442e"
+    }
+  ],
+  "failed": [],
+  "sessionId": "e530a37f-9a64-42ec-856b-f6b583a5442e"
+}

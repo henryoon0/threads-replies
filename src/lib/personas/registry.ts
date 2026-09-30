@@ -21,7 +21,7 @@ import { tokenPath } from "@/lib/threads-archive/storage";
 
 export function personasDir(): string {
   // 이 앱은 받는 사람 맥에서 돈다 — 팩도 앱 data/ 안에 둔다 (다른 앱의 팩 폴더를 읽지 않게).
-  return process.env.REPLY_PERSONAS_DIR ?? path.join(process.cwd(), "data", "personas");
+  return process.env.REPLY_PERSONAS_DIR ?? path.join(process.cwd(), "personas");
 }
 
 export function packDir(id: PersonaId): string {
@@ -75,14 +75,11 @@ function cache(): Map<string, CacheEntry> {
 /** 기본 페르소나(연결한 내 계정)는 연결할 때 저장한 아이디·소개로 이름을 채운다. */
 async function withProfile(config: PersonaConfig): Promise<PersonaConfig> {
   if (config.id !== DEFAULT_PERSONA_ID) return config;
+  // 팩에 이름·핸들이 있으면 그대로 쓴다. 비어 있을 때만 연결한 계정으로 채운다.
+  if (config.handle) return config;
   const profile = await readProfile();
   if (!profile.username) return config;
-  return {
-    ...config,
-    name: profile.username,
-    handle: profile.username,
-    intro: ownerLine(profile),
-  };
+  return { ...config, name: profile.username, handle: profile.username, intro: ownerLine(profile) };
 }
 
 export async function readPersona(id: PersonaId): Promise<PersonaConfig> {

@@ -1,0 +1,23 @@
+{
+  "id": "850ecc1a-692f-4c24-baeb-726628a18329",
+  "persona": "glp1",
+  "status": "done",
+  "phase": "done",
+  "done": [
+    "config",
+    "backpass",
+    "patterns"
+  ],
+  "startedAt": "2026-09-29T06:22:27.867Z",
+  "updatedAt": "2026-09-29T06:25:39.418Z",
+  "deadlineAt": "2026-09-29T07:02:27.867Z",
+  "attempt": 1,
+  "progress": "· synthesizing with claude (opus) effort=high",
+  "error": null,
+  "finishedAt": "2026-09-29T06:25:39.417Z",
+  "timings": {
+    "backpassMs": 129953,
+    "patternsMs": 61463,
+    "totalMs": 191550
+  }
+}

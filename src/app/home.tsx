@@ -87,7 +87,7 @@ function useSummary(persona: string) {
 
 function Workbench({ account, reload }: { account: AccountView; reload: () => Promise<void> }) {
   const [place, setPlace] = useState<ThreadsPlace>("comments");
-  const { persona, current, list, switchPersona, reloadList } = usePersona("me");
+  const { persona, current, list, switchPersona, reloadList } = usePersona("glp1");
   const [summary, loadSummary] = useSummary(persona);
   const wide = useThreadsWide();
   const onChanged = useCallback(() => {

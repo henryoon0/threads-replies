@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790436739-callinmyfuture",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T04:45:43.290Z",
+  "updatedAt": "2026-09-30T04:56:26.261Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "2.5는 4주만 맞는 적응용 용량이라 3개월 머물면 효과없는게 당연해. 1년 쉬었으니 이번에도 2.5로 4주 적응하고 5로 올려. 술은 투약하는 동안 확 줄여야 빠질꺼야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 95
+        }
+      ],
+      "products": [],
+      "ms": 6233,
+      "sessionId": "3dc4f1a6-c50c-4bb6-ad56-5cad192cb63a"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "작년 건 약이 안 맞은 게 아니야. 증량을 안 해서 제대로 시작도 못 해본 거지. 이번엔 순서만 지키면 될꺼야-\n\n2.5는 원래 4주만 맞는 적응용이야. 몸이 약에 익숙해지라고 주는 용량이라서 여기 3개월 머물면 식욕이 크게 안 꺾이는 게 당연해. 근데 1년 쉬었으면 몸은 다시 첨 상태라 5로 바로 가면 메스꺼움이 세게 올 수 있어. 2.5로 4주 적응하고 5로 올려. 거기서 4주 봐서 반응이 약하면 7.5까지 제때 올리고.\n\n그리고 술부터 확 줄여. 술은 칼로리도 크고 식욕까지 끌어올려서 주사 효과를 반은 까먹어. 끼니는 단백질 위주로 체중 1kg당 1.2g 정도 채우고, 근력운동을 주 2~3번 같이 해. 그래야 근육이 덜 빠지고 요요도 덜 와.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 62
+        },
+        {
+          "kind": "principle",
+          "start": 64,
+          "end": 239
+        },
+        {
+          "kind": "ingredient",
+          "start": 241,
+          "end": 366
+        }
+      ],
+      "products": [],
+      "ms": 15164,
+      "sessionId": "173bc383-7eff-4bb0-a3a7-fedb62f1b51e"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "2.5는 원래 4주만 맞는 적응용이야. 거기서 3개월을 버텼으니 안 빠진 게 당연해. 약이 안 맞았던 게 아니라 증량을 안 한 거야.\n\n1년 쉬었으면 몸은 첨 상태로 돌아가 있어. 그래서 5로 바로 들어가면 메스꺼움이 세게 와. 이번엔 2.5로 4주 맞고 5, 7.5로 제때 올려.\n\n단백질은 체중 1kg당 1~1.2g씩 챙기고 근력운동을 주 2~3번 붙여. 술은 이번엔 확 줄여-\n\n약국은 나만의닥터에서 마운자로 제일 싸게 파는 데 찾아.\n직구는 옵티멈 뉴트리션 골드 스탠다드 웨이 1스쿱(단백질 24g) 운동 끝나고 먹어.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 157
+        },
+        {
+          "kind": "ingredient",
+          "start": 159,
+          "end": 213
+        },
+        {
+          "kind": "product",
+          "start": 215,
+          "end": 294
+        }
+      ],
+      "products": [],
+      "ms": 14925,
+      "sessionId": "b12d3d6c-dac0-4089-8a3c-6e30770d0ab3"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "2.5는 원래 4주만 맞는 적응용 용량이야. 거기서 3달을 버텼으니 안 빠진 게 당연해. 1년 쉬었으면 몸은 처음 상태라 5로 바로 가면 메스꺼움이 세게 와. 2.5로 4주 맞고 5로 올려. 그다음도 4주마다 보고 7.5까지 제때 올려. 이번엔 술부터 확 줄여-\n\n약국은 마운자로 처방 받아서 나만의닥터로 제일 싼 데 찾아.\n온라인이면 셀렉스 같은 단백질 음료로 끼니 하나 채우는 정도면 무난해.\n직구는 옵티멈 뉴트리션 골드스탠다드 웨이 1스쿱(단백질 24g), 근력운동 끝나고 바로 먹어. 근육 지켜야 요요 덜 와.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 146
+        },
+        {
+          "kind": "product",
+          "start": 148,
+          "end": 289
+        }
+      ],
+      "products": [],
+      "ms": 12466,
+      "sessionId": "07e6fedc-65ab-4ebe-9003-e5eeabdc9c5e"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "1년 쉬었으면 2.5로 4주만 적응하고 5로 올려. 3개월 머문 게 문제였어.\n약국은 나만의닥터에서 마운자로 2.5 젤 싼 약국 찾아서 사-\n온라인이면 단백질 쉐이크 무난한 걸로 하루 1번, 20g 이상.\n직구는 옵티멈뉴트리션 골드스탠다드 웨이 1스쿱(24g) 근력운동 끝나고. 술은 투약 기간엔 끊어.",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 169
+        }
+      ],
+      "products": [],
+      "ms": 10190,
+      "sessionId": "f2d0f727-bf5a-4dc0-9473-625aef546792"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "2.5로 3개월이면 몸만 풀다 끝난거야. 이번엔 2.5 4주 맞고 5로 올리고, 술부터 끊어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 52
+        }
+      ],
+      "products": [],
+      "ms": 5347,
+      "sessionId": "51d04881-3ac7-4375-9fa3-163b6b803818"
+    }
+  ],
+  "failed": [],
+  "sessionId": "51d04881-3ac7-4375-9fa3-163b6b803818"
+}

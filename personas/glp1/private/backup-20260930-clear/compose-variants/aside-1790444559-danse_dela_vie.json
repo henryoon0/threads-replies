@@ -1,0 +1,262 @@
+{
+  "version": 6,
+  "replyId": "aside-1790444559-danse_dela_vie",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T04:46:48.406Z",
+  "updatedAt": "2026-09-30T04:48:02.226Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "근력운동까지 하는 준비된 예비맘인데 철분 탱크만 비었어. 11.9에 피곤하면 저장철(페리틴)이 바닥일 수 있고, 임신하면 혈액량이 늘어서 더 떨어지거든. 페리틴 검사 먼저 하고 붉은 살코기·달걀 매일 챙겨먹어.\n\n활성엽산(5-MTHF) 800mcg는 지금부터, 최소 임신 3개월 전엔 시작해. 비타민D 2000IU, 오메가3는 DHA 위주. 철분은 비스글리시네이트로, 커피·칼슘이랑 2시간 띄워.\n\n약국은 볼그레 식후에.\n직구는 쏜 아이언 비스글리시네이트 이틀에 한 번, 나우푸드 D3 2000IU 아침 식후. 한 알로 가려면 테라로직스 오바바이트로 정리해도 돼.\nD는 다 합쳐 4000IU 안 넘게-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 117
+        },
+        {
+          "kind": "ingredient",
+          "start": 119,
+          "end": 221
+        },
+        {
+          "kind": "product",
+          "start": 223,
+          "end": 336
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        },
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 16778,
+      "sessionId": "137c259d-4d91-47a4-951c-48143b71e55b"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "근력운동까지 하는 준비된 몸인데 철분 탱크만 비었어. 페리틴 재보고 활성엽산 800mcg(5-MTHF)은 오늘부터 시작해. 철분은 커피·칼슘이랑 4시간 띄우고, 붉은 살코기 주3회 챙겨먹어.\n\n약국은 볼그레 식후 한 알.\n온라인이면 5-MTHF 800mcg 엽산 암거나 무난해.\n직구는 쏜 아이언 비스글리시네이트 이틀에 한 번, 나우푸드 D3 2000IU 아침 식후-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 106
+        },
+        {
+          "kind": "product",
+          "start": 108,
+          "end": 205
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        },
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 11839,
+      "sessionId": "44b554cb-968a-408a-b7fc-3e8e0cde5ed0"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 활성엽산 800mcg 든 임신준비용 종합제 하나 골라.\n온라인이면 DHA 위주 rTG 오메가3 정도면 무난해.\n직구는 쏜 아이언 비스글리시네이트 이틀에 한 번, 커피랑 2시간 띄워서. 나우푸드 D3 2000IU는 종합제랑 합쳐 하루 4000IU 안넘게.\n살코기도 주 3번은 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 162
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        },
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 15687,
+      "sessionId": "ea983d81-635a-4c8d-b4bf-b86546eefbd0"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "근력운동까지 하고 있으니 몸은 이미 준비가 됐어. 철분만 좀 비어 있는 거야. 운동은 지금처럼 계속하고 소고기 같은 붉은 살코기랑 달걀을 주 3~4번은 챙겨먹어. 36이면 미룰 이유가 없으니까 영양제도 이번 주에 바로 시작해-\n\n헤모글로빈 11.9에 피곤함까지 있으면 철분 저장고인 페리틴은 이미 바닥일 수 있어. 임신하면 혈액량이 확 늘어나서 철분이 더 떨어지거든. 그러니까 페리틴 검사 한 번 받아보고, 낮게 나오면 임신 전에 철분부터 채워두는 게 순서야.\n\n1/ 활성엽산 800mcg. 라벨에 5-MTHF 표기가 있는지 확인해. 임신 최소 3개월 전부터 먹어.\n2/ 철분은 비스글리시네이트로. 위장 부담이 적어. 커피·차·칼슘이랑은 띄워서 먹어.\n3/ 비타민D 2000IU\n4/ 오메가3는 DHA 중심으로.\n한 알로 정리하고 싶으면 프리네이털 하나로 가도 돼. 대신 그때는 철분이랑 D가 겹치는 양을 라벨에서 확인해.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 126
+        },
+        {
+          "kind": "principle",
+          "start": 128,
+          "end": 257
+        },
+        {
+          "kind": "ingredient",
+          "start": 259,
+          "end": 460
+        }
+      ],
+      "products": [],
+      "ms": 14658,
+      "sessionId": "20759f7b-3391-4c9c-9255-986f1223c283"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "피곤한 건 철분 탱크가 비어서일 수 있어. 헤모글로빈 11.9면 저장철(페리틴)은 이미 바닥일 때가 많고, 임신하면 아기가 먼저 가져가서 더 떨어지거든. 페리틴 재보고 임신 전에 채워놔. 붉은 살코기 주3번은 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 122
+        }
+      ],
+      "products": [],
+      "ms": 9390,
+      "sessionId": "28cadd3c-370f-4437-b4ca-3bed2ac28ab2"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "근력운동까지 하는 준비된 예비맘인데 철분 탱크만 비었네. 페리틴부터 재보고 붉은 살코기 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 54
+        }
+      ],
+      "products": [],
+      "ms": 5456,
+      "sessionId": "bd3acb15-3a11-488e-b83a-9da00d24a9e0"
+    }
+  ],
+  "failed": [],
+  "sessionId": "bd3acb15-3a11-488e-b83a-9da00d24a9e0"
+}

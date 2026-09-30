@@ -1,0 +1,223 @@
+{
+  "version": 6,
+  "replyId": "aside-1790484869-yuhahand",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:09:50.188Z",
+  "updatedAt": "2026-09-30T08:10:52.055Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "주사는 전문의약품이라 택배가 안돼. 처방받고 약국에서 직접 받아야 하고, SNS에서 택배로 보내준다는 건 가짜라고 보면 돼. 택배로 받을 수 있는 건 주사 맞는 동안 먹을 영양제야. 약국은 비맥스 메타 하루 1정 아침 식후, 직구는 나우푸드 D3 2000IU 하루 1알. 대신 단백질은 끼니마다 손바닥 한 장만큼 밥상에서 챙겨-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 183
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 9158,
+      "sessionId": "f9b8d4ea-795c-4cdf-b245-c3a86e8b42cc"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "택배는 안 돼. 마운자로·위고비는 전문의약품이라 처방받고 약국에서 직접 받아야 하거든. 온라인이나 SNS에서 택배로 보내준다는 건 불법이거나 가짜일 수 있으니까 절대 사지마.\n\n게다가 이 주사는 단백질로 된 약이라 2~8도 냉장이 기본이야. 한여름 택배 상자에서 하루 굴러다니면 성분이 망가져서 맞아도 아무도움안돼. 맞는 동안은 단백질부터 챙겨먹고 근력운동 주 2~3번은 해야 살 빠질 때 근육이 같이 안 빠져.\n\n약국은 처방전 들고 가기 전에 마운자로 재고 있는지 전화로 먼저 물어보고 가. 온라인이랑 직구는 이 주사엔 해당 없어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 97
+        },
+        {
+          "kind": "ingredient",
+          "start": 99,
+          "end": 230
+        },
+        {
+          "kind": "product",
+          "start": 232,
+          "end": 298
+        }
+      ],
+      "products": [],
+      "ms": 14427,
+      "sessionId": "80455b9a-0183-46b8-ae32-10e1e2351070"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "안돼. 마운자로·위고비는 전문의약품이라 처방받고 약국에서 직접 받아야 해. 냉장 보관하는 주사라 택배로 오다 온도 틀어지면 약이 상해도 알수가 없어. 처방 기다리는 동안 끼니마다 단백질부터 채우고 하루 30분 걷는 것부터 시작해-\n\n약국은 처방전 들고 가기 전에 재고 있는지 전화로 먼저 물어보고 가. 온라인이나 SNS에서 택배로 주사 보내준다는 건 불법이거나 가짜야. 직구도 똑같아. 절대 사지마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 128
+        },
+        {
+          "kind": "product",
+          "start": 130,
+          "end": 223
+        }
+      ],
+      "products": [],
+      "ms": 11007,
+      "sessionId": "6240b5d0-18d3-468e-9d21-e64f96abdb90"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "택배는 안 돼. 처방받고 약국에서 직접 받아가야 하는 약이야. 가까운 병원에서 처방받고, 재고 있는 약국에 미리 전화 한 통 해보고 가면 헛걸음 안할꺼야.\n\n마운자로·위고비는 전문의약품이라 택배로 파는 것 자체가 불법이야. 게다가 냉장 보관해야 하는 주사라서 택배 상자 안에서 몇 시간만 더워져도 약이 망가지거든. SNS에서 택배로 보내준다는 건 가짜거나 보관이 엉망인 거라 절대 사지 마.\n\n그리고 주사 시작하면 단백질부터 채워. 끼니마다 계란·두부·생선 같은 걸 한 가지씩 넣고, 스쿼트 같은 근력운동을 주 3번은 해야 빠지는 게 근육이 아니라 살이 돼-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 86
+        },
+        {
+          "kind": "principle",
+          "start": 88,
+          "end": 218
+        },
+        {
+          "kind": "ingredient",
+          "start": 220,
+          "end": 312
+        }
+      ],
+      "products": [],
+      "ms": 12607,
+      "sessionId": "3ea6af16-72c9-46bb-8f35-cfa5ac338780"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "택배는 안돼. 전문의약품이라 처방받고 약국에서 직접 받아야 하고, 냉장 보관하는 주사라 택배로 오면 약이 망가지거든. 택배로 보내준다는 데는 가짜라고 보면 돼. 병원은 걸어서 가. 주사 맞기 전에 운동부터 시작하는 거야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 123
+        }
+      ],
+      "products": [],
+      "ms": 7085,
+      "sessionId": "06aa2cb6-8de7-477a-acba-d01909972bb1"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "처방약이라 택배는 안돼. 택배로 준다는 데는 가짜야. 병원 들렀다 약국까지 걸어가, 그게 첫 운동이야-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 57
+        }
+      ],
+      "products": [],
+      "ms": 7561,
+      "sessionId": "0f361de5-d344-4ec3-bac3-273d0f85b15c"
+    }
+  ],
+  "failed": [],
+  "sessionId": "0f361de5-d344-4ec3-bac3-273d0f85b15c"
+}

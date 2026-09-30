@@ -1,0 +1,58 @@
+{
+  "transcript": {
+    "harness": "claude",
+    "id": "claude-e237b243-1680-460c-bc0d-fa46ecab1077",
+    "path": "/Users/henry/.claude/projects/-Users-henry--local-share-reply-personas-glp1/e237b243-1680-460c-bc0d-fa46ecab1077.jsonl",
+    "mtimeMs": 1790661329322.0425,
+    "bytes": 116450,
+    "startedAt": 1790661322498,
+    "association": {
+      "tier": 1,
+      "confidence": "exact",
+      "reason": "cwd is worktree /Users/henry/.local/share/reply-personas/glp1"
+    }
+  },
+  "memoryHash": "sha256:51345796760f199c",
+  "memoryPath": "AGENTS.md",
+  "key": "1790661329322.0425:116450:sha256:51345796760f199c",
+  "analyzedAt": "2026-09-29T06:14:44.404Z",
+  "status": "ok",
+  "stats": {
+    "userTurns": 2,
+    "assistantTurns": 2,
+    "toolCalls": 0,
+    "elided": false,
+    "distilledTokens": 648
+  },
+  "positive": [
+    {
+      "instruction": "AG-006",
+      "moment": "turn 2",
+      "effect": "assistant followed the pharmacist judgment order (current meds → overlaps → hospital check) in structuring the draft",
+      "quote": "1/ 엽산은 임신 준비 때 흔히 챙기는 성분이라 방향은 이상하지 않아. 근데 지금 먹는 게 많아서 뭘 계속 먹을지는 내가 네 상태를 알 수는 없으니 진료 때 정리하는 게 맞아."
+    },
+    {
+      "instruction": "AG-004",
+      "moment": "turn 2",
+      "effect": "assistant named specific ingredients rather than speaking generically",
+      "quote": "2/ 베르베린, 실리마린, 아르기닌은 임신 준비·임신 중에 안전하다고 확인된 근거가 약해."
+    }
+  ],
+  "negative": [
+    {
+      "instruction": "AG-003",
+      "moment": "turn 3",
+      "effect": "draft opened with a hedge/referral instead of a conclusion, unlike the real reply which stated the concrete recommendation immediately, making the draft longer and less decisive",
+      "quote": "임신 준비 중이면 성분 얘기 전에 산부인과 의사쌤이나 약사한테 지금 먹는 걸 통째로 보여주고 상담부터 받아봐."
+    }
+  ],
+  "gaps": [
+    {
+      "mistake": "Draft deferred concrete, well-established dosing/stop guidance (stop berberine, folic acid 800/CoQ10 300, use active folate 5-MTHF) to 'ask your doctor', producing a much longer, less useful answer than the real pharmacist reply which gave direct numeric recommendations",
+      "proposedInstruction": "임신 준비·임신 중 성분이라도 용량·중단 여부에 대한 통상적 권장 기준(예: 엽산 800mcg, 활성엽산 5-MTHF, 코큐텐 300mg, 베르베린 중단)이 있으면 '병원에 물어봐'로 돌리지 말고 그 기준을 첫 문장에 바로 제시한다.",
+      "recurrenceRisk": "high",
+      "quote": "없던 규칙: 임신 준비·임신 중이라도 근거가 확실한 성분(베르베린은 끊기, 엽산 800·코큐텐 300 함량, 활성엽산 5-MTHF)은 \"의사·약사한테 물어봐\"로 돌리지 않고 결론과 함량 기준을 첫 문장에 바로 말한다."
+    }
+  ],
+  "usedRawTranscript": false
+}

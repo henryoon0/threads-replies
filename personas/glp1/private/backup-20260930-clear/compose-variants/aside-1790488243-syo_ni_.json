@@ -1,0 +1,247 @@
+{
+  "version": 6,
+  "replyId": "aside-1790488243-syo_ni_",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T04:58:30.586Z",
+  "updatedAt": "2026-09-30T04:59:33.659Z",
+  "planned": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "빈혈을 오래 달고 살았는데 검사 없이 버틴 게 제일 문제야. 혈색소랑 페리틴(저장철) 피검사부터 받아.\n\n세상이 뒤집히듯 도는 어지러움은 빈혈만으로는 설명이 안될 수 있어. 수치가 정상인데도 반복되면 이비인후과 가봐. 그 전까진 앉았다 일어날 때 천천히 일어나고, 물은 하루 1.5L 이상 챙겨.\n\n해모콤을 종종 먹는 건 거의 의미가 없어. 철분은 들어오면 혈색소부터 채우고, 창고인 페리틴은 맨 마지막에 차거든. 띄엄띄엄 먹으면 창고까지 갈 틈이 없어서 조금만 무리해도 또 바닥나는 거야.\n\n철결핍이 맞으면 제품 하나 정해서 하루 한 번, 식간에 비타민C랑 같이 먹어. 해모콤이어도 되는데 매일 먹어야 해. 커피·우유·칼슘제는 2시간 띄우고, 수치가 정상 돼도 3개월은 더 먹어야 창고가 차. 속 쓰리면 비스글리시네이트 같은 킬레이트형으로 바꾸고, 붉은 고기는 주 2~3번 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 165
+        },
+        {
+          "kind": "principle",
+          "start": 167,
+          "end": 274
+        },
+        {
+          "kind": "ingredient",
+          "start": 276,
+          "end": 439
+        }
+      ],
+      "products": [],
+      "ms": 15543,
+      "sessionId": "446109f1-98f0-49af-a649-e6a081f440b9"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "가끔 먹는 건 거의 의미가 없어. 철은 저장고(페리틴)까지 채워져야 어지럼이 줄거든. 근데 세상이 뒤집히듯 도는 어지럼은 빈혈만으로는 설명이 안돼. 피검사로 혈색소랑 페리틴부터 찍어봐.\n\n철결핍이 맞으면 철분제 하나 정해서 이틀에 한 번, 공복에 비타민C랑 같이 먹어. 커피·우유는 2시간 띄우고 최소 3개월은 가야 돼. 붉은 고기는 주 2~3번 먹고, 앉았다 일어날 땐 천천히 일어나.\n\n약국은 해모콤을 그대로 꾸준히 먹어도 되고, 온라인이면 비스글리시네이트 25mg 단일제 정도면 무난해. 직구는 쏜 아이언 비스글리시네이트, 내가 먹는 거야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 103
+        },
+        {
+          "kind": "ingredient",
+          "start": 105,
+          "end": 216
+        },
+        {
+          "kind": "product",
+          "start": 218,
+          "end": 305
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 13561,
+      "sessionId": "65e10a74-6960-40a5-8533-8c6e72edd52d"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "가끔 먹는 걸로는 철이 절대 안 채워져. 피검사로 페리틴부터 봐서 철결핍이 맞으면 하루 한 번 공복에 비타민C랑 먹고, 수치가 정상 돼도 3개월은 더 먹어. 커피·우유는 2시간 띄어서.\n\n세상이 도는 어지러움은 빈혈 말고 귀 문제일 수 있어서 따로 봐야 해. 일어날 땐 천천히 일어나고 붉은 고기는 주 2~3번 챙겨먹어.\n\n약국은 헤모콤 그대로 매일 먹어도 돼.\n온라인이면 비스글리시네이트 철분 25mg 표기된 거면 무난해.\n직구는 쏜 아이언 비스글리시네이트 25mg, 이틀에 한 번. 속 편하고 갠적으로 젤 좋아해-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 179
+        },
+        {
+          "kind": "product",
+          "start": 181,
+          "end": 289
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 11276,
+      "sessionId": "f2a84d1d-47ba-4d03-bb42-2d401e9bb22c"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "해모콤을 종종 먹는 걸로는 철이 안 채워져. 저장철(페리틴)이 바닥이면 매일 먹어도 3개월은 걸리거든. 근데 세상이 뒤집히는 어지러움은 빈혈만으론 설명이 안돼서 페리틴 피검사부터 받아봐. 그 전까진 앉았다 일어날 때 천천히 일어나-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 129
+        }
+      ],
+      "products": [],
+      "ms": 7494,
+      "sessionId": "6f123e75-14dc-42c8-9a6a-9c52602d4670"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 볼그레 하루 한 알, 속 쓰리면 식후로.\n온라인이면 철 25mg 비스글리시네이트 정도면 무난해.\n직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번, 비타민C랑. 종종 말고 3달은 꾸준히, 커피·우유는 2시간 떨어뜨리고 붉은 고기 주 2~3회-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 143
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 10049,
+      "sessionId": "885719cc-86a0-4903-93cc-c649048cad81"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "철분을 종종 먹으면 빈혈도 계속 종종 와. 피검사로 페리틴부터 확인하고 붉은 고기는 주 2~3번 챙겨먹어.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 59
+        }
+      ],
+      "products": [],
+      "ms": 5138,
+      "sessionId": "1239dcba-f733-4a3e-9554-282e61481593"
+    }
+  ],
+  "failed": [],
+  "sessionId": "1239dcba-f733-4a3e-9554-282e61481593"
+}

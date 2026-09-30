@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790486409-lala_5742695",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:41:09.463Z",
+  "updatedAt": "2026-09-30T07:42:23.284Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "이건 영양제로 빠지는 붓기가 아니야. 출산하고 호르몬이 바뀌면 몸에 물이 남아있고, 애 안느라 손목을 계속 쓰니까 자고 일어나면 손에 몰리거든. 짠거 줄이고 물은 오히려 넉넉히 마셔. 애는 손목 말고 팔 전체로 받쳐. 한 달 넘게 가면 영양제 말고 갑상선 피검사부터 받아-\n\n칼륨·마그네슘이 물 빼는데 도움은 되는데 근거는 약해. 넘 기대하지마. 먹을거면 마그네슘 하루 200mg 저녁에. 종합비타민에 마그네슘 들었는지 라벨 먼저 봐.\n\n직구는 닥터스베스트 하이 앱솔션 마그네슘 100mg 두 알 저녁에. 온라인이면 호박즙 하루 한 포 정도 무난해. 수유중이면 약국 붓기약은 사지마.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 152
+        },
+        {
+          "kind": "ingredient",
+          "start": 154,
+          "end": 243
+        },
+        {
+          "kind": "product",
+          "start": 245,
+          "end": 326
+        }
+      ],
+      "products": [],
+      "ms": 17033,
+      "sessionId": "6e67b160-f3e9-4733-bb58-fa01a7f1d58d"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "붓기 영양제는 근거가 약해. 산후 호르몬 때문에 물이 찬 거일 수 있어서 짠 거랑 야식 라면부터 끊고 물은 오히려 충분히 마셔. 칼륨은 바나나·시금치로 챙기고, 아기는 손목 말고 팔 전체로 받쳐. 한 달 넘게 계속 부으면 갑상선·빈혈 피검사부터 받아-\n\n굳이 먹을꺼면 온라인 늙은호박즙 하루 한 포, 이 정도면 무난해. 크게 기대는 하지 마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 140
+        },
+        {
+          "kind": "product",
+          "start": 142,
+          "end": 191
+        }
+      ],
+      "products": [],
+      "ms": 13847,
+      "sessionId": "28874be1-0e17-4cd7-ad5f-6923761e48be"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "이건 영양제로 풀 문제가 아니라 생활을 고쳐야 하는 붓기야.\n\n1/ 짠 음식이랑 밤에 먹는 라면부터 끊고, 물은 오히려 넉넉히 마셔.\n2/ 잘 때는 손을 베개 위에 올려두고, 아침에는 주먹을 쥐었다 폈다 스무 번 해.\n3/ 아기 안을 때 손목 말고 팔 전체로 받쳐. 손목 하나로 버티기엔 애가 너무 빨리 커.\n\n출산하고 나면 호르몬이 바뀌면서 몸에 물이 잘 차. 거기에 하루 종일 아기 드느라 손목을 혹사하니까 아침에 손이 제일 붓고 뻣뻣한거야. 손끝이 저리거나 밤에 손이 저려서 깨면 손목터널 증후군일 수 있으니까 정형외과 가. 한 달 넘게 계속 붓거나 피곤하고 추위를 타면 갑상선이랑 빈혈 피검사부터 받아.\n\n붓기 영양제는 근거가 약해서 브랜드는 안 찍어줄께. 호박즙이나 팥물도 크게 기대하지 마. 칼륨은 영양제 말고 바나나랑 시금치로 채우는 게 젤 안전해. 수유 중이면 뭐든 먹기 전에 먼저 물어봐-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 172
+        },
+        {
+          "kind": "principle",
+          "start": 174,
+          "end": 341
+        },
+        {
+          "kind": "ingredient",
+          "start": 343,
+          "end": 450
+        }
+      ],
+      "products": [],
+      "ms": 15766,
+      "sessionId": "f554d754-14df-4022-bdbf-47a99c900e6e"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "붓기 영양제는 근거가 약해. 굳이 먹을 거면\n약국은 안티스탁스 360mg 아침 1알, 수유중이면 이건 빼고.\n온라인이면 호박즙 하루 1포 정도.\n직구는 나우푸드 포타슘 시트레이트 99mg 식후 1알.\n그보다 짠거 줄이고 물은 넉넉히, 잘때 손은 베개 위에 올려놔-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 147
+        }
+      ],
+      "products": [],
+      "ms": 14085,
+      "sessionId": "2eca6839-f465-4460-af95-c7ebb7dfbaab"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "산후엔 호르몬 때문에 몸에 물이 고이고, 애 안느라 손목까지 혹사해서 아침에 손이 붓는거야. 붓기 영양제는 근거가 약해. 짠거 줄이고 물은 오히려 충분히 마셔-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 89
+        }
+      ],
+      "products": [],
+      "ms": 6943,
+      "sessionId": "b5aee8d7-be6e-4b2b-a80d-baa6f705c940"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "붓기 영양제보다 야식 라면 끊는게 젤 빨라. 돈도 안들어. 잘 때 손은 베개 위에 올려놓고 자-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 53
+        }
+      ],
+      "products": [],
+      "ms": 6129,
+      "sessionId": "a08a6ffb-7375-4abc-aba0-41efe8e47c9e"
+    }
+  ],
+  "failed": [],
+  "sessionId": "a08a6ffb-7375-4abc-aba0-41efe8e47c9e"
+}

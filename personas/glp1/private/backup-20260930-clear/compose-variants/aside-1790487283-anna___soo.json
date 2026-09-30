@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487283-anna___soo",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:14:17.718Z",
+  "updatedAt": "2026-09-30T05:15:25.445Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "베르베린은 황련 같은 식물에서 뽑은 성분이야. 혈당을 조금 내린다는 연구는 있는데 살 빠지는 효과는 작고 근거도 약해. 1년 365일 좋은 영양제는 없어. 혈당이 정상이면 체감할 게 거의 없고, 설사·변비가 흔하고, 당뇨약이랑 같이 먹으면 저혈당이 올 수 있어. 임신·수유 중엔 먹지 마. 그 돈 쓰기 전에 식후 10분 걷기부터 해-\n\n약국이랑 국내 온라인엔 혈당용으로 인정받은 베르베린 제품이 없어. 그래도 굳이 먹어보고 싶으면 직구로 쏜 베르베린 500mg, 식사랑 같이 하루 두 번까지만.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 186
+        },
+        {
+          "kind": "product",
+          "start": 188,
+          "end": 276
+        }
+      ],
+      "products": [],
+      "ms": 15451,
+      "sessionId": "3f10c064-7749-4741-93ff-616cb32297c1"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국엔 베르베린 일반약이 없어.\n온라인이면 국내 제품은 기능성 인정을 못 받은 일반식품이라 걸러도 돼.\n직구는 쏜 베르베린 500mg 하루 두 번 식전인데, 혈당 정상이면 체감할 게 거의 없어. 당뇨약 먹거나 임신·수유 중이면 먹지 마.\n\n식후 15분 걷기가 젤 확실해-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 151
+        }
+      ],
+      "products": [],
+      "ms": 10753,
+      "sessionId": "12e804e6-9c4b-40d1-8bc9-3a1292b41cee"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "베르베린 맞아. 황련 같은 식물에서 뽑은 성분인데 혈당 쪽으로 연구가 좀 있는 정도고, 살 빼는 효과는 작고 근거도 약해. 혈당이 정상이면 먹어도 체감할게 거의 없어. 365일 좋은 영양제는 없어-\n\n먹는다면 500mg을 하루 두세번 식전. 설사·변비가 흔하고, 당뇨약이랑 같이 먹으면 저혈당 올 수 있어. 임신·수유 중엔 안돼. 혈당이 걱정되면 공복혈당·당화혈색소 피검사부터 해보고, 밥 먹고 10분 걷는게 베르베린보다 확실해.\n\n약국이나 국내 온라인엔 딱 이거다 할 제품이 없어. 직구는 쏜(Thorne) 베르베린 500mg. 해외껀 원료 관리가 깔끔해서 난 이쪽을 믿어.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 110
+        },
+        {
+          "kind": "ingredient",
+          "start": 112,
+          "end": 240
+        },
+        {
+          "kind": "product",
+          "start": 242,
+          "end": 322
+        }
+      ],
+      "products": [],
+      "ms": 15312,
+      "sessionId": "5e5f8d3c-f720-42e0-a050-c41ae82637de"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "365일 좋은 영양제는 없어. 광고는 걸러 들어.\n\n혈당이 궁금하면 베르베린 사기 전에 공복혈당이랑 당화혈색소 피검사부터 해봐. 밥 먹고 15분 걷기, 채소랑 단백질 먼저 먹고 밥은 나중에. 이게 베르베린보다 훨씬 확실해-\n\n베르베린은 황련 같은 식물에서 뽑은 성분이야. 인슐린이 잘 안 먹히는 사람한테 혈당을 좀 내려준다는 연구가 있긴 한데, 살 빠지는 건 몇 kg 수준이라 근거가 약해. 자연 GLP-1이라고들 팔어도 마운자로랑 비교할 급이 아니야. 혈당 정상인 사람은 먹어도 체감할 게 거의 없어.\n\n그래도 먹어보고 싶으면 보통 500mg씩 하루 2~3번 식사랑 같이 먹어. 설사·변비·배 더부룩한 게 흔하고, 당뇨약 먹는 중이면 저혈당 올 수 있어서 혼자 추가하면 안돼. 임신·수유 중이면 먹지 마.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 124
+        },
+        {
+          "kind": "principle",
+          "start": 126,
+          "end": 281
+        },
+        {
+          "kind": "ingredient",
+          "start": 283,
+          "end": 395
+        }
+      ],
+      "products": [],
+      "ms": 13701,
+      "sessionId": "c6ab5627-b7ce-4572-97a4-1492d714b4f9"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "베르베린 맞아. 혈당 쪽으로 연구가 좀 있는 성분인데 살 빼는 효과는 작고 근거도 약해. 혈당이 정상이면 먹어도 체감할 게 거의 없어. 그 돈이면 밥먹고 15분 걷는 게 더 확실해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 101
+        }
+      ],
+      "products": [],
+      "ms": 6131,
+      "sessionId": "0a1a97b2-ac2f-4507-ab8c-d03231c27862"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "베르베린 맞아. 1년 365일 좋은 건 파는 사람 통장이고, 혈당 걱정되면 밥먹고 15분 걷는게 훨씬 확실해-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 61
+        }
+      ],
+      "products": [],
+      "ms": 6366,
+      "sessionId": "dd964b6e-adc6-4d19-809c-97c9e8b68188"
+    }
+  ],
+  "failed": [],
+  "sessionId": "dd964b6e-adc6-4d19-809c-97c9e8b68188"
+}

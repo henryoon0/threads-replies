@@ -1,0 +1,27 @@
+{
+  "memoryFiles": [
+    "AGENTS.md"
+  ],
+  "budgetTokens": 3000,
+  "minGapEvidence": 3,
+  "maxTranscripts": 100,
+  "skillsDir": ".claude/skills",
+  "analysis": {
+    "agent": "claude",
+    "model": "claude-sonnet-5",
+    "effort": "medium"
+  },
+  "synthesis": {
+    "agent": "claude",
+    "model": "opus",
+    "effort": "high"
+  },
+  "discovery": {
+    "harnesses": [
+      "claude",
+      "codex"
+    ],
+    "since": "30d",
+    "minUserTurns": 2
+  }
+}

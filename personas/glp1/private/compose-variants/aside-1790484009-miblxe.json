@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790484009-miblxe",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:17:51.655Z",
+  "updatedAt": "2026-09-30T08:18:57.950Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "같이 먹어도 돼. 챗지피티가 이번엔 맞췄어. 서로 흡수를 막는 조합이 아니거든. 다만 D는 기름에 녹는 비타민이라 빈속에 먹으면 반은 버리는거야.\n\n1/ B·C·D는 아침 식후에 한 번에. B를 저녁에 먹으면 잠을 설칠 수 있어.\n2/ 질유산균은 제품 안내대로 먹되 매일 빼먹지 않는게 젤 중요해.\n3/ 아침 굶고 영양제만 삼키는 거면 계란 하나라도 먹고 먹어-\n\n약국은 B 바꿀 때 되면 비맥스 메타, 아침 식후 1정.\n직구는 나우푸드 D3 2000IU, 아침 식후 1알. 다른 제품이랑 합쳐서 하루 4000IU는 넘기지 마.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 81
+        },
+        {
+          "kind": "ingredient",
+          "start": 83,
+          "end": 202
+        },
+        {
+          "kind": "product",
+          "start": 204,
+          "end": 295
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 16159,
+      "sessionId": "50053cac-28dd-4233-bcab-e9fe177fd6b7"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "같이 먹어도 문제없어. 챗지피티 말 맞아.\n\n다만 B·C·D는 아침 식후에 몰아먹어. D는 기름기 있는 밥이랑 먹어야 흡수되고, B는 저녁에 먹으면 잠을 설칠 수 있어. 유산균은 공복이든 식후든 빼먹지 않는 게 젤 중요해. 질 건강은 통풍 잘 되는 면 속옷이 영양제보다 먼저야-\n\n약국은 임팩타민 프리미엄, 하루 1정 아침 식후.\n온라인이면 질유산균은 식약처 기능성 인정받은 제품이면 무난해.\n직구는 나우푸드 D3 2000IU, 내가 먹는 거야. 다른 제품이랑 합쳐서 하루 4000IU는 넘기지 마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 155
+        },
+        {
+          "kind": "product",
+          "start": 157,
+          "end": 279
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 11285,
+      "sessionId": "c513c6e9-7c02-4008-b06b-c6ce4ca9dfbd"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "같이 먹어도 돼. 이번엔 챗지피티 말이 맞아- 서로 부딪히는 조합 아냐. 이렇게 한 번 더 확인하는 습관은 계속 가져가.\n\n다만 비타민D는 기름에 녹는 비타민이라 지방 있는 식사랑 같이 먹어야 흡수가 되거든. 공복에 물이랑만 넘기면 반은 그냥 버리는 거야.\n\n1/ 비타민 B·C·D는 아침 식후에 한 번에 먹어. B는 저녁에 먹으면 잠을 설칠 수 있어.\n2/ 질유산균은 제품 안내대로 먹되, 보통은 공복이나 식전이 무난해. 비타민C랑 붙여 먹어도 상관없어. 젤 중요한 건 빼먹지 않는 거야.\n3/ 질 건강은 유산균보다 생활이 먼저야. 꽉 끼는 옷 줄이고 잠은 7시간 챙겨-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 67
+        },
+        {
+          "kind": "principle",
+          "start": 69,
+          "end": 143
+        },
+        {
+          "kind": "ingredient",
+          "start": 145,
+          "end": 320
+        }
+      ],
+      "products": [],
+      "ms": 12335,
+      "sessionId": "e065fa45-f007-45fb-806d-d2a4041f0597"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "한 번에 같이 먹어도 문제없어. 챗지피티 말 맞아.\n약국은 B를 비맥스 메타로 챙기면 아침 식후 한 알이면 돼.\n온라인이면 질유산균은 지금 거 무난해. 아침 공복에 빼먹지만 마.\n직구는 나우푸드 D3 2000IU 아침 식후. 계란이든 견과든 기름기 있는 거랑 먹어야 들어가-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 153
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 13261,
+      "sessionId": "3321ebd9-caa3-4a27-a532-b31d2bab4223"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "한 번에 같이 먹어도 돼. 서로 흡수를 막는 조합이 아니거든. 다만 D는 기름에 녹는 비타민이라 빈속보다 아침 식후에 먹어야 흡수가 돼. 계란이라도 하나 곁들여서 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 96
+        }
+      ],
+      "products": [],
+      "ms": 6166,
+      "sessionId": "1733c561-efd8-425f-8a91-102d86c95b90"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "한 번에 먹어도 돼. 이번엔 챗지피티가 맞췄어. 근데 질건강은 유산균보다 꽉 끼는 레깅스 벗는게 젤 먼저야.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "products": [],
+      "ms": 7072,
+      "sessionId": "de427d02-f574-4dee-9853-4aad16ea3df8"
+    }
+  ],
+  "failed": [],
+  "sessionId": "de427d02-f574-4dee-9853-4aad16ea3df8"
+}

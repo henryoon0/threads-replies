@@ -1,0 +1,229 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485229-821122eunmi",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:06:20.571Z",
+  "updatedAt": "2026-09-30T08:07:35.214Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "패치 붙인다고 집중력 안 올라와. 근거가 약해. 글루콤도 결국 비타민B 묶음이라 굳이 찾아다닐 필요 없어. 40대에 이렇게 피곤하면 잠, 빈혈, 갑상선, 비타민D 쪽부터 봐야 돼. 한 달 넘었으면 피검사부터 해. 잠 7시간 채우고 커피는 오후 2시 전까지만-\n\n비타민B군은 먹은 걸 에너지로 바꿔주는 역할이야. 활성형 고함량으로 아침 식후에 1알 먹어. 종합비타민 먹고 있으면 B군이 겹치니까 라벨 확인해.\n\n약국은 갠적으로 임팩타민이나 비맥스 메타, 아침 식후 1알.\n온라인이면 종근당 칼마디 저녁에 먹는 정도가 무난해.\n직구는 나우푸드 D3 2000IU 아침에 먹어. 검사에서 부족하다고 나오면 그때 먹고, 다른 제품이랑 합쳐서 하루 4000IU 넘기지 마.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 144
+        },
+        {
+          "kind": "ingredient",
+          "start": 146,
+          "end": 227
+        },
+        {
+          "kind": "product",
+          "start": 229,
+          "end": 370
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 17830,
+      "sessionId": "f37e87fb-e3f9-4643-baff-5a73d50edf41"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "글루콤은 결국 비타민B 컴플렉스야. 패치로 집중력 올린다는 건 근거가 약해. B군은 에너지 만드는 데 쓰이니까 아침 식후 하루 1알, 종합비타민 먹고 있으면 B군 겹치는지 라벨 봐. 잠 7시간 못 자면 암거나 먹어도 아무도움안돼. 피곤한 게 한 달 넘었으면 피검사부터 해.\n\n약국은 임팩타민 프리미엄 하루 1알 아침 식후.\n온라인이면 종근당 활력 비타민B 정도면 무난해.\n직구는 나우푸드 마그네슘 비스글리시네이트 200mg, 자기 전에 먹어-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 152
+        },
+        {
+          "kind": "product",
+          "start": 154,
+          "end": 247
+        }
+      ],
+      "products": [],
+      "ms": 13019,
+      "sessionId": "8938b853-9ec5-46c4-9e68-86f9f736c60a"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "트리거패치는 붙인다고 집중력이 오른다는 근거가 약해. 굳이 찾아다닐 필요 없어. 그보다 이 피로가 한 달 넘게 갔으면 영양제 고르기 전에 피검사부터 해. 빈혈·페리틴, 비타민D, 갑상선 중에 하나만 떨어져 있어도 뭘 먹든 안 올라오거든.\n\n글루콤은 집중력보다는 피로회복 쪽 활성비타민B군이야. 못 구하면 약국에서 임팩타민 같은 활성비타민 고함량으로 바꿔도 되고, 아침 먹고 1알. 종합비타민을 이미 먹고 있으면 B군이 겹치니까 라벨 보고 하나만 챙겨먹어.\n\n그리고 공부할 체력은 결국 잠에서 나와. 7시간은 무조건 확보하고, 커피는 오후 2시 전까지만. 책상에 앉기 전에 15분 걷고 들어가면 머리 도는 게 달라.\n\n40대에 다시 책 잡은 거면 이미 반은 한 거야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 132
+        },
+        {
+          "kind": "ingredient",
+          "start": 134,
+          "end": 254
+        },
+        {
+          "kind": "empathy",
+          "start": 256,
+          "end": 372
+        }
+      ],
+      "products": [],
+      "ms": 16981,
+      "sessionId": "ab8ef09b-afde-450a-94b3-3c653713df5a"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 임팩타민 프리미엄 하루 1정 아침 식후. 글루콤이랑 B군이 겹치니까 둘 중 하나만 먹어.\n온라인이면 종근당 알티지 오메가3 하루 1캡슐, 이 정도면 무난해.\n직구는 나우푸드 D3 2000IU 아침에 1알. 다른 거랑 합쳐서 하루 4000IU 넘기지 마.\n\n그 전에 잠 7시간부터 확보해. 피곤한 게 한 달 넘었으면 피검사가 먼저-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 188
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 12108,
+      "sessionId": "d64396ce-9e5a-47c8-bdb3-e433732c73a8"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "집중력은 패치 붙인다고 생기는 게 아니고 잠이랑 연료에서 나와. 40대에 이렇게 피곤하면 철분·비타민D가 모자라거나 갑상선이 떨어져서 뇌까지 에너지가 못 가는 경우가 많거든. 피검사 먼저 하고 잠 7시간부터 채워-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 119
+        }
+      ],
+      "products": [],
+      "ms": 9030,
+      "sessionId": "5da101ae-9b26-4a15-94c6-ed457ec1dcc5"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "40대 집중력은 패치 말고 잠에서 나와. 7시간 자고 공부 전에 20분 걷는게 젤 싸고 확실해-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 53
+        }
+      ],
+      "products": [],
+      "ms": 5656,
+      "sessionId": "7a26b878-9e98-4da7-b724-911210d94066"
+    }
+  ],
+  "failed": [],
+  "sessionId": "7a26b878-9e98-4da7-b724-911210d94066"
+}

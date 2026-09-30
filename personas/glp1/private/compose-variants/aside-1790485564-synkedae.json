@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485564-synkedae",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:02:41.978Z",
+  "updatedAt": "2026-09-30T08:03:48.676Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "4-5시간 자면서 영양제로 버티는 건 안돼. 평일 30분이라도 더 자고 점심에 햇빛 10분 쬐어.\n\n추가는 오메가3 EPA+DHA 합 1000mg 이상 rTG형, 식후에. 눈건조랑 염증 둘 다 잡아. 마그네슘은 자기 전으로 옮겨.\n\n약국은 rTG 오메가3 EPA+DHA 1000mg짜리로 저녁 식후.\n온라인이면 종근당건강 rTG 오메가3 정도면 무난해.\n직구는 나우푸드 D3 2000IU 아침 식후. 햇빛 못 보면 이건 거의 필수야.\n오쏘몰에도 D 들었으니 합쳐서 하루 4000IU 안 넘게-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 128
+        },
+        {
+          "kind": "product",
+          "start": 130,
+          "end": 275
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 11729,
+      "sessionId": "7e5f715d-f1fc-486c-b503-fa0cf86bd990"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "피로·염증·눈건조가 한꺼번에 온 건 잠 때문이야. 4-5시간 자면서 운동까지 하면 회복이 안 돼서 염증이 계속 켜져 있거든. 평일에 30분이라도 더 자고, 점심에 10분은 밖에서 햇빛 쬐어-\n\n1/ 오메가3 EPA+DHA 합 1000mg 식후. 눈건조랑 염증 둘 다 잡아.\n2/ 비타민D 2000IU 아침 먹고 챙겨먹어.\n마그네슘은 자기 전에 먹어.\n\n약국은 비맥스 메타 하루 1정. 오쏘몰 가끔 먹는 것보다 이게 나아.\n온라인이면 종근당건강 프로메가 알티지 오메가3 정도면 무난해.\n직구는 나우푸드 D3 2000IU 아침에 1알. 다른 제품이랑 합쳐서 하루 4000IU는 넘기지 마.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 106
+        },
+        {
+          "kind": "ingredient",
+          "start": 108,
+          "end": 195
+        },
+        {
+          "kind": "product",
+          "start": 197,
+          "end": 327
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 16921,
+      "sessionId": "df9e7d94-dc31-4ac3-9ef1-b07abf2c17cc"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 비맥스 메타 하루 1알 아침 식후, 오쏘몰 가끔 말고 이걸 매일.\n온라인이면 종근당 알티지 오메가3 EPA+DHA 1000mg 식후, 눈건조엔 이게 젤 맞아.\n직구는 나우푸드 D3 2000IU 점심 식후. D는 다 합쳐서 하루 4000IU 안 넘게.\n근데 4시간 자면서 영양제로 버티는 건 아무도움안돼. 평일 30분이라도 더 자-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 188
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 11184,
+      "sessionId": "f2a491de-286a-40f4-888f-04c0e328a6a1"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "영양제 문제보다 몸이 회복할 시간을 못 받고 있는 게 먼저야. 4-5시간 자면서 운동을 주3-4 하면 회복이 안돼. 잠 부족한 날은 헬스 강도를 낮추고 요가 위주로 가. 평일에 30분이라도 더 자는 게 오쏘몰보다 낫고, 점심에 10분만 밖에 나가서 햇빛 쬐어.\n\n잠이 모자라면 몸이 염증 스위치를 계속 켜두거든. 그래서 피로랑 염증이 같이 오고, 눈물막도 밤에 회복을 못 해서 건조해지는 거야.\n\n1/ 오메가3는 EPA+DHA 합이 1000mg 넘는 rTG형으로 밥 먹고 챙겨먹어. 눈건조랑 염증에 둘 다 맞아.\n2/ 비타민D3는 아침에 1000~2000IU. 햇빛 못 보면 거의 다 부족해.\n3/ 마그네슘은 자기 전으로 옮겨.\n\n이렇게 하고도 한 달 넘게 피곤하면 피검사로 비타민D랑 페리틴 확인해-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 145
+        },
+        {
+          "kind": "principle",
+          "start": 147,
+          "end": 220
+        },
+        {
+          "kind": "ingredient",
+          "start": 222,
+          "end": 392
+        }
+      ],
+      "products": [],
+      "ms": 14254,
+      "sessionId": "36371a73-6e47-4795-9886-25fe1fc2ed57"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "4-5시간 자면 몸이 회복을 못해서 염증이 쌓이고 눈물막까지 말라버리거든. 이건 영양제로 못 메워. 평일 30분이라도 더 자고 점심에 햇빛 15분 쬐어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 85
+        }
+      ],
+      "products": [],
+      "ms": 6444,
+      "sessionId": "dbd1373f-1c9e-4059-8650-bf9f4e6f0dd5"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "4-5시간 자면서 운동 주4회면 빠진 건 영양제가 아니라 잠이야. 평일에 한시간 더 자는 게 젤 싸고 젤 세다-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 62
+        }
+      ],
+      "products": [],
+      "ms": 6147,
+      "sessionId": "30c52c50-2008-460e-9893-bacdfe33b6ff"
+    }
+  ],
+  "failed": [],
+  "sessionId": "30c52c50-2008-460e-9893-bacdfe33b6ff"
+}

@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790486269-hyieye3",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:42:23.298Z",
+  "updatedAt": "2026-09-30T07:43:33.384Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "짠 구성은 괜찮은데 젤 큰 구멍은 술이야. 술이 분해되는 새벽에 몸이 깨어나서 자다가 자꾸 깨는 거거든. 임신 준비면 술부터 줄이고 자기 1시간 전엔 폰 내려놔.\n\n아르기닌은 너한텐 근거가 약해서 빼도 돼. 대신 빠진 게 엽산이야. 지금부터 하루 400mcg. 비맥스 메타는 B2만이 아니라 B군 전체라 엽산이 겹치는지 라벨 봐.\n\n약국은 비맥스 메타 하루 1알, 아침 식후.\n\n온라인이면 엽산 400mcg 단일제 암거나 무난해.\n\n직구는 나우푸드 D3 2000IU 아침 식후, 쏜 유비퀴놀 100mg. 코큐텐은 필수는 아냐-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 90
+        },
+        {
+          "kind": "ingredient",
+          "start": 92,
+          "end": 184
+        },
+        {
+          "kind": "product",
+          "start": 186,
+          "end": 294
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 13353,
+      "sessionId": "a55bc5b2-0137-4ebe-b654-abe2106cfebb"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "공부 제대로 했네. 구성은 거의 맞는데 빠진 거 하나, 뺄 거 하나 있어.\n\n1/ 아르기닌은 빼. 스친이한테는 근거가 약해.\n2/ 엽산은 꼭 넣어. 임신 3개월 전부터가 기본이라 지금 시작해도 안 일러. 하루 400~800mcg면 되고, 비맥스 메타에도 엽산이 들어있으니 라벨 보고 합쳐서 계산해.\n3/ 마그네슘은 저녁에, 비타민D는 아침 먹고 1000~2000IU. 3개월 뒤에 수치 다시 재봐.\n코큐텐은 필수 아니야. 먹을꺼면 유비퀴놀로.\n\n그리고 잠을 못 자는 건 영양제보다 술 탓이 먼저야. 술은 잠드는 건 도와줘도 새벽에 자꾸 깨게 만들고, B군도 빼가거든. 간 수치가 괜찮아도 밀크씨슬 찾기 전에 마시는 횟수부터 줄여. 임신 준비하면 어차피 끊어야 할꺼고. 자기 전 1시간은 화면도 꺼-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 41
+        },
+        {
+          "kind": "ingredient",
+          "start": 43,
+          "end": 247
+        },
+        {
+          "kind": "principle",
+          "start": 249,
+          "end": 390
+        }
+      ],
+      "products": [],
+      "ms": 14580,
+      "sessionId": "0fb5530a-ddea-4f8a-b8af-1688da239af2"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "구성 좋아. 아르기닌만 빼, 너한텐 근거가 약해.\n\n빠진 건 엽산이야. 임신 3개월 전부터 400mcg이 기본이라 지금부터 챙겨. 비맥스 메타랑 겹치는지 라벨 확인하고.\n\n자다 깨는 건 술 탓이 더 커. 술부터 줄여-\n\n약국은 비맥스 메타 아침 식후.\n온라인이면 엽산 400mcg 단일제 암거나 무난해.\n직구는 나우푸드 D3 2000IU 아침 식후, 노르딕내추럴 얼티메이트 오메가 식후 두 알.\nD는 합쳐서 하루 4000IU 넘기지 마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 121
+        },
+        {
+          "kind": "product",
+          "start": 123,
+          "end": 244
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 16523,
+      "sessionId": "7df59945-d91b-4832-b9f2-539470eefeb3"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "자다 깨는 건 영양제보다 술 탓이 젤 커. 알코올은 잠은 들게 해도 새벽에 깨우고 B군을 빠르게 태워버리거든. 영양제 늘리기 전에 술부터 주 1회로 줄여봐. 임신 준비하면 어차피 끊어야 돼-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 106
+        }
+      ],
+      "products": [],
+      "ms": 8330,
+      "sessionId": "54ccb9b9-a2d4-45cf-a881-a6275d130a97"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 비맥스 메타 하루 한 알 아침 식후. 엽산 함량부터 보고, 합쳐서 400mcg 안 되면 엽산 단일제로 채워.\n온라인이면 종근당 알티지 오메가3 EPA+DHA 1000mg, 저녁 식후면 무난해.\n직구는 나우푸드 D3 2000IU 아침에, 코큐텐은 갠적으로 쏜 유비퀴놀 100mg. D는 전부 합쳐서 하루 4000IU 넘기지 마-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 186
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 10255,
+      "sessionId": "6b9b76d0-2b25-411a-9b0b-0ebdad4c6144"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "영양제 다섯 개 짜놓고 술로 다 씻어내는 중이야. 술 줄이는 게 젤 싸고 잠도 잘 와-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 48
+        }
+      ],
+      "products": [],
+      "ms": 7027,
+      "sessionId": "2b295201-d12d-4a8f-83b2-6b6eba6cfd3e"
+    }
+  ],
+  "failed": [],
+  "sessionId": "2b295201-d12d-4a8f-83b2-6b6eba6cfd3e"
+}

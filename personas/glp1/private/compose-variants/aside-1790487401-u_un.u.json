@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487401-u_un.u",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:14:50.843Z",
+  "updatedAt": "2026-09-30T07:16:14.325Z",
+  "planned": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "스친이 의지가 약해서 그런 게 아니야. 줄이는 속도가 너무 빨랐던 거야. 그리고 이틀 끊었다가 다시 먹는 것도 이제 그만해. 그러면 금단증상만 계속 반복돼.\n\n3년을 먹었으면 몸이 약이 있는 상태에 맞춰져 있거든. 2주마다 한 알씩 빼면 한 번에 25~50%씩 빠지는 거라 두통이랑 근육통이 올 수밖에 없어. 보통은 2~4주 간격으로 10~25%씩 줄이고, 끝으로 갈수록 반 알이나 1/4알로 더 잘게 쪼개. 그래서 몇 달 걸리는 게 정상이야. 이 계열 약은 급하게 끊으면 경련까지 올 수 있어. 처방받은 병원에 가서 \"끊고 싶은데 줄이면 두통이랑 근육통이 온다\"고 그대로 말하고 줄이는 속도를 같이 짜. 작용시간이 긴 약으로 바꿔서 줄이는 방법도 있어.\n\n마그네슘은 저녁에 200~300mg 정도면 보조로 나쁘지 않아. 근데 금단증상을 막아주지는 못해. 영양제로 버티지 말고 이 세 가지부터 해.\n1/ 일어나는 시간 매일 똑같이\n2/ 낮잠 자지 말고, 커피는 점심 이후로 끊기\n3/ 잠이 안 오면 누워서 버티지 말고 침대에서 나오기\n약 줄이는 동안 이게 잠을 받쳐줄꺼야-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 87
+        },
+        {
+          "kind": "principle",
+          "start": 89,
+          "end": 366
+        },
+        {
+          "kind": "ingredient",
+          "start": 368,
+          "end": 544
+        }
+      ],
+      "products": [],
+      "ms": 17908,
+      "sessionId": "b7e566ae-5711-4b5c-b276-d0776e944985"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "3년 먹은 몸한테 2주마다 한 알씩 빼는 건 너무 빨라. 몸이 약에 맞춰져 있어서 급하게 빼면 두통·근육통이 튀어나오는 거거든. 이틀 끊었다 다시 먹는 것도 금단만 반복시키니까 그만해.\n\n처방 병원에 줄이면 두통·근육통 온다고 그대로 말해. 반알·1/4알 단위로 2~4주씩, 몇 달 잡고 줄이는 게 정상이야. 그동안 기상시간 고정하고 낮잠·커피 끊고 낮에 햇빛 보면서 30분 걸어. 마그네슘은 근육 푸는 보조일 뿐 금단을 막아주진 못해.\n\n직구는 닥터스베스트 하이앱솝션 마그네슘 100mg 두 알, 저녁 식후에. 천천히 가면 끊게 될꺼야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 103
+        },
+        {
+          "kind": "ingredient",
+          "start": 105,
+          "end": 244
+        },
+        {
+          "kind": "product",
+          "start": 246,
+          "end": 301
+        }
+      ],
+      "products": [],
+      "ms": 17200,
+      "sessionId": "82a0f557-ad5a-4434-ac58-749ef33e5267"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "2주마다 한 알씩 빼는 건 3년 먹은 몸한테 너무 빨라. 몸이 약에 맞춰져 있어서 확 줄이면 두통·근육통으로 튀어나오거든. 처방 병원 가서 반알씩 몇 달 잡고 줄이자고 해. 그동안 기상 시간 고정하고 낮에 햇빛 보며 30분 걸어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 128
+        }
+      ],
+      "products": [],
+      "ms": 7633,
+      "sessionId": "5d2d56ec-47b5-40f9-9a8b-ef56b5168705"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "2주마다 한 알씩 빼는 건 3년 먹은 몸엔 너무 빨라. 처방 병원에 두통·근육통 난다고 그대로 말하고, 반알·1/4알 단위로 2~4주마다 10~25%씩 몇 달 잡고 줄여. 이틀 끊었다 다시 먹는 건 금단만 반복해. 기상 시간 고정하고 낮잠·커피부터 끊어. 마그네슘은 근육 긴장 보조일 뿐 금단은 못 막어.\n\n약국은 마그네슘 단일제로 자기 전 1알.\n온라인이면 마그네슘 글리시네이트 200mg 정도면 무난해.\n직구는 닥터스베스트 마그네슘 글리시네이트 100mg 2알, 자기 전에-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 170
+        },
+        {
+          "kind": "product",
+          "start": 172,
+          "end": 267
+        }
+      ],
+      "products": [],
+      "ms": 17737,
+      "sessionId": "bb650178-c87d-4c02-9588-be10a530ae21"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "2주마다 한 알씩은 3년 먹은 몸엔 넘 빨라. 처방 병원에서 반알씩, 한 달 간격으로 줄여.\n약국은 마그네슘 300mg 저녁에 한 번.\n직구는 닥터스베스트 고흡수 마그네슘 2알(200mg) 자기 전.\n둘 중 하나만. 근육통 보조지 금단은 못 막어. 기상시간 고정, 커피는 오전만-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 156
+        }
+      ],
+      "products": [],
+      "ms": 14947,
+      "sessionId": "c02c9fe1-7447-4fe4-814c-2c9ce1663de9"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "2주에 한 알씩은 3년 먹은 몸한텐 너무 빨라. 챗지피티 말고 처방 병원이랑 반알씩 몇 달 잡고, 기상시간부터 고정해-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 66
+        }
+      ],
+      "products": [],
+      "ms": 8033,
+      "sessionId": "b3372950-0083-44de-b28d-105e4e6bb16f"
+    }
+  ],
+  "failed": [],
+  "sessionId": "b3372950-0083-44de-b28d-105e4e6bb16f"
+}

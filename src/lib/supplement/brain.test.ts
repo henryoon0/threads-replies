@@ -31,3 +31,23 @@ describe("filterByVocab", () => {
     expect(queryTerms("후버먼이 수면 영양제 뭐 먹으라고 했었죠", 12, new Set(vocab))).toContain("수면");
   });
 });
+
+import { parsePage, searchPages } from "./brain";
+
+describe("앱 안 지식 페이지 검색 (GBrain 대신)", () => {
+  const pages = [
+    parsePage("ingredients/magnesium", '---\ntitle: "마그네슘 (Magnesium)"\ntags: ["수면", "근육"]\n---\n# 마그네슘\n수면에 도움.'),
+    parsePage("ingredients/acai", '---\ntitle: "아사이"\ntags: ["항산화"]\n---\n# 아사이\n수면 이야기는 없다. 수면 수면.'),
+    parsePage("topics/sleep-routine", '---\ntitle: "수면 루틴"\ntags: []\n---\n# 수면 루틴'),
+  ];
+
+  it("제목에 든 페이지 → 태그에 든 페이지 → 본문에만 든 페이지 순", () => {
+    expect(searchPages(pages, "수면").map((h) => h.slug)).toEqual(["topics/sleep-routine", "ingredients/magnesium", "ingredients/acai"]);
+  });
+
+  it("머리 정보는 떼고 본문만 돌려준다", () => {
+    const [hit] = searchPages(pages, "마그네슘");
+    expect(hit.title).toBe("마그네슘 (Magnesium)");
+    expect(hit.chunk_text.startsWith("# 마그네슘")).toBe(true);
+  });
+});

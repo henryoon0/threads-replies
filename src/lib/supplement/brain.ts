@@ -1,8 +1,5 @@
-import { spawn } from "child_process";
 import { promises as fs } from "fs";
-import os from "os";
 import path from "path";
-import { augmentedPath, killProcessTree, resolveCliBin } from "@/lib/cli-bin";
 
 // 보충제 지식 뇌(GBrain) 검색. 지식(성분·근거·팟캐스트 발언)은 GBrain 페이지에 있고,
 // 숫자(가격·판매량)는 catalog.json 에 있다. 페이지는 body-brain/scripts/f_gbrain_pages.py 가 만든다.
@@ -13,8 +10,6 @@ import { augmentedPath, killProcessTree, resolveCliBin } from "@/lib/cli-bin";
 
 export type BrainPage = { slug: string; title: string; text: string; hits: number };
 
-const HOME = process.env.SUPPLEMENT_GBRAIN_HOME ?? path.join(os.homedir(), ".local/share/body-brain-gbrain");
-const SEARCH_TIMEOUT_MS = 8_000;
 
 // 긴 것부터 떼야 "먹으면"이 "면"만 떨어지고 끝나지 않는다.
 const ENDINGS = [
@@ -54,7 +49,7 @@ async function readVocab(): Promise<string[]> {
   if (vocabCache) return vocabCache;
   const file =
     process.env.SUPPLEMENT_VOCAB_PATH ??
-    path.join(process.cwd(), "data", "domains", "wellness", "body-brain", "vocab.json");
+    path.join(process.cwd(), "seed", "vocab.json");
   try {
     vocabCache = JSON.parse(await fs.readFile(file, "utf8")) as string[];
   } catch {
@@ -97,41 +92,61 @@ async function searchTerms(question: string): Promise<string[]> {
 
 type RawHit = { slug: string; title: string; chunk_text: string };
 
-function runGbrain(args: string[]): Promise<string> {
-  return new Promise((resolve) => {
-    const child = spawn(resolveCliBin("gbrain"), args, {
-      env: { ...process.env, PATH: augmentedPath(), GBRAIN_HOME: HOME },
-      detached: true,
-      stdio: ["ignore", "pipe", "ignore"],
-    });
-    let out = "";
-    const timer = setTimeout(() => killProcessTree(child), SEARCH_TIMEOUT_MS);
-    child.stdout.on("data", (d) => (out += d));
-    child.on("error", () => {
-      clearTimeout(timer);
-      resolve("");
-    });
-    child.on("close", () => {
-      clearTimeout(timer);
-      resolve(out);
-    });
-  });
+// ── 지식 페이지 검색 (앱 안) ──
+// 원래는 GBrain(별도 설치 프로그램)으로 찾았다. 공유본은 설치를 줄이려고 같은 페이지(seed/pages/*.md)를
+// 앱 안에서 찾는다. GBrain 과 같게: 단어 하나가 제목·본문에 들어간 페이지를 최대 5개, 제목에 든 것이 먼저.
+
+type Page = { slug: string; title: string; tags: string; body: string; haystack: string };
+
+let pagesCache: Page[] | null = null;
+
+export function pagesDir(): string {
+  return process.env.SUPPLEMENT_PAGES_DIR ?? path.join(process.cwd(), "seed", "pages");
+}
+
+/** "---\n...\n---" 머리 정보를 떼고 제목을 꺼낸다. */
+export function parsePage(slug: string, raw: string): Page {
+  const fm = raw.match(/^---\n([\s\S]*?)\n---\n?/);
+  const body = (fm ? raw.slice(fm[0].length) : raw).trim();
+  const title = fm?.[1].match(/^title:\s*"?(.*?)"?\s*$/m)?.[1] ?? slug;
+  const tags = fm?.[1].match(/^tags:\s*(.*)$/m)?.[1] ?? "";
+  return { slug, title, tags: tags.toLowerCase(), body, haystack: `${title}\n${tags}\n${body}`.toLowerCase() };
+}
+
+async function loadPages(): Promise<Page[]> {
+  if (pagesCache) return pagesCache;
+  const out: Page[] = [];
+  for (const kind of ["ingredients", "topics"]) {
+    const dir = path.join(pagesDir(), kind);
+    for (const f of await fs.readdir(dir).catch(() => [] as string[])) {
+      if (!f.endsWith(".md")) continue;
+      out.push(parsePage(`${kind}/${f.slice(0, -3)}`, await fs.readFile(path.join(dir, f), "utf8")));
+    }
+  }
+  pagesCache = out;
+  return out;
+}
+
+/** 단어 하나로 찾은 페이지 최대 5개: 제목에 든 것 → "이럴 때 찾는다" 태그에 든 것 → 많이 나온 것 순. */
+export function searchPages(pages: readonly Page[], term: string, limit = 5): RawHit[] {
+  const t = term.toLowerCase();
+  const count = (s: string) => s.split(t).length - 1;
+  return pages
+    .filter((p) => p.haystack.includes(t))
+    .map((p) => ({ p, score: (p.title.toLowerCase().includes(t) ? 100 : 0) + (p.tags.includes(t) ? 50 : 0) + count(p.haystack) }))
+    .sort((a, b) => b.score - a.score || a.p.slug.localeCompare(b.p.slug))
+    .slice(0, limit)
+    .map(({ p }) => ({ slug: p.slug, title: p.title, chunk_text: p.body }));
 }
 
 async function searchOne(term: string): Promise<RawHit[]> {
-  try {
-    const parsed = JSON.parse(await runGbrain(["search", term, "--limit", "5", "--json"]));
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return []; // "No results." 같은 평문
-  }
+  return searchPages(await loadPages(), term);
 }
 
 /** 페이지 원문(마크다운). 화면에서 "이 페이지 보기"에 쓴다. */
 export async function getBrainPage(slug: string): Promise<string | null> {
   if (!/^(ingredients|topics)\/[a-z0-9-]+$/.test(slug)) return null;
-  const text = await runGbrain(["get", slug]);
-  return text.trim() ? text : null;
+  return fs.readFile(path.join(pagesDir(), `${slug}.md`), "utf8").catch(() => null);
 }
 
 /** 단어별로 검색해 합친다. 여러 단어에 걸린 페이지가 위로 온다. */

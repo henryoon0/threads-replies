@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483994-m.oon_m",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:18:57.963Z",
+  "updatedAt": "2026-09-30T08:20:12.507Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "둘째 생각 있으면 엽산은 지금 바로 시작해야 돼. 아기 신경관은 임신인 줄도 모르는 첫 4주 안에 만들어지거든. 그래서 최소 3개월 전부터 채워놔야 해. 첫째 낳고 철분도 바닥났을 수 있고.\n\n게으름뱅이는 한 알로 끝내. 엽산 400~800mcg, 철분, 비타민D, 요오드가 다 들어 있는 임신 준비용 종합비타민 하나를 아침 식후에 챙겨먹어. 칫솔 옆에 두고 양치하기 전에 먹는 걸로 묶어버려-\n\n약국은 엘레비트 프로나탈 하루 한 알.\n\n직구는 네이처메이드 프리나탈 멀티+DHA. 하루 한 알에 DHA까지 들어 있어서 게으른 사람한테 딱이야.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 106
+        },
+        {
+          "kind": "ingredient",
+          "start": 108,
+          "end": 220
+        },
+        {
+          "kind": "product",
+          "start": 222,
+          "end": 303
+        }
+      ],
+      "products": [],
+      "ms": 18257,
+      "sessionId": "2641625e-e102-4812-9caf-ab78c25e5b14"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "게으르면 개수를 줄이면 돼. 엽산 400mcg은 임신 최소 3개월 전부터 먹어야 하니까 오늘 시작해. 엽산·철분·D·요오드가 한 번에 든 임신준비 종합비타민 한 알로 끝내고, 칫솔 옆에 두고 아침 식후에 먹어. 둘째는 첫째 낳고 1년 반은 쉬고 가져-\n\n약국은 엘레비트 프로나탈 하루 1알 식후.\n\n온라인이면 종근당 엽산 정도면 무난해.\n\n직구는 갠적으로 쏜 베이직 프리나탈, 하루 3캡슐 식후에 나눠서.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 140
+        },
+        {
+          "kind": "product",
+          "start": 142,
+          "end": 226
+        }
+      ],
+      "products": [],
+      "ms": 12462,
+      "sessionId": "807b7f7b-fe36-41b2-950e-7c961181a11e"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 엘레비트 프로나탈, 하루 한 알 아침 식후. 엽산 800mcg에 철분까지 들어서 이거 하나면 끝이야.\n온라인이면 종근당건강 활성엽산 하루 한 알 정도면 무난해.\n직구는 네이처메이드 프리네이탈 멀티+DHA. 오메가3까지 한 알에 들어서 게으름뱅이한테 젤 좋아. 통은 칫솔 옆에 둬-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 160
+        }
+      ],
+      "products": [],
+      "ms": 12036,
+      "sessionId": "6b4f6ea8-1cf7-4c31-a6f4-0e032231ec13"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "게으름뱅이는 개수를 한 알로 줄이면 돼. 8개월 육아 버틴 사람이 게으를 리가 없어-\n\n엽산은 오늘부터 시작해. 아기 신경관은 임신 사실을 알기도 전, 첫 한 달 안에 만들어지거든. 그래서 임신 최소 3개월 전부터 먹고 있어야 의미가 있어. 첫째 낳고 나서는 엽산이랑 철분이 바닥났다고 보는 게 맞아.\n\n1/ 임신 준비용 종합비타민 한 알. 엽산 400~800mcg, 철분, 비타민D, 요오드가 다 들어 있는 걸로. 약국에서 엘레비트 프로나탈 달라고 하면 끝이야.\n2/ 여유되면 DHA 위주 오메가3 하루 한 알.\n철분이 들어 있으니 아침 식후에 먹고, 칫솔 옆에 두고 양치랑 묶어버려. 임신 전에 빈혈 피검사 한번 받고, 고기는 주 2~3번 챙겨먹어.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 47
+        },
+        {
+          "kind": "principle",
+          "start": 49,
+          "end": 168
+        },
+        {
+          "kind": "ingredient",
+          "start": 170,
+          "end": 365
+        }
+      ],
+      "products": [],
+      "ms": 15288,
+      "sessionId": "9ea2b6e0-1bc0-4190-a134-6401f2a37e2f"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "아기 신경관은 임신인 줄 알기도 전인 첫 4주에 다 만들어져. 그래서 엽산은 지금부터 채워놔야 돼. 엽산 400mcg 이상 든 임신준비 종합비타민 한 알을 칫솔 옆에 두고 아침 식후에 먹어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 106
+        }
+      ],
+      "products": [],
+      "ms": 8268,
+      "sessionId": "5e6a58c8-d9fa-4eb8-a978-ebacdc7210a7"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "게으름뱅이한테 영양제 다섯 통은 장식품이야. 엽산 든 임신준비 종합비타민 한 알만 칫솔 옆에 두고 오늘부터 먹어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 63
+        }
+      ],
+      "products": [],
+      "ms": 8215,
+      "sessionId": "b222bdf4-351b-4cea-9593-1a4b439f2544"
+    }
+  ],
+  "failed": [],
+  "sessionId": "b222bdf4-351b-4cea-9593-1a4b439f2544"
+}

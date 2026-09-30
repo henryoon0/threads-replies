@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487957-godwithme5ever",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:03:20.017Z",
+  "updatedAt": "2026-09-30T05:04:31.945Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "2.4mg 펜 하나(4주분) 기준으로 요즘 처방비 빼고 30만원대 후반에서 50만원대야. 비급여라 약값을 약국이 정해서 동네마다 차이가 커. 두세 군데 전화 돌려보고 사.\n\n2.4는 유지 용량이야. 첨 맞는 거면 0.25mg부터 4주마다 올려야 속이 버텨. 그리고 살 빠질 때 근육도 같이 빠지니까 단백질은 체중 1kg당 1.2g, 근력운동은 주 3번 무조건 해-\n\n약국은 처방전 들고 가격만 비교해.\n온라인이면 분리유청 단백질로 1회 20g 넘는 거면 무난해.\n직구는 갠적으로 나우푸드 웨이 프로틴 아이솔레이트 먹는데, 위고비 자체를 직구로 사는 건 절대 안돼.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 95
+        },
+        {
+          "kind": "ingredient",
+          "start": 97,
+          "end": 203
+        },
+        {
+          "kind": "product",
+          "start": 205,
+          "end": 315
+        }
+      ],
+      "products": [],
+      "ms": 17163,
+      "sessionId": "71128bda-3dc0-4356-b6b3-198104c9549f"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "세마글루타이드 2.4mg는 유지 용량이라 젤 비싸. 한 펜(주 1회, 4주분)에 대략 40~60만원대고, 처방비는 따로 붙어. 첨 맞는 거면 0.25부터 올려야 돼-\n\n약국은 동네마다 값이 많이 달라서 전화로 몇 군데 비교해봐. 온라인이면 단백질 쉐이크 무난한 걸로 하나, 직구는 옵티멈 골드스탠다드 웨이 1스쿱(24g)을 하루 한 번. 근손실 안 오게 주 3번 근력운동은 꼭 같이 해.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 92
+        },
+        {
+          "kind": "product",
+          "start": 94,
+          "end": 216
+        }
+      ],
+      "products": [],
+      "ms": 14437,
+      "sessionId": "02716f82-79f2-49c5-b3eb-0d4bd36339b3"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 위고비 2.4mg 펜 하나(4주분)에 대충 30~40만원대야. 진료비는 따로 붙고 약국마다 차이가 커서 두세 군데 전화해보고 사. 온라인이나 직구로는 못 사니까 거기선 찾지도 마. 그리고 단백질 챙기고 근력운동 같이 안 하면 그 돈 주고 근육만 빠진다-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 145
+        }
+      ],
+      "products": [],
+      "ms": 10143,
+      "sessionId": "85c889cd-1edd-48d7-9b0b-9d38731c7e78"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "2.4mg면 한 달분 기준 대략 30~50만원대야. 병원 처방비랑 약국 약값이 따로 붙어서 같은 용량인데도 동네마다 차이가 꽤 나. 두세 군데 전화로 물어보고 정해.\n\n가격은 계속 내려가는 중이야. 경쟁 약이 늘고 있어서 조금만 버티면 더 싸질꺼야. 근데 2.4mg까지 올라갔다는 건 꽤 오래 맞을 확률이 높다는 뜻이라, 끊고 나서 안 돌아오게 만드는 게 진짜 돈 아끼는 길이야.\n\n1/ 단백질은 체중 1kg당 1.2g 이상, 한 번에 몰지 말고 끼니마다 나눠서 챙겨먹어\n2/ 근력운동은 주 3회\n\n주사 맞는 동안 근육 빠지면 끊는 순간 요요 와서 그 돈 다 날리는 거야-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 92
+        },
+        {
+          "kind": "principle",
+          "start": 94,
+          "end": 212
+        },
+        {
+          "kind": "ingredient",
+          "start": 214,
+          "end": 320
+        }
+      ],
+      "products": [],
+      "ms": 15369,
+      "sessionId": "69b992c6-a56f-48e0-9340-186d727e5f5d"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "2.4는 유지 용량이라 젤 비싸. 한 달분 펜 하나가 약국마다 30~50만원대로 차이가 커서 몇 군데 비교해봐. 근력운동 같이 해서 빨리 끊는 게 제일 싸게 먹혀-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 91
+        }
+      ],
+      "products": [],
+      "ms": 7157,
+      "sessionId": "7f58695e-7082-45c1-889f-90160650f13c"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "병원마다 달라도 2.4는 한 달에 40만원 안팎이야. 젤 싼 방법은 야식 끊는거고-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 46
+        }
+      ],
+      "products": [],
+      "ms": 7642,
+      "sessionId": "97bf3b47-7393-4fff-a3ab-5fabeeaa3c3e"
+    }
+  ],
+  "failed": [],
+  "sessionId": "97bf3b47-7393-4fff-a3ab-5fabeeaa3c3e"
+}

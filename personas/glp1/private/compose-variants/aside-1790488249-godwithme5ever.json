@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790488249-godwithme5ever",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:20:36.016Z",
+  "updatedAt": "2026-09-30T07:21:47.565Z",
+  "planned": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "기대해볼 만해. 위고비 최고용량으로 1년 막힌 사람이 마운자로로 넘어가서 다시 빠지는 경우 꽤 있어. 대신 바로 최고용량으로 가는 건 아니야.\n\n위고비는 GLP-1 하나만 건드리는데, 마운자로는 GIP까지 같이 건드려서 식욕을 한 번 더 눌러. 근데 1년 정체면 몸이 적응한 것도 커. 빠지는 동안 근육이 같이 빠지면 기초대사가 떨어져서, 약만 바꾸면 또 멈추거든.\n\n위고비 2.4는 마운자로 7.5~10 정도로 보고 그 근처에서 시작해. 4주마다 2.5씩 올려서 12.5~15까지 가고, 속이 불편한지 보면서 올려. 시작 용량은 처방쌤이랑 맞추고.\n\n그리고 근력운동 주 2~3회, 단백질은 체중 1kg당 1.2~1.5g 챙겨먹어. 이거 없으면 15 가도 또 막힐꺼야-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 79
+        },
+        {
+          "kind": "principle",
+          "start": 81,
+          "end": 204
+        },
+        {
+          "kind": "ingredient",
+          "start": 206,
+          "end": 374
+        }
+      ],
+      "products": [],
+      "ms": 12822,
+      "sessionId": "1108129f-7188-4ba1-a154-c4f949c64911"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "마운자로는 GIP까지 같이 작용해서 위고비로 정체 온 사람도 더 빠지는 경우가 꽤 많어. 근데 1년 정체면 근육 빠져서 대사가 떨어진 탓도 커서 근력운동 주 3회 안하면 또 멈춰-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 100
+        }
+      ],
+      "products": [],
+      "ms": 8985,
+      "sessionId": "bffb629b-ec32-46e9-b132-5b98069506d0"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "더 빠질 여지는 있어. 마운자로는 GIP까지 같이 건드려서 위고비로 멈춘 사람도 더 빠지는 경우가 꽤 있거든. 근데 바로 최고용량으로 가는 건 아니야. 위고비 2.4면 마운자로 7.5 근처에서 시작해서 4주마다 2.5씩 올려 15까지 가. 시작 용량은 처방 쌤이랑 맞춰.\n\n1년 정체면 근육이 빠져서 대사가 떨어진 것도 커. 단백질 체중 1kg당 1.2~1.5g, 근력운동 주 2~3회 안 하면 약 바꿔도 또 멈출꺼야-\n\n약국은 셀렉스 프로핏 하루 한 병, 온라인이면 뉴케어 올프로틴 정도면 무난해. 직구는 내가 먹는 옵티멈 뉴트리션 골드스탠다드 웨이 1스쿱(단백질 24g) 운동 끝나고.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 151
+        },
+        {
+          "kind": "ingredient",
+          "start": 153,
+          "end": 234
+        },
+        {
+          "kind": "product",
+          "start": 236,
+          "end": 329
+        }
+      ],
+      "products": [],
+      "ms": 14021,
+      "sessionId": "229a7dae-cba8-461c-a5c2-d096f56f5049"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "바꾸면 더 빠질 여지는 있어. 마운자로는 GLP-1에 GIP까지 같이 작용해서 위고비로 정체된 사람도 더 빠지는 경우가 꽤 많어. 대신 처음부터 15mg로 가는 건 아니야. 7.5mg 근처에서 시작해서 4주마다 2.5mg씩 올려 가. 1년 정체면 근육이 빠져서 대사가 떨어진 것도 커. 근력운동 주 2~3회, 단백질은 체중 1kg당 1.2~1.5g 채워-\n\n단백질을 밥으로 못 채우면 약국은 하이뮨 프로틴 밸런스, 온라인이면 셀렉스 프로틴 정도면 무난해. 직구는 옵티멈 골드스탠다드 웨이 1스쿱 24g. 운동 끝나고 한 번이면 돼.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 198
+        },
+        {
+          "kind": "product",
+          "start": 200,
+          "end": 297
+        }
+      ],
+      "products": [],
+      "ms": 14992,
+      "sessionId": "e776f569-0789-45dc-8cc0-ccd6b55713ef"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "마운자로면 더 빠질 여지 있어. 15로 바로 말고 7.5부터 4주씩 올려. 정체는 빠진 근육 탓일 수 있으니 근력운동 주 3회에 단백질부터 채워-\n약국은 셀렉스 코어프로틴 운동 후 한 번.\n온라인이면 하이뮨 프로틴 밸런스 정도면 무난해.\n직구는 젤 좋아하는 옵티멈 골드스탠다드 웨이 1스쿱(단백질 24g), 운동한 날 먹어.",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 181
+        }
+      ],
+      "products": [],
+      "ms": 13807,
+      "sessionId": "3de79cba-23a4-4cfc-92e0-3fecf7158afe"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "1년째 제자리면 약 바꿀 타이밍 맞아. 근데 근력운동 안하면 마운자로로 바꿔도 1년 뒤에 또 여기서 멈춰-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 59
+        }
+      ],
+      "products": [],
+      "ms": 6906,
+      "sessionId": "82606603-ca53-46c6-950d-4635afa697f2"
+    }
+  ],
+  "failed": [],
+  "sessionId": "82606603-ca53-46c6-950d-4635afa697f2"
+}

@@ -1,0 +1,223 @@
+{
+  "version": 6,
+  "replyId": "aside-1790486920-hyunsunsmile",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:15:25.470Z",
+  "updatedAt": "2026-09-30T05:16:26.380Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "위치는 DM으로 알려줄께. 마운자로(터제파타이드)는 처방약이라 약국마다 약값 차이 크게 안 나. 주 1회 2.5mg부터 천천히 올리고 끼니마다 단백질 챙기고 걷기부터 같이 해. 그래야 높은 용량까지 안 올려도 되고 그게 젤 돈 아끼는 길이야.\n\n약국은 처방전 받고 재고 있는 곳 두세 군데 전화해서 가격 비교해봐.\n온라인엔 주사를 대신할 건기식이 없어.\n직구는 전문의약품이라 안 되고 가짜도 많어. 하지마-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 135
+        },
+        {
+          "kind": "product",
+          "start": 137,
+          "end": 227
+        }
+      ],
+      "products": [],
+      "ms": 11557,
+      "sessionId": "8487ee8c-1a50-484f-9a4f-e0a22a89387b"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "위치는 댓글로는 좀 그렇고 DM 줄께. 마운자로·위고비는 처방약이라 약국마다 값 차이 크지 않어. 처방받고 재고 있는 약국 두세 군데 전화로 가격 물어보는 게 젤 확실해. 온라인이나 직구로 사는 건 절대 하지마.\n\n저용량으로 시작해서 식단이랑 매일 걷기 같이 하면 증량을 덜 해도 돼. 그게 진짜 돈 아끼는 길이야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 176
+        }
+      ],
+      "products": [],
+      "ms": 9495,
+      "sessionId": "1c00c7ac-f7ad-42cd-a12f-95dbc4801072"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "위치는 DM으로 알려줄께. 마운자로·위고비는 처방약이라 약국마다 약값 차이가 크지 않어. 진짜 돈 차이는 몇 달씩 계속 맞는 총비용에서 나거든.\n\n마운자로는 2.5mg로 시작해서 4주마다 2.5mg씩 올리는 게 기본이야. 근데 단백질 위주 식단이랑 하루 40분 걷기를 같이 하면 낮은 용량에서 멈춰도 빠져. 증량 안 하는 게 제일 싼 방법이야-\n\n약국은 처방받고 나서 재고 있는 곳에 미리 전화해서 가격 비교해봐.\n\n온라인이면 주사 맞는 동안 근육이 같이 빠지기 쉬우니 WPI 단백질 파우더 하루 한 스쿱 정도면 무난해.\n\n직구는 난 나우푸드 D3 2000IU 먹어. 다른 거랑 합쳐서 하루 4000IU는 넘기지 마.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 80
+        },
+        {
+          "kind": "ingredient",
+          "start": 82,
+          "end": 192
+        },
+        {
+          "kind": "product",
+          "start": 194,
+          "end": 345
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 14179,
+      "sessionId": "814b6f46-8a5d-4bdc-9c47-717cc9f18ddf"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "위치는 댓글에 못 적어서 DM으로 알려줄께. 근데 싸게 사려고 멀리 올 필요는 없어. 가까운 병원이나 비대면으로 처방받고, 재고 있는 약국 두세 군데에 미리 전화해서 가격 물어보면 돼.\n\n마운자로·위고비는 처방약이라 약국마다 약값 차이가 생각보다 안 커. 진짜 부담은 진료비랑 약값을 합친 총액이고, 이걸 몇 달 계속 맞아야 된다는 거거든. 그래서 젤 싸게 먹히는 방법은 저용량으로 시작해서 천천히 올리는 거야. 식단이랑 운동이 받쳐주면 굳이 고용량까지 안 가도 돼.\n\n단백질은 체중 kg당 1.2g 이상 챙겨. 주사 맞으면 입맛이 떨어져서 근육부터 빠지는데, 근육이 빠지면 끊고 나서 요요가 빨리 와. 근력운동을 주 2~3번 같이 하면 돈은 덜 들고 빠진 살은 오래 가-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 103
+        },
+        {
+          "kind": "principle",
+          "start": 105,
+          "end": 261
+        },
+        {
+          "kind": "ingredient",
+          "start": 263,
+          "end": 376
+        }
+      ],
+      "products": [],
+      "ms": 13876,
+      "sessionId": "36318da7-f1f9-4881-a67d-b2a7e183abc5"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "위치는 DM으로 알려줄께. 처방약이라 약국마다 값 차이는 크지 않어. 돈은 용량에서 갈려- 식단이랑 운동을 같이 하면 저용량으로 버틸 수 있어서 증량할 일이 줄거든.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 92
+        }
+      ],
+      "products": [],
+      "ms": 6313,
+      "sessionId": "4d36bff4-5826-4d40-b4da-afbdc6f1d663"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "위치는 DM으로 알려줄께. 약값은 어디든 거기서 거기고, 젤 싸게 맞는 법은 식단이랑 운동 같이 해서 용량 덜 올리는 거야-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "products": [],
+      "ms": 5477,
+      "sessionId": "c52edc50-ab26-4c3c-a641-16d4e16d67b8"
+    }
+  ],
+  "failed": [],
+  "sessionId": "c52edc50-ab26-4c3c-a641-16d4e16d67b8"
+}

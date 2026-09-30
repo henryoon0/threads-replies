@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485465-im_song.song.ee",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:37:45.916Z",
+  "updatedAt": "2026-09-30T05:39:08.950Z",
+  "planned": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "둘 다 향이나 조합보다 라벨 숫자 보고 골라. 마그네슘 테아닌 찾는 거면 잠이나 긴장 때문일 텐데, 자기 1시간 전에 폰 내려놓고 오후 커피 끊는 게 젤 먼저야. 그거 안 하면 뭘 먹어도 아무도움안돼-\n\n바닐라향 오메가3는 먹기 편한 건 좋은데 향이 산패된 비린내까지 가려버려. 기름이 산화되면 먹어서 좋을 게 없는데 냄새로는 알 수가 없거든. 그러니까 IFOS 같은 산패도 인증 있는 걸로 고르고, 햇빛 안 드는 서늘한 데 두고 뜯으면 빨리 먹어.\n\n1/ 마그네슘+테아닌 복합제는 한 알에 둘을 다 넣다 보니 함량이 애매한 게 많아. 마그네슘 원소 기준 100~300mg, 테아닌 200mg 안팎이 들어 있는지 봐. 모자라면 따로 사는 게 낫고 마그네슘은 산화마그네슘 말고 글리시네이트로 골라.\n2/ 테아닌은 긴장 푸는 쪽으로는 근거가 좀 있는데 잠 재워주는 효과는 크지 않아.\n3/ 오메가3는 rTG 형태에 EPA+DHA 합이 하루 1000mg 전후면 돼.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 112
+        },
+        {
+          "kind": "principle",
+          "start": 114,
+          "end": 251
+        },
+        {
+          "kind": "ingredient",
+          "start": 253,
+          "end": 481
+        }
+      ],
+      "products": [],
+      "ms": 16314,
+      "sessionId": "556a6354-c7f8-4d4e-9ef8-d9e23893a1d0"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "합쳐진 제품은 편한데 한 알에 두 개 넣다 보니 둘 다 함량이 애매한 경우가 많아. 바닐라향 오메가3는 먹기는 좋은데 향이 산패된 비린내까지 덮어버려서 상했는지 알수가 없어-\n\n마그네슘은 글리시네이트로 200mg, 테아닌은 200mg이 기준이야. 라벨에서 이 숫자가 안 나오면 따로 사. 둘 다 저녁에 먹고, 자기 전 한 시간은 폰부터 내려놔.\n\n약국은 rTG 오메가3 중에 EPA+DHA 합이 1000mg 넘는 걸로 식후 1알.\n온라인이면 테아닌 200mg 단일제 정도면 무난해.\n직구는 닥터스베스트 마그네슘 글리시네이트 2알(200mg), 오메가3는 노르딕내추럴 얼티메이트 오메가. 이건 레몬향인데 난 이게 좋더라.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 97
+        },
+        {
+          "kind": "ingredient",
+          "start": 99,
+          "end": 192
+        },
+        {
+          "kind": "product",
+          "start": 194,
+          "end": 346
+        }
+      ],
+      "products": [],
+      "ms": 17193,
+      "sessionId": "fb874b15-9ada-43d6-9e96-79d5a6be5368"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "합친 제품은 한 알에 둘 다 넣다 보니 함량이 애매해지기 쉬워. 따로 사는 게 나아. 바닐라향은 산패된 비린내까지 가려버리거든. 향 말고 산패도 인증부터 봐. 그리고 긴장 푸는 건 자기 전 폰 끄는게 테아닌보다 젤 세-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 122
+        }
+      ],
+      "products": [],
+      "ms": 12328,
+      "sessionId": "51d8e12e-2e33-4286-8d3b-520fa3610c40"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "합친 제품은 편한데 둘 다 함량이 어정쩡한 게 많어. 라벨에서 마그네슘 원소 100~300mg, 테아닌 200mg 들었는지 봐. 테아닌은 긴장 푸는 쪽이지 잠 효과는 약해. 오후 커피 끊는 게 더 세다. 바닐라향 오메가3는 향이 산패 비린내를 가려서 향 말고 rTG, EPA+DHA 합 1000mg 보고 골라.\n\n약국은 합친 거 말고 마그네슘 따로, 글리시네이트로 저녁 식후.\n온라인이면 rTG 오메가3 중 IFOS 인증 표시 있는 거 암거나, 그 정도면 무난해.\n직구는 나우푸드 마그네슘 비스글리시네이트 200mg + L-테아닌 200mg 자기 전. 오메가는 노르딕내추럴 얼티메이트 오메가, 난 이거 먹어-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 173
+        },
+        {
+          "kind": "product",
+          "start": 175,
+          "end": 340
+        }
+      ],
+      "products": [],
+      "ms": 16766,
+      "sessionId": "707cdd5f-76f6-4ce4-b849-b0289263664b"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 합친 거 말고 마그네슘 단일제로 달라고 해, 저녁 식후 1알.\n온라인이면 rTG 오메가3 EPA+DHA 합 1000mg에 IFOS 인증. 바닐라향은 산패 냄새를 가려서 난 별로.\n직구는 닥터스베스트 마그네슘 글리시네이트 200mg + 나우푸드 L-테아닌 200mg 따로, 자기 전.\n폰 끄고 자는 게 젤 센 진정제야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 181
+        }
+      ],
+      "products": [],
+      "ms": 14251,
+      "sessionId": "af872a42-f4cf-43b8-a2b5-980723bb5d45"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "바닐라향은 비린내만 가리는 게 아니라 산패도 가려줘서 그게 함정이야. 차라리 고등어를 주 2번 구워 먹어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 59
+        }
+      ],
+      "products": [],
+      "ms": 6161,
+      "sessionId": "decbeba5-1977-428c-92f3-5f0cc75343b0"
+    }
+  ],
+  "failed": [],
+  "sessionId": "decbeba5-1977-428c-92f3-5f0cc75343b0"
+}

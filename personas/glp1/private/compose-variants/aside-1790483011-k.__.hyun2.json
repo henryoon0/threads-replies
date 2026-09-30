@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483011-k.__.hyun2",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:34:45.108Z",
+  "updatedAt": "2026-09-30T08:35:46.951Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "쓸개가 없으면 담즙을 모아뒀다 한 번에 짜주질 못해서 기름 소화가 약해져. 그래서 비타민D·오메가3처럼 기름에 녹는 애들이 덜 들어가거든. 뭘 먹냐보다 어떻게 넣냐가 핵심이야.\n\n엽산 400~800mcg 든 임산부용 종합비타민은 지금부터 챙겨먹어. D랑 오메가3는 꼭 밥 먹는 중에 먹고. 기름진 건 한 끼에 몰지 말고 세 끼에 나눠 먹어.\n\n약국은 엘레비트 프로나탈 하루 1정 식후.\n온라인이면 rTG 오메가3 EPA+DHA 합쳐서 500mg 이상이면 무난해.\n직구는 나우푸드 D3 2000IU 점심 먹으면서. 종합비타민에 든 D까지 합쳐 하루 4000IU 넘기지 마-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 98
+        },
+        {
+          "kind": "ingredient",
+          "start": 100,
+          "end": 190
+        },
+        {
+          "kind": "product",
+          "start": 192,
+          "end": 319
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 14972,
+      "sessionId": "429060d5-2674-40e5-8b04-8bd98fe46ab0"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 엘레비트 프로나탈(엽산 800mcg) 하루 한 알, 지금부터 아침 식후.\n온라인이면 rTG 오메가3 EPA+DHA 1000mg 정도면 무난해, 식사 중에.\n직구는 나우푸드 D3 2000IU 점심 먹으면서. 쓸개 없으면 기름은 한 끼에 몰지 말고 나눠먹어-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 146
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 10210,
+      "sessionId": "98e8e415-7e5d-4f46-bb07-baf2e733ad78"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "쓸개가 없으면 지용성 비타민 흡수가 젤 문제야. 활성엽산 400~800mcg 들어간 임산부 종합비타민을 지금부터 챙겨먹고, 비타민D·오메가3는 꼭 식사 중에 먹어. 기름진 음식은 한 끼에 몰지 말고 나눠 먹어-\n\n약국은 엘레비트 프로나탈 하루 1정, 점심 식사 중에 먹어.\n온라인이면 rTG 오메가3 1000mg 하나 정도면 무난해.\n직구는 나우푸드 D3 2000IU를 식사 중에. 종합비타민에 든 D까지 합쳐서 하루 4000IU 넘기지 마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 117
+        },
+        {
+          "kind": "product",
+          "start": 119,
+          "end": 247
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 9032,
+      "sessionId": "7fa578f7-a336-4546-aa61-8fbdbecbba07"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "쓸개가 없으면 임신 준비는 뭘 먹느냐보다 어떻게 흡수시키느냐가 핵심이야. 기름진 건 한 끼에 몰아먹지 말고 끼니마다 조금씩 나눠 먹어. 등푸른 생선, 달걀, 잎채소로 기본을 깔아두고. 내년에 좋은 소식 들릴꺼야.\n\n쓸개는 담즙을 모아뒀다가 밥 먹을 때 한 번에 쏴주는 창고야. 창고가 없으면 담즙이 찔끔찔끔 흘러서, 지방에 녹아야 흡수되는 비타민D나 오메가3가 잘 안 들어가거든.\n\n1/ 지금부터 활성엽산 400~800mcg가 든 임산부용 종합비타민. 비타민A가 레티놀 말고 베타카로틴 형태인지 라벨 봐\n2/ 비타민D3랑 rTG 오메가3는 꼭 식사 중에 먹어\n3/ 시작 전에 피검사로 비타민D, 페리틴, 갑상선 수치 한 번 보고 모자란 것만 더해. 쓸개 뗀 사람은 D가 낮은 경우가 많어-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 118
+        },
+        {
+          "kind": "principle",
+          "start": 120,
+          "end": 212
+        },
+        {
+          "kind": "ingredient",
+          "start": 214,
+          "end": 385
+        }
+      ],
+      "products": [],
+      "ms": 13186,
+      "sessionId": "c26865d6-bb66-40a6-8c33-126b5feec3c3"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "쓸개가 없으면 담즙을 모아뒀다 한번에 못 쏴줘서 비타민D·오메가3처럼 기름에 녹는 건 흡수가 떨어져. 그래서 엽산 든 임산부 종합비타민은 챙겨먹되 D랑 오메가3는 꼭 밥 먹으면서 먹고, 기름진 건 한끼에 몰지 말고 나눠 먹어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 126
+        }
+      ],
+      "products": [],
+      "ms": 7174,
+      "sessionId": "3a843c47-9806-40d6-a891-a0321636aa2c"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "쓸개 없으면 D랑 오메가3는 공복에 먹어봤자 아무도움안돼. 밥이랑 같이 먹고 기름진 건 한 끼에 몰아먹지 마-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 61
+        }
+      ],
+      "products": [],
+      "ms": 7255,
+      "sessionId": "2f61a569-aeeb-4b8e-a6dc-a371b5d52c57"
+    }
+  ],
+  "failed": [],
+  "sessionId": "2f61a569-aeeb-4b8e-a6dc-a371b5d52c57"
+}

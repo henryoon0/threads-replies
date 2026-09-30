@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790488144-_mingunmom_",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:00:44.756Z",
+  "updatedAt": "2026-09-30T05:02:02.485Z",
+  "planned": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "먹는 스테로이드에 프로토픽까지 쓰는데 얼굴이 이 정도면 영양제로 메울 단계는 지났어. 대학병원 피부과 가서 듀피젠트 같은 주사 치료 상담 받아봐. 떠넘기는 게 아니라 이걸로 삶이 바뀐 사람이 진짜 많어. 대신 지금 먹는 스테로이드는 절대 임의로 끊지 마. 끊으면 반동으로 더 확 올라와.\n\n땀나면 따가운 건 피부 장벽이 무너져서 땀 속 염분이 맨살을 바로 건드려서 그래. 그래서 땀나면 바로 미온수로 헹구고 수건은 문지르지 말고 두드려서 닦아. 세라마이드 보습제(제로이드, 에스트라)는 하루 두 번이 아니라 수시로 발라. 뜨거운 샤워랑 사우나는 당분간 끊고.\n\n영양제는 딱 두 개만 챙겨먹어.\n\n1/ 비타민D 2000IU 아침 식후. 아토피에서 그나마 근거가 젤 나은 편이야.\n2/ 칼슘 500mg 저녁. 스테로이드를 먹는 중이라 뼈가 빠지거든.\n\n종합비타민 먹고 있으면 D 함량 합쳐서 확인해. 유산균은 근거가 중간 정도고, 달맞이꽃이랑 오메가3는 근거가 약해. 거기에 돈 쓰지 마-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 160
+        },
+        {
+          "kind": "principle",
+          "start": 162,
+          "end": 312
+        },
+        {
+          "kind": "ingredient",
+          "start": 314,
+          "end": 495
+        }
+      ],
+      "products": [],
+      "ms": 13736,
+      "sessionId": "4f1f1fcb-9887-40d8-9dab-c1bcdeb0fa29"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "먹는 스테에 프로토픽까지 쓰는데 이 정도면 영양제로 메울 단계는 넘었어. 대학병원 피부과 가서 듀피젠트 같은 주사 상담받아봐. 이게 진짜 판을 바꿔. 땀나면 따가운 건 피부 장벽이 무너져서 땀 속 염분이 바로 찌르는거거든. 땀나면 바로 미온수로 헹구고 보습제 덧발라.\n\n비타민D가 그나마 근거 젤 나아. 아침 식후 2000IU. 오메가3·달맞이꽃은 근거 약해. 스테 오래 먹으면 뼈가 빠지니까 칼슘도 같이 챙겨.\n\n약국은 종근당 칼마디 저녁 식후 1알.\n온라인이면 에스트라 아토베리어365 크림 정도면 무난해.\n직구는 나우푸드 D3 2000IU 아침 식후. 칼마디에 든 D까지 합쳐서 하루 4000IU 안 넘게-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 149
+        },
+        {
+          "kind": "ingredient",
+          "start": 151,
+          "end": 230
+        },
+        {
+          "kind": "product",
+          "start": 232,
+          "end": 342
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 20117,
+      "sessionId": "66339bb0-47c4-498c-9c73-59e1a246ef52"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "먹는 스테에 프로토픽까지 쓰는데 얼굴이 이 정도면 영양제로 메울 수준이 아냐. 대학병원 피부과 가서 듀피젠트 상담 꼭 받아봐. 스테는 임의로 끊지 말고.\n\n영양제는 비타민D가 젤 근거 있어. 아침 식후 2000IU. 스테 먹는 동안은 칼슘도 같이 챙겨서 뼈 지켜. 땀나면 바로 미온수로 헹구고 보습제 수시로 발라.\n\n약국은 제로이드 인텐시브 크림이랑 종근당 칼마디 저녁 식후 1알.\n온라인이면 비타민D 2000IU 단일제 암거나 무난해.\n직구는 나우푸드 D3 2000IU, 칼마디랑 합쳐서 하루 4000IU 넘지 않게-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 175
+        },
+        {
+          "kind": "product",
+          "start": 177,
+          "end": 290
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 15420,
+      "sessionId": "174f1010-ff90-427a-8fb7-d660889bde14"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "스테 먹는데도 이러면 영양제로 메울 단계 아냐. 피부장벽이 무너져서 땀 속 염분이 바로 찌르는 거거든. 땀나면 바로 미온수로 헹구고 보습부터-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 79
+        }
+      ],
+      "products": [],
+      "ms": 8801,
+      "sessionId": "8a81b865-2f2c-4f35-88db-cdce5950ca2e"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 마이칼디정 저녁 식후 1알. 스테 먹는 동안 뼈 빠지는 거 막는 용이야.\n직구는 나우푸드 D3 2000IU 아침 식후. 아토피에 그나마 근거 있는게 D야. D는 합쳐서 하루 4000IU 넘기지 마.\n얼굴은 땀나면 바로 미온수로 헹구고 제로이드 수시로 발라. 영양제보다 이게 먼저-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 160
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 11901,
+      "sessionId": "aa986c5a-efc6-4f0a-9467-cb3cdacfddf7"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "스테까지 먹는데 이러면 영양제 찾을 때가 아니고 대학병원 피부과에서 듀피젠트 물어볼 때야. 땀나면 바로 미온수로 헹구고 보습제 덧발라-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 75
+        }
+      ],
+      "products": [],
+      "ms": 7739,
+      "sessionId": "7a0a59ff-b130-4346-84ea-7718cf8b0ee6"
+    }
+  ],
+  "failed": [],
+  "sessionId": "7a0a59ff-b130-4346-84ea-7718cf8b0ee6"
+}

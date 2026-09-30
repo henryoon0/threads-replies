@@ -1,0 +1,211 @@
+{
+  "version": 5,
+  "replyId": "aside-1790472525-hanggigejang",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T01:44:25.029Z",
+  "updatedAt": "2026-09-30T01:45:56.925Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "두 달 정체는 몸이 10mg에 적응해서 버티는 구간이야. 부작용 없고 잘 먹고 있으면 12.5로 올려볼 만해. 근데 근육이 같이 빠져서 대사가 떨어진 걸 수도 있어서 하체 웨이트 주 3회는 꼭 넣어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 111
+        }
+      ],
+      "products": [],
+      "ms": 10334
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "3월부터 10mg까지 올라왔으면 이미 잘 해온 거야. 체중계 숫자만 보지 말고 허리둘레랑 체지방률도 같이 재봐. 몸무게는 그대로여도 몸은 바뀌고 있을 수 있어. 상의할 사람 없으면 여기 물어봐. 알려줄께.\n\n두 달 정체는 몸이 10mg에 적응해서 버티는 구간이야. 부작용 없고 잘 먹고 있으면 12.5로 올려볼 만해. 근데 근육이 같이 빠져서 대사가 떨어진 걸 수도 있어서 하체 웨이트 주 3회는 꼭 넣어-\n\n단백질은 체중 1kg당 1~1.2g은 채워. 60kg이면 하루 60~72g이야. 너무 적게 먹으면 몸이 에너지를 아끼느라 대사를 더 낮추거든. 끼니마다 계란·두부·닭가슴살 중 하나는 올리고, 모자라면 단백질 파우더로 메워.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 114
+        },
+        {
+          "kind": "principle",
+          "start": 116,
+          "end": 227
+        },
+        {
+          "kind": "ingredient",
+          "start": 229,
+          "end": 353
+        }
+      ],
+      "products": [],
+      "ms": 30184
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "두 달 정체는 몸이 10mg에 적응해서 버티는 구간이야. 부작용 없고 잘 먹고 있으면 12.5로 올려볼 만해. 근데 근육이 같이 빠져서 대사가 떨어진 걸 수도 있어서 하체 웨이트 주 3회는 꼭 넣어-\n\n단백질은 체중 1kg당 1~1.2g은 채워. 너무 적게 먹으면 몸이 아끼느라 대사를 더 낮추거든. 식사로 모자라는 만큼만 파우더로 메우고, 웨이트 끝나고 바로 먹어.\n\n온라인이면 셀렉스 코어프로틴 정도면 무난해.\n\n직구는 옵티멈 뉴트리션 골드 스탠다드 웨이, 1스쿱에 단백질 24g이라 계산하기 편해서 내가 먹는 거야.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 111
+        },
+        {
+          "kind": "ingredient",
+          "start": 113,
+          "end": 205
+        },
+        {
+          "kind": "product",
+          "start": 207,
+          "end": 291
+        }
+      ],
+      "products": [],
+      "ms": 26093
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "정체 풀려면 증량보다 단백질이랑 하체 웨이트 주 3회가 먼저야.\n\n온라인이면 셀렉스 코어프로틴 정도면 무난해.\n\n직구는 옵티멈 뉴트리션 골드 스탠다드 웨이, 1스쿱에 단백질 24g이라 내가 먹는 거야. 웨이트 끝나고 바로 한 스쿱-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 129
+        }
+      ],
+      "products": [],
+      "ms": 6933
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "증량보다 단백질부터 채워. 체중 1kg당 1~1.2g은 먹어야 하는데 너무 적게 먹으면 몸이 아끼느라 대사를 더 낮추거든. 식사로 모자라는 만큼만 파우더로 메우고, 하체 웨이트 주 3회 하고 끝나자마자 먹어.\n\n온라인이면 셀렉스 코어프로틴 정도면 무난해.\n\n직구는 옵티멈 뉴트리션 골드 스탠다드 웨이, 1스쿱에 단백질 24g이라 계산하기 편해서 내가 먹는 거야-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 116
+        },
+        {
+          "kind": "product",
+          "start": 118,
+          "end": 202
+        }
+      ],
+      "products": [],
+      "ms": 7395
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "몸이 10mg한테 이 정도면 됐지 하고 버티는 중이야. 약 올리기 전에 하체 웨이트로 먼저 한 방 먹여.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 58
+        }
+      ],
+      "products": [],
+      "ms": 10942
+    }
+  ],
+  "failed": [],
+  "sessionId": "65f2c52e-94e4-4bd9-b1f9-8785e7d1c672"
+}

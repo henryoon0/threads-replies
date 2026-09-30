@@ -1,0 +1,192 @@
+{
+  "version": 2,
+  "tool": "backpass",
+  "generatedAt": "2026-09-29T06:24:37.687Z",
+  "repo": {
+    "name": "glp1",
+    "root": "/Users/henry/.local/share/reply-personas/glp1"
+  },
+  "memoryFile": {
+    "path": "AGENTS.md",
+    "hash": "sha256:863f2bfa6c8ab661",
+    "tokens": 292
+  },
+  "budget": {
+    "capTokens": 3000,
+    "current": 292,
+    "projected": 311,
+    "delta": 19,
+    "withinBudget": true,
+    "over": 0,
+    "utilization": 0.10366666666666667,
+    "mode": "cap",
+    "startedOverBudget": false
+  },
+  "config": {
+    "budgetTokens": 3000,
+    "maxEditsPerRun": 5,
+    "minGapEvidence": 3,
+    "skillsDir": ".agents/skills",
+    "analysis": {
+      "agent": "claude",
+      "model": "claude-sonnet-5",
+      "effort": "medium"
+    },
+    "synthesis": {
+      "agent": "claude",
+      "model": "opus",
+      "effort": "high"
+    }
+  },
+  "stats": {
+    "transcripts": 25,
+    "harnessCounts": {
+      "claude": 27
+    },
+    "positive": 54,
+    "negative": 23,
+    "gapClusters": 0,
+    "skillExtractions": 0
+  },
+  "edits": [
+    {
+      "id": "e1",
+      "kind": "rewrite",
+      "file": "AGENTS.md",
+      "title": "약국 위치 질문은 차갑게 자르지 말고 페이약사라고 가볍게 밝히며 넘긴다",
+      "rationale": "기존 문구 '가볍게 넘긴다'는 긍정 근거가 0이고, 한 세션에서 에이전트가 이를 차가운 회피('비밀'로 닫음)로 해석해 잘못된 답을 냈다. 교정 근거가 구체적으로 '비밀로 닫지 말고 페이약사라 여러 곳에서 일한다고 가볍게 밝히'라는 방향을 제시하므로, 새 규칙을 더하지 않고 기존 줄의 의미만 이 방향으로 좁혀 다시 썼다.",
+      "instructions": [
+        "AG-009"
+      ],
+      "evidence": [
+        {
+          "polarity": "negative",
+          "text": "없던 규칙: 약국 위치를 물으면 \"비밀\"로 닫지 말고 페이약사라 여러 곳에서 일한다고 가볍게 밝히고, 친해지면 알려주겠다는 여지를 남긴다.",
+          "source": "claude · a7a95b2b · 2026-09-29"
+        }
+      ],
+      "transcripts": 1,
+      "skill": null,
+      "hunks": [
+        {
+          "id": "H1",
+          "find": "- 약국 위치·개인 정보를 물으면 가볍게 넘긴다.\n",
+          "replace": "- 약국 위치를 물으면 차갑게 \"비밀\"로 닫지 말고, 페이약사라 여러 곳에서 일한다고 가볍게 밝히며 넘긴다.\n",
+          "oldStart": 18,
+          "oldEnd": 18,
+          "removed": 1,
+          "added": 1,
+          "lines": [
+            {
+              "type": "del",
+              "text": "- 약국 위치·개인 정보를 물으면 가볍게 넘긴다."
+            },
+            {
+              "type": "ins",
+              "text": "- 약국 위치를 물으면 차갑게 \"비밀\"로 닫지 말고, 페이약사라 여러 곳에서 일한다고 가볍게 밝히며 넘긴다."
+            }
+          ]
+        }
+      ],
+      "targetsMemoryFile": true,
+      "applicable": true,
+      "deltaTokens": 19
+    }
+  ],
+  "verdicts": [
+    {
+      "instruction": "AG-001",
+      "verdict": "keep",
+      "positive": 0,
+      "negative": 0,
+      "note": "규칙책 헤더/근거 블록. 직접 근거는 없지만 파일의 구조·출처를 정의하는 서문이라 유지."
+    },
+    {
+      "instruction": "AG-002",
+      "verdict": "keep",
+      "positive": 3,
+      "negative": 0,
+      "note": "공감 먼저 받아주는 말투, 순수 긍정."
+    },
+    {
+      "instruction": "AG-003",
+      "verdict": "weaken",
+      "positive": 8,
+      "negative": 12,
+      "note": "파일에서 가장 큰 부정 편향(+8 -12). 다만 부정 근거가 하나의 명확한 수정으로 수렴하지 않아 이번엔 편집 보류; 사람이 결론-첫문장 강제와 공감-먼저(AG-002)의 긴장을 검토할 것."
+    },
+    {
+      "instruction": "AG-004",
+      "verdict": "keep",
+      "positive": 7,
+      "negative": 3,
+      "note": "성분명으로 말하기, 대체로 건강."
+    },
+    {
+      "instruction": "AG-005",
+      "verdict": "keep",
+      "positive": 11,
+      "negative": 3,
+      "note": "가벼운 종결 어미, 강한 긍정."
+    },
+    {
+      "instruction": "AG-006",
+      "verdict": "keep",
+      "positive": 4,
+      "negative": 1,
+      "note": "약사식 판단 순서, 건강."
+    },
+    {
+      "instruction": "AG-007",
+      "verdict": "keep",
+      "positive": 17,
+      "negative": 0,
+      "note": "파일 최고 성능 규칙(+17 -0). '내가 네 상태를 알 수는 없으니' 선긋기, 유지."
+    },
+    {
+      "instruction": "AG-008",
+      "verdict": "keep",
+      "positive": 4,
+      "negative": 2,
+      "note": "잡담 한 줄 반응, 건강."
+    },
+    {
+      "instruction": "AG-009",
+      "verdict": "strengthen",
+      "positive": 0,
+      "negative": 2,
+      "note": "H1로 차가운 회피 문제를 교정하도록 재작성. 주사제 위치(f11e4988) 부정 건은 병원 안내라 적절해 별도 조치 없음."
+    }
+  ],
+  "notes": [
+    "AG-009 재작성을 뒷받침하는 명확한 세션은 1개(a7a95b2b)뿐이다. 새 규칙이 아니라 기존 규칙의 방향 교정이라 반영했으나, 3세션 임계 미만이니 사람이 승인 시 이 점을 감안할 것.",
+    "AG-003(+8 -12)이 파일 전체에서 가장 강한 부정 신호다. 이번엔 편집하지 않았지만 다음 백패스에서 근거가 더 쌓이면 '결론 첫 문장' 강제와 '공감 먼저'(AG-002)의 충돌을 재검토할 가치가 있다."
+  ],
+  "usage": [
+    {
+      "agent": "claude",
+      "usage": {
+        "input": 6,
+        "output": 5627,
+        "cache_read": 28168,
+        "cache_write": 60675,
+        "total": 94476
+      }
+    },
+    {
+      "agent": "claude",
+      "usage": {
+        "input": 2,
+        "output": 1420,
+        "cache_read": 34569,
+        "cache_write": 1268,
+        "total": 37259
+      }
+    }
+  ],
+  "overflowTarget": {
+    "kind": "skills",
+    "dir": ".agents/skills",
+    "warnings": []
+  }
+}

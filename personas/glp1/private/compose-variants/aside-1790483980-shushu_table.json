@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483980-shushu_table",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:20:12.518Z",
+  "updatedAt": "2026-09-30T08:21:26.960Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 한미 텐텐츄정, 라벨대로 씹어먹이면 돼.\n직구는 스마티팬츠 키즈 플러스 멀티&오메가, 젤리 4개 아침 먹고. 둘 중 하나만 해.\n유산균은 그대로 두고, 영양제보다 계란 하나는 매일먹게 해-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 109
+        }
+      ],
+      "products": [],
+      "ms": 12034,
+      "sessionId": "805fa46a-858f-47b8-a852-0b3ffea43c83"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "유산균은 그대로 두고 어린이 종합비타민 하나만 더하면 돼. 실내에 있는 시간이 긴 요즘 애들은 비타민D가 거의 다 부족하니까 라벨에 D가 400~1000IU 들어있는지 봐. 편식은 싫어하는 걸 억지로 먹이지 말고 좋아하는 메뉴에 조금씩 섞어줘. 계란·고기·두부는 끼니마다 넣어주고.\n\n약국은 텐텐츄정. 씹어먹는 거라 애들이 잘먹어.\n직구는 스마티팬츠 키즈 플러스 멀티 & 오메가. 젤리라 편식하는 애도 잘 먹고, 아침 먹고 4알이야.\n둘 중에 하나만 골라. 종합비타민 두 개를 같이 먹이면 비타민D가 겹쳐 -",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 157
+        },
+        {
+          "kind": "product",
+          "start": 159,
+          "end": 284
+        }
+      ],
+      "products": [],
+      "ms": 16703,
+      "sessionId": "4ba94ab1-d4c4-4a76-be27-9184ed2c711b"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "유산균은 장을 챙기는 거지 편식으로 빈 영양은 못 메워. 고기를 안 먹으면 철·아연이, 우유를 안 먹으면 칼슘이 먼저 비어. 초5면 곧 성장기라 필요한 양이 확 늘거든. 싫어하는 걸 억지로 먹이진 말고, 좋아하는 메뉴에 섞어서 끼니마다 계란·고기·두부 중 하나는 꼭 들어가게 해.\n\n유산균은 그대로 먹이고 어린이 종합비타민을 하나 더해. 라벨에 비타민D가 400IU도 안 되면 D3 1000IU를 따로 아침 먹고 줘.\n\n약국은 씹어 먹는 어린이 종합비타민이면 암거나 무난해.\n직구는 스마티팬츠 키즈 플러스 멀티 & 오메가. 젤리라서 편식하는 애도 잘 먹어.\n비타민D를 따로 줄 거면 종합제에 든 양까지 합쳐서 하루 2000IU를 넘기지 마-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 156
+        },
+        {
+          "kind": "ingredient",
+          "start": 158,
+          "end": 233
+        },
+        {
+          "kind": "product",
+          "start": 235,
+          "end": 358
+        }
+      ],
+      "products": [],
+      "ms": 20697,
+      "sessionId": "b67d7365-8b7f-4dfb-b111-318c264b8780"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "편식 있는 초5한테 유산균 하나로는 빈틈이 커. 근데 영양제보다 먼저 끼니마다 계란·고기·두부 중 하나는 꼭 올라가게 챙겨. 싫어하는 건 억지로 먹이지 말고 좋아하는 메뉴에 잘게 섞어서 조금씩 노출시키는 게 오래 가.\n\n편식하는 애들은 철·아연·칼슘이 젤 먼저 비어. 곧 사춘기 들어가면서 키랑 뼈가 한꺼번에 크는 시기라 이때 모자라면 바로 티가 나거든.\n\n유산균은 그대로 두고 어린이 종합비타민 하나만 추가해. 난 스마티팬츠 키즈 플러스 멀티 & 오메가 좋아해. 젤리라서 편식하는 애들도 잘먹어. 라벨에서 비타민D 함량 확인하고, 모자라면 D3 하루 1000IU 정도를 아침 먹고 따로 줘. 우유 안 마시는 애면 칼슘도 챙기고-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 121
+        },
+        {
+          "kind": "principle",
+          "start": 123,
+          "end": 198
+        },
+        {
+          "kind": "ingredient",
+          "start": 200,
+          "end": 352
+        }
+      ],
+      "products": [],
+      "ms": 12812,
+      "sessionId": "fe4a42f2-703c-4b90-980f-5618091107bc"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "유산균은 장만 챙겨줘. 편식하면 철·아연부터 비는데, 아연이 모자라면 입맛이 떨어져서 편식이 더 심해지거든. 싫은 반찬 억지로 먹이지 말고 좋아하는 메뉴에 계란·고기 섞어줘-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 97
+        }
+      ],
+      "products": [],
+      "ms": 6588,
+      "sessionId": "71860aa9-17e1-4317-9c9b-442571465563"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "편식은 영양제로 못 이겨. 좋아하는 메뉴에 싫어하는 거 한 숟갈씩 섞어서 계속 내밀어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 48
+        }
+      ],
+      "products": [],
+      "ms": 5591,
+      "sessionId": "9ff84006-1cde-4c58-a23e-8cfd6764d617"
+    }
+  ],
+  "failed": [],
+  "sessionId": "9ff84006-1cde-4c58-a23e-8cfd6764d617"
+}

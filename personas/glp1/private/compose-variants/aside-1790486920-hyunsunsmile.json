@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790486920-hyunsunsmile",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:37:36.897Z",
+  "updatedAt": "2026-09-30T07:38:38.065Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "위치는 댓글로는 좀 그렇고 DM으로 알려줄께. 마운자로·위고비는 처방약이라 약국마다 약값 차이가 크지 않어. 진짜 돈이 드는 건 몇 달을 맞아야 한다는 거야. 저용량으로 시작하고 끼니마다 단백질 먼저 먹고 매일 30분 걷기부터 붙여. 그러면 증량을 덜 해도 되니까 총비용이 줄어-\n\n약국은 마운자로 2.5mg이나 위고비 0.25mg 시작 용량으로 처방받고, 재고 있는 약국 두세 곳에 미리 전화해서 가격부터 물어봐. 온라인이나 직구는 처방약이라 안 돼.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 156
+        },
+        {
+          "kind": "product",
+          "start": 158,
+          "end": 253
+        }
+      ],
+      "products": [],
+      "ms": 13708,
+      "sessionId": "48f43a6e-df63-4ae1-8009-1c450bd86988"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "위치는 DM으로 알려줄께. 마운자로·위고비는 처방약이라 약국마다 값 차이 크지 않아. 약국은 처방받고 재고 있는 곳 두세 군데 전화해서 가격 비교하고 가. 2.5mg부터 천천히 올리고 식단·운동 같이 하면 증량을 덜 해서 총비용이 젤 많이 줄어. 주사는 직구하지 마-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 149
+        }
+      ],
+      "products": [],
+      "ms": 8751,
+      "sessionId": "9f37a9d7-14fa-4e77-a3f6-2748afb69fa7"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "위치는 댓글에 못 적으니까 DM으로 알려줄께. 근데 우리 약국 온다고 싸지진 않아. 처방약이라 약값은 어딜 가나 거기서 거기고, 진짜 돈이 나가는 건 진료비랑 몇 달씩 계속 맞아야 하는 기간이거든.\n\n마운자로(티르제파타이드)는 2.5mg로 시작해서 4주마다 2.5mg씩 올리는 게 기본이고, 용량이 올라갈수록 비싸져. 끼니마다 단백질 챙기고 매일 걷기라도 하면 굳이 높은 용량까지 안 올려도 돼. 그게 젤 큰 절약이야.\n\n약국은 가까운 데 두세 군데 미리 전화해서 마운자로 재고랑 가격부터 물어보고 가-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 110
+        },
+        {
+          "kind": "ingredient",
+          "start": 112,
+          "end": 234
+        },
+        {
+          "kind": "product",
+          "start": 236,
+          "end": 281
+        }
+      ],
+      "products": [],
+      "ms": 13212,
+      "sessionId": "b7cf068c-4b4a-49a1-a7da-9d09b3abe8ab"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "위치는 공개 댓글에 박기 좀 그래서 DM으로 알려줄께. 근데 우리 약국 온다고 확 싸지진 않아-\n\n마운자로·위고비는 처방약이라 약국마다 약값 차이가 생각보다 크지 않아. 진짜 돈 차이는 진료비랑 몇 달을 맞느냐에서 나거든. 처방받을 병원부터 정하고, 근처 약국 두세 군데에 전화해서 재고랑 가격 물어보는 게 젤 빨라.\n\n총비용 줄이는 진짜 방법은 용량을 필요 이상으로 안 올리는 거야. 마운자로면 2.5mg부터 시작해서 천천히 가. 그동안 단백질은 체중 1kg당 1~1.2g 챙기고 주 3번 근력운동을 같이 해. 이렇게 하면 굳이 높은 용량까지 안 가도 빠지는 사람 많아.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 53
+        },
+        {
+          "kind": "principle",
+          "start": 55,
+          "end": 177
+        },
+        {
+          "kind": "ingredient",
+          "start": 179,
+          "end": 320
+        }
+      ],
+      "products": [],
+      "ms": 12565,
+      "sessionId": "33ee43b0-13a2-420f-91f5-04fb71f90717"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "처방약이라 약값은 어느 약국이든 거기서 거기야. 결국 돈은 용량이 정하거든. 식단이랑 운동 같이 하면 저용량에서 버텨서 그게 젤 싸. 위치는 DM으로 알려줄께-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 89
+        }
+      ],
+      "products": [],
+      "ms": 6516,
+      "sessionId": "090c2b29-0e31-48f0-bcd3-351669353fab"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "위치는 DM으로 알려줄께. 근데 젤 싸게 맞는 법은 식단이랑 운동 같이 해서 용량 덜 올리는 거야-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 55
+        }
+      ],
+      "products": [],
+      "ms": 6399,
+      "sessionId": "c7e04bbb-9ac2-4acd-9b8f-ee78fff8f63e"
+    }
+  ],
+  "failed": [],
+  "sessionId": "c7e04bbb-9ac2-4acd-9b8f-ee78fff8f63e"
+}

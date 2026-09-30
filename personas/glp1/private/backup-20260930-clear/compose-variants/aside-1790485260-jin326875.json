@@ -1,0 +1,192 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485260-jin326875",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:39:08.971Z",
+  "updatedAt": "2026-09-30T05:39:44.693Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "친절해서가 아니라 약국에서 매일 듣는 질문이라 입에 붙어있는거야. 주사든 영양제든 암거나 던져-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 53
+        }
+      ],
+      "products": [],
+      "ms": 5567,
+      "sessionId": "a97c8cb3-f03b-485b-9ce1-dde605d56942"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "친절은 무슨, 댓글 다느라 손가락이 먼저 지쳤어. 주사든 영양제든 암거나 던져봐-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 45
+        }
+      ],
+      "products": [],
+      "ms": 6288,
+      "sessionId": "6e020b31-d77a-4b1a-a658-fc5115cbf0a5"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "친절한 척하다가 댓글에 묻히는 중이야. 그래도 궁금한거 생기면 주사든 영양제든 암거나 던져-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 51
+        }
+      ],
+      "products": [],
+      "ms": 8011,
+      "sessionId": "97619af3-503c-4240-bd5a-621764e116ba"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "친절은 무슨, 댓글 밀려서 손목 나가는 중이야. 그래도 주사든 영양제든 궁금한거 생기면 편하게 던져-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "products": [],
+      "ms": 6409,
+      "sessionId": "ddce515e-d0fc-4e4d-bd7c-50cedead4066"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "친절은 공짜고 리베이트도 없어. 주사든 영양제든 암거나 던져-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 34
+        }
+      ],
+      "products": [],
+      "ms": 5672,
+      "sessionId": "5f264ffe-5e54-485c-94fc-228881f0f6d1"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "친절은 공짜야. 궁금한 거 생기면 참지 말고 바로 던져-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 31
+        }
+      ],
+      "products": [],
+      "ms": 3757,
+      "sessionId": "64fe509f-06a4-45a7-a607-cd5192e86c1a"
+    }
+  ],
+  "failed": [],
+  "sessionId": "64fe509f-06a4-45a7-a607-cd5192e86c1a"
+}

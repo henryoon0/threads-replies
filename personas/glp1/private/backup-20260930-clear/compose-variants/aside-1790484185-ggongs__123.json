@@ -1,0 +1,233 @@
+{
+  "version": 6,
+  "replyId": "aside-1790484185-ggongs__123",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:50:30.330Z",
+  "updatedAt": "2026-09-30T05:51:30.087Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "비맥스 먹으면 B군은 이미 꽉 찼어. 더 얹어도 체감 없어. 저녁에 마그네슘 글리시네이트 200~300mg 하나만 더해. 그리고 금요일 운동은 가볍게 해서 토요일 체력을 남겨둬. 화나는 건 영양제보다 회복이 모자라서야-\n\n약국은 마그네슘 단일제로 달라고 해.\n\n온라인이면 마그네슘 글리시네이트 제품 아무거나 무난해.\n\n직구는 닥터스베스트 킬레이트 마그네슘 2정(200mg), 저녁 먹고 먹어.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 122
+        },
+        {
+          "kind": "product",
+          "start": 124,
+          "end": 219
+        }
+      ],
+      "products": [],
+      "ms": 10909,
+      "sessionId": "397e5984-e518-4a98-b78f-9da05d45ccc0"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "비맥스 먹는데도 주말에 바닥나는 건 B가 모자라서가 아니야. 주 5일 운동에 애 여럿이면 회복이 못 따라가거든. 금요일은 운동 쉬고 일찍 자. 토요일 인내심은 금요일 밤에 충전돼.\n\nB는 비맥스로 이미 넘치니까 더 얹지마. 저녁에 마그네슘 글리시네이트 200~300mg 추가하고, 페리틴 한번 찍어봐. 낮으면 철분이 젤 확실한 부스터야.\n\n약국은 페리틴 낮을 때 볼그레 식후 하나.\n온라인이면 마그네슘 글리시네이트 단일제 암거나 무난해.\n직구는 닥터스베스트 마그네슘 글리시네이트 2정(200mg) 자기 전, 철분은 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 100
+        },
+        {
+          "kind": "ingredient",
+          "start": 102,
+          "end": 188
+        },
+        {
+          "kind": "product",
+          "start": 190,
+          "end": 316
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 17847,
+      "sessionId": "ec29be08-8def-492e-9855-5d08f77fc392"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "주말에 화나는 건 성격 문제가 아니라 배터리 바닥난 거야. 애 여럿에 주 5일 운동이면 회복이 못 따라가고 있어.\n\n금요일은 운동 쉬거나 걷기 정도로 낮춰. 금요일에 고강도 하면 토요일 체력이 먼저 바닥나. 주말 아침엔 계란이든 그릭요거트든 단백질 넉넉히 먹고, 커피는 오후 2시 전까지만.\n\n비맥스 먹고 있으면 B군은 이미 충분해서 더 얹어도 체감 거의 없어. 운동 많이 하는 다둥맘한테 진짜 흔한 건 철분이야. 출산 몇 번 하고 운동으로 또 빠지면 페리틴이 바닥나 있는 경우가 많거든. 페리틴 한 번 찍어봐. 낮으면 그게 젤 확실한 부스터야.\n\n추가는 마그네슘 하나면 돼. 글리시네이트 형태로 200~300mg 저녁에 먹어. 근육 회복이랑 잠 쪽을 도와줘서 다음날 짜증 버티는 힘이 달라. 비맥스에 마그네슘 조금 들어있을 수 있으니 라벨 한 번 보고 합쳐서 350mg 안 넘게 맞춰-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 162
+        },
+        {
+          "kind": "principle",
+          "start": 164,
+          "end": 305
+        },
+        {
+          "kind": "ingredient",
+          "start": 307,
+          "end": 440
+        }
+      ],
+      "products": [],
+      "ms": 8906,
+      "sessionId": "6f3d1da9-8b5b-46eb-958f-c34617af0a8c"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 지금 먹는 비맥스로 충분해. B는 더 얹어봐야 체감 없어.\n온라인이면 마그네슘 글리시네이트 300mg 저녁에, 이 정도면 무난해.\n직구는 나우푸드 D3 2000IU 아침 식후. 다른 제품이랑 합쳐서 하루 4000IU 넘지 않게.\n그리고 금요일 운동은 가볍게 해. 토요일에 화나는 체력이 거기서 먼저 빠져-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 174
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 11268,
+      "sessionId": "4cd17f2f-ef27-44ae-b516-60df2cd17d75"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "비맥스 먹는데 B를 더 얹어봤자 소변으로 다 나가. 주 5일 운동에 애들까지면 회복이 모자란 거라 금요일은 운동 쉬어. 토요일 인내심은 전날 체력에서 나오거든-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 89
+        }
+      ],
+      "products": [],
+      "ms": 6940,
+      "sessionId": "ba40059a-e2eb-42b6-b5c7-575dbaf1c002"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "화 참는 영양제는 약국에 없어. 금요일 운동 쉬고 주말엔 남편 투입하는 게 젤 센 부스터야-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 51
+        }
+      ],
+      "products": [],
+      "ms": 3869,
+      "sessionId": "eac00b98-a09b-43ca-b224-5f2a2d7c48d8"
+    }
+  ],
+  "failed": [],
+  "sessionId": "eac00b98-a09b-43ca-b224-5f2a2d7c48d8"
+}

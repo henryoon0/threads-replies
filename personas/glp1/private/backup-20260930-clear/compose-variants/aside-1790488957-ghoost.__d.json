@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790488957-ghoost.__d",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T04:53:03.593Z",
+  "updatedAt": "2026-09-30T04:54:16.620Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 일회용 히알루미니 0.3%로 하루 4~6번, 자기 전엔 겔 타입으로 한 번 더.\n온라인이면 rTG 오메가3 EPA+DHA 1000mg 식후. 근거는 중간이라 보조로만.\n직구는 다회용 리프레쉬 릴리바 PF. 무방부제라 자주 넣어도 덜 자극해. 자기 전 따뜻한 찜질 5분도 같이 해-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 160
+        }
+      ],
+      "products": [],
+      "ms": 11958,
+      "sessionId": "559e7fc6-fd22-4320-9a7b-315141d0f34c"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "심하면 다회용부터 조심해. 하루 대여섯 번 넘게 넣으면 방부제(벤잘코늄)가 각막을 긁어서 오히려 더 마르거든. 자기 전에 따뜻한 찜질 5분 해서 눈꺼풀 기름샘 뚫어주는게 인공눈물만큼 중요해.\n\n성분은 무방부제 히알루론산 0.1%부터 시작해. 그걸로 안되면 안과가서 0.3%나 디쿠아스 처방받아.\n\n약국은 일회용 리프레쉬 플러스, 다회용은 무방부제 멀티도즈인 옵타젠 찾아봐.\n직구는 시스테인 하이드레이션 PF 일회용이 갠적으로 젤 낫고, 밤엔 시스테인 젤 넣고 자-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 106
+        },
+        {
+          "kind": "ingredient",
+          "start": 108,
+          "end": 164
+        },
+        {
+          "kind": "product",
+          "start": 166,
+          "end": 259
+        }
+      ],
+      "products": [],
+      "ms": 14858,
+      "sessionId": "0696a536-3d7a-4daf-9e9b-88a3fb1fffd0"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "심하면 방부제 없는 히알루론산이 답이야. 약국 제품은 0.1%까지고, 0.3%는 안과 처방이야. 자기 전에 따뜻한 찜질 5분 하고 넣으면 젤 잘 들어-\n\n약국은 일회용 뉴히알유니 0.1%, 하루 5~6번.\n온라인이면 rTG 오메가3 하루 1000mg 정도. 근거는 중간이야.\n직구는 다회용으로 리프레쉬 릴리바 PF. 무방부제라 자주 넣어도 괜찮아.\n\n이렇게 해도 계속 뻑뻑하면 안과 가.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 84
+        },
+        {
+          "kind": "product",
+          "start": 86,
+          "end": 216
+        }
+      ],
+      "products": [],
+      "ms": 13164,
+      "sessionId": "22eb503d-f924-4056-aaf7-e80951ea129d"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "건조증이 심하면 인공눈물로만 버티는 단계는 지났을 수 있어. 안과 한 번 가서 마이봄샘이랑 염증부터 확인해.\n\n그리고 매일 밤 따뜻한 수건으로 눈을 5분 찜질해. 화면은 20분 보면 20초는 먼 데를 보고, 자는 방엔 가습기 틀어. 이거 안 하고 인공눈물만 넣으면 밑 빠진 독에 물 붓기야.\n\n자주 넣을수록 다회용이 오히려 독이 돼. 다회용엔 균 막으려고 보존제가 들어가는데, 하루에 여러 번 넣으면 그 보존제가 각막을 계속 긁거든. 넘 건조한 사람일수록 일회용이 기본이야.\n\n1/ 일회용: 무방부제 히알루론산 0.1% (뉴히알유니 같은 거). 0.3%는 처방용이라 안과에서 받아.\n2/ 다회용: 라벨에 '무방부제' 적힌 멀티도즈로만 골라. 하루 4번 넘게 넣게 되면 그냥 일회용으로 바꿔.\n3/ 자기 전엔 겔 타입 한 방울 넣고 자면 아침이 훨씬 편해-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 162
+        },
+        {
+          "kind": "principle",
+          "start": 164,
+          "end": 265
+        },
+        {
+          "kind": "ingredient",
+          "start": 267,
+          "end": 422
+        }
+      ],
+      "products": [],
+      "ms": 18724,
+      "sessionId": "7b3b5995-3036-4ef2-8df7-ee70c53f0a32"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "심하면 일회용 무방부제가 답이야. 하루 대여섯번 넣으면 다회용 방부제가 오히려 각막을 긁거든. 자기 전 따뜻한 찜질 5분으로 눈꺼풀 기름샘부터 뚫어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 83
+        }
+      ],
+      "products": [],
+      "ms": 7455,
+      "sessionId": "0e09b01d-9556-4055-a476-d11f944f6db9"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "심하면 다회용은 빼고 무방부제 일회용 히알루론산으로 가. 폰 내려놓는게 젤 좋은 인공눈물이야.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 52
+        }
+      ],
+      "products": [],
+      "ms": 6852,
+      "sessionId": "19a8e205-d912-400e-842d-1f698072ce83"
+    }
+  ],
+  "failed": [],
+  "sessionId": "19a8e205-d912-400e-842d-1f698072ce83"
+}

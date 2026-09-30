@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "entries": {
+    "954ec5dad7eaf581": {
+      "id": "954ec5dad7eaf581",
+      "memoryPath": "AGENTS.md",
+      "proposedInstruction": "댓글이 구체적 추천을 물으면 안전 문구로 길게 에두르지 말고, 근거 수준을 한 문장으로만 짚은 뒤 바로 구체적 성분·제품군을 짧게 추천하라.",
+      "sessions": {
+        "claude-f544154d-6297-4c99-a64d-7958b9e3a141": {
+          "firstObservedAt": "2026-09-29T06:22:29.144Z",
+          "observedAt": "2026-09-29T06:22:29.144Z",
+          "sessionStartedAt": 1790661362685,
+          "memoryHash": "sha256:51345796760f199c",
+          "source": "claude · f544154d · 2026-09-29",
+          "mistake": "draft became long and hedgy (2-step numbered list, safety caveats about pregnancy/consulting pharmacist) while the real pharmacist reply was much shorter (138 vs 310 chars) and more decisive, jumping straight to a concrete OTC recommendation (steroid nasal spray) without disclaimers",
+          "quote": "초안과 달라진 점(코드 계산): 길이 310→138자 · 끝맺음 \"해-\" → \"해.\"",
+          "recurrenceRisk": "high"
+        }
+      }
+    },
+    "9b7d54ef09a7f77b": {
+      "id": "9b7d54ef09a7f77b",
+      "memoryPath": "AGENTS.md",
+      "proposedInstruction": "Keep replies to 2-4 short sentences total unless the comment itself requires multi-part medical reasoning; avoid defaulting to a 1/2/3 numbered breakdown for simple questions.",
+      "sessions": {
+        "claude-1432323e-7894-4aa0-8f1b-1777ed350251": {
+          "firstObservedAt": "2026-09-29T06:16:09.888Z",
+          "observedAt": "2026-09-29T06:22:29.144Z",
+          "sessionStartedAt": 1790661263206,
+          "memoryHash": "sha256:51345796760f199c",
+          "source": "claude · 1432323e · 2026-09-29",
+          "mistake": "draft ran 3x longer than the actual pharmacist reply (307 vs 102 chars) despite AG-003 nominally covering conclusion-first structure; length itself isn't addressed anywhere in the style rules",
+          "quote": "초안과 달라진 점(코드 계산): 길이 307→102자",
+          "recurrenceRisk": "high"
+        }
+      }
+    },
+    "08d10b3a301b69dd": {
+      "id": "08d10b3a301b69dd",
+      "memoryPath": "AGENTS.md",
+      "proposedInstruction": "답글은 댓글 길이의 1.5배를 넘기지 말고, 번호는 꼭 필요한 경우에만 최대 2개까지만 써라.",
+      "sessions": {
+        "claude-218a1dda-1d19-417e-84f0-4fe4816c1c77": {
+          "firstObservedAt": "2026-09-29T06:16:09.888Z",
+          "observedAt": "2026-09-29T06:22:29.144Z",
+          "sessionStartedAt": 1790661350724,
+          "memoryHash": "sha256:51345796760f199c",
+          "source": "claude · 218a1dda · 2026-09-29",
+          "mistake": "No length constraint exists, so the draft came out nearly 4x longer (493 vs 133 chars) than the owner's real reply for a comparable comment.",
+          "quote": "초안과 달라진 점(코드 계산): 길이 493→133자 · 끝맺음 \"야-\" → \"고.\"",
+          "recurrenceRisk": "medium"
+        }
+      }
+    },
+    "b02f53542fd379f7": {
+      "id": "b02f53542fd379f7",
+      "memoryPath": "AGENTS.md",
+      "proposedInstruction": "Before drafting, classify whether the comment actually asks something or just shares news/excitement; only apply the pharmacist judgment-order (AG-006) and ingredient-check habit (AG-004) when a real question is present.",
+      "sessions": {
+        "claude-641123f3-8e4a-45cc-88e5-5d9aa9844740": {
+          "firstObservedAt": "2026-09-29T06:16:09.888Z",
+          "observedAt": "2026-09-29T06:22:29.144Z",
+          "sessionStartedAt": 1790661455011,
+          "memoryHash": "sha256:51345796760f199c",
+          "source": "claude · 641123f3 · 2026-09-29",
+          "mistake": "The agent treated the comment as an advice-seeking question and applied the full 지금 먹는 것→겹치는 것→부족할 만한 것→병원에서 확인할 것 judgment chain (AG-006) even though the comment contained no question at all — just an announcement of a decision.",
+          "quote": "나 사실 다이어트주사에 대해 부정적인 입장이였는데 스친이 글 보고 마음 먹었어! 다음주에 바로 시작한다😘",
+          "recurrenceRisk": "high"
+        }
+      }
+    },
+    "d8b54a9f76b5a262": {
+      "id": "d8b54a9f76b5a262",
+      "memoryPath": "AGENTS.md",
+      "proposedInstruction": "Keep replies to the single most relevant point per numbered item and target roughly 250-300 characters total, dropping tangents not central to the commenter's question.",
+      "sessions": {
+        "claude-716fbb0a-9e86-4dea-ac17-8b974c397a02": {
+          "firstObservedAt": "2026-09-29T06:16:09.888Z",
+          "observedAt": "2026-09-29T06:22:29.144Z",
+          "sessionStartedAt": 1790661388878,
+          "memoryHash": "sha256:51345796760f199c",
+          "source": "claude · 716fbb0a · 2026-09-29",
+          "mistake": "Draft ran nearly twice as long as the real reply (478 vs 280 chars) and covered a tangential topic (cranberry) that diluted focus on the main question",
+          "quote": "초안과 달라진 점(코드 계산): 길이 478→280자",
+          "recurrenceRisk": "medium"
+        }
+      }
+    },
+    "46b6783d00c4ee8c": {
+      "id": "46b6783d00c4ee8c",
+      "memoryPath": "AGENTS.md",
+      "proposedInstruction": "Keep replies to roughly 2-4 short sentences (about 150-250자) and reserve the 1/ 2/ numbered format only for genuinely multi-part answers, closing with a short punchy word like \"끝!\" rather than always tacking on a trailing '-' phrase.",
+      "sessions": {
+        "claude-9b16c978-e8da-4920-972c-afeaf41d9cf9": {
+          "firstObservedAt": "2026-09-29T06:16:09.888Z",
+          "observedAt": "2026-09-29T06:22:29.144Z",
+          "sessionStartedAt": 1790661491528,
+          "memoryHash": "sha256:51345796760f199c",
+          "source": "claude · 9b16c978 · 2026-09-29",
+          "mistake": "Draft ran to 529 characters with a numbered 1/2/3 breakdown, while the real @glp1.pharmacy reply was 233 characters with no numbering and a blunt \"끝!\" close — the rulebook has no length ceiling or guidance on when numbering becomes overkill, so the agent defaulted to maximal elaboration.",
+          "quote": "없던 규칙: 답은 결론 한두 문장과 필요한 근거만 담아 200자대로 짧게 끝내고, 번호 나열 없이 \"끝!\"처럼 짧게 닫는다.",
+          "recurrenceRisk": "high"
+        }
+      }
+    },
+    "ca374b3bf36ac3f6": {
+      "id": "ca374b3bf36ac3f6",
+      "memoryPath": "AGENTS.md",
+      "proposedInstruction": "Before answering, first ask whether the reported symptom is plausibly caused by the product at all, and if the link is weak, lead with the most common alternative explanation (e.g., spoilage/storage, misuse) rather than assuming the premise in the question is correct.",
+      "sessions": {
+        "claude-c23e1f6e-582f-4aee-ab6a-a90f031eaa8f": {
+          "firstObservedAt": "2026-09-29T06:16:09.888Z",
+          "observedAt": "2026-09-29T06:22:29.144Z",
+          "sessionStartedAt": 1790661312974,
+          "memoryHash": "sha256:51345796760f199c",
+          "source": "claude · c23e1f6e · 2026-09-29",
+          "mistake": "Agent assumed the omega-3/headache link was real and built the whole answer around adjusting dosage and timing, when the actual pharmacist's judgment was that there's likely no causal link and the real cause is probably rancid (oxidized) supplement — a completely different diagnosis path",
+          "quote": "오메가3는 두통이랑은 큰 상관이 없을텐데 혹시 오래되서 산패된거 아냐? 햇빛에 두면 쉽게 산패될 수 있어 확인해봐-",
+          "recurrenceRisk": "high"
+        }
+      }
+    },
+    "185d5116818b9a8a": {
+      "id": "185d5116818b9a8a",
+      "memoryPath": "AGENTS.md",
+      "proposedInstruction": "답글은 최종 출력 전 글자수를 확인해 200자 내외로 압축하고, 일반적 의학 주의사항 나열보다 이번 질문에 특화된 판단만 남겨라.",
+      "sessions": {
+        "claude-d7f4883b-b277-4ff2-afab-856bdfc524d8": {
+          "firstObservedAt": "2026-09-29T06:16:09.888Z",
+          "observedAt": "2026-09-29T06:22:29.144Z",
+          "sessionStartedAt": 1790661412264,
+          "memoryHash": "sha256:51345796760f199c",
+          "source": "claude · d7f4883b · 2026-09-29",
+          "mistake": "Draft was nearly double the length of the owner's actual answer (375 vs 185 chars) despite AGENTS.md's terse-reply intent, and closed with an extended medical-disclaimer paragraph the owner never included",
+          "quote": "초안과 달라진 점(코드 계산): 길이 375→185자 · 끝맺음 \"해-\" → \"마!\"",
+          "recurrenceRisk": "medium"
+        }
+      }
+    },
+    "85cb4749c3356bb3": {
+      "id": "85cb4749c3356bb3",
+      "memoryPath": "AGENTS.md",
+      "proposedInstruction": "임신 준비·임신 중 성분이라도 용량·중단 여부에 대한 통상적 권장 기준(예: 엽산 800mcg, 활성엽산 5-MTHF, 코큐텐 300mg, 베르베린 중단)이 있으면 '병원에 물어봐'로 돌리지 말고 그 기준을 첫 문장에 바로 제시한다.",
+      "sessions": {
+        "claude-e237b243-1680-460c-bc0d-fa46ecab1077": {
+          "firstObservedAt": "2026-09-29T06:16:09.888Z",
+          "observedAt": "2026-09-29T06:22:29.144Z",
+          "sessionStartedAt": 1790661322498,
+          "memoryHash": "sha256:51345796760f199c",
+          "source": "claude · e237b243 · 2026-09-29",
+          "mistake": "Draft deferred concrete, well-established dosing/stop guidance (stop berberine, folic acid 800/CoQ10 300, use active folate 5-MTHF) to 'ask your doctor', producing a much longer, less useful answer than the real pharmacist reply which gave direct numeric recommendations",
+          "quote": "없던 규칙: 임신 준비·임신 중이라도 근거가 확실한 성분(베르베린은 끊기, 엽산 800·코큐텐 300 함량, 활성엽산 5-MTHF)은 \"의사·약사한테 물어봐\"로 돌리지 않고 결론과 함량 기준을 첫 문장에 바로 말한다.",
+          "recurrenceRisk": "high"
+        }
+      }
+    }
+  }
+}

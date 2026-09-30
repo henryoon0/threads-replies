@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790484199-holic_0401",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:15:40.064Z",
+  "updatedAt": "2026-09-30T08:16:45.667Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "초1한테 경옥고는 굳이야. 원래 어른 허약체질용이고 소아 근거는 약해. 꿀·지황이라 달고 속에 부담될 수 있어서 소화 약한 애는 비추. 체력이 목적이면 비타민D 400~1000IU 아침 식후가 먼저고, 바깥에서 뛰어놀기랑 잠 9시간이 젤 센 보약이야.\n\n약국은 어린이 비타민D 드롭 400IU 하루 한 번.\n온라인이면 어린이 D3 츄어블 400~1000IU 정도면 무난해.\n직구는 칼슨 키즈 슈퍼 데일리 D3 400IU, 애들한텐 이게 편해-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 140
+        },
+        {
+          "kind": "product",
+          "start": 142,
+          "end": 247
+        }
+      ],
+      "products": [],
+      "ms": 13268,
+      "sessionId": "ad6b76b2-4744-4e85-a2da-a0f587a5dc7b"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "초1한테 경옥고는 꼭 필요한 건 아니야. 원래 기력 떨어진 어른이 먹는 보약이라 아이한테 먹여도 된다는 근거가 약해. 꿀이랑 지황이 들어가서 달고 속에 부담이 될 수 있거든. 그래도 먹일 거면 반포씩 짧게 먹이고 설사하거나 입맛이 변하면 바로 끊어.\n\n면역 챙기려는 거면 비타민D가 먼저야. 아이는 하루 400~1000IU를 아침 식후에 줘. 종합비타민을 먹이고 있으면 라벨에서 D가 겹치는지 봐. 결국 단백질 챙긴 밥 먹고 잘먹고 잘자고 밖에서 뛰어노는 게 경옥고보다 낫다.\n\n직구는 칼슨 키즈 D3 400IU 드롭, 하루 한 방울이면 돼-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 139
+        },
+        {
+          "kind": "ingredient",
+          "start": 141,
+          "end": 266
+        },
+        {
+          "kind": "product",
+          "start": 268,
+          "end": 303
+        }
+      ],
+      "products": [],
+      "ms": 14228,
+      "sessionId": "7e4a7487-023d-40d1-9fa4-b9b2af775f8e"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "초1한테 경옥고는 굳이 필요 없어. 먹일 거면 약국 광동경옥고를 반포씩 하루 한 번, 2주만 먹이고 설사하면 바로 끊어.\n온라인이면 어린이 비타민D 400IU 제품은 암거나 무난해.\n직구는 칼슨 키즈 D3 400IU 드롭, 아침밥 먹을 때 한 방울.\n그보다 바깥놀이 30분이랑 9시 취침이 먼저-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 165
+        }
+      ],
+      "products": [],
+      "ms": 12447,
+      "sessionId": "4dfbcb74-5666-4298-828d-b03ed5b6ba83"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "먹여도 큰일은 안 나는데 초1한테 꼭 필요한 건 아니야. 이 나이 체력은 보약보다 생활에서 훨씬 크게 갈려. 밤 10시 전에 재우고, 끼니마다 계란·고기·두부 중 하나는 들어가게 하고, 하루 한 시간은 밖에서 뛰어놀게 해줘. 이게 젤 센 보약이야-\n\n경옥고는 원래 기력 떨어진 어른한테 쓰던 보약이라 소아 근거는 약해. 꿀이랑 생지황이 많이 들어가서 달고 끈적해서 소화에 부담이 될 수 있어. 속이 약하거나 열이 많은 애는 설사를 하거나 더 달아오를 수 있어서 비추야.\n\n그래도 먹이고 싶으면 반포만 한두 달 짧게 먹여보고, 설사나 열감이 오거나 밥을 덜 먹으면 바로 끊어. 면역이 목적이면 비타민D가 먼저야. 하루 400~1000IU를 아침 식후에 주고, 종합비타민을 이미 먹고 있으면 라벨 봐서 D가 겹치지 않게 해. 감기를 달고 살거나 잘 안 먹는 게 계속되면 소아과 한번 가보는게 나을꺼야.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 138
+        },
+        {
+          "kind": "principle",
+          "start": 140,
+          "end": 262
+        },
+        {
+          "kind": "ingredient",
+          "start": 264,
+          "end": 446
+        }
+      ],
+      "products": [],
+      "ms": 12249,
+      "sessionId": "35a7a839-f7c2-4a63-b3eb-6398d325e96c"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "경옥고는 원래 기운 빠진 어른한테 쓰는 보약이라 초1한테 먹일 근거는 약해. 꿀이랑 지황이 들어가서 소화가 약한 애는 설사하기 쉽거든. 반포 먹일 돈으로 고기 한 점 더 먹이고 일찍 재워-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 105
+        }
+      ],
+      "products": [],
+      "ms": 7392,
+      "sessionId": "24ebe199-4550-4c70-91e6-adf884a7e666"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "초1한테 경옥고는 아직 일러. 밥 잘먹고 잘자고 밖에서 실컷 뛰어노는 게 젤 좋은 보약이야-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 51
+        }
+      ],
+      "products": [],
+      "ms": 6001,
+      "sessionId": "be9bed7c-bab2-4d0e-b646-3cd1f8d72d56"
+    }
+  ],
+  "failed": [],
+  "sessionId": "be9bed7c-bab2-4d0e-b646-3cd1f8d72d56"
+}

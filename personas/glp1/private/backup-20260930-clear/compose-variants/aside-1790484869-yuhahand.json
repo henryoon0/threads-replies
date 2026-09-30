@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790484869-yuhahand",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:43:47.355Z",
+  "updatedAt": "2026-09-30T05:44:42.241Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 처방전 들고 가서 직접 받는 거야. 택배 안돼. 재고 있는지 전화 먼저 해보고 가.\n온라인이면 택배로 보내준다는 주사는 불법 아니면 가짜야. 절대 사지마.\n직구도 똑같아. 냉장약이라 배송 중에 망가져.\n\n처방 받기 전까지 저녁 탄수화물부터 반으로 줄여놔-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 146
+        }
+      ],
+      "products": [],
+      "ms": 10609,
+      "sessionId": "8404b860-8f40-4114-8b09-6e812276e12c"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "택배는 안돼. 마운자로·위고비는 전문의약품이라 처방전 들고 약국에서 직접 받아야 하거든. SNS에서 택배로 보내준다는 건 불법이고 가짜일 수 있어. 절대 사지마.\n\n게다가 이건 2~8도에 냉장 보관하는 주사라 오는 길에 온도 한번 틀어지면 효과를 장담 못해. 받아오면 바로 냉장고에 넣고, 맞는 동안엔 끼니마다 단백질 챙기고 하루 30분은 걸어야 근육이 안빠져.\n\n약국은 병원에서 마운자로나 위고비 처방받고, 재고 있는 데 미리 전화해서 확인하고 가면 헛걸음 안해. 온라인이나 직구로 주사 사는 건 아예 선택지에 없어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 90
+        },
+        {
+          "kind": "ingredient",
+          "start": 92,
+          "end": 202
+        },
+        {
+          "kind": "product",
+          "start": 204,
+          "end": 290
+        }
+      ],
+      "products": [],
+      "ms": 13172,
+      "sessionId": "06fc5573-079d-4510-bc9f-99c7e749b795"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "택배는 안돼. 마운자로·위고비는 전문의약품이라 처방전 들고 약국에서 직접 받아야 해. 2~8도 냉장 보관하는 주사라 택배로 오면 그게 더 위험하고. SNS에서 택배로 보내준다는 건 가짜거나 불법이니까 절대 사지마.\n\n약국은 처방받고 나서 재고 있는 곳에 미리 전화해보고 가면 한번에 끝나. 받으러 갈 땐 걸어가. 주사 시작 전부터 하루 7천보랑 끼니마다 단백질 챙기는 습관이 약효보다 오래 남어-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 119
+        },
+        {
+          "kind": "product",
+          "start": 121,
+          "end": 221
+        }
+      ],
+      "products": [],
+      "ms": 10073,
+      "sessionId": "5f22c967-084c-431b-be78-473b9c85ab5c"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "택배는 안돼. 마운자로·위고비는 전문의약품이라 병원에서 처방받고 약국 가서 직접 받아와야 해. 가까운 병원에서 처방받고, 재고 있는 약국에 미리 전화해보고 가면 헛걸음 안 해.\n\n이게 냉장 보관하는 주사라서 온도가 한번 틀어지면 약효가 떨어져도 겉으로는 알수가 없어. 그래서 SNS나 온라인에서 택배로 보내준다는 건 불법 유통이거나 가짜일 수 있어. 싸다고 절대 사지 마.\n\n받으면 바로 2~8도 냉장고에 넣어. 그리고 주사 시작하면 끼니마다 고기·생선·계란·두부 중 하나는 꼭 들어가게 챙기고, 근력운동은 주 3번 해. 안그러면 살이 아니라 근육부터 빠져-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 98
+        },
+        {
+          "kind": "principle",
+          "start": 100,
+          "end": 208
+        },
+        {
+          "kind": "ingredient",
+          "start": 210,
+          "end": 312
+        }
+      ],
+      "products": [],
+      "ms": 9564,
+      "sessionId": "0f0670d5-ec92-4246-9167-55c5e3e3f612"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "택배는 안돼. 전문의약품이라 처방받고 약국에서 직접 받아야 하거든. 냉장 주사라 택배로 오면 약효도 장담 못하고, 택배로 판다는 데는 가짜일 수 있어서 거르는 게 맞아. 처방 받으러 가기 전까지 단백질이랑 하루 30분 걷기부터 챙겨먹고 챙겨-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 135
+        }
+      ],
+      "products": [],
+      "ms": 6184,
+      "sessionId": "311c5e25-0f54-42b7-9a6a-7a1e6c7b5f53"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "처방약이라 택배는 안돼. 병원가서 처방받고 약국까지 걸어가, 그게 첫 운동이야-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 44
+        }
+      ],
+      "products": [],
+      "ms": 5269,
+      "sessionId": "53e39297-557c-421b-9506-679a3588e24f"
+    }
+  ],
+  "failed": [],
+  "sessionId": "53e39297-557c-421b-9506-679a3588e24f"
+}

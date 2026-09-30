@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790488205-nail_hwawon",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:23:25.225Z",
+  "updatedAt": "2026-09-30T07:24:36.381Z",
+  "planned": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "지방간을 잡는 건 커큐민도 위고비도 아니야. 체중이랑 내장지방이야. 체중이 7~10%만 빠져도 간에 낀 지방이 눈에 띄게 줄어. 액상과당, 술, 야식부터 끊고 끼니마다 단백질은 챙겨. 식후 걷기에 근력운동을 주 2~3회 붙여. 근육이 붙어야 정체도 같이 풀릴꺼야.\n\n5.0에서 효과가 떨어지는 건 약이 안 맞아서가 아니야. 올릴 때가 됐다는 신호야. 위고비는 마운자로보다 한 단계 약한 약이라 갈아타면 오히려 내려가는 선택이거든. 5.0을 4주 넘게 맞았고 속이 괜찮으면 7.5로 올려. 굳이 바꾼다면 마운자로 5.0은 위고비 1.0 전후야. 마지막 주사 맞고 1주 뒤에 그보다 낮은 용량부터 다시 올려.\n\n커큐민은 멈춘 채로 둬. 지방간에 대한 근거가 약하고, 피페린을 넣어서 흡수를 높인 제형은 드물게 간 손상 보고가 있어. 우루사랑 오메가3는 그대로 먹고, 1~2달 뒤에 피검사로 간수치 다시 봐-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 147
+        },
+        {
+          "kind": "principle",
+          "start": 149,
+          "end": 338
+        },
+        {
+          "kind": "ingredient",
+          "start": 340,
+          "end": 449
+        }
+      ],
+      "products": [],
+      "ms": 15147,
+      "sessionId": "24186e31-917c-4250-a045-7586d47913a7"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "커큐민은 멈춘 채로 둬. 지방간엔 근거가 약하고 흡수 높인 제형은 드물게 간 손상 보고까지 있거든. 5에서 효과 떨어진 건 약이 안 맞는 게 아니라 증량할 때가 됬다는 신호야. 위고비는 한 단계 내려가는 선택이라 7.5로 올리는 게 먼저고, 간수치는 결국 체중 7~10% 빼야 내려가니까 근력운동 주 2~3회 붙여-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 176
+        }
+      ],
+      "products": [],
+      "ms": 8850,
+      "sessionId": "6ef99a99-0d60-4d40-8838-85ed0a734f57"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "위고비로 갈아타지 마. 위고비가 마운자로보다 약한 약이라 오히려 한 단계 내려가는 거야. 5mg에서 효과가 떨어진 건 7.5mg으로 올릴 때가 됐다는 신호야.\n\n그리고 간수치를 내리는 건 체중 7~10% 빼는 게 젤 커. 식후 걷기에 주 2~3회 근력운동 붙여.\n\n커큐민은 멈춘 채로 둬. 지방간엔 근거가 약하고, 흡수를 높인 제형은 드물게 간 손상 보고도 있어. 우루사랑 오메가3는 유지하고 1~2달 뒤 피검사로 수치 다시 봐-\n\n약국은 지금 먹는 우루사 100mg, 하루 3번 식후 그대로.\n온라인이면 rTG 오메가3 EPA+DHA 1000mg 정도면 무난해.\n직구는 나우푸드 울트라 오메가3, 저녁 식후 1알. 오메가3는 둘 중 하나만 먹어.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 146
+        },
+        {
+          "kind": "ingredient",
+          "start": 148,
+          "end": 240
+        },
+        {
+          "kind": "product",
+          "start": 242,
+          "end": 362
+        }
+      ],
+      "products": [],
+      "ms": 13714,
+      "sessionId": "f410db9e-bd09-4885-b8fa-aa8c3c2456fd"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "커큐민은 멈춘 채로 둬. 지방간엔 근거가 약하고, 흡수를 높인 제형은 간 손상 보고도 있어. 위고비로 바꾸면 한 단계 내려가는 거라 마운자로 7.5mg으로 올리는 게 먼저야. 간수치는 체중을 7~10% 빼야 내려가. 액상과당이랑 술 끊고 주 2~3회 근력운동 붙여.\n\n약국은 우루사 100mg 하루 3번 식후, 그대로 유지. 온라인이면 rTG 오메가3 1000mg 암거나 무난해. 직구는 나우푸드 마그네슘 글리시네이트 200mg 자기 전. 두 달 뒤 피검사로 간수치 다시 봐-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 148
+        },
+        {
+          "kind": "product",
+          "start": 150,
+          "end": 266
+        }
+      ],
+      "products": [],
+      "ms": 14087,
+      "sessionId": "63889878-fd0d-4544-892d-72fb1d32ef9c"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "커큐민은 지금 멈춘 채로 둬.\n약국은 대웅 우루사 100mg 하루 3번 식후 그대로 가고,\n온라인이면 rTG 오메가3 EPA+DHA 1000mg 저녁 식후, 이 정도면 무난해.\n직구는 닥터스베스트 마그네슘 글리시네이트 100mg 두 알 자기 전.\n간수치는 야식이랑 액상과당 끊는 게 젤 세-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 162
+        }
+      ],
+      "products": [],
+      "ms": 10564,
+      "sessionId": "1ea98a48-2690-424b-a5ce-54ce0e240b3e"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "커큐민은 끊어도 손해 하나 없어. 간수치는 뱃살 빼야 내려가니까 위고비 말고 마운자로 7.5로 올리고 근력운동 붙여-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 65
+        }
+      ],
+      "products": [],
+      "ms": 8780,
+      "sessionId": "30acaed6-cb8e-444e-984d-01aa50029385"
+    }
+  ],
+  "failed": [],
+  "sessionId": "30acaed6-cb8e-444e-984d-01aa50029385"
+}

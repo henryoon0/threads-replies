@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487475-caffelatte9898",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:09:14.716Z",
+  "updatedAt": "2026-09-30T05:10:11.712Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "갱년기엔 에스트로겐이 빠지면서 뼈랑 근육이 같이 빠져. 식사까지 불균형이면 영양제를 더 얹기 전에 끼니마다 단백질 챙기고 주2회 웨이트부터 해. 이게 젤 중요해. 노안은 영양제로 못 되돌려.\n\n비타민D·마그네슘은 그대로 가고\n1/ 멀티비타민으로 바닥 깔고\n2/ 오메가3 EPA+DHA 1000mg 식후에.\n루테인은 황반 보호지 노안 치료가 아니야.\n\n약국은 비맥스 제트 하루 한 알 아침 식후.\n온라인이면 종근당 rTG 오메가3 정도면 무난해.\n직구는 내가 먹는 노르딕 얼티메이트 오메가 하루 2알 저녁 식후.\n멀티에 든 D까지 합쳐서 하루 4000IU 넘기지 마-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 106
+        },
+        {
+          "kind": "ingredient",
+          "start": 108,
+          "end": 194
+        },
+        {
+          "kind": "product",
+          "start": 196,
+          "end": 316
+        }
+      ],
+      "products": [],
+      "ms": 13494,
+      "sessionId": "d316b8fe-22c9-4834-a5b5-c7ec0823a309"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "비타민D랑 마그네슘은 잘 고른 거야. 그대로 가고, 이제 빈 바닥부터 채우자.\n\n영양제보다 급한 건 끼니마다 단백질 한 주먹이랑 주 2-3회 웨이트야. 식사가 불균형하면 이게 젤 먼저 무너져.\n\n갱년기엔 에스트로겐이 빠지면서 뼈랑 근육이 같이 빠져. 에스트로겐이 뼈 녹는 걸 막아주던 브레이크였거든. 그래서 이 시기엔 알약 개수보다 근육을 지키는 게 훨씬 중요해.\n\n1/ 멀티비타민 하나로 바닥을 깔아. 라벨에 비타민D가 들어 있으면 지금 먹는 D랑 합쳐서 하루 2000IU 안쪽으로 맞춰.\n2/ 오메가3는 rTG로 EPA+DHA 합쳐서 1000mg, 식후에. 혈관이랑 눈 건조에 좋아.\n3/ 루테인은 황반 건강엔 근거가 있는데 노안을 되돌리진 못해. 그건 안경이 해결해줄꺼야-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 107
+        },
+        {
+          "kind": "principle",
+          "start": 109,
+          "end": 203
+        },
+        {
+          "kind": "ingredient",
+          "start": 205,
+          "end": 379
+        }
+      ],
+      "products": [],
+      "ms": 11246,
+      "sessionId": "a878b092-9214-463a-be4f-712176e664f0"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "D랑 마그네슘은 그대로 가. 식사가 불균형이면 멀티 하나로 바닥 깔고 오메가3(EPA+DHA 1000mg)를 얹어. 루테인은 황반엔 근거 있는데 노안은 못 되돌려. 갱년기엔 근육이랑 뼈가 빨리 빠지니까 끼니마다 단백질 챙기고 주2회 웨이트. 이게 영양제보다 젤 중요해-\n\n약국은 비맥스 메타 아침 식후 한 알.\n온라인이면 종근당 루테인 지아잔틴 정도면 무난해.\n직구는 내가 먹는 노르딕내추럴 얼티메이트 오메가 식후 2캡슐.\n멀티에 D 들어있으면 합쳐서 하루 4000IU 넘지 마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 150
+        },
+        {
+          "kind": "product",
+          "start": 152,
+          "end": 268
+        }
+      ],
+      "products": [],
+      "ms": 11082,
+      "sessionId": "ed30d469-07ea-441f-99ac-c5f6421d9a3a"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 비맥스 메타 하루 1알 아침 식후로 불균형한 식사 바닥부터 깔아.\n온라인이면 루테인 20mg 들은거 암거나 무난해. 황반용이지 노안은 못 돌려.\n직구는 노르딕내추럴 얼티메이트 오메가 하루 2알(EPA+DHA 1280mg) 저녁 식후.\n근데 끼니마다 단백질이랑 웨이트가 이거 다보다 중요해-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 165
+        }
+      ],
+      "products": [],
+      "ms": 10447,
+      "sessionId": "e8f8ccef-c91f-4871-abda-22018c59201f"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "갱년기엔 에스트로겐이 줄면서 뼈랑 근육이 같이 빠져나가거든. 그래서 영양제 더 얹기 전에 끼니마다 단백질 챙겨먹고 웨이트부터 시작해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 74
+        }
+      ],
+      "products": [],
+      "ms": 6461,
+      "sessionId": "60672e69-d502-41dd-9f06-6d545d9cf2b5"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "노안은 영양제로 못 돌려. 돋보기 하나 사고 그 돈으로 단백질이랑 웨이트 챙겨.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 44
+        }
+      ],
+      "products": [],
+      "ms": 4251,
+      "sessionId": "c0267023-b058-416c-a37d-bca92f8c99e2"
+    }
+  ],
+  "failed": [],
+  "sessionId": "c0267023-b058-416c-a37d-bca92f8c99e2"
+}

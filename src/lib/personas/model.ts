@@ -45,23 +45,23 @@ export interface PersonaConfig {
  * 다른 계정을 더하려면 data/personas/<id>/persona.json 팩을 만든다.
  */
 export const DEFAULT_PERSONAS: Readonly<Record<string, PersonaConfig>> = {
-  me: {
-    id: "me",
-    name: "내 계정",
-    handle: "",
-    ownerName: "주인",
-    intro: "",
-    register: "해요체",
-    gate: "light",
-    knowledge: ["dashboard-retrieve"],
+  glp1: {
+    id: "glp1",
+    name: "박약사",
+    handle: "glp1.pharmacy",
+    ownerName: "박약사",
+    intro: "스레드 @glp1.pharmacy, 약사식 판단으로 영양제·GLP-1 질문에 답하는 계정",
+    register: "반말",
+    gate: "strict",
+    knowledge: ["supplement-brain"],
     send: "api",
-    features: { toBoard: false, evidenceShots: true },
-    dataDir: "data/threads-replies",
-    voicePairs: "data/threads-replies/voice-pairs.json",
+    features: { toBoard: false, evidenceShots: false },
+    collectedComments: "personas/glp1/collected/glp1-pharmacy-DdvdAKek5at.json",
+    voicePairs: "personas/glp1/collected/glp1-pharmacy-qa-pairs.json",
   },
 };
 
-export const DEFAULT_PERSONA_ID: PersonaId = "me";
+export const DEFAULT_PERSONA_ID: PersonaId = "glp1";
 
 /** 쿠키·주소에서 온 값을 안전한 id 로 좁힌다 (경로 조립에 쓰이므로 문자 집합을 제한). */
 export function normalizePersonaId(raw: string | null | undefined): PersonaId | null {

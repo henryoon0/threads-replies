@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790489002-__5zy",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:13:46.599Z",
+  "updatedAt": "2026-09-30T07:14:50.830Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "지금 목록은 안전해. 흡연자한테 폐암 위험을 올린 건 베타카로틴, 고용량 비타민A야. 나중에 멀티비타민 살 때 라벨에 베타카로틴 있으면 빼. 그리고 제일 센 영양제는 금연이야. 보건소 금연클리닉 가면 챔픽스 같은 처방까지 연결해줘-\n\n비타민C는 담배가 빨리 태워버려서 잘 고른 거야. 1000mg이면 충분해. 코큐텐이랑 실리마린은 30대 흡연자한테 근거가 약해서, 술 자주 안마시면 둘 다 빼도 돼.\n\n약국은 고려은단 비타민C 1000, 하루 한 알 식후.\n직구는 나우푸드 C-1000, 똑같이 식후 한 알. 난 이게 젤 편해.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 129
+        },
+        {
+          "kind": "ingredient",
+          "start": 131,
+          "end": 223
+        },
+        {
+          "kind": "product",
+          "start": 225,
+          "end": 295
+        }
+      ],
+      "products": [],
+      "ms": 12224,
+      "sessionId": "15289b03-f86a-4eef-b7ab-1fedd533d23a"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "흡연자 발암률 올리는 건 베타카로틴이야. 지금 목록엔 없으니까 안심해. 흡연자는 비타민C가 빨리 닳아서 C는 잘 고른 거고, 코큐텐은 30대면 빼도 돼. 나중에 멀티비타민 추가할 땐 라벨에 베타카로틴 들어있는지 꼭 봐. 그래도 제일 센 영양제는 금연이야. 보건소 금연클리닉 가면 공짜다.\n\n약국은 비맥스 메타, 아침 식후 1정. 베타카로틴 없는지 라벨은 확인하고.\n온라인이면 종근당건강 rTG 오메가3 이 정도면 무난해.\n직구는 나우푸드 C-1000, 하루 한 알 식후로 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 160
+        },
+        {
+          "kind": "product",
+          "start": 162,
+          "end": 269
+        }
+      ],
+      "products": [],
+      "ms": 12218,
+      "sessionId": "6194bf9b-834f-4393-bae4-9173cb3adcb4"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "지금 조합에 흡연자가 피해야 할 건 없어. 잘 짰어.\n\n근데 제일 센 영양제는 금연이야. 보건소 금연클리닉 가면 상담도 해주고 챔픽스 같은 약도 도움 받을 수 있어. 담배 생각날 때마다 10분 걷기로 바꾸게 해봐. 옆에서 이렇게 챙겨주는 사람 있으면 끊을 수 있어-\n\n흡연자 발암 얘기는 베타카로틴이야. 흡연자한테 고용량을 먹였더니 폐암이 오히려 늘었다는 큰 연구가 두 개 있거든. 그러니까 나중에 멀티비타민 추가하면 라벨에서 베타카로틴, 비타민A만 확인해.\n\n1/ 비타민C는 젤 잘 고른 거야. 담배 피면 빨리 닳아서 더 필요하거든. 하루 500~1000mg이면 충분해.\n2/ 코큐텐은 30대면 빼도 돼.\n3/ 실리마린은 술 자주 안마시면 굳이 안먹어도 돼. 오메가3랑 칼마디K는 그대로 가.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 148
+        },
+        {
+          "kind": "principle",
+          "start": 150,
+          "end": 256
+        },
+        {
+          "kind": "ingredient",
+          "start": 258,
+          "end": 388
+        }
+      ],
+      "products": [],
+      "ms": 13723,
+      "sessionId": "3a326f91-f439-4b0f-8918-6de4cdcd642d"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "흡연자가 피해야 하는 건 베타카로틴이야. 담배 연기에 상한 폐에 들어가면 오히려 폐암 위험을 올렸거든. 지금 목록에는 없으니까 그대로 먹여도 되고, 멀티비타민을 새로 살 때만 라벨을 봐. 그래도 제일 센 영양제는 금연이야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 124
+        }
+      ],
+      "products": [],
+      "ms": 7218,
+      "sessionId": "34e16b2c-5b17-4700-9b87-22c06f12d390"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "지금 조합에 문제는 없어. 흡연자한테 걸리는 건 베타카로틴이니까 라벨에 그거만 없으면 돼.\n약국은 니코레트 패치 아침에 한장. 제일 확실한 영양제야.\n온라인이면 고려은단 비타민C 1000mg 하루 한알 식후.\n직구는 나우푸드 C-1000 이 정도면 충분해-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 143
+        }
+      ],
+      "products": [],
+      "ms": 12918,
+      "sessionId": "6c6decae-7b06-4055-b831-3f737e568f55"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "영양제 여섯 개 먹이는 것보다 담배 한 갑 뺏는게 효과 젤 확실해. 돈도 굳고-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 44
+        }
+      ],
+      "products": [],
+      "ms": 5914,
+      "sessionId": "43a0fe9f-4e06-4ba6-9976-f73a8f71070f"
+    }
+  ],
+  "failed": [],
+  "sessionId": "43a0fe9f-4e06-4ba6-9976-f73a8f71070f"
+}

@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485637-mun__mim",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:34:16.851Z",
+  "updatedAt": "2026-09-30T05:35:20.347Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "잘먹고 잘자고 잘크면 이미 합격이야. 유산균은 그대로 가. 이 나이엔 음식으로 잘 안 채워지는 게 비타민D 하나거든. 낮에 밖에서 30분 뛰어노는 게 젤 좋은 영양제야.\n\n비타민D는 칼슘을 뼈로 붙여주는 역할이야. 유아용 드롭 400IU를 하루 한 번. 멀티를 같이 먹이면 라벨에 D가 들어있는지 보고 합쳐서 계산해.\n\n약국은 유아용 비타민D 드롭 400IU 달라고 하면 돼.\n온라인이면 국산 키즈 멀티 젤리도 무난해.\n직구는 스마티팬츠 키즈 멀티 & 오메가. 난 이게 좋아.\n\n젤리는 사탕인줄 알고 까먹으니까 손 안닿는 데 둬-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 94
+        },
+        {
+          "kind": "ingredient",
+          "start": 96,
+          "end": 177
+        },
+        {
+          "kind": "product",
+          "start": 179,
+          "end": 296
+        }
+      ],
+      "products": [],
+      "ms": 12917,
+      "sessionId": "8a6d1a04-6d49-4115-8ab5-608c6bcde51f"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "잘먹고 잘크고 잘자면 이미 충분해. 유산균은 그대로 가고, 하나만 더하면 비타민D야. 음식으론 거의 못 채워서 유아용 드롭 400IU 하루 한 번. 대신 낮에 밖에서 뛰어놀리는 게 젤 좋은 영양제다.\n\n약국은 유아용 비타민D 드롭 400IU면 암거나 괜찮아.\n온라인이면 국산 키즈 멀티 젤리 정도 무난해.\n직구는 칼슨 베이비 D3 400IU 드롭. 난 해외꺼 편애해서.\n멀티에도 D가 들어있으니 라벨 보고 겹치게 먹이지 마. 젤리는 손 안 닿는 데 둬-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 111
+        },
+        {
+          "kind": "product",
+          "start": 113,
+          "end": 253
+        }
+      ],
+      "products": [],
+      "ms": 13567,
+      "sessionId": "3401c7f5-1fc8-4b88-a60f-c57ba49e7c36"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "잘먹고 잘자면 비타민D 하나면 충분해.\n약국은 유아용 D3 드롭 400IU, 하루 한 번.\n온라인이면 국산 키즈 멀티 젤리 정도면 무난해.\n직구는 칼슨 베이비 D3 드롭 400IU, 하루 한 방울. 젤리는 사탕인 줄 아니까 손 안 닿는 데 둬.\n그리고 낮에 놀이터 30분 뛰어놀게 해-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 159
+        }
+      ],
+      "products": [],
+      "ms": 12165,
+      "sessionId": "e40d08b0-a36f-4efd-a51d-da64786b3247"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "잘먹고 잘자고 잘크면 이미 제일 중요한 건 다 하고 있는 거야. 유산균은 그대로 먹이고, 영양제를 더 얹기 전에 낮에 밖에서 한 시간씩 뛰어놀게 해줘. 그게 젤 좋은 보약이야.\n\n비타민D 하나만 챙겨. 음식으로는 거의 안 채워지고 햇빛을 받아야 몸에서 만들어지는데, 요즘 애들은 실내에 오래 있어서 잘 먹는 애들도 부족한 경우가 많거든. 뼈랑 키 크는 데 바로 쓰이는 거라 이 나이엔 기본이야.\n\n유아용 비타민D 드롭 400IU를 하루 한 번 아침 먹을 때 먹여. 더 먹이고 싶으면 스마티팬츠 키즈 같은 젤리 멀티 하나만 더해. 국산 키즈 멀티도 괜찮아. 대신 멀티에 D가 들어 있으면 드롭은 빼서 겹치지 않게 하고, 젤리는 사탕인 줄 알고 몰래 까먹으니까 손 안 닿는 데 둬-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 98
+        },
+        {
+          "kind": "principle",
+          "start": 100,
+          "end": 220
+        },
+        {
+          "kind": "ingredient",
+          "start": 222,
+          "end": 379
+        }
+      ],
+      "products": [],
+      "ms": 10975,
+      "sessionId": "038bfe25-2c6d-4197-bc4b-f8f7402aaba0"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "잘먹고 잘자면 멀티는 급하지 않아. 비타민D는 음식엔 거의 없고 햇빛을 받아야 몸에서 만들어지거든. 드롭 400IU 하나랑 낮에 밖에서 뛰어놀기면 충분해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 86
+        }
+      ],
+      "products": [],
+      "ms": 9648,
+      "sessionId": "ea8e54d1-a2ec-4d03-a0fc-2a6a389605f6"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "잘먹고 잘자는 34개월이면 이미 젤 좋은 거 먹고 있는 거야. 밥이 멀티비타민이고 밖에서 노는 게 비타민D-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "products": [],
+      "ms": 4206,
+      "sessionId": "43f9719a-0871-4868-b9b2-004090bbae05"
+    }
+  ],
+  "failed": [],
+  "sessionId": "43f9719a-0871-4868-b9b2-004090bbae05"
+}

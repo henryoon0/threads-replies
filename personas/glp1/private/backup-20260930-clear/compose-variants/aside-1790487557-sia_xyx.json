@@ -1,0 +1,247 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487557-sia_xyx",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:05:32.040Z",
+  "updatedAt": "2026-09-30T05:06:44.233Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "지금 조합이면 23살한텐 이미 충분해. 탈모 예방약은 필요없고 비오틴·맥주효모는 근거가 약해. 피부 유산균은 지금 먹는 유산균이랑 겹치니까 빼.\n\n머리가 실제로 빠지면 페리틴 피검사부터 받어. 끼니마다 단백질 챙기고 잠은 7시간 확보해. 굳이 하나 더하면 철분이야-\n\n약국은 볼그레, 식후에 하루 한 알.\n온라인이면 철분 비스글리시네이트 25mg짜리 정도면 무난해.\n직구는 쏜 아이언 비스글리시네이트 25mg, 이틀에 한 번 커피·칼슘이랑 4시간 띄어서.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 148
+        },
+        {
+          "kind": "product",
+          "start": 150,
+          "end": 254
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 14787,
+      "sessionId": "da517525-27e4-4169-8873-e656ec9bc217"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "지금 조합이면 23살한텐 이미 충분해. 20대 여자 탈모는 대부분 약이 없어서가 아니라 철분·단백질 부족이나 다이어트 스트레스 때문이야. 피부 유산균은 지금 먹는 유산균이랑 겹치고 근거도 약해서 비추야.\n\n비오틴·맥주효모도 근거가 약하니까 패스해. 굳이 하나 더하면 철분인데, 커피·칼슘이랑 2시간 띄어서 먹어. 그 전에 끼니마다 단백질 챙기고 잘먹고 잘자는 게 먼저야. 머리 빠지는 게 느껴지면 영양제보다 페리틴 피검사부터 받아.\n\n약국은 볼그레 하루 1정 식후, 직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번이면 돼-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 113
+        },
+        {
+          "kind": "ingredient",
+          "start": 115,
+          "end": 241
+        },
+        {
+          "kind": "product",
+          "start": 243,
+          "end": 297
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 13341,
+      "sessionId": "075f7b1f-f465-4684-8002-7bbe32a92fb1"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "더 얹을 거면 철분 하나만.\n\n약국은 훼로바유 서방정 하루 1알, 빈속에 지금 먹는 비타민C랑 같이.\n직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번. 내가 먹는거야.\n\n피부 유산균은 지금 먹는거랑 겹쳐. 고기 한 끼씩 챙겨먹고 머리 빠지는게 느껴지면 페리틴 피검사부터-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 156
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 13130,
+      "sessionId": "c705111c-678e-4767-b739-6b9e046abf8a"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "지금 조합이면 이미 충분해. 23살에 C·D·오메가3·유산균까지 먹으면 영양제로 할 건 다 한 거야. 여기서 더 얹을 거면 끼니마다 고기·계란·두부 같은 단백질을 한 가지씩 넣고 7시간 이상 자. 머리랑 피부엔 그게 훨씬 커.\n\n20대 여자 탈모는 대부분 약이 부족해서가 아니라 철분이랑 단백질이 모자라서 생겨. 철분이 바닥나면 몸이 덜 급한 머리카락부터 영양을 끊거든. 다이어트 중이면 더 그래. 지금 안 빠지는데 예방약 먹을 이유는 없고, 빠지는 게 느껴지면 영양제 사기 전에 페리틴 피검사부터 받아.\n\n비오틴이랑 맥주효모는 근거가 약해. 피부 유산균은 지금 먹는 유산균이랑 겹치고 피부 효과도 근거가 약하니까 따로 살 필요 없어. 굳이 하나 더한다면 생리양이 많을 때 철분 하나만 챙겨먹어. 커피·칼슘이랑은 2시간 띄워서-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 126
+        },
+        {
+          "kind": "principle",
+          "start": 128,
+          "end": 282
+        },
+        {
+          "kind": "ingredient",
+          "start": 284,
+          "end": 407
+        }
+      ],
+      "products": [],
+      "ms": 14520,
+      "sessionId": "efd2bb3e-7917-4f8d-965b-9041966185f1"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "지금 조합이면 20대한텐 충분해. 20대 여자 머리는 대개 철분이 바닥나서 빠지는 거라 예방약보다 고기 잘먹고 잘자는 게 먼저야. 피부균은 지금 먹는 유산균이랑 겹쳐-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 93
+        }
+      ],
+      "products": [],
+      "ms": 9139,
+      "sessionId": "f417fbe9-9d50-4a1b-8230-d190d64e1aa8"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "그 조합이면 20대엔 충분해. 더 얹을 돈으로 고기 사먹고 잠 한 시간 더 자-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 44
+        }
+      ],
+      "products": [],
+      "ms": 7261,
+      "sessionId": "8bea188e-bce8-4c28-a63f-844611551f04"
+    }
+  ],
+  "failed": [],
+  "sessionId": "8bea188e-bce8-4c28-a63f-844611551f04"
+}

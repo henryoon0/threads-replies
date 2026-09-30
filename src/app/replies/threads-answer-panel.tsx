@@ -368,7 +368,7 @@ function ReplyBody(props: OpenReplyProps) {
   return <OpenReply {...props} />;
 }
 
-const DEFAULT_PERSONA: SheetPersona = { id: "me", name: "내 계정", handle: "", send: "api" };
+const DEFAULT_PERSONA: SheetPersona = { id: "glp1", name: "박약사", handle: "glp1.pharmacy", send: "api" };
 
 export function ThreadsAnswerPanel({
   replyId,

@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483445-jhmnjvcgjkdk",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:26:20.221Z",
+  "updatedAt": "2026-09-30T08:27:27.475Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "미친짓까진 아니야. 0.5는 낮은 용량이고 1년 동안 별탈 없었으면 크게 걱정할 단계는 아니야. 근데 비만이 아닌 몸은 빠질 때 지방보다 근육이 같이 깎이는 비율이 커지거든. 목표 체중까지 왔으면 맞는 간격을 10~14일로 늘려서 천천히 끊어.\n\n단백질은 체중 1kg당 1.2g 이상, 끼니마다 20~30g씩 나눠먹어. 근력운동도 주 2~3회는 해. 이 두 개가 끊은 뒤에 요요를 막아줘-\n\n약국은 셀렉스 프로틴 음료, 운동 끝나고 한 병.\n온라인이면 마이프로틴 임팩트 웨이 1스쿱(단백질 21g) 정도면 무난해.\n직구는 옵티멈 뉴트리션 골드스탠다드 웨이 1스쿱(24g). 맛도 괜찮아서 젤 오래 먹게 되는 거야.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 136
+        },
+        {
+          "kind": "ingredient",
+          "start": 138,
+          "end": 217
+        },
+        {
+          "kind": "product",
+          "start": 219,
+          "end": 343
+        }
+      ],
+      "products": [],
+      "ms": 16580,
+      "sessionId": "34833fa4-42f4-489e-97b0-a6c7f5fffd79"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "미친짓까진 아니야. 0.5면 낮은 용량이고 1년 동안 별 탈 없었으면 크게 걱정할 단계는 아니야. 근데 비만이 아니면 이제는 끊는 계획을 세울 때야. 한 번에 끊지 말고 0.25로 내려서 한두 달 보고, 그다음에 끊어.\n\n비만이 아닌 몸은 빼야 할 지방이 적어서, 오래 맞을수록 지방보다 근육이 빠지는 비율이 커져. 근육이 줄면 기초대사량(가만히 있어도 쓰는 에너지)이 떨어지거든. 그래서 끊는 순간 요요가 더 세게 와.\n\n단백질은 체중 1kg당 1.2g 이상 먹어. 55kg이면 하루 66g 정도야. 끼니마다 계란·생선·두부·고기 중 하나는 꼭 넣고, 식사로 모자라면 유청단백 한 스쿱(20g 안팎)을 보태. 근력운동은 주 2~3회, 스쿼트랑 푸시업부터 하면 될꺼야. 약 없이 유지되는 건 결국 근육이야-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 122
+        },
+        {
+          "kind": "principle",
+          "start": 124,
+          "end": 235
+        },
+        {
+          "kind": "ingredient",
+          "start": 237,
+          "end": 395
+        }
+      ],
+      "products": [],
+      "ms": 13515,
+      "sessionId": "a9e25f22-8a38-4e12-b953-2c7ff828c341"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "미친짓까진 아니야. 대신 이제부턴 근육 지킬 차례야.\n약국은 셀렉스 코어프로틴 1포 단백질 11g, 아침 대신 먹어.\n온라인이면 마이프로틴 임팩트 웨이 1스쿱 21g 정도면 무난해.\n직구는 옵티멈 골드스탠다드 웨이 1스쿱 24g. 주 3번 근력운동 한 날 바로 먹어-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 149
+        }
+      ],
+      "products": [],
+      "ms": 10745,
+      "sessionId": "8a000be0-fefb-4641-9c93-c3636fcbf2d3"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "미친짓까진 아냐. 0.5는 저용량이고 1년 동안 별탈 없었으면 괜찮아. 근데 비만이 아니면 근육부터 빠져. 단백질은 체중 1kg당 1.2g 이상 챙기고, 근력운동은 주 2~3회 꼭 해. 목표 체중 찍었으면 0.25로 내려서 천천히 끊어-\n\n약국은 셀렉스 프로핏 웨이프로틴.\n온라인이면 마이프로틴 임팩트 웨이 정도면 무난해.\n직구는 옵티멈 골드스탠다드 웨이. 한 스쿱에 단백질 24g이라 운동 끝나고 한 번 타먹으면 돼.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 132
+        },
+        {
+          "kind": "product",
+          "start": 134,
+          "end": 234
+        }
+      ],
+      "products": [],
+      "ms": 13954,
+      "sessionId": "9cbd0a32-64a2-4c51-944a-27d977ae83fd"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "미친짓까진 아니야. 근데 비만이 아닌 몸은 뺄 지방이 적어서 근육부터 깎이거든. 단백질은 체중 1kg당 1.2g 넘게 챙겨먹고, 근력운동은 주 3회 해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 85
+        }
+      ],
+      "products": [],
+      "ms": 7178,
+      "sessionId": "1410529b-8a7b-4423-8585-cb49caefc91b"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "미친짓까진 아니고 좀 부지런한 짓. 이제 끊을 준비해야 돼. 단백질 챙겨먹고 근력운동부터 시작해-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 54
+        }
+      ],
+      "products": [],
+      "ms": 5263,
+      "sessionId": "2d9a0396-76ce-41d8-8781-49ba260020ec"
+    }
+  ],
+  "failed": [],
+  "sessionId": "2d9a0396-76ce-41d8-8781-49ba260020ec"
+}

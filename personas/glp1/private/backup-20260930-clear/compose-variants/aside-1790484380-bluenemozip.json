@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790484380-bluenemozip",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:45:48.627Z",
+  "updatedAt": "2026-09-30T05:47:07.674Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "질염이 자꾸 재발하는 게 아니면 지금 먹는 거 그대로 먹어. 바꿀 거면 한 가지만 먹어.\n온라인이면 에스더포뮬러 엘레나 하루 1캡슐. 이 정도면 무난해.\n직구는 재로우 펨도필러스(GR-1·RC-14) 하루 1캡슐. 장유산균 대신 이걸로 바꿔. 세정제는 줄이고 면속옷 입어-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 152
+        }
+      ],
+      "products": [],
+      "ms": 15348,
+      "sessionId": "b950b528-3fb3-4181-8edf-dc8df54a4adc"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "질염이 자꾸 반복되는 게 아니면 굳이 바꿀 필요 없어. '여자한테 훨씬 좋다'는 건 마케팅 문구야. 질 속 유익균이 밀려나서 염증이 계속 도는 사람한테나 의미가 있거든.\n\n고를 땐 균주명부터 봐. 람노서스 GR-1, 루테리 RC-14가 적혀 있으면 근거가 있는 거고, 이름에 '여성'만 붙어 있으면 걸러. 바꿀 거면 지금 먹는 장 유산균이랑 같이 먹지 말고 하나로 바꿔. 속옷은 면으로 입고 세정제는 넘 자주 쓰지마.\n\n온라인이면 hy 엘레나 정도가 무난해. 직구는 자로우 펨도필러스 50억 CFU, 하루 1캡슐 아침 공복에 먹어. 가려움이나 냄새가 반복되면 유산균 말고 산부인과부터 가-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 94
+        },
+        {
+          "kind": "ingredient",
+          "start": 96,
+          "end": 233
+        },
+        {
+          "kind": "product",
+          "start": 235,
+          "end": 329
+        }
+      ],
+      "products": [],
+      "ms": 17711,
+      "sessionId": "07cb1d8f-e07d-45a1-9421-688cc90e5abb"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "질염이 자주 재발하는 게 아니면 굳이 바꿀 필요 없어. '여자한테 훨씬 좋다'는 건 마케팅이 과장한 거야. 질염이 반복되면 지금 먹는 유산균을 람노서스 GR-1, 루테리 RC-14처럼 균주명까지 적힌 걸로 바꿔서 하나만 먹어. 세정제 줄이고 면속옷 입는 게 유산균보다 먼저-\n\n약국이나 온라인이면 엘레나 질유산균 하루 1캡슐이면 무난해. 직구는 재로우 펨도필러스, 이건 내가 대놓고 좋아하는 거야. 가려움·냄새가 반복되면 유산균 말고 산부인과부터 가.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 153
+        },
+        {
+          "kind": "product",
+          "start": 155,
+          "end": 252
+        }
+      ],
+      "products": [],
+      "ms": 16305,
+      "sessionId": "84254b5b-ce90-4e3b-a410-2737e533d9d2"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "질염이 자주 오는 게 아니면 굳이 바꿀 필요 없어. 여자한테 훨씬 좋다는 건 마케팅 문구야. 유산균보다 먼저 할 건 생활이야. 통기성 좋은 면 속옷 입고, 세정제는 매일 쓰지 말고 물로만 씻어도 충분해. 가려움·냄새·분비물 이상이 자꾸 반복되면 유산균 말고 산부인과부터 가.\n\n질 안에 사는 유산균이 젖산을 만들어서 산성을 지켜주는데, 이게 깨지면 나쁜 균이 자라서 질염이 오거든. 먹는 유산균 중에 질까지 가서 자리 잡는 게 확인된 균주가 몇 개 있고, 근거는 중간 정도야. 재발을 좀 줄여주는 보조 수준이니까 넘 기대는 하지마.\n\n고를 땐 라벨에 락토바실러스 람노서스 GR-1, 루테리 RC-14 균주명이 적혀있는지 봐. 이름만 여성유산균인 건 걸러. 질염이 반복돼서 먹어보고 싶으면 지금 장유산균에 하나 더 얹지 말고 질유산균 든 제품 하나로 바꿔서 한 가지만 먹어-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 153
+        },
+        {
+          "kind": "principle",
+          "start": 155,
+          "end": 297
+        },
+        {
+          "kind": "ingredient",
+          "start": 299,
+          "end": 432
+        }
+      ],
+      "products": [],
+      "ms": 15984,
+      "sessionId": "0d228b84-1e84-443d-9e01-e5684568b548"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "질염이 자주 재발하는 사람한테나 의미 있어. 먹은 균이 장 거쳐 질까지 가서 산성을 지켜주는 원리라 증상 없으면 지금 유산균으로 충분하고, 세정제 줄이는 게 더 남아-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 93
+        }
+      ],
+      "products": [],
+      "ms": 7593,
+      "sessionId": "2c542017-c7a0-4920-a28d-58664eb1ba92"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "'여자한테 좋다' 붙으면 값만 두 배야. 질염 없으면 지금 거 그대로 먹고 속옷이나 면으로 바꿔-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 54
+        }
+      ],
+      "products": [],
+      "ms": 6084,
+      "sessionId": "9ff95eee-6a58-4720-86cc-779a47d60463"
+    }
+  ],
+  "failed": [],
+  "sessionId": "9ff95eee-6a58-4720-86cc-779a47d60463"
+}

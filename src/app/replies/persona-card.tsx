@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import type { PersonaListItem } from "./use-persona";
 
 /** 아바타 한 글자. 박약사는 지금 /supplement 의 "약" 아바타와 같게. */
-const MARKS: Record<string, string> = {};
+const MARKS: Record<string, string> = { glp1: "약" };
 
 function Mark({ p, size = "md" }: { p: Pick<PersonaListItem, "id" | "name">; size?: "sm" | "md" }) {
   return (

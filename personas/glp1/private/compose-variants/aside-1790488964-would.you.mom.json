@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790488964-would.you.mom",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:16:14.335Z",
+  "updatedAt": "2026-09-30T07:17:20.197Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "피곤한 건 영양제보다 잠이 먼저야. 애 잘 때 같이 자는 게 젤 센 보약이고. 출산 뒤엔 철분·비타민D가 바닥나거나 갑상선이 흔들리기 쉬워서, 몇 달째 피곤하면 영양제 더 사기 전에 피검사부터 해봐.\n\n비맥스는 좋은 선택이야. 아침 먹고 먹어. 비타민C 3000은 과해서 1000이면 충분하고. 오메가는 추가해도 좋아. rTG 형태에 EPA+DHA 합쳐서 1000mg 안팎으로 골라.\n\n직구는 노르딕내추럴스 얼티메이트 오메가, 2알에 1280mg이라 식후에 한 번에 먹으면 돼. 해외꺼 좋아하는 건 그냥 내 취향이야. 수유 중이면 DHA 비중 높은 걸로 골라-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 111
+        },
+        {
+          "kind": "ingredient",
+          "start": 113,
+          "end": 214
+        },
+        {
+          "kind": "product",
+          "start": 216,
+          "end": 313
+        }
+      ],
+      "products": [],
+      "ms": 17719,
+      "sessionId": "1a0ce84d-96a5-4c97-880b-d5991724e4f8"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "비맥스 B는 잘 골랐어. 아침 먹고 하나. C 3000은 과하니까 1000으로 줄여. 제일 급한 건 잠이야. 애 잘 때 같이 눕는 게 어떤 영양제보다 나아-\n\n오메가는 추가해도 좋아. rTG 형태에 EPA+DHA 1000mg 안팎이면 돼.\n약국은 rTG 오메가3 1000mg급으로 하루 한 알, 식후.\n온라인이면 종근당 rTG 오메가3 정도면 무난해.\n직구는 노르딕내추럴 얼티메이트 오메가, 내가 챙겨먹는 거. 수유 중이면 DHA 높은 걸로.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 87
+        },
+        {
+          "kind": "product",
+          "start": 89,
+          "end": 247
+        }
+      ],
+      "products": [],
+      "ms": 11443,
+      "sessionId": "4513f22d-0c60-4cc6-b685-b5d90e27e33e"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 rTG 오메가3 중에 EPA+DHA 합쳐서 1000mg 되는 걸로 골라서 밥 먹을 때 같이 먹어.\n온라인이면 종근당건강 프로메가 알티지 오메가3 듀얼, 이 정도면 무난해.\n직구는 노르딕내추럴스 얼티메이트 오메가 하루 2알. 갠적으로 젤 좋아하는 거-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 143
+        }
+      ],
+      "products": [],
+      "ms": 12677,
+      "sessionId": "1ddfd4ed-c449-460f-8d3e-54eec1b8dd65"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "육아 피로는 영양제 하나 더 얹는다고 안 풀려. 애 재울 때 폰 보지 말고 같이 자. 낮잠 30분이라도 끼워 넣는 게 어떤 영양제보다 세-\n\n피곤한 게 몇 달째 가면 피검사부터 해봐. 출산하고 생리가 다시 시작되면 철분이 바닥나기 쉬운데, 철분이 모자라면 산소를 제대로 못 날라서 자고 일어나도 피곤하거든. 페리틴, 비타민D, 갑상선 이 세 개를 보고 부족하다고 나온 것만 채우면 돼.\n\n비맥스 B는 좋은 선택이야. 아침 먹고 먹어. 비타민C 3000은 좀 과하고 1000이면 충분해. 오메가는 추가해도 좋아. rTG 형태에 EPA+DHA 합쳐서 1000mg 안팎이면 되고, 알티지 오메가 계열이면 암거나 무난해. 수유 중이면 DHA 비중이 높은 걸로 골라.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 77
+        },
+        {
+          "kind": "principle",
+          "start": 79,
+          "end": 215
+        },
+        {
+          "kind": "ingredient",
+          "start": 217,
+          "end": 368
+        }
+      ],
+      "products": [],
+      "ms": 11994,
+      "sessionId": "6cc52d93-2952-4b61-a132-a8fac8913bf5"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "육아 피로는 영양제보다 잠이 먼저야. 쪼개 자면 깊은 잠까지 못 가서 회복이 안되거든. 애 잘 때 같이 자고, 오래 피곤했으면 철분이랑 비타민D 피검사부터 해봐-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 90
+        }
+      ],
+      "products": [],
+      "ms": 7617,
+      "sessionId": "69bf227a-36f0-4e14-b4e3-bb6ed614d883"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "육아 피로엔 오메가보다 남편 새벽 당번이 젤 잘 들어. 이건 약국에서 안 팔어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 44
+        }
+      ],
+      "products": [],
+      "ms": 4384,
+      "sessionId": "3981c938-e37e-437a-a8f2-22f78817c8c3"
+    }
+  ],
+  "failed": [],
+  "sessionId": "3981c938-e37e-437a-a8f2-22f78817c8c3"
+}

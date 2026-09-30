@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483082-mii_vvvv",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T06:06:22.013Z",
+  "updatedAt": "2026-09-30T06:07:38.803Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "갑상선 수질암이면 절대 금기고, 그 외 암 이력만으로 GLP-1이 암을 키운다는 근거는 없어. 근데 치료 막 끝난 몸은 근육부터 다시 채워야 할 시기라서, 식욕이 꺾이면 단백질이 바닥나고 근육이 빠지거든. 단백질 체중 1kg당 1.2g 챙겨먹고 가벼운 근력운동은 꼭 같이 해. 전이까지 갔던 몸이면 남은 펜 알아서 맞지 말고 종양내과쌤한테 한 번은 확인받아-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 200
+        }
+      ],
+      "products": [],
+      "ms": 8567,
+      "sessionId": "adf276d8-f613-429f-95de-30549eb33dae"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "치료 막 끝낸 몸에 남은 펜을 알아서 이어 맞는 건 그냥 두면 안 돼. 전이랑 재발까지 겪은 몸은 지금 살을 뺄 때가 아니라 체중이랑 근육을 지킬 때야. 식욕이 뚝 떨어지면 단백질부터 무너지고 근육이 빠져. 담당 종양내과 선생님한테 이 약 맞아도 되는지 한 번은 꼭 물어보라고 해. 지인 챙기는 스친이 덕분에 그분 한 번 살았다-\n\n먼저 암 종류부터 봐야 돼. 갑상선 수질암이나 MEN2 계열이었으면 GLP-1은 절대 금기라서 바로 끊어야 해. 그 밖의 암은 GLP-1이 암을 키운다는 근거가 지금은 없어. 오히려 비만이 여러 암의 재발 위험 인자라서 연구 쪽에서는 GLP-1을 좋게 보는 흐름도 있어.\n\n선생님이 괜찮다고 해서 계속 맞는다면\n1/ 쉬었다 다시 맞는 거면 원래 맞던 용량으로 바로 가지 말고 젤 낮은 용량부터 다시 올려.\n2/ 단백질은 체중 1kg당 1.2g 이상 먹어. 60kg면 하루 72g이야.\n3/ 가벼운 근력운동을 주 2~3번 같이 하고 체중이 빠지는 속도를 매주 재. 너무 빨리 빠지면 멈추고 병원 가.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 184
+        },
+        {
+          "kind": "principle",
+          "start": 186,
+          "end": 337
+        },
+        {
+          "kind": "ingredient",
+          "start": 339,
+          "end": 520
+        }
+      ],
+      "products": [],
+      "ms": 17507,
+      "sessionId": "28b21927-9a36-4366-ad72-f0fdbb30dc5f"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "암 종류부터 봐야돼. 갑상선 수질암이나 MEN2 쪽이면 GLP-1은 절대 금기라 바로 끊어. 그 외 암 이력만으로 위고비가 암을 키운다는 근거는 없어. 근데 전이·재발 치료 막 끝낸 몸은 살 뺄 때가 아니라 근육 지킬 때거든. 남은 펜 알아서 맞는건 넘 위험하고 종양내과 쌤한테 한번은 확인받아.\n\n그래도 계속 맞는다면 단백질은 체중 1kg당 1.2g 이상 먹고, 근력운동은 주 2~3회 가볍게라도 같이 해.\n\n약국은 뉴케어 올프로틴 하루 1팩, 온라인이면 셀렉스 프로핏 웨이 정도면 무난해. 직구는 옵티멈 뉴트리션 골드스탠다드 웨이 1스쿱(단백질 24g) 식사 사이에 하루 한두 번-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 165
+        },
+        {
+          "kind": "ingredient",
+          "start": 167,
+          "end": 228
+        },
+        {
+          "kind": "product",
+          "start": 230,
+          "end": 327
+        }
+      ],
+      "products": [],
+      "ms": 15971,
+      "sessionId": "1879e757-a83b-4ee4-b373-353f6f58b9e0"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 비맥스 메타 하루 1정 아침 식후.\n온라인이면 셀렉스 코어프로틴 한 번에 20g 정도, 하루 1~2번이면 무난해.\n직구는 옵티멈 뉴트리션 골드스탠다드 웨이 1스쿱(단백질 24g), 근력운동 끝나고 바로.\n단백질은 체중 1kg당 1.2g 채우고 근력운동은 주 2~3번 꼭 해-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 157
+        }
+      ],
+      "products": [],
+      "ms": 11955,
+      "sessionId": "ced1db7f-185c-4885-9a91-d38debe730cc"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "암 종류부터 봐야돼. 갑상선 수질암이나 MEN2 계열이면 GLP-1은 절대 금기라 바로 끊어. 그 외 암 이력만으로 암을 키운다는 근거는 없어. 근데 재발 치료 막 끝난 몸은 살 뺄 때가 아니라 근육 지킬 때야. 남은 펜 쉬었다 맞는 거면 저용량부터 다시 올리고 종양내과쌤한테 한번은 확인받아. 단백질은 체중 1kg당 1.2g 이상, 가벼운 근력운동 주 2~3번은 같이 해.\n\n약국은 뉴케어 올프로틴 하루 1~2팩.\n온라인이면 셀렉스 프로핏 정도면 무난해.\n직구는 옵티멈 골드스탠다드 웨이 1스쿱(단백질 24g), 이건 나도 좋아하는거라 식사 모자란 날 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 209
+        },
+        {
+          "kind": "product",
+          "start": 211,
+          "end": 315
+        }
+      ],
+      "products": [],
+      "ms": 16145,
+      "sessionId": "7f5f0af7-287b-404e-a779-ed3b5ce1e9e5"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "암 치료 끝낸 몸한테 지금 필요한 건 남은 펜이 아니라 단백질이랑 근력운동이야. 갑상선 수질암이었으면 당장 끊고 담당 쌤한테 물어봐-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 74
+        }
+      ],
+      "products": [],
+      "ms": 6626,
+      "sessionId": "d3881372-06c2-485b-8629-fd0262902e4f"
+    }
+  ],
+  "failed": [],
+  "sessionId": "d3881372-06c2-485b-8629-fd0262902e4f"
+}

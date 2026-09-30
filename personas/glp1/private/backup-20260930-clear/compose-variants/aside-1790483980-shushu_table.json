@@ -1,0 +1,223 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483980-shushu_table",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:53:55.539Z",
+  "updatedAt": "2026-09-30T05:55:12.251Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 텐텐츄정, 하루 한 번 식후에 씹어먹게 해.\n온라인이면 비타민D 400IU 이상 든 어린이 츄어블 종합비타민 정도면 무난해.\n직구는 나우푸드 D3 2000IU 하루 한 알, 종합제랑 합쳐서 4000IU 안 넘게.\n유산균은 계속 먹이고, 끼니마다 계란이나 두부 하나씩 올려-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 156
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 15162,
+      "sessionId": "c345f726-e9ad-4f7b-8dff-8ae4b5fac1fe"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "유산균은 그대로 두고 빈 데만 메우면 돼. 요즘 애들은 실내에만 있어서 비타민D가 거의 다 부족해. 하루 1000IU를 아침 먹고 챙겨줘. 편식은 싫어하는 걸 억지로 먹이지 말고, 좋아하는 메뉴에 섞어서 끼니마다 계란·고기·두부 중 하나는 들어가게 해-\n\n약국은 어린이용 종합비타민 츄어블로 골라.\n온라인이면 어린이용 비타민D 1000IU 드롭 정도면 무난해.\n직구는 스마티팬츠 키즈 포뮬라 젤리, 애들이 간식인 줄 알고 잘먹어.\n종합비타민이랑 D를 같이 먹이면 D는 합쳐서 하루 2000IU 안 넘게.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 141
+        },
+        {
+          "kind": "product",
+          "start": 143,
+          "end": 281
+        }
+      ],
+      "products": [],
+      "ms": 16796,
+      "sessionId": "0268dc44-44fb-491a-bae2-ad6e5578c57f"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "유산균만으론 편식 빈틈 못 메워. 편식하면 철·아연·칼슘이 먼저 바닥나는데, 초5면 곧 키 크는 시기라 성장에 쓸 재료가 모자라거든. 영양제는 보조고, 계란·고기·두부 중 하나를 끼니마다 올려줘. 싫어하는 건 좋아하는 메뉴에 잘게 섞어서 조금씩.\n\n유산균은 그대로 두고 어린이 종합비타민 하나만 더해. 비타민D는 하루 1000IU 정도 아침 먹고. 종합제에 D가 들어 있으면 그만큼 빼고 맞춰.\n\n약국은 텐텐츄정 하루 1알. 씹어먹는 거라 편식하는 애들도 잘 먹어.\n\n직구는 스마티팬츠 키즈 멀티 젤리를 라벨 권장량대로. 갠적으로 젤 좋아하는 라인이야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 137
+        },
+        {
+          "kind": "ingredient",
+          "start": 139,
+          "end": 220
+        },
+        {
+          "kind": "product",
+          "start": 222,
+          "end": 309
+        }
+      ],
+      "products": [],
+      "ms": 18154,
+      "sessionId": "a91a0517-c085-48ee-853e-125b1f00bd89"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "유산균 하나로는 편식으로 비는 영양을 못 채워. 초5면 곧 키가 확 크는 시기라 지금 식단을 넓혀 놓는 게 젤 급해. 싫어하는 반찬을 따로 내밀지 말고 좋아하는 볶음밥이나 카레에 잘게 다져 넣어서 조금씩 익숙해지게 해. 계란·고기·두부 중에 하나는 끼니마다 올려주고.\n\n편식은 뭘 안 먹느냐에 따라 모자라는 영양소가 달라. 고기를 안 먹으면 철·아연이 모자라서 쉽게 지치고 입맛도 더 떨어지거든. 우유를 안 먹으면 칼슘이 비고.\n\n유산균은 그대로 먹이고 초등 고학년용 종합비타민미네랄 하나만 더해. 씹어먹는 츄어블로 고르면 편식하는 애도 거부감이 덜해. 라벨에 비타민D가 400~1000IU 들어 있는지 보고, 없으면 D3만 따로 아침 먹고 챙겨줘-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 149
+        },
+        {
+          "kind": "principle",
+          "start": 151,
+          "end": 239
+        },
+        {
+          "kind": "ingredient",
+          "start": 241,
+          "end": 363
+        }
+      ],
+      "products": [],
+      "ms": 12602,
+      "sessionId": "0cedd27a-0068-40f4-b737-0c80db1a8d97"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "유산균은 장 환경만 잡아줄 뿐, 편식으로 빠진 철·아연·비타민D는 못 채워. 어린이 종합영양제 하나 더하고, 싫어하는 건 좋아하는 메뉴에 섞어서 조금씩 먹여-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 88
+        }
+      ],
+      "products": [],
+      "ms": 7460,
+      "sessionId": "80ec3451-86b3-44bc-b62a-de28b31bd68b"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "초5 편식은 영양제로 못 이겨. 계란이든 고기든 끼니마다 올리고 싫어하는 건 좋아하는 메뉴에 몰래 섞어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 58
+        }
+      ],
+      "products": [],
+      "ms": 6520,
+      "sessionId": "df74a103-94f0-4ffe-a354-2273c74aa46f"
+    }
+  ],
+  "failed": [],
+  "sessionId": "df74a103-94f0-4ffe-a354-2273c74aa46f"
+}

@@ -1,0 +1,241 @@
+{
+  "version": 5,
+  "replyId": "aside-1790446324-k_hj529",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T02:39:50.059Z",
+  "updatedAt": "2026-09-30T02:40:52.489Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "비맥스 메타로 바꿔. 임팩타민은 B1만 활성형인데, 구내염에는 B2가 핵심이고 메타는 B2·B6·B12까지 활성형이야. 다발로 나는 건 철분·아연 부족일 수 있어서 B군만으로는 안 메워져. 잠 줄여가며 영양제로 버티는 거면 그 습관부터 끊어.\n\n약국은 비맥스 메타 하루 1정 아침 식후, 3개월은 꾸준히 챙겨먹어.\n온라인이면 아연 15mg 단일제는 암거나 무난해, 저녁 식후.\n직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번, 커피·칼슘이랑 4시간 띄워서-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 135
+        },
+        {
+          "kind": "product",
+          "start": 137,
+          "end": 260
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 20078
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "입 안 점막은 몸에서 세포가 젤 빨리 갈리는 곳이라 B2·철분·아연이 바닥나면 재생이 못 따라가거든. 그래서 피곤한 날 한꺼번에 터지는 거야.\n\n비맥스 메타로 바꿔. 임팩타민은 B1만 활성형인데, 구내염에는 B2가 핵심이고 메타는 B2·B6·B12까지 활성형이야. 철분·아연은 B군으로 안 메워져서 따로 챙겨. 잠 줄여가며 영양제로 버티는 거면 그 습관부터 끊어.\n\n약국은 비맥스 메타 하루 1정 아침 식후, 3개월은 꾸준히 챙겨먹어.\n온라인이면 아연 15mg 단일제는 암거나 무난해, 저녁 식후.\n직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번, 커피·칼슘이랑 4시간 띄워서-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 79
+        },
+        {
+          "kind": "ingredient",
+          "start": 81,
+          "end": 203
+        },
+        {
+          "kind": "product",
+          "start": 205,
+          "end": 328
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 10728
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 비맥스 메타로 바꿔. 하루 1정 아침 식후, 3개월은 꾸준히 챙겨먹어.\n온라인이면 아연 15mg 단일제는 암거나 무난해, 저녁 식후.\n직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번, 커피·칼슘이랑 4시간 띄워서.\n근데 잠 못 채우면 이거 다 먹어도 또 올라와-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 155
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 6710
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "구내염이 다발로 나는 건 몸이 바닥까지 지쳤다는 신호야. 순서대로 가자.\n1/ 잠부터 확보해. 영양제가 잠을 대신 채워주진 못해.\n2/ 올라왔을 땐 오라메디 같은 연고로 빨리 눌러.\n3/ 3개월 먹어도 계속 다발로 나면 병원 가서 빈혈·철분 피검사 받아.\n이번엔 입 안 편하게 겨울 나자-\n\n입 안 점막은 몸에서 세포가 젤 빨리 갈리는 곳이라 B2·철분·아연이 바닥나면 재생이 못 따라가거든. 그래서 피곤한 날 한꺼번에 터지는 거야.\n\n비맥스 메타로 바꿔. 임팩타민은 B1만 활성형인데, 구내염에는 B2가 핵심이고 메타는 B2·B6·B12까지 활성형이야. 다발로 나는 건 철분·아연 부족일 수 있어서 B군만으로는 안 메워져, 따로 챙겨. 메타는 3개월은 꾸준히 먹어봐야 알수가 있어.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 161
+        },
+        {
+          "kind": "principle",
+          "start": 163,
+          "end": 242
+        },
+        {
+          "kind": "ingredient",
+          "start": 244,
+          "end": 382
+        }
+      ],
+      "products": [],
+      "ms": 14594
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "메타가 맞아. 입 안 점막은 세포가 젤 빨리 갈리는데 B2가 모자라면 재생이 못 따라가거든. 임팩타민은 B1만 활성형이라 거기서 비어. 잠도 같이 채워-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 85
+        }
+      ],
+      "products": [],
+      "ms": 5173
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "메타로 갈아타는 건 맞아. 근데 입 안에서 먼저 파업하는 거면 알약보다 잠이 모자란 거야. 7시간 자는 게 젤 싼 영양제다.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "products": [],
+      "ms": 4989
+    }
+  ],
+  "failed": [],
+  "sessionId": "de81eac5-69fd-4ed3-937c-1294ad661524"
+}

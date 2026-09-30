@@ -1,0 +1,223 @@
+{
+  "version": 6,
+  "replyId": "aside-1790489002-__5zy",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T04:50:50.605Z",
+  "updatedAt": "2026-09-30T04:51:55.402Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "흡연자한테 발암 논란 있는 건 베타카로틴이야. 흡연자가 고용량을 먹었더니 폐암이 오히려 늘었거든. 지금 먹는 것 중엔 없어. 그래도 젤 확실한 건 금연이야. 보건소 금연클리닉 가면 챔픽스도 처방받을 수 있어-\n\n비타민C는 잘 골랐어. 담배 피우면 C가 빨리 닳아서 하루 35mg 더 필요하거든. 코큐텐은 30대면 빼도 되고, 실리마린은 술 자주 안 마시면 안먹어도 돼. 칼마디K 라벨에 비타민A 들어 있는지만 확인해.\n\n약국은 고려은단 비타민C 1000, 하루 한 알 식후.\n온라인이면 종근당건강 rTG 오메가3 정도면 무난해.\n직구는 나우푸드 징크 글리시네이트 30mg, 저녁 식후 하나. 남자는 아연 챙겨.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 116
+        },
+        {
+          "kind": "ingredient",
+          "start": 118,
+          "end": 233
+        },
+        {
+          "kind": "product",
+          "start": 235,
+          "end": 341
+        }
+      ],
+      "products": [],
+      "ms": 15284,
+      "sessionId": "f5179015-7348-4074-aa5a-1bc7f5cd64c6"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "흡연자 발암 논란은 베타카로틴이야. 지금 조합엔 없으니 그대로 먹어도 돼. 멀티비타민 추가할 거면 라벨에 베타카로틴이나 비타민A 있는지 꼭 봐. 비타민C는 잘 골랐어, 흡연자는 더 빨리 써버려. 코큐텐이랑 실리마린은 30대면 빼도 돼. 젤 확실한 영양제는 금연이고 보건소 금연클리닉은 공짜야-\n\n약국은 비타민C 1000mg 일반의약품 암거나, 아침 식후 한 알.\n온라인이면 고려은단 비타민C 1000 무난해.\n직구는 나우푸드 C-1000, 갠적으로 이게 젤 편해.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 163
+        },
+        {
+          "kind": "product",
+          "start": 165,
+          "end": 259
+        }
+      ],
+      "products": [],
+      "ms": 10917,
+      "sessionId": "c9b82e7b-ae11-4a8b-934b-18bdf79ae11a"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "지금 조합은 안전해. 근데 영양제 여섯 개보다 담배 끊는 게 효과가 백배 커. 보건소 금연클리닉 가면 상담이랑 패치를 무료로 받을 수 있고, 바레니클린 같은 금연약도 처방받을 수 있어. 담배 생각날 땐 10분이라도 밖에 나가서 걷게 해.\n\n흡연자한테 문제가 된 건 베타카로틴이야. 흡연자한테 고용량으로 먹였더니 폐암이 오히려 늘었다는 큰 연구가 두 개나 있거든. 그래서 나중에 멀티비타민을 추가할 땐 라벨에 베타카로틴이나 비타민A가 들어 있는지 꼭 봐.\n\n1/ 비타민C는 젤 잘 고른 거야. 담배를 피우면 C가 빨리 닳아서 하루에 35mg 정도 더 필요하거든. 하루 500~1000mg이면 충분해.\n2/ 오메가3랑 칼마디K는 그대로 먹어.\n3/ 코큐텐은 30대면 빼도 되고, 실리마린은 술을 자주 마시는 게 아니면 근거가 약해서 굳이 안먹어도 돼-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 132
+        },
+        {
+          "kind": "principle",
+          "start": 134,
+          "end": 253
+        },
+        {
+          "kind": "ingredient",
+          "start": 255,
+          "end": 418
+        }
+      ],
+      "products": [],
+      "ms": 15165,
+      "sessionId": "4dde4e69-d108-4d6c-9caf-d73a5a1cfe9a"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "흡연자한테 문제 되는 건 베타카로틴이야. 담배 피우는 사람이 먹으면 폐암 위험이 오히려 올라가거든. 지금 조합엔 없으니까 괜찮고, 젤 확실한 건 금연이야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 86
+        }
+      ],
+      "products": [],
+      "ms": 6686,
+      "sessionId": "9ec5e8f8-9fe9-459d-ad7e-65b98c1ff74b"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 비맥스 메타 하루 1정 식후. 흡연자는 라벨에 베타카로틴 있나 그거 하나만 봐.\n온라인이면 종근당건강 비타민C 1000mg 아침저녁 나눠 먹어.\n직구는 나우푸드 D3 2000IU 하루 1알, 칼마디K에 든 D랑 합쳐 4000IU 안넘게.\n젤 센 영양제는 금연이야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 151
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 10155,
+      "sessionId": "13793c3b-ab2b-4e31-be15-2551e43308a7"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "여섯개 챙겨먹이는 정성으로 담배를 뺏는게 젤 확실해. 발암 얘기는 베타카로틴이고 지금 목록엔 없어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 55
+        }
+      ],
+      "products": [],
+      "ms": 6575,
+      "sessionId": "fdfa8ed6-81b4-48b6-baf2-7d63ad3d1a5c"
+    }
+  ],
+  "failed": [],
+  "sessionId": "fdfa8ed6-81b4-48b6-baf2-7d63ad3d1a5c"
+}

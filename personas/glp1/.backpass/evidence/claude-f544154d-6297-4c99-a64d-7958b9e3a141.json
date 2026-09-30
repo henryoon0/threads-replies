@@ -1,0 +1,64 @@
+{
+  "transcript": {
+    "harness": "claude",
+    "id": "claude-f544154d-6297-4c99-a64d-7958b9e3a141",
+    "path": "/Users/henry/.claude/projects/-Users-henry--local-share-reply-personas-glp1/f544154d-6297-4c99-a64d-7958b9e3a141.jsonl",
+    "mtimeMs": 1790661369735.2212,
+    "bytes": 116407,
+    "startedAt": 1790661362685,
+    "association": {
+      "tier": 1,
+      "confidence": "exact",
+      "reason": "cwd is worktree /Users/henry/.local/share/reply-personas/glp1"
+    }
+  },
+  "memoryHash": "sha256:51345796760f199c",
+  "memoryPath": "AGENTS.md",
+  "key": "1790661369735.2212:116407:sha256:51345796760f199c",
+  "analyzedAt": "2026-09-29T06:14:05.358Z",
+  "status": "ok",
+  "stats": {
+    "userTurns": 2,
+    "assistantTurns": 2,
+    "toolCalls": 0,
+    "elided": false,
+    "distilledTokens": 648
+  },
+  "positive": [
+    {
+      "instruction": "AG-004",
+      "moment": "turn 2",
+      "effect": "draft named strain-level ingredients and told the reader what to check on the label, matching the 성분 이름/성분표 확인 rule",
+      "quote": "성분표에서 균주 이름(Lactobacillus, Bifidobacterium 계열)이 끝까지 적혀 있는지 확인"
+    },
+    {
+      "instruction": "AG-003",
+      "moment": "turn 2",
+      "effect": "put the conclusion in the first sentence before elaborating",
+      "quote": "비염엔 \"이 유산균이 좋다\"고 딱 말할 만큼 근거가 탄탄하진 않아."
+    }
+  ],
+  "negative": [
+    {
+      "instruction": "AG-004",
+      "moment": "turn 3",
+      "effect": "draft used only generic genus names (Lactobacillus/Bifidobacterium) while the real answer named the specific evidence-backed strains, so the 성분 이름으로 말한다 rule was followed too shallowly to match actual pharmacist specificity",
+      "quote": "락토바실러스 람노서스 GG나 파라카제이 계열이 근거가 있으니 균주이름 잘 적혀있는지 보고 골라봐"
+    },
+    {
+      "instruction": "AG-005",
+      "moment": "turn 3",
+      "effect": "draft closed with '해-' style softener while the real reply ended flatly with '해.', showing the draft over-applied the closing-tone rule relative to actual usage",
+      "quote": "끝맺음 \"해-\" → \"해.\""
+    }
+  ],
+  "gaps": [
+    {
+      "mistake": "draft became long and hedgy (2-step numbered list, safety caveats about pregnancy/consulting pharmacist) while the real pharmacist reply was much shorter (138 vs 310 chars) and more decisive, jumping straight to a concrete OTC recommendation (steroid nasal spray) without disclaimers",
+      "proposedInstruction": "댓글이 구체적 추천을 물으면 안전 문구로 길게 에두르지 말고, 근거 수준을 한 문장으로만 짚은 뒤 바로 구체적 성분·제품군을 짧게 추천하라.",
+      "recurrenceRisk": "high",
+      "quote": "초안과 달라진 점(코드 계산): 길이 310→138자 · 끝맺음 \"해-\" → \"해.\""
+    }
+  ],
+  "usedRawTranscript": false
+}

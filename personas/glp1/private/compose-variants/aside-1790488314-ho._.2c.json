@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790488314-ho._.2c",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:19:30.168Z",
+  "updatedAt": "2026-09-30T07:20:36.007Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "지금 먹는 조합이 이미 여드름용 기본이라 그대로 가. 아연은 하루 15~30mg, 식후에 먹는지만 확인해. 피지 줄인다는 판토텐산(B5) 고용량은 근거가 약해서 비추. 빵·떡·단 음료랑 우유부터 줄여. 이게 영양제보다 체감이 젤 커-\n\n약국은 B군 얹고 싶으면 임팩타민 하루 1정 아침 식후.\n온라인이면 유산균은 락토핏 정도면 무난해.\n직구는 내가 먹는 쏜 베이직 B 컴플렉스 하루 1캡슐 아침. 임팩타민이랑은 둘 중 하나만 먹어.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 130
+        },
+        {
+          "kind": "product",
+          "start": 132,
+          "end": 241
+        }
+      ],
+      "products": [],
+      "ms": 12499,
+      "sessionId": "9bb04d0e-ad1f-4cdb-8e34-570b62c72cf3"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "지금 조합이면 여드름용 기본 세팅은 이미 끝났어. 빵·떡·단 음료·우유가 인슐린을 올리고, 그게 피지샘을 자극해서 기름이 늘거든. 이거 줄이는 게 영양제 하나 더 얹는 것보다 체감이 커. 석 달 넘게 반복되면 피부과가 훨씬 빨라.\n\n아연은 하루 15~30mg, 식후로 먹는지만 확인해. 피지 줄인다는 판토텐산(B5) 고용량은 근거가 약해. 더 얹는다면 B2·B6 든 비타민B군 정도가 무난해.\n\n약국은 임팩타민 하루 1정, 아침 식후.\n직구는 폴라초이스 BHA 2% 리퀴드. 각질 막힘은 먹는 거보다 바르는 게 빠르거든. 첨엔 저녁 세안 후 이틀에 한 번-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 128
+        },
+        {
+          "kind": "ingredient",
+          "start": 130,
+          "end": 219
+        },
+        {
+          "kind": "product",
+          "start": 221,
+          "end": 311
+        }
+      ],
+      "products": [],
+      "ms": 18579,
+      "sessionId": "7e07608b-c9f8-4202-892d-bfd706c4ba70"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "지금 조합이면 여드름용 기본 세팅은 이미 끝났어. 여기서 영양제 더 얹는다고 피지가 확 줄진 않아. 먹는 것부터 바꿔. 빵·떡·단 음료랑 우유·유청단백 딱 4주만 끊어봐. 영양제 하나 더 먹는 것보다 이게 체감이 훨씬 커.\n\n단거나 우유를 먹으면 인슐린이 확 오르는데 이게 피지샘을 자극해서 기름이 더 나오거든. 각질은 먹는 걸로 해결 안돼. BHA(살리실산)로 모공 막힌 걸 녹이고, 세안은 하루 두 번이면 충분하니 보습은 꼭 해.\n\n아연은 하루 15~30mg, 공복에 먹으면 속 쓰리니까 식후에. 피지 줄인다고 판토텐산(B5) 고용량 많이 먹는데 근거가 약해. 굳이 추가하려면 B2·B6 든 B군 정도면 무난해. 3달 넘게 반복되거나 턱라인 위주로 생리 때마다 올라오면 피부과 가. 그게 젤 빨라-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 124
+        },
+        {
+          "kind": "principle",
+          "start": 126,
+          "end": 242
+        },
+        {
+          "kind": "ingredient",
+          "start": 244,
+          "end": 392
+        }
+      ],
+      "products": [],
+      "ms": 12537,
+      "sessionId": "b2576467-99b5-4a16-ab85-c7addb334b7c"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 비맥스 메타 하루 1정 아침 식후. B2·B6가 들어서 피지 쪽엔 무난해.\n온라인이면 락토핏 골드 하루 1포 아침. 장이 예민하면 이 정도면 된다.\n직구는 나우푸드 판토텐산 500mg 하루 1~2알 식후. 갠적으로 좋아하는데 근거는 약해.\n\n빵·떡·우유부터 줄여. 피지엔 영양제보다 이게 젤 세다-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 170
+        }
+      ],
+      "products": [],
+      "ms": 11242,
+      "sessionId": "9050a093-5390-4635-b06d-afd1be67e92f"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "지금 조합이면 영양제는 이미 충분해. 피지는 단 거랑 우유 먹을 때 인슐린이 튀면서 피지샘을 자극해서 느는 거거든. 빵·단 음료·우유부터 끊어봐-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 81
+        }
+      ],
+      "products": [],
+      "ms": 6317,
+      "sessionId": "2ceedd44-9dbc-4809-93bd-d1742ccb11f5"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "그 조합이면 영양제는 이미 충분해. 이제 빵이랑 라떼를 끊을 차례야-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 38
+        }
+      ],
+      "products": [],
+      "ms": 4650,
+      "sessionId": "d09b74a7-3c7d-4f68-8d62-e4c8f2c3424b"
+    }
+  ],
+  "failed": [],
+  "sessionId": "d09b74a7-3c7d-4f68-8d62-e4c8f2c3424b"
+}

@@ -1,0 +1,262 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485927-deer.89965273",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:23:54.338Z",
+  "updatedAt": "2026-09-30T05:33:42.515Z",
+  "planned": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "이건 살 문제가 아니고 몸이 바닥났다는 신호야. 애 둘 낳은 30대 후반이면 영양제 더하기 전에 피검사부터 해. 페리틴(철분 저장량), 비타민D, 갑상선(TSH) 이 세 개. 식단 운동 다 하는데도 안 빠지고 체력까지 없으면 갑상선은 꼭 봐야돼.\n\n출산 두 번이면 철분이 거의 털려. 철분이 바닥나면 산소를 못 날라서 조금만 움직여도 지치고, 갑상선이 떨어지면 대사 자체가 느려져서 덜 먹어도 안빠져. 그러니까 식단을 세게 조이면 체력만 더 까먹어. 끼니마다 고기나 생선, 계란 같은 단백질 손바닥 하나 크기로 챙기고, 운동은 유산소보다 근력 위주로. 잠은 애 잘 때 같이 자는 게 영양제보다 나아.\n\n지금 조합엔 에너지 쪽이 비어있어. 활성형 비타민B군은 아침 식후에 하나, 비타민D는 1000~2000IU 아침 식후. 철분은 수치 보고 부족할 때만 더해. 콜라겐은 근거가 약해서 그 돈이면 단백질 먹는 게 낫고. 아직 수유 중이면 그것부터 말해줘-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 137
+        },
+        {
+          "kind": "principle",
+          "start": 139,
+          "end": 335
+        },
+        {
+          "kind": "ingredient",
+          "start": 337,
+          "end": 476
+        }
+      ],
+      "products": [],
+      "ms": 14782,
+      "sessionId": "89395829-f2a8-492f-b394-9a61c79aee0b"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "애 둘 낳고 식단 운동하는데도 체력이 바닥이면 영양제 문제보다 철분·비타민D·갑상선부터 봐. 출산 두 번이면 다 빠져나가거든. 피검사 한번 해. 콜라겐은 근거가 약해. 끼니마다 손바닥만 한 단백질 먹고 근력운동 하는 게 훨씬 커.\n\n지금 조합엔 B군이랑 D가 비어 있어. 활성형 B군은 아침 식후, D는 2000IU. 철분은 수치 보고 부족하면 그때 챙겨먹어.\n\n약국은 임팩타민 하루 한 알 아침 식후.\n\n직구는 나우푸드 D3 2000IU. 철분이 부족하게 나오면 쏜 아이언 비스글리시네이트 이틀에 한 번. D는 다른 제품이랑 합쳐서 하루 4000IU 넘기지 마-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 128
+        },
+        {
+          "kind": "ingredient",
+          "start": 130,
+          "end": 201
+        },
+        {
+          "kind": "product",
+          "start": 203,
+          "end": 315
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        },
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 14838,
+      "sessionId": "985553e5-a1aa-4ded-82cf-fe871268c461"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "콜라겐은 근거가 약해. 빠진 건 에너지 쪽이야. 활성형 B군은 아침 식후에, 비타민D는 2000IU로 챙기고 페리틴이랑 갑상선 피검사 한번 받아봐. 살은 영양제로 안 빠져. 끼니마다 단백질 손바닥 하나 먹고 근력운동으로 빼-\n\n약국은 임팩타민 프리미엄, 아침 식후에 한 알.\n온라인이면 고려은단 비타민B 컴플렉스 정도면 무난해. B군은 둘 중에 하나만 먹어.\n직구는 나우푸드 D3 2000IU, 아침 식후에 먹어. 철분이 낮게 나오면 쏜 아이언 비스글리시네이트를 이틀에 한 번 먹고, 커피랑은 4시간 띄어.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 125
+        },
+        {
+          "kind": "product",
+          "start": 127,
+          "end": 283
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        },
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 13769,
+      "sessionId": "75488e88-1208-4a5d-acf1-6b9ab159ec0a"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 임팩타민 프리미엄 아침 식후 한 알.\n온라인이면 마이프로틴 임팩트 웨이 20g 하루 한 번 무난해. 체력엔 콜라겐보다 단백질이 훨씬 커.\n직구는 나우푸드 D3 2000IU 아침에, 쏜 아이언 비스글리시네이트는 피검사로 페리틴 낮을 때만 이틀에 한 번.\nD는 다 합쳐 하루 4000IU 안 넘게-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 168
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        },
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 11170,
+      "sessionId": "019e6faa-026f-42a3-a38c-6f9e6528944c"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "애 둘 낳고 체력이 바닥이면 영양제가 모자란 것보다 철분이 털린 걸 수 있어. 페리틴이 바닥나면 산소를 못 날라서 운동해도 금방 지치고 살도 잘 안빠져. 피검사로 페리틴·비타민D·갑상선부터 보고, 식단은 너무 조이지 말고 끼니마다 단백질 챙겨-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 136
+        }
+      ],
+      "products": [],
+      "ms": 10648,
+      "sessionId": "4ceddb27-e1f2-4d49-8929-036db686c544"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "애 둘 키우면서 체력 남아있으면 그게 더 이상한 거야. 콜라겐 살 돈으로 고기 사먹고 한 시간이라도 더 자-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "products": [],
+      "ms": 7316,
+      "sessionId": "98c9bb4c-0bed-4ba5-9f82-6572724dec59"
+    }
+  ],
+  "failed": [],
+  "sessionId": "98c9bb4c-0bed-4ba5-9f82-6572724dec59"
+}

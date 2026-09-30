@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "products": [
+    {
+      "id": "10a00359",
+      "name": "쏜 아이언 비스글리시네이트",
+      "brand": "쏜",
+      "ingredient": "철분, 비스글리시네이트",
+      "kind": "overseas",
+      "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+      "note": "이틀에 한 번. 아이허브 또는 약국.",
+      "capture": {
+        "image": "10a00359-1790673101368.png",
+        "capturedAt": "2026-09-29T09:11:52.382Z"
+      }
+    },
+    {
+      "id": "855c1e5a",
+      "name": "나우푸드 D3 2000IU",
+      "brand": "나우푸드",
+      "ingredient": "비타민D, D3",
+      "kind": "overseas",
+      "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229",
+      "note": "다른 제품과 합쳐서 하루 4000IU 넘지 않게."
+    }
+  ]
+}

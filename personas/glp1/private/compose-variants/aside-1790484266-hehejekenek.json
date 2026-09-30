@@ -1,0 +1,247 @@
+{
+  "version": 6,
+  "replyId": "aside-1790484266-hehejekenek",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:13:20.131Z",
+  "updatedAt": "2026-09-30T08:14:26.476Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "백혈구는 철분으로 안 올라가. 혈액내과 가서 원인부터 봐.\n\n약국은 훼로바유 서방정 1정, 식후 하루 한 번.\n직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번. 둘 다 페리틴 낮게 나왔을 때만.\n\n어지러운 건 물 2L에 이온음료 한 병, 일어날 땐 천천히-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 148
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 11860,
+      "sessionId": "d7d4591d-7b75-4d3f-96df-08787c9455e9"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "백혈구가 여러번 낮게 나오는 건 철분으로 해결되는 문제가 아니야. 내과에서 혈액내과로 의뢰해달라고 해서 원인부터 확인해. 철분제는 같은 검사에서 페리틴이나 헤모글로빈이 낮게 나왔을 때만 먹어. 기립성 저혈압은 물 하루 2L에 이온음료 한 병 챙기고, 일어날 땐 천천히 일어나.\n\n페리틴이 낮으면 약국은 볼그레, 온라인이면 비스글리시네이트 철분 25mg짜리 정도면 무난해. 직구는 쏜 아이언 비스글리시네이트 25mg을 이틀에 한 번. 커피랑 칼슘은 4시간 띄어서 먹어-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 154
+        },
+        {
+          "kind": "product",
+          "start": 156,
+          "end": 261
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 15487,
+      "sessionId": "6088a2af-7e7b-45a4-b0f6-d528c3b66692"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "백혈구가 여러 번 낮게 나오면 철분제로 해결할 문제가 아니야. 철분은 적혈구 쪽이라 백혈구랑은 길이 다르거든. 내과에서 혈액내과로 한번 더 봐달라고 해.\n\n기립성 저혈압은 물 하루 1.5L에 이온음료 한 잔 챙기고, 일어날 땐 천천히 일어나-\n\n철분은 같은 피검사에서 헤모글로빈·페리틴이 낮게 나왔을 때만 먹어. 식간에, 커피·칼슘이랑 2시간 띄어서. 엽산·B12 수치도 같이 봐달라고 해.\n\n약국은 볼그레, 직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번. 속이 편해서 갠적으로 젤 좋아하는 거야.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 135
+        },
+        {
+          "kind": "ingredient",
+          "start": 137,
+          "end": 218
+        },
+        {
+          "kind": "product",
+          "start": 220,
+          "end": 284
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 13223,
+      "sessionId": "bf0e5088-7f18-47a8-a29b-7b482ae25a45"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "백혈구가 여러 번 낮게 나오면 철분제로 덮을 문제가 아니야. 원인부터 봐야돼. 다니는 내과에 혈액내과 쪽으로 더 봐달라고 해. 이건 미루지 마.\n\n철분은 적혈구 재료라서 빈혈일 때 먹는 거고, 백혈구랑은 직접 연결이 안돼. 기립성 저혈압도 철분보다는 물이랑 염분이 모자라서 혈액량이 줄어든 경우가 많어. 물은 하루 1.5~2L 챙기고 이온음료도 하루 한 병씩 섞어. 누웠다 일어날 땐 한번 앉았다가 천천히 일어나.\n\n철분제는 같은 피검사에서 헤모글로빈이나 페리틴이 낮게 나왔을 때만 먹어. 낮게 나왔으면 속 편한 비스글리시네이트 형태로 가. 쏜 아이언 25mg 정도면 무난해. 커피·칼슘이랑은 2시간 넘게 띄어서 먹고. 엽산이랑 B12 수치도 같이 봐달라고 해 -",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 80
+        },
+        {
+          "kind": "principle",
+          "start": 82,
+          "end": 231
+        },
+        {
+          "kind": "ingredient",
+          "start": 233,
+          "end": 371
+        }
+      ],
+      "products": [],
+      "ms": 12290,
+      "sessionId": "202f396b-2f5d-4f7b-b2cf-057b1d7df1b5"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "백혈구가 낮은 건 철분이랑 상관없어서 철분제 먹어도 안 올라가. 여러번 낮게 나오면 혈액내과 가서 원인부터 봐. 어지러운 건 물이랑 이온음료 챙기고 천천히 일어나-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 91
+        }
+      ],
+      "products": [],
+      "ms": 6873,
+      "sessionId": "c7ca2d67-6b83-44b2-935d-851e395d5031"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "백혈구 낮은데 철분제 찾는 건 번지수가 틀렸어. 혈액내과 가보고, 물 넉넉히 마시고 일어날 땐 천천히 일어나-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 61
+        }
+      ],
+      "products": [],
+      "ms": 6594,
+      "sessionId": "8d895bc2-9b55-43ad-bbbf-102991c0672e"
+    }
+  ],
+  "failed": [],
+  "sessionId": "8d895bc2-9b55-43ad-bbbf-102991c0672e"
+}

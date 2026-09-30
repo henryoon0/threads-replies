@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485616-rloo.oor",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:35:20.371Z",
+  "updatedAt": "2026-09-30T05:36:37.420Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "부종은 영양제로 빼는 게 아니라 원인을 잡아야 하는 문제야. 짜게 먹으면 몸이 물을 붙잡고, 오래 앉아 있으면 종아리가 피를 못 올려보내서 다리에 고이거든. 근데 아침에 얼굴까지 붓거나 손가락으로 눌렀을 때 쑥 들어가서 안 올라오는 날이 한 달 넘게 가면 영양제 사지 말고 내과 가서 피검사랑 소변검사부터 받아.\n\n하체 부종에는 센텔라 같은 정맥 순환 성분이 그나마 근거가 있어. 호박즙이나 팥물은 근거가 약해. 그보다 국물부터 줄이고, 한 시간마다 일어나서 까치발 20번 하고, 자기 전엔 다리를 벽에 올려놔-\n\n약국은 센시아정. 라벨에 적힌 용량대로 식후에 한 달 먹어보고 판단해.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 174
+        },
+        {
+          "kind": "ingredient",
+          "start": 176,
+          "end": 286
+        },
+        {
+          "kind": "product",
+          "start": 288,
+          "end": 327
+        }
+      ],
+      "products": [],
+      "ms": 16134,
+      "sessionId": "d955ab52-2510-4f42-81b5-3a1cc664e3b9"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "붓기 빼는 영양제는 근거가 약해. 하체 붓기는 순환 문제라 디오스민·센텔라 같은 정맥 순환 성분이 그나마 데이터가 있어. 짠 국물부터 끊고 자기 전에 다리를 심장보다 높이 올려. 전신이 붓고 눌렀을 때 쑥 들어가서 안 올라오면 영양제 말고 내과 피검사부터-\n\n약국은 베니톨이나 센시아, 라벨 용량대로 식후에 한 달 먹어보고 판단해.\n온라인 붓기차·호박즙은 아무도움안돼.\n직구는 마로니에(홀스체스트넛) 에스신 표준화 제품, 갠적으로 괜찮아.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 143
+        },
+        {
+          "kind": "product",
+          "start": 145,
+          "end": 245
+        }
+      ],
+      "products": [],
+      "ms": 17528,
+      "sessionId": "db46edaf-4c90-4e07-ae4b-7e3146d56bd5"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "부기는 영양제로 빼는 게 아니야. 하체 부기는 짠 음식이랑 안 움직이는 게 제일 커.\n\n국물·라면·배달음식부터 줄이고, 물은 오히려 충분히 마셔. 오래 앉아 있으면 한 시간마다 일어나서 까치발 20번 하고, 자기 전엔 베개 위에 다리를 올려서 심장보다 높게 두고 자.\n\n종아리 근육이 다리 피를 위로 짜 올리는 펌프거든. 안 움직이면 펌프가 멈추고 물이 전부 발목 쪽으로 고여. 근데 아침에 얼굴이나 눈두덩이까지 붓거나, 손가락으로 눌렀을 때 쑥 들어가서 안 올라오면 얘기가 달라져. 신장이나 갑상선 쪽 문제일 수 있으니까 영양제 사기 전에 내과 가서 피검사·소변검사부터 받아.\n\n그래도 뭐 하나 먹고 싶으면 호박즙이나 팥물 말고, 약국에서 센텔라 성분 다리 순환제(센시아 같은 거) 달라고 해. 하체 부종에는 그나마 데이터가 있는 쪽이야. 이것도 생활이 그대로면 아무도움안돼-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 149
+        },
+        {
+          "kind": "principle",
+          "start": 151,
+          "end": 323
+        },
+        {
+          "kind": "ingredient",
+          "start": 325,
+          "end": 435
+        }
+      ],
+      "products": [],
+      "ms": 17958,
+      "sessionId": "f5b1295b-80d4-4e29-9f16-52eb40a2adc5"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "붓기 영양제는 근거가 약해. 약국은 센시아 하루 2번, 하체 순환엔 그나마 이게 나아. 직구는 나우푸드 호스체스트넛 300mg 한달만 먹어보고 판단해. 국물부터 끊고 자기 전에 다리 올려. 얼굴까지 붓거나 눌러서 안 올라오면 영양제 말고 내과 피검사 먼저-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 143
+        }
+      ],
+      "products": [],
+      "ms": 12547,
+      "sessionId": "782bf31c-0a8e-488c-9c0c-62e95c7bc88d"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "부종은 영양제로 빠지는 게 아냐. 짜게 먹으면 몸이 물을 붙잡아서 붓고, 하체는 종아리가 피를 못 올려보내서 고이는 거거든. 국물 줄이고 까치발 틈틈이 하고 자기 전엔 다리 벽에 올려놔-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 104
+        }
+      ],
+      "products": [],
+      "ms": 8043,
+      "sessionId": "20a30fb3-1616-44e6-aa59-7d1964f40445"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "호박즙 한 박스보다 라면 국물 안마시는게 붓기엔 훨씬 세. 자기 전엔 다리 벽에 올려놓고 자-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 52
+        }
+      ],
+      "products": [],
+      "ms": 4819,
+      "sessionId": "65706d04-32f7-4f93-adaf-9db15ce72ddb"
+    }
+  ],
+  "failed": [],
+  "sessionId": "65706d04-32f7-4f93-adaf-9db15ce72ddb"
+}

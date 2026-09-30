@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483804-cheeta580",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:55:12.278Z",
+  "updatedAt": "2026-09-30T05:56:14.736Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "괜찮아. 성인 하루 상한선이 4000IU라서 딱 그 선이고, 매일먹어도 보통 문제 없어. 다만 비타민D는 지용성이라 남는 게 몸에 쌓이거든. 몇 달 넘게 계속 먹을 거면 피검사로 수치 한번 봐.\n\n기름에 녹아야 흡수되니까 기름기 있는 끼니 직후에 먹어. 수치가 충분하면 1000~2000IU로 내려서 유지하면 돼. 낮에 20분 걷는 게 젤 싼 비타민D다.\n\n약국은 비타민D3 2000IU 브랜드 암거나, 직구는 나우푸드 D3 2000IU 아침 식후 한알. 종합비타민에 든 D까지 합쳐서 하루 4000IU 넘기지 마-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 108
+        },
+        {
+          "kind": "ingredient",
+          "start": 110,
+          "end": 198
+        },
+        {
+          "kind": "product",
+          "start": 200,
+          "end": 288
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 10662,
+      "sessionId": "67612123-28ef-4466-a6b3-71a4b7244d0f"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "4000IU면 성인 하루 상한선 딱 그 선이라 매일먹어도 돼. 지용성이라 기름기 있는 끼니 식후에 먹어. 석 달 넘게 갈 거면 피검사로 수치 한번 보고, 충분하면 2000으로 내려. 낮에 20분 햇빛 보면서 걷는 게 제일 싼 비타민D야-\n\n약국은 비타민D 단일제 2000IU짜리 브랜드 암거나 아침 식후 1알.\n온라인이면 종근당 비타민D 2000IU 정도면 무난해.\n직구는 내가 먹는 나우푸드 D3 2000IU, 아침 식후 1알.\n종합비타민이랑 칼마디 같은 칼슘제에도 D 들어있으니까 다 합쳐서 하루 4000IU 넘기지 마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 132
+        },
+        {
+          "kind": "product",
+          "start": 134,
+          "end": 293
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 13069,
+      "sessionId": "73ad8aee-7b54-43b7-bd1f-3786387bb2af"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "괜찮아. 성인 하루 상한선이 딱 4000IU라서 그 선 안쪽이야. 대신 반년 넘게 계속 먹을 거면 피검사로 비타민D 수치 한번 찍어봐. 수치가 충분하면 1000~2000IU로 내려서 유지하면 되고.\n\n비타민D는 기름에 녹는 지용성이라 남는다고 소변으로 쫙 빠지지 않고 몸에 쌓여. 그래서 수치도 모르고 고용량을 몇 년씩 먹는 건 아쉬운 거야. 칼슘 영양제를 따로 많이 먹거나 신장이 안좋으면 더 조심해야 돼.\n\n기름기 있는 식사 바로 뒤에 먹어야 젤 잘 들어가. 종합비타민에도 D가 들어있으면 라벨 보고 둘을 합쳐서 계산해. 그리고 낮에 20분이라도 밖에서 걸어. 햇빛은 공짜 비타민D에 운동까지 덤이다-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 110
+        },
+        {
+          "kind": "principle",
+          "start": 112,
+          "end": 228
+        },
+        {
+          "kind": "ingredient",
+          "start": 230,
+          "end": 338
+        }
+      ],
+      "products": [],
+      "ms": 13635,
+      "sessionId": "daad23bc-71e4-4d36-a089-fcfd520e4050"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "4000IU면 상한선 안이라 괜찮아. 오래 먹을 거면 피검사 한번 해봐.\n약국은 브랜드 상관없이 D3 4000IU, 기름기 있는 식후에.\n온라인이면 종근당 비타민D 2000IU 정도면 무난해.\n직구는 내가 먹는 나우푸드 D3 2000IU, 수치 괜찮으면 이걸로 낮춰.\n다 합쳐 하루 4000IU 넘기지 말고, 낮에 20분 걷는 게 젤 싼 D야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 192
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 13750,
+      "sessionId": "d0c34cd6-7d71-4f35-8b10-dd1440933195"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "4000IU는 성인 하루 상한선 안이라 괜찮아. 다만 지용성이라 몸에 쌓이거든. 반년 넘게 먹을꺼면 피검사 한번 하고, 낮에 햇빛 20분은 직접 쐬어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 84
+        }
+      ],
+      "products": [],
+      "ms": 6384,
+      "sessionId": "ddf51efa-aa3a-42b2-8168-d5086efc4af7"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "4000이면 하루 상한선에 딱 걸쳐서 괜찮아. 근데 점심먹고 20분 햇볕 쬐는게 젤 싸-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 49
+        }
+      ],
+      "products": [],
+      "ms": 4939,
+      "sessionId": "d2882e40-7f93-4fe7-9b11-a1b03a231b55"
+    }
+  ],
+  "failed": [],
+  "sessionId": "d2882e40-7f93-4fe7-9b11-a1b03a231b55"
+}

@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483335-mondxdia",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:27:27.490Z",
+  "updatedAt": "2026-09-30T08:28:45.703Z",
+  "planned": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "NAC 덕분에 임신된 건지는 솔직히 알수가 없어. 항산화 작용으로 난자 주변 산화 스트레스를 줄여서 PCOS나 배란이 불규칙한 사람한테 도움이 됐다는 연구가 조금 있는 정도고, 근거는 약해. 그래도 해로운 약은 아니라서 준비 기간에 다시 처방받아 먹는 건 괜찮아. 임신 확인되면 끊고 담당쌤이랑 얘기하면 돼.\n\n30대 후반이면 NAC보다 이게 먼저야.\n1/ 활성엽산 400~800mcg, 준비 3개월 전부터\n2/ 코큐텐은 유비퀴놀 형태로 100~200mg 식후에. 난자 질 챙기는 쪽이야\n생리가 불규칙하면 이노시톨도 같이 먹어.\n\n그리고 6개월 해보고 안 되면 기다리지 말고 난임병원 가서 AMH부터 봐. 지금은 시간이 젤 아까워. 그동안 잠 7시간 확보하고 하루 30분 걷기만 해도 몸 상태가 달라져-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 172
+        },
+        {
+          "kind": "ingredient",
+          "start": 174,
+          "end": 295
+        },
+        {
+          "kind": "empathy",
+          "start": 297,
+          "end": 393
+        }
+      ],
+      "products": [],
+      "ms": 13522,
+      "sessionId": "71f32d82-59b1-4f13-b023-9e8d9dd323cd"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "그게 효과였는지는 아무도 알수가 없어. NAC는 항산화로 난자 스트레스를 줄여서 PCOS·배란 문제 쪽에 근거가 조금 있는 정도야. 그래도 해로운 약은 아니라 준비 기간에 다시 처방받아 먹어도 돼. 임신 확인되면 끊고.\n\n30대 후반이면 NAC보다 기본이 먼저야. 활성엽산은 준비 3개월 전부터, 유비퀴놀 100~200mg은 식후에. 잠은 7시간 확보하고, 6개월 해보고 안되면 바로 난임병원 가서 AMH부터 봐-\n\n약국은 엘레비트 프로나탈, 엽산 들어있으니 따로 사지 마.\n온라인이면 유비퀴놀 100mg짜리 암거나 무난해.\n직구는 닥터스베스트 유비퀴놀 100mg, 아침 식후에. 이건 해외 게 낫더라.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 122
+        },
+        {
+          "kind": "ingredient",
+          "start": 124,
+          "end": 231
+        },
+        {
+          "kind": "product",
+          "start": 233,
+          "end": 337
+        }
+      ],
+      "products": [],
+      "ms": 16786,
+      "sessionId": "7f117e8d-4ffb-4d28-84df-ecee00d4fabf"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "아세틸시스테인은 PCOS·배란 쪽에 근거가 약간 있는 정도라 그거 덕분이라고는 못 해. 그래도 해로운 약은 아니니까 준비하는 동안 다시 먹어도 되고, 임신 확인되면 끊어. 잠부터 7시간 확보하고, 6개월 해봐서 안되면 바로 난임병원 가서 AMH 검사 받아-\n\n약국은 엘레비트 프로나탈 하루 1알 식후에 먹어.\n온라인이면 종근당건강 코큐텐 100mg 정도면 무난해.\n직구는 쏜 퀴놀-CoQ10 100mg을 아침 식후에. 이건 내가 먹는 거야.\n엘레비트에 엽산이 들어 있으니까 엽산을 따로 또 먹지는 마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 143
+        },
+        {
+          "kind": "product",
+          "start": 145,
+          "end": 280
+        }
+      ],
+      "products": [],
+      "ms": 17927,
+      "sessionId": "4e5b272b-e109-414b-a099-bc2fab17110e"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 엘레비트 프로나탈 하루 1알 식후, 3개월 전부터 챙겨먹어.\n온라인이면 종근당건강 코큐텐 100mg 아침 식후 정도면 무난해.\n직구는 나우푸드 이노시톨 파우더 2g 하루 두번, 생리 불규칙하면 이건 꼭 먹어.\n잠 7시간은 영양제보다 먼저야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 138
+        }
+      ],
+      "products": [],
+      "ms": 14534,
+      "sessionId": "e9f7228d-e62f-4fdb-becd-b43e5baff9d9"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "NAC는 항산화로 배란을 조금 돕는 정도라 근거가 약해. 다시 먹어도 되는데 30대 후반이면 난자 질이 떨어지는 게 핵심이라 잠 7시간이랑 체중 관리가 더 먼저야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 91
+        }
+      ],
+      "products": [],
+      "ms": 8611,
+      "sessionId": "dbc52d73-b5c2-43ff-91ec-5038aee4e975"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "첫째가 아세틸시스테인 덕인지 엄마 덕인지는 아무도 몰라. 다시 먹어도 되는데 남편 술담배부터 끊겨-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 55
+        }
+      ],
+      "products": [],
+      "ms": 6813,
+      "sessionId": "1f0e9e51-b59e-4784-ba0b-8de2556a6dce"
+    }
+  ],
+  "failed": [],
+  "sessionId": "1f0e9e51-b59e-4784-ba0b-8de2556a6dce"
+}

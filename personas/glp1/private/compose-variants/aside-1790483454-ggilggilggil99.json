@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483454-ggilggilggil99",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:25:11.516Z",
+  "updatedAt": "2026-09-30T08:26:20.210Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "엄마 기력은 영양제보다 단백질 문제일 확률이 커. 70대는 근육이 빠지면 기력도 바로 떨어지거든. 매 끼니 계란·두부·생선 중 하나는 꼭 넣고, 의자에서 일어났다 앉기 10번씩 하루 두 번 시켜. 아빠 쥐는 혈압약 중에 이뇨제를 드시면 그 약 때문일 수 있어서 드시는 약부터 확인해.\n\n엄마는 비타민D 2000IU 아침 식후에 드시면 돼. 아빠는 마그네슘 250mg 정도 저녁에. 쥐에 대한 근거는 중간 정도고 신장이 안좋으면 빼. 자기 전 종아리 스트레칭이 젤 싸게 먹혀.\n\n약국은 작약감초탕인데 쥐 날 때만 잠깐 드셔. 오래 드시면 붓고 혈압이 올라. 직구는 나우푸드 D3 2000IU, 다른 제품이랑 합쳐서 하루 4000IU 안 넘게-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 158
+        },
+        {
+          "kind": "ingredient",
+          "start": 160,
+          "end": 265
+        },
+        {
+          "kind": "product",
+          "start": 267,
+          "end": 358
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 14397,
+      "sessionId": "e891155a-4678-4aa7-9725-855089818581"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "엄마 기력은 영양제보다 단백질이 먼저야. 매끼 계란이나 두부 하나씩은 챙겨드려. 아빠 쥐는 자기 전에 종아리 스트레칭부터 하시고, 마그네슘 250mg을 저녁에 드셔. 근거는 중간 정도고 신장이 안좋으시면 빼. 혈압약에 이뇨제가 들어 있으면 그게 원인일 수 있어.\n\n약국은 작약감초탕. 쥐 날 때만 잠깐 드셔. 오래 먹으면 붓고 혈압이 올라.\n온라인이면 마그네슘 글리시네이트면 암거나 무난해.\n직구는 엄마 나우푸드 D3 2000IU, 아침 먹고. 다른 제품이랑 합쳐서 하루 4000IU 넘지 않게-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 146
+        },
+        {
+          "kind": "product",
+          "start": 148,
+          "end": 277
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 11279,
+      "sessionId": "f19ae4f5-07d6-4587-bda7-61afd04caf06"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "엄마 기력은 영양제보다 밥상부터 봐야 돼. 70대는 단백질이 모자라서 근육이 빠지는 게 젤 흔한 원인이야. 매 끼니 계란·두부·생선 중 하나는 꼭 올리고, 의자에서 일어났다 앉기를 하루 10번씩 시켜. 요즘 들어 갑자기 떨어진 거면 빈혈·갑상선·비타민D 피검사도 한 번 받게 해.\n\n아빠 쥐는 마그네슘만의 문제가 아니야. 혈압약 중에 이뇨제가 있으면 전해질이 소변으로 빠져서 밤에 쥐가 잘 나거든. 드시는 약부터 확인하고, 계속 반복되면 병원 가서 약 조정 받아. 자기 전 종아리 스트레칭이랑 낮에 물 충분히 마시기는 오늘부터 해.\n\n약국에서 작약감초탕 달라고 하면 돼. 쥐에는 빨리 들어. 대신 오래 먹으면 붓고 혈압 오르고 칼륨이 떨어지니까 쥐 날 때만 잠깐 써. 마그네슘은 저녁에 200~300mg인데 근거는 중간 정도고, 신장 안좋으시면 빼. 엄마는 비타민D 1000IU랑 종합비타민 하나면 충분해-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 156
+        },
+        {
+          "kind": "principle",
+          "start": 158,
+          "end": 297
+        },
+        {
+          "kind": "ingredient",
+          "start": 299,
+          "end": 451
+        }
+      ],
+      "products": [],
+      "ms": 13872,
+      "sessionId": "8b60af70-bed4-47d6-bd31-e62eca637ebf"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 엄마 비맥스 메타 하루 한 알 아침 식후, 아빠는 작약감초탕 쥐 날 때만 며칠.\n온라인이면 마그네슘 300mg 저녁에, 이 정도면 무난해. 신장 안좋으면 빼고.\n직구는 엄마 나우푸드 D3 2000IU 아침에, 다 합쳐 하루 4000IU 안 넘게.\n아빠는 자기 전 종아리 스트레칭 30초씩 해-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 167
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 12904,
+      "sessionId": "395a2be4-0348-464f-8f07-3e16c25196c4"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "70대 기력은 영양제보다 단백질이야. 근육이 빠지면 힘이 안 나거든. 매끼 계란·두부부터 챙겨드려. 아빠 쥐는 이뇨제 같은 혈압약 탓일 수 있어서 드시는 약부터 확인해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 94
+        }
+      ],
+      "products": [],
+      "ms": 7695,
+      "sessionId": "06376383-4e6f-43e6-a134-d0581ecfb4d2"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "엄마는 영양제 사기 전에 밥상에 계란 두부부터 올려. 아빠는 자기 전 종아리 스트레칭 시키고 드시는 혈압약부터 확인해-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 66
+        }
+      ],
+      "products": [],
+      "ms": 8516,
+      "sessionId": "913536f5-8539-4e21-8015-cdd6558c214e"
+    }
+  ],
+  "failed": [],
+  "sessionId": "913536f5-8539-4e21-8015-cdd6558c214e"
+}

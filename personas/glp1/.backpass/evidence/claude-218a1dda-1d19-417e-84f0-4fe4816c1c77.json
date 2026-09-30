@@ -1,0 +1,76 @@
+{
+  "transcript": {
+    "harness": "claude",
+    "id": "claude-218a1dda-1d19-417e-84f0-4fe4816c1c77",
+    "path": "/Users/henry/.claude/projects/-Users-henry--local-share-reply-personas-glp1/218a1dda-1d19-417e-84f0-4fe4816c1c77.jsonl",
+    "mtimeMs": 1790661361064.3655,
+    "bytes": 117339,
+    "startedAt": 1790661350724,
+    "association": {
+      "tier": 1,
+      "confidence": "exact",
+      "reason": "cwd is worktree /Users/henry/.local/share/reply-personas/glp1"
+    }
+  },
+  "memoryHash": "sha256:51345796760f199c",
+  "memoryPath": "AGENTS.md",
+  "key": "1790661361064.3655:117339:sha256:51345796760f199c",
+  "analyzedAt": "2026-09-29T06:14:07.330Z",
+  "status": "ok",
+  "stats": {
+    "userTurns": 2,
+    "assistantTurns": 2,
+    "toolCalls": 0,
+    "elided": false,
+    "distilledTokens": 821
+  },
+  "positive": [
+    {
+      "instruction": "AG-007",
+      "moment": "turn 2",
+      "effect": "Agent explicitly hedged on personal medical state using the exact prescribed phrase, correctly declining to diagnose the user's specific case.",
+      "quote": "내가 네 상태를 알 수는 없으니까 \"~일 수 있어\" 선에서만 말할게."
+    },
+    {
+      "instruction": "AG-005",
+      "moment": "turn 2",
+      "effect": "Reply closed with the prescribed casual dash ending instead of a formal closing.",
+      "quote": "약 조절은 내가 답할 수 없는 부분이야-"
+    },
+    {
+      "instruction": "AG-004",
+      "moment": "turn 2",
+      "effect": "Agent named specific active ingredients (셀레늄, 철분, 비타민D, B12) rather than vague supplement categories.",
+      "quote": "셀레늄이 하시모토에서 제일 많이 얘기되는 성분이야. 그래도 효과 근거는 약한 편이라 \"꼭 먹어야 해\"는 아니야. 먹는다면 성분표에서 셀레늄 함량이 하루 200μg을 넘지 않는지만 확인해봐."
+    }
+  ],
+  "negative": [
+    {
+      "instruction": "AG-003",
+      "moment": "turn 4",
+      "effect": "Draft delayed the actionable conclusion behind a sympathy line and an evidence-strength caveat, producing a 493-character reply versus the owner's 133-character direct answer.",
+      "quote": "어긴 규칙: \"결론을 첫 문장에 둔다. 이유는 한두 문장, 길어지면 '1/ 2/' 번호로 나눈다.\" (실제 답은 첫 문장에 원인 진단과 확인 질문(\"약이 흡수가 안되는건데. 혹시 아침 공복에 먹어?\")을 두고 복용법 한 동작씩만 짧게 말했는데, 초안은 공감 한 줄 뒤에 근거 강도 설명과 번호 세 개로 길게 늘어놨어.)"
+    },
+    {
+      "instruction": "AG-006",
+      "moment": "turn 2",
+      "effect": "Draft inverted the prescribed judgment order (지금 먹는 것 → 겹치는 것 → 부족할 만한 것 → 병원 확인), leading with the 부족할 만한 것 (셀레늄) item and only reaching the 지금 먹는 것/겹치는 것 (dosing-timing interaction) point third, whereas the owner's real reply led with dosing timing first.",
+      "quote": "1/ 셀레늄이 하시모토에서 제일 많이 얘기되는 성분이야. 그래도 효과 근거는 약한 편이라 \"꼭 먹어야 해\"는 아니야."
+    }
+  ],
+  "gaps": [
+    {
+      "mistake": "Draft spent multiple sentences qualifying the scientific evidence strength of each supplement (\"효과 근거는 약한 편이라\", \"영양제로 T4-T3 변환을 확실히 끌어올려준다고 말할 근거는 약해\") instead of giving direct behavioral instructions the way the owner did, making the reply far longer and less actionable.",
+      "proposedInstruction": "성분 얘기할 때 근거 강도를 설명하지 말고, 바로 확인/실행할 행동(복용 시간, 간격, 검사) 하나로 말해라.",
+      "recurrenceRisk": "high",
+      "quote": "영양제로 T4-T3 변환을 확실히 끌어올려준다고 말할 근거는 약해."
+    },
+    {
+      "mistake": "No length constraint exists, so the draft came out nearly 4x longer (493 vs 133 chars) than the owner's real reply for a comparable comment.",
+      "proposedInstruction": "답글은 댓글 길이의 1.5배를 넘기지 말고, 번호는 꼭 필요한 경우에만 최대 2개까지만 써라.",
+      "recurrenceRisk": "medium",
+      "quote": "초안과 달라진 점(코드 계산): 길이 493→133자 · 끝맺음 \"야-\" → \"고.\""
+    }
+  ],
+  "usedRawTranscript": false
+}

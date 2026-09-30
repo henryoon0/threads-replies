@@ -1,0 +1,211 @@
+{
+  "version": 5,
+  "replyId": "aside-1790429954-suyeunkoo",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T01:59:38.981Z",
+  "updatedAt": "2026-09-30T02:00:38.618Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "2달 쉬면 위장이 약을 까먹어서 바로 7.5 가면 메스꺼움이 세게 와. 5로 4주 다시 적응하고 올려. 5가 그닥이었던 건 정체기 탓이 커서 끼니마다 단백질이랑 근력운동 붙이면 풀릴꺼야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 104
+        }
+      ],
+      "products": [],
+      "ms": 19150
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "5로 10키로 뺐으면 약은 이미 잘 받는 몸이야. 7.5로 바로 올릴 필요는 없고 순서만 다시 밟으면 돼. 이번엔 요요 없이 끝까지 가보자.\n\n2달 쉬면 위장이 약을 까먹어서 바로 7.5 가면 메스꺼움이 세게 와. 5로 4주 다시 적응하고 올려. 5가 그닥이었던 건 정체기 탓이 커서 근력운동 주 2~3번 붙이면 풀릴꺼야.\n\n10키로 빠질 때 근육도 같이 빠졌거든. 단백질은 체중 1kg당 하루 1.2g 이상, 끼니마다 20~30g씩 채워. 마운자로 맞으면 입맛이 줄어드니까 접시에서 고기·계란부터 먹고, 모자라면 단백질 파우더 한 스쿱으로 메꿔-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 78
+        },
+        {
+          "kind": "principle",
+          "start": 80,
+          "end": 180
+        },
+        {
+          "kind": "ingredient",
+          "start": 182,
+          "end": 306
+        }
+      ],
+      "products": [],
+      "ms": 11557
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "2달 쉬면 위장이 약을 까먹어서 바로 7.5 가면 메스꺼움이 세게 와. 5로 4주 다시 적응하고 올려. 5가 그닥이었던 건 정체기 탓이 커서 근력운동 주 2~3번 붙이면 풀릴꺼야.\n\n10키로 빠질 때 근육도 같이 빠졌거든. 단백질은 체중 1kg당 하루 1.2g 이상, 끼니마다 20~30g씩 채워. 입맛 없는 날은 고기·계란부터 먹고 모자란 만큼만 보충제로 메꿔.\n\n약국은 뉴케어 올프로틴 같은 단백질 음료 하루 한 팩, 밥 못 먹은 끼니 대신.\n온라인이면 셀렉스 프로핏 웨이프로틴 드링크 정도면 무난해.\n직구는 내가 먹는 옵티멈 골드스탠다드 웨이, 1스쿱 단백질 24g이라 운동 끝나고 바로 한 잔-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 100
+        },
+        {
+          "kind": "ingredient",
+          "start": 102,
+          "end": 203
+        },
+        {
+          "kind": "product",
+          "start": 205,
+          "end": 336
+        }
+      ],
+      "products": [],
+      "ms": 12504
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "7.5 말고 5로 4주 다시 적응하고 올려. 10키로 빠질 때 근육도 같이 빠졌거든. 단백질은 체중 1kg당 하루 1.2g 이상, 끼니마다 20~30g 채우고 근력운동 주 2~3번 붙여.\n\n약국은 뉴케어 올프로틴 하루 한 팩, 밥 못 먹은 끼니 대신.\n온라인이면 셀렉스 프로핏 웨이프로틴 드링크 정도면 무난해.\n직구는 내가 먹는 옵티멈 골드스탠다드 웨이, 1스쿱 24g이라 운동 끝나고 바로 한 잔-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 104
+        },
+        {
+          "kind": "product",
+          "start": 106,
+          "end": 223
+        }
+      ],
+      "products": [],
+      "ms": 6109
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "7.5 말고 5로 4주 다시 적응하고 올려. 끼니마다 단백질이랑 근력운동 붙이고.\n약국은 뉴케어 올프로틴 하루 한 팩, 밥 거른 끼니 대신.\n온라인이면 셀렉스 프로핏 웨이프로틴 드링크 정도면 무난해.\n직구는 내가 먹는 옵티멈 골드스탠다드 웨이, 1스쿱 24g이라 운동 끝나고 한 잔-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 158
+        }
+      ],
+      "products": [],
+      "ms": 5031
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "2달 쉬었으면 몸이 마운자로를 까먹었어. 7.5 말고 5로 인사부터 다시 시켜. 정체기는 용량 말고 근력운동이 뚫어.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 65
+        }
+      ],
+      "products": [],
+      "ms": 5268
+    }
+  ],
+  "failed": [],
+  "sessionId": "ead50567-cc54-4983-960a-69cff8605ea0"
+}

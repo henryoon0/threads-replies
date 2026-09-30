@@ -1,0 +1,271 @@
+{
+  "persona": "glp1",
+  "packCommit": "d0a8130264fec2e8690dc4124da2f4bc8e7939ed+dirty",
+  "noise": {
+    "meanDiff": 0.48,
+    "halfWidth": 3.66,
+    "n": 15
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "target": "AGENTS.md",
+      "rationale": "최하위 초안 대부분이 NIH·논문 건수·해외 의사/팟캐스트 이름을 출처로 늘어놓고, 정작 물은 제품·기간·요요에는 '확인 못 했어/알려줄께/의사한테 물어봐'로 답을 비웠습니다. 규칙책에 참고 자료를 내 말로 녹이라는 지시가 없고 '근거가 약해'라고 단정하라는 문장이 근거 따지기 쪽으로 몰고 있어서, 그 문장을 지우고 '아는 걸로 바로 답한다' 절을 넣었습니다. 이 절에서 출처를 대거나 답을 미루는 것을 막고, 모호한 댓글에는 짧게 받거나 되묻게 했습니다.",
+      "meanDiff": 8.37,
+      "noise": 3.66,
+      "kept": true,
+      "headline": "초안 10개 중 그냥 써도 되는 글 1개 (평균 62.2점, 5/45)"
+    },
+    {
+      "round": 2,
+      "target": "AGENTS.md",
+      "rationale": "최저점 초안 대부분이 물은 것(엽산 제품, 마운자로 효과·요요, 브랜드 차이, 증량 부작용)에 첫 문장으로 답하지 않았습니다. 대신 '판단 순서' 틀에 따른 정리 목록, 안 물은 운동·성분 설명, 의사에게 넘기는 말로 답을 채웠고, '오잉' 같은 감탄사에도 긴 목록을 붙였습니다. 그래서 이런 행동을 부추기던 '지금 먹는 것→겹치는 것→빠진 것→병원' 순서와 카테고리 기준 장문 허용, 번호 목록 권장을 '답→이유→할 일'과 '물은 양만큼만'으로 바꾸고, 첫 문장에 답이 있어야 한다는 기준을 넣었습니다.",
+      "meanDiff": 0.54,
+      "noise": 3.66,
+      "kept": false,
+      "headline": "초안 10개 중 그냥 써도 되는 글 1개 (평균 62.7점, 3/45)"
+    },
+    {
+      "round": 3,
+      "target": "AGENTS.md",
+      "rationale": "최저점 초안들은 물은 것에 답하지 않고, 같이 받은 참고 자료(팟캐스트 인용, 운동 종류 설명, 잎채소, 오메가3 교과서 설명)를 옮겨 적어 분량을 채웠습니다. 자료에 답이 없으면 '의사쌤한테 물어봐', '보고 알려줄께'로 미뤘습니다. 이는 '참고 자료를 내 지식처럼 녹여서 쓴다'는 문장이 자료를 답의 재료로 쓰라고 부추겼기 때문이라, 자료는 확인용일 뿐이고 안 맞으면 통째로 버리며 자료가 없으면 약사 상식으로 단정하고 답을 다 하면 끝낸다는 쪽으로 바꿨습니다.",
+      "meanDiff": -0.36,
+      "noise": 3.66,
+      "kept": false,
+      "headline": "초안 10개 중 그냥 써도 되는 글 1개 (평균 61.8점, 4/45)"
+    }
+  ],
+  "test": {
+    "base": {
+      "allOptions": {
+        "n": 45,
+        "meanScore": 61.4,
+        "usable": 8,
+        "usableRate": 0.178,
+        "detectRate": 0.933
+      },
+      "firstOption": {
+        "n": 15,
+        "meanScore": 55.3,
+        "usable": 1,
+        "usableRate": 0.067,
+        "detectRate": 0.933
+      },
+      "bestOfOptions": {
+        "n": 15,
+        "meanScore": 77,
+        "usable": 7,
+        "usableRate": 0.467,
+        "detectRate": 0.867
+      },
+      "byHalf": {
+        "test": {
+          "n": 45,
+          "meanScore": 61.4,
+          "usable": 8,
+          "usableRate": 0.178,
+          "detectRate": 0.933
+        }
+      },
+      "byStratum": {
+        "basics-before-pills": {
+          "n": 3,
+          "meanScore": 69.3,
+          "usable": 0,
+          "usableRate": 0,
+          "detectRate": 1
+        },
+        "cheer-oneliner": {
+          "n": 3,
+          "meanScore": 50.7,
+          "usable": 1,
+          "usableRate": 0.333,
+          "detectRate": 1
+        },
+        "ingredient-pick": {
+          "n": 3,
+          "meanScore": 46.3,
+          "usable": 0,
+          "usableRate": 0,
+          "detectRate": 1
+        },
+        "playful-banter": {
+          "n": 3,
+          "meanScore": 67.7,
+          "usable": 1,
+          "usableRate": 0.333,
+          "detectRate": 1
+        },
+        "unlabeled": {
+          "n": 33,
+          "meanScore": 62.5,
+          "usable": 6,
+          "usableRate": 0.182,
+          "detectRate": 0.909
+        }
+      },
+      "byCategory": {
+        "product": {
+          "n": 12,
+          "meanScore": 55.2,
+          "usable": 1,
+          "usableRate": 0.083,
+          "detectRate": 1
+        },
+        "empathy": {
+          "n": 14,
+          "meanScore": 52.6,
+          "usable": 0,
+          "usableRate": 0,
+          "detectRate": 1
+        },
+        "joke": {
+          "n": 15,
+          "meanScore": 75.1,
+          "usable": 7,
+          "usableRate": 0.467,
+          "detectRate": 0.867
+        },
+        "principle": {
+          "n": 1,
+          "meanScore": 72,
+          "usable": 0,
+          "usableRate": 0,
+          "detectRate": 1
+        },
+        "ingredient": {
+          "n": 3,
+          "meanScore": 56,
+          "usable": 0,
+          "usableRate": 0,
+          "detectRate": 0.667
+        }
+      },
+      "style": {
+        "lengthRatioMedian": 0.82,
+        "lengthInRange": 0.778,
+        "productAgrees": 0.667,
+        "forbiddenRate": 0
+      },
+      "headline": "초안 10개 중 그냥 써도 되는 글 2개 (평균 61.4점, 8/45)"
+    },
+    "best": {
+      "allOptions": {
+        "n": 45,
+        "meanScore": 65.2,
+        "usable": 8,
+        "usableRate": 0.178,
+        "detectRate": 0.933
+      },
+      "firstOption": {
+        "n": 15,
+        "meanScore": 63.5,
+        "usable": 1,
+        "usableRate": 0.067,
+        "detectRate": 0.933
+      },
+      "bestOfOptions": {
+        "n": 15,
+        "meanScore": 76.6,
+        "usable": 7,
+        "usableRate": 0.467,
+        "detectRate": 0.933
+      },
+      "byHalf": {
+        "test": {
+          "n": 45,
+          "meanScore": 65.2,
+          "usable": 8,
+          "usableRate": 0.178,
+          "detectRate": 0.933
+        }
+      },
+      "byStratum": {
+        "basics-before-pills": {
+          "n": 3,
+          "meanScore": 70,
+          "usable": 0,
+          "usableRate": 0,
+          "detectRate": 1
+        },
+        "cheer-oneliner": {
+          "n": 3,
+          "meanScore": 63.7,
+          "usable": 1,
+          "usableRate": 0.333,
+          "detectRate": 1
+        },
+        "ingredient-pick": {
+          "n": 3,
+          "meanScore": 50.3,
+          "usable": 0,
+          "usableRate": 0,
+          "detectRate": 1
+        },
+        "playful-banter": {
+          "n": 3,
+          "meanScore": 69.7,
+          "usable": 1,
+          "usableRate": 0.333,
+          "detectRate": 1
+        },
+        "unlabeled": {
+          "n": 33,
+          "meanScore": 65.8,
+          "usable": 6,
+          "usableRate": 0.182,
+          "detectRate": 0.909
+        }
+      },
+      "byCategory": {
+        "product": {
+          "n": 12,
+          "meanScore": 64.1,
+          "usable": 1,
+          "usableRate": 0.083,
+          "detectRate": 1
+        },
+        "empathy": {
+          "n": 14,
+          "meanScore": 55.1,
+          "usable": 0,
+          "usableRate": 0,
+          "detectRate": 1
+        },
+        "joke": {
+          "n": 15,
+          "meanScore": 75.7,
+          "usable": 7,
+          "usableRate": 0.467,
+          "detectRate": 0.867
+        },
+        "principle": {
+          "n": 1,
+          "meanScore": 66,
+          "usable": 0,
+          "usableRate": 0,
+          "detectRate": 1
+        },
+        "ingredient": {
+          "n": 3,
+          "meanScore": 63.3,
+          "usable": 0,
+          "usableRate": 0,
+          "detectRate": 0.667
+        }
+      },
+      "style": {
+        "lengthRatioMedian": 0.81,
+        "lengthInRange": 0.911,
+        "productAgrees": 0.644,
+        "forbiddenRate": 0
+      },
+      "headline": "초안 10개 중 그냥 써도 되는 글 2개 (평균 65.2점, 8/45)"
+    },
+    "pairedDiff": {
+      "meanDiff": 3.71,
+      "halfWidth": 2.61,
+      "n": 15
+    }
+  }
+}

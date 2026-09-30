@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483011-bia795",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:35:46.959Z",
+  "updatedAt": "2026-09-30T08:36:57.508Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 트리메부틴 100mg 제제, 배 꼬일 때 한 알. 시험 전 주말에 미리 먹여보고 맞는지 봐.\n직구는 재로우 아이디얼 보웰 서포트 299v 하루 1캡슐, 시험 3주 전부터 꾸준히. 갠적으로 젤 믿는 균주야.\n그리고 시험날 아침엔 우유랑 에너지드링크부터 빼-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 146
+        }
+      ],
+      "products": [],
+      "ms": 12570,
+      "sessionId": "8e0cb50c-444c-4770-a115-c56c26a86205"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "시험 때만 아프면 장이 문제라기보다 긴장이 장을 흔드는 거야.\n\n1/ 평소엔 IBS 연구가 있는 유산균 L.플란타룸 299v를 하루 1캡슐, 시험 4주 전부터 먹여.\n2/ 시험 당일 아침엔 우유, 기름진 거, 에너지드링크는 빼고 늘 먹던 순한 밥을 먹여.\n\n약국은 부스코판 10mg을 사서 배가 아플 때 1정 먹여. 시험 전 주말에 한 번 미리 먹여보고 맞는지 확인해.\n\n직구는 자로우 아이디얼 보웰 서포트 299v, 아침에 1캡슐. 갠적으로 이게 젤 무난해-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 142
+        },
+        {
+          "kind": "product",
+          "start": 144,
+          "end": 257
+        }
+      ],
+      "products": [],
+      "ms": 14204,
+      "sessionId": "aa28c5a7-1e23-420e-8302-3bf3f9f3ea03"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "시험 때만 아픈 거면 장보다 긴장이 문제야. 뇌랑 장은 신경으로 이어져 있어서 긴장하면 장이 제멋대로 꿈틀거리거든. 시험날 아침엔 우유, 기름진거, 에너지드링크 빼고 늘 먹던 순한 밥으로 먹여.\n\n평소엔 과민성대장에 연구가 있는 락토바실러스 플란타룸 299v 균주로 시험 4주 전부터 하루 1캡슐. 효과는 애마다 달라서 한 달 먹여보고 판단해.\n\n약국은 트리메부틴 100mg(포리부틴) 배 아플 때 1정. 시험 전 주말에 미리 한 번 먹여보고 맞는지 확인해.\n직구는 자로우 아이디얼 보웰 서포트 299v 하루 1캡슐-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 108
+        },
+        {
+          "kind": "ingredient",
+          "start": 110,
+          "end": 192
+        },
+        {
+          "kind": "product",
+          "start": 194,
+          "end": 289
+        }
+      ],
+      "products": [],
+      "ms": 16277,
+      "sessionId": "cff02f7e-9f04-49b6-9dee-c9bd47f0eb54"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "시험 때만 아프면 장이 약한 게 아니라 긴장이 장을 흔드는 거야. 시험 2주 전부터 아침은 우유, 기름진 거, 매운 거, 에너지드링크를 빼고 평소 먹던 순한 걸로 고정해. 밀가루랑 양파도 줄이고. 그리고 쉬는 시간마다 화장실 한 번씩 미리 다녀오게 해. 혈변이 보이거나 살이 빠지거나 시험 아닐 때도 계속 아프면 그땐 약 말고 병원부터 가-\n\n뇌랑 장은 신경으로 바로 이어져 있어서, 긴장하면 장이 제멋대로 꼬이고 예민해지거든. 그래서 유산균 하나 먹인다고 끝나는 문제가 아니야.\n\n약국에서 트리메부틴 성분 장운동조절제나 부스코판 같은 진경제를 사서 모의고사 날 한 번 먼저 먹여봐. 페퍼민트오일 캡슐도 근거가 괜찮은 편이고. 시험 당일에 첨 먹이면 안 돼. 아이한테 맞는지 알수가 없으니까. 지금 먹는 약이 있으면 살 때 약사한테 같이 말하고.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 190
+        },
+        {
+          "kind": "principle",
+          "start": 192,
+          "end": 268
+        },
+        {
+          "kind": "ingredient",
+          "start": 270,
+          "end": 417
+        }
+      ],
+      "products": [],
+      "ms": 14535,
+      "sessionId": "8378bbae-27ba-473c-97c5-29e9fa6b5896"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "장이 약한게 아니라 긴장하면 뇌가 장을 쥐어짜서 그래. 시험 당일 아침엔 우유, 기름진거, 에너지드링크부터 빼-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 62
+        }
+      ],
+      "products": [],
+      "ms": 6388,
+      "sessionId": "100b282a-6bec-4274-91e6-9a4d250579b9"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "시험 때만 아프면 장보다 긴장이 문제야. 에너지드링크부터 압수하고 당일 아침엔 우유랑 기름진 거 빼.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "products": [],
+      "ms": 6556,
+      "sessionId": "ef808183-c006-4fe4-9e87-521bd68dac6e"
+    }
+  ],
+  "failed": [],
+  "sessionId": "ef808183-c006-4fe4-9e87-521bd68dac6e"
+}

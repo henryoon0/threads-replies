@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487485-fueiqo11",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:31:38.461Z",
+  "updatedAt": "2026-09-30T07:32:48.633Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "효과 있어. 예전 다이어트약은 교감신경을 자극해서 식욕을 누르는 거고 마운자로는 포만감호르몬 쪽이라 내성이 안 넘어와. 진짜 변수는 오래 약으로 빼면서 같이 빠진 근육이야. 맞는 동안 단백질이랑 근력운동은 꼭 챙겨-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 120
+        }
+      ],
+      "products": [],
+      "ms": 6209,
+      "sessionId": "2dafbf68-33c9-4cb2-a985-b38eca45b211"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "효과 있어. 다이어트약을 오래 먹었다고 마운자로까지 안 듣는 건 아니야.\n\n진짜 변수는 약이 아니라 지금 몸 상태야. 약으로 뺐다 쪘다를 오래 반복하면 근육이 먼저 빠지고 대사도 같이 떨어져 있을 수 있거든. 그래서 이번엔 맞는 동안 주 2~3회 근력운동을 꼭 같이 해. 약만 바꿔서 빼면 끊을 때 또 돌아와. 이번 판에서 습관까지 만들어서 끝내자-\n\n그동안 먹은 다이어트약은 대부분 교감신경을 자극해서 식욕을 누르는 약이야. 마운자로는 몸 안에 있는 포만감 호르몬인 GLP-1이랑 GIP에 작용해. 효과가 나는 길이 달라서 그 약에 생긴 내성이 마운자로로 넘어오지 않아.\n\n지금도 먹고 있으면 둘을 겹쳐 먹지 말고 먹던 약은 정리하고 넘어가. 처방받을 때 먹던 약 이름은 꼭 말하고. 2.5mg으로 4주 맞은 다음 4주마다 올리고, 최소 3-4개월은 해보고 판단해. 단백질은 체중 1kg당 1~1.2g을 끼니마다 나눠서 챙겨먹어.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 195
+        },
+        {
+          "kind": "principle",
+          "start": 197,
+          "end": 320
+        },
+        {
+          "kind": "ingredient",
+          "start": 322,
+          "end": 465
+        }
+      ],
+      "products": [],
+      "ms": 15685,
+      "sessionId": "39178f9e-f380-4dda-900b-aa8e57570a5d"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "효과 있어. 식욕억제제는 교감신경을 흥분시켜서 입맛을 누르는 약이라 오래 먹으면 내성이 생기는데, 마운자로는 GLP-1·GIP 포만감호르몬 쪽으로 작용해서 경로가 아예 달라. 그 내성이 그대로 넘어오진 않거든.\n\n지금도 먹는 약 있으면 정리하고 넘어가고, 마운자로는 2.5mg부터 4주마다 올려. 진짜 변수는 약보다 그동안 빠진 근육이야. 단백질 체중 1kg당 1~1.2g, 근력운동 주 2~3회 해야 이번엔 요요 덜 와-\n\n밥으로 단백질 못 채우면 온라인은 셀렉스 프로핏 웨이프로틴 하루 1팩 정도면 무난하고, 갠적으로는 직구 옵티멈 골드스탠다드 웨이 1스쿱(단백질 24g) 운동하고 바로 먹는 게 젤 편해.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 117
+        },
+        {
+          "kind": "ingredient",
+          "start": 119,
+          "end": 236
+        },
+        {
+          "kind": "product",
+          "start": 238,
+          "end": 341
+        }
+      ],
+      "products": [],
+      "ms": 14839,
+      "sessionId": "a0729b04-31f6-482b-9cd3-f026ed5edd77"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "다이어트약 오래 먹었어도 마운자로는 효과 있어. 기존 식욕억제제랑 작용하는 길이 달라서 그 내성이 넘어오지 않아. 진짜 변수는 그동안 빠진 근육이야. 단백질 체중 1kg당 1~1.2g 매끼 나눠 챙겨먹고 근력운동 주 2~3회 꼭 붙여-\n\n온라인이면 셀렉스 코어프로틴 정도면 무난해. 직구는 옵티멈 골드스탠다드 웨이, 1스쿱에 단백질 24g이라 아침이나 운동 끝나고 한 잔 타 먹어.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 131
+        },
+        {
+          "kind": "product",
+          "start": 133,
+          "end": 213
+        }
+      ],
+      "products": [],
+      "ms": 14494,
+      "sessionId": "42134fe3-dcfb-4ddd-9e53-39bf2df97ed4"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "먹던 약에 생긴 내성은 마운자로로 안 넘어와. 진짜 변수는 그동안 빠진 근육이야.\n\n약국은 뉴케어 올프로틴 하루 1팩, 간식 대신.\n온라인이면 마이프로틴 임팩트웨이 1스쿱(단백질 약 21g), 운동 끝나고.\n직구는 옵티멈 골드스탠다드 웨이 1스쿱(24g), 이건 내가 먹는 거.\n주 2~3회 근력운동 안하면 아무도움안돼-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 179
+        }
+      ],
+      "products": [],
+      "ms": 12739,
+      "sessionId": "5a6a0c15-7033-4d52-a66c-664e03f6e102"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "효과 있어. 먹던 약이랑 작용이 아예 달라서 내성 안 넘어와. 대신 이번엔 근력운동도 같이 해. 약만 갈아타면 또 원복이야-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "products": [],
+      "ms": 6183,
+      "sessionId": "b312e4c6-de1a-40a5-8410-0bffec77f538"
+    }
+  ],
+  "failed": [],
+  "sessionId": "b312e4c6-de1a-40a5-8410-0bffec77f538"
+}

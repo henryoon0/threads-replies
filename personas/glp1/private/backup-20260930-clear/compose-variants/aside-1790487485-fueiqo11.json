@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487485-fueiqo11",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:07:56.448Z",
+  "updatedAt": "2026-09-30T05:09:14.693Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "효과 있어. 먹던 약은 교감신경을 자극해서 입맛을 누르는 거고 마운자로는 호르몬 쪽이라 내성이 안 넘어와. 대신 오래 빼면서 빠진 근육이 변수니까 근력운동은 같이 해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 93
+        }
+      ],
+      "products": [],
+      "ms": 7053,
+      "sessionId": "57f8c1ff-05cc-4dae-a5b2-2505a96ca401"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "효과 있어. 오래 먹은 약보다 그동안 빠진 근육이 진짜 문제야. 이번엔 약만 바꿔서 빼지 말고 주 2~3회 근력운동도 같이 시작해. 그래야 끊을 때 덜 돌아와. 이번이 마지막 다이어트가 되게 하자-\n\n먹던 다이어트약은 대부분 교감신경을 자극해서 입맛을 누르는 약이라 오래 먹으면 내성이 생기거든. 마운자로는 GLP-1/GIP라는 장 호르몬으로 배부르다는 신호를 주는 약이야. 작용하는 길이 아예 달라서 그 내성이 넘어오지 않어.\n\n지금도 먹고 있으면 둘을 겹쳐 먹지 말고, 처방받을 때 먹던 약 이름을 꼭 말해. 마운자로는 2.5mg부터 시작해서 4주 간격으로 천천히 올리고, 맞는 동안 단백질은 체중 1kg당 1~1.2g씩 챙겨먹어. 입맛이 없어도 단백질부터 먹어야 근육이 덜 빠져.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 110
+        },
+        {
+          "kind": "principle",
+          "start": 112,
+          "end": 239
+        },
+        {
+          "kind": "ingredient",
+          "start": 241,
+          "end": 383
+        }
+      ],
+      "products": [],
+      "ms": 18618,
+      "sessionId": "e9420e31-933c-4218-be3b-3dbd72705c97"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "효과 있어. 먹던 약은 교감신경을 자극해서 식욕을 누르는 거고, 마운자로는 GLP-1/GIP 호르몬으로 배부르다는 신호를 켜는 거라 내성이 안넘어와. 지금도 먹고 있으면 정리하고 넘어가고, 처방받을 때 먹던 약은 꼭 말해.\n\n진짜 변수는 약 바꿔가며 빼는 동안 같이 빠진 근육이야. 단백질은 체중 1kg당 1~1.2g 챙기고 근력운동은 주 2~3회 해. 그래야 이번엔 끊어도 덜 돌아와-\n\n약국은 뉴케어 올프로틴 하루 1팩.\n온라인이면 셀렉스 프로핏 하루 1병 정도면 무난해.\n직구는 옵티멈 골드스탠다드 웨이 1스쿱 24g, 운동 끝나고 바로 먹어.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 124
+        },
+        {
+          "kind": "ingredient",
+          "start": 126,
+          "end": 216
+        },
+        {
+          "kind": "product",
+          "start": 218,
+          "end": 307
+        }
+      ],
+      "products": [],
+      "ms": 12821,
+      "sessionId": "68e397c6-bfa6-4522-9d20-19e863a2fdd5"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "효과 있어. 먹던 약은 식욕억제제고 마운자로는 GLP-1/GIP라 작용하는 길 자체가 달라서 내성이 안 넘어와- 진짜 변수는 약 오래 먹으면서 빠진 근육이야. 맞는 동안 단백질 체중 1kg당 1~1.2g 매끼 나눠서 챙겨먹고 근력운동 주 2~3회는 해.\n\n온라인이면 셀렉스 프로핏 웨이프로틴 드링크, 단백질 모자란 끼니에 한 병. 이 정도면 무난해.\n직구는 내가 먹는 옵티멈 뉴트리션 골드스탠다드 웨이 1스쿱 24g, 운동 끝나고 바로.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 141
+        },
+        {
+          "kind": "product",
+          "start": 143,
+          "end": 244
+        }
+      ],
+      "products": [],
+      "ms": 18445,
+      "sessionId": "1d5fac4a-5210-4b6e-aeb2-834c907976b4"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "마운자로는 식욕억제제랑 작용이 달라서 그 내성이 안 넘어와. 변수는 그동안 빠진 근육이라 근력운동 주 3회에 단백질 꼭 챙겨먹어.\n\n약국은 셀렉스 코어프로틴 1스쿱 하루 한 번.\n온라인이면 마이프로틴 임팩트웨이 1스쿱 25g 정도면 무난해.\n직구는 옵티멈뉴트리션 골드스탠다드 웨이 1스쿱 24g, 운동 끝나고 바로-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 176
+        }
+      ],
+      "products": [],
+      "ms": 10824,
+      "sessionId": "61c78b29-7086-43f0-9081-067cf3313e6e"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "효과 있어. 먹던 약이랑 작용하는 데가 달라서. 근데 약만 갈아타면 또 요요니까 이번엔 근력운동도 같이 해-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "products": [],
+      "ms": 10470,
+      "sessionId": "7126e1a9-45a1-4926-848c-920a27a01744"
+    }
+  ],
+  "failed": [],
+  "sessionId": "7126e1a9-45a1-4926-848c-920a27a01744"
+}

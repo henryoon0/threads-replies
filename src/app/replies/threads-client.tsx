@@ -291,7 +291,7 @@ function AnswerSide({
   );
 }
 
-const FALLBACK_PERSONA: ThreadsPersona = { id: "me", name: "내 계정", handle: "", send: "api", gate: "light" };
+const FALLBACK_PERSONA: ThreadsPersona = { id: "glp1", name: "박약사", handle: "glp1.pharmacy", send: "api", gate: "strict" };
 
 /** 하나씩 / 5개 한꺼번에 · 검색에서 고른 댓글. 지금 칸 목록에 없는 댓글(답함·건너뜀)은 목록 선택과 따로 연다. */
 function useWorkMode(order: string[], select: (id: string) => void, reveal: (id: string) => void) {
@@ -401,7 +401,7 @@ export function ThreadsClient({
 }) {
   const { data, error, reload } = useThreadsData(onChanged);
   const persona = data?.persona;
-  const gate = useGate(persona?.id ?? "me");
+  const gate = useGate(persona?.id ?? "glp1");
   const groups = useMemo(() => visibleGroups(data?.groups ?? [], view), [data, view]);
   const urgent = useUrgent(data, view, gate);
   const order = useMemo(() => {

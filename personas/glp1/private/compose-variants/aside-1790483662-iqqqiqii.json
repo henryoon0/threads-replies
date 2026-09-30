@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483662-iqqqiqii",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:22:32.816Z",
+  "updatedAt": "2026-09-30T08:23:47.402Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "마운자로가 부작용 적다는 말은 아니야. 첫 2~3주 울렁거림은 둘 다 비슷하고, 큰 부작용은 약 종류보다 너무 빨리 빠질 때 오거든. 최저용량부터 천천히 올리고 단백질 챙기면서 근력운동 같이 해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 109
+        }
+      ],
+      "products": [],
+      "ms": 9498,
+      "sessionId": "c549e166-c874-46cf-910f-938256270670"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "마운자로가 부작용 적다는 건 틀린 말이야. 첫 2~3주 울렁거림이랑 더부룩함은 둘 다 비슷하고, 탈모·근손실은 약 때문이라기보다 너무 빨리 빠져서 생기거든. 감량폭은 마운자로가 평균 20%, 위고비가 14%로 마운자로가 더 세고, 오래 써서 안전성이 검증된 건 위고비야. 갠적으론 위고비 쪽인데, 고르는 기준을 부작용 말고 이걸로 잡아.\n\n뭘 맞든 최저용량에서 시작해서 4주씩 천천히 올려. 초반엔 기름진 건 빼고 적게 나눠 먹어. 단백질은 체중 1kg당 1.2g 챙기고 근력운동을 주 2~3번 해야 근육이 안 빠져.\n\n약국은 비맥스 메타 하루 1정 아침 식후.\n온라인이면 글리프 아미노산, 이 정도면 무난해.\n직구는 옵티멈 뉴트리션 골드 스탠다드 웨이 한 스쿱(단백질 24g) 운동 끝나고-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 188
+        },
+        {
+          "kind": "ingredient",
+          "start": 190,
+          "end": 289
+        },
+        {
+          "kind": "product",
+          "start": 291,
+          "end": 387
+        }
+      ],
+      "products": [],
+      "ms": 16268,
+      "sessionId": "2c2cb549-b176-44d6-acb5-936ade9cab27"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "마운자로가 부작용 적다는 건 틀린 말이야. 초반 울렁거림은 둘 다 비슷하고, 부작용은 약 종류보다 증량을 급하게 할 때 와. 효과는 마운자로(터제파타이드)가 평균 20%로 더 크고, 위고비는 오래돼서 안전성 검증이 더 됐어. 갠적으로는 위고비 쪽이야. 뭘 고르든 최저용량에서 4주씩 천천히 올리고 단백질이랑 근력운동은 같이 해-\n\n약국은 비맥스 메타 하루 1정 아침 식후, 온라인이면 글리프 아미노산 정도면 무난해. 직구는 옵티멈 골드스탠다드 웨이 1스쿱(단백질 24g) 운동 끝나고 바로.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 183
+        },
+        {
+          "kind": "product",
+          "start": 185,
+          "end": 274
+        }
+      ],
+      "products": [],
+      "ms": 13277,
+      "sessionId": "38f29abe-d16b-43cf-a579-d1bd7126426a"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "부작용은 두 약 다 비슷하고, 증량을 얼마나 천천히 하냐에서 갈려. 뭘 맞든 같이 챙길 건 이거야.\n약국은 비맥스 메타 하루 1정 아침 식후.\n온라인이면 글리프 아미노산 하루 한 포, 이 정도면 무난해.\n직구는 나우푸드 크레아틴 모노하이드레이트 하루 5g. 근력운동 주 3번이랑 같이 가야 근손실 막어-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 169
+        }
+      ],
+      "products": [],
+      "ms": 11681,
+      "sessionId": "6947bdec-d8e0-4ed1-b1e4-d15040b6902e"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "마운자로가 부작용이 적어서 고른다는 건 잘못된 기준이야. 기준부터 다시 잡자. 감량 효과는 마운자로가 더 커(평균 20%, 위고비 14%). 대신 위고비는 출시된 지 훨씬 오래돼서 안전성 데이터가 더 많이 쌓였어. 갠적으론 위고비 쪽이긴 한데, 둘 다 검증된 약이야. 이름보다 어떻게 맞느냐가 더 중요해-\n\n첫 2~3주에 울렁거리고 얹힌 느낌이 드는 건 두 약 다 비슷하게 와. 탈모, 피부처짐, 근손실은 약 종류 때문이 아니라 살이 너무 빨리 빠져서 생기는 거고. 그러니까 부작용은 어떤 약을 맞느냐보다 얼마나 천천히 올리느냐에서 갈려. 젤 낮은 용량으로 시작해서 4주씩은 버티고 올려.\n\n단백질은 체중 1kg당 1.2g 이상을 세 끼에 나눠서 챙겨먹어. 근력운동도 주 2~3번 같이 해야 근육이 안 빠져. 초반엔 기름진 거 줄이고 조금씩 나눠 먹으면 울렁거림이 훨씬 덜해.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 170
+        },
+        {
+          "kind": "principle",
+          "start": 172,
+          "end": 329
+        },
+        {
+          "kind": "ingredient",
+          "start": 331,
+          "end": 434
+        }
+      ],
+      "products": [],
+      "ms": 16272,
+      "sessionId": "6b580bae-e7d0-458f-bef1-8a7a6a662d0e"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "부작용 적은 약은 따로 없어. 저용량부터 천천히 올리고 기름진 거 끊는 사람이 부작용 적은 거야.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 54
+        }
+      ],
+      "products": [],
+      "ms": 7574,
+      "sessionId": "90801ce8-735f-49be-8294-f624b7f23736"
+    }
+  ],
+  "failed": [],
+  "sessionId": "90801ce8-735f-49be-8294-f624b7f23736"
+}

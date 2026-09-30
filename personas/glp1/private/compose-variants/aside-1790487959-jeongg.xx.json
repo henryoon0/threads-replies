@@ -1,0 +1,253 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487959-jeongg.xx",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:25:43.252Z",
+  "updatedAt": "2026-09-30T07:27:00.679Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "목록은 거의 맞아. 짚을 건 두 개.\n1/ 식물성 오메가3는 대부분 ALA라 DHA로 거의 안바뀜. 조류(알가) 오일로 DHA 200mg 이상 사.\n2/ 철분이랑 칼마디는 서로 흡수를 막아서 2시간 이상 띄워. 우유나 요거트를 하루 두 번 먹으면 칼슘은 빼도 돼.\n\n약국은 쏜 아이언 비스글리시네이트 25mg을 자기 전에 비타민C랑 먹어. 16주 전후부터 먹고, 용량은 산부인과 피검사 보고 맞춰.\n온라인이면 알가 DHA 200mg 이상 단일제면 무난해.\n직구는 나우푸드 D3 2000IU를 아침 식후에 한 알. 종합제랑 합쳐 하루 4000IU 넘기지 마-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 147
+        },
+        {
+          "kind": "product",
+          "start": 149,
+          "end": 311
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        },
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 18095,
+      "sessionId": "289fb567-090e-414e-ad08-e56ed8573f85"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "목록은 거의 맞아. 걸리는 건 식물성 오메가3. 아마씨 같은 식물성은 ALA라서 몸에서 DHA로 거의 안 바뀌거든. 아기 뇌로 가는 건 DHA니까 식물성으로 먹을 거면 알가(조류) 오일 DHA를 사.\n\n철분이랑 칼마디는 같이 먹으면 서로 흡수를 막아. 철분은 자기 전, 칼마디는 식후에 먹고 2시간 이상 띄워. 우유나 요거트를 하루 두 번 챙겨먹으면 칼슘 영양제는 빼도 돼.\n\n약국은 볼그레 액상철분, 자기 전에.\n직구는 노르딕내추럴 알가 오메가로 DHA 200mg 이상, 나우푸드 D3 2000IU는 아침 식후. D는 종합제랑 합쳐서 하루 4000IU 안 넘게.\n철분 용량은 산부인과 피검사로 빈혈 수치 보고 맞춰-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 111
+        },
+        {
+          "kind": "ingredient",
+          "start": 113,
+          "end": 209
+        },
+        {
+          "kind": "product",
+          "start": 211,
+          "end": 345
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 18747,
+      "sessionId": "e5cf3aa9-5ba6-42b0-9cff-62455ca91246"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 볼그레 철분제 자기 전 공복에 비타민C랑 같이.\n\n온라인이면 식물성 오메가3 중에 조류(알가) 원료, DHA 200mg 넘는 걸로만 골라. 아마씨 원료는 아무도움안돼.\n\n직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번, 나우푸드 D3 2000IU. 칼마디는 철분이랑 2시간 띄우고, 우유 두 잔 마시면 빼도 돼-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 183
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        },
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 12865,
+      "sessionId": "5d4aaf6d-c67e-437e-97a8-d149fc28804d"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "목록은 거의 다 맞아. 뭘 먹을지보다 어떻게 같이 먹을지가 문제야.\n\n칼슘은 우유나 요거트를 하루 두 번 먹으면 채워지니까 칼마디는 빼도 돼. 철분 용량은 산부인과 피검사로 빈혈 수치를 보고 정해. 배 안에서 튼튼하게 키워-\n\n식물성 오메가3는 대부분 ALA라서 몸에서 DHA로 거의 안 바뀌어. 아기 뇌랑 눈에 쓰이는 건 DHA거든. 식물성으로 먹을 거면 알가(조류) 오일에서 뽑은 DHA 제품으로 사.\n\n1/ 엽산은 400~800mcg면 충분하고 활성형이어도 괜찮아.\n2/ 비타민D3는 1,000~2,000IU, 알가 DHA는 200mg 이상.\n3/ 철분은 자기 전에 비타민C랑 같이 먹고, 칼슘은 식후에 먹되 철분이랑 2시간 넘게 띄워. 같이 먹으면 서로 흡수를 막아.\n\n임산부 종합제를 먹고 있으면 엽산이랑 D가 이미 들어있을 수 있으니 라벨 보고 겹치는 건 빼고 챙겨먹어.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 125
+        },
+        {
+          "kind": "principle",
+          "start": 127,
+          "end": 226
+        },
+        {
+          "kind": "ingredient",
+          "start": 228,
+          "end": 437
+        }
+      ],
+      "products": [],
+      "ms": 13710,
+      "sessionId": "1a8a74ff-1bdc-4bc7-b65c-34631ffe5958"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "목록은 거의 맞아. 근데 식물성 오메가3는 ALA라서 몸에서 DHA로 거의 안 바뀌어. 식물성으로 먹을 거면 알가(조류) 오일 DHA로 사. 그리고 칼슘은 철분 흡수를 막거든. 칼슘은 우유랑 요거트로 채우고, 철분이랑은 2시간 이상 띄워-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 133
+        }
+      ],
+      "products": [],
+      "ms": 7673,
+      "sessionId": "7c8dff08-652f-4e45-a4ea-70dc20bd1932"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "목록은 이미 합격이야. 철분이랑 칼마디만 같이 먹지마 서로 흡수 막아. 칼슘은 우유 한 잔으로 채워도 돼-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 59
+        }
+      ],
+      "products": [],
+      "ms": 6316,
+      "sessionId": "cac6facf-4942-488a-83cc-bf38ff9d5117"
+    }
+  ],
+  "failed": [],
+  "sessionId": "cac6facf-4942-488a-83cc-bf38ff9d5117"
+}

@@ -1,0 +1,247 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483292-lumiere2513",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T06:04:10.083Z",
+  "updatedAt": "2026-09-30T06:05:18.015Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 종근당 볼그레야. 식후에 먹으면 속은 편한데 효과는 약간 떨어져.\n직구는 쏜 아이언 비스글리시네이트 25mg, 아이허브에 팔어. 이틀에 한 번 비타민C랑 같이 먹고 커피·우유랑은 2시간 띄워.\n소고기 같은 붉은 고기를 주 2~3번 같이 챙기면 훨씬 빨리 차-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 148
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 11606,
+      "sessionId": "139527a7-3e94-448b-9afd-f33c55d25cb0"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "철분제는 흡수율보다 진짜 부족한지가 먼저야. 피검사로 페리틴부터 봐. 남자는 보통 안부족해서 괜히 먹으면 간에 부담이고, 여자는 생리로 계속 빠지거든. 붉은 고기랑 조개류도 같이 챙겨먹어.\n\n흡수는 비스글리시네이트 같은 킬레이트형이 젤 잘되고 속도 덜 쓰려. 비타민C랑 같이 먹고, 커피·차·우유·칼슘은 2시간 띄워.\n\n약국은 종근당 볼그레를 식후에 먹어. 속은 편한데 효과는 좀 약해.\n온라인이면 솔가 젠틀아이언 25mg 정도면 무난해.\n직구는 쏜 아이언 비스글리시네이트 25mg을 이틀에 한 번 먹어. 아이허브에서 팔고 내가 먹는거야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 105
+        },
+        {
+          "kind": "ingredient",
+          "start": 107,
+          "end": 177
+        },
+        {
+          "kind": "product",
+          "start": 179,
+          "end": 301
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 15470,
+      "sessionId": "3e0fc90b-de41-4173-b951-e15c61f5edf6"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "흡수는 형태가 결정해. 비스글리시네이트(킬레이트)형이 흡수 잘되고 속도 젤 편해. 비타민C랑 같이 먹고 커피·우유·칼슘은 2시간 띄워. 종합비타민에 철분 들어있으면 겹치니까 라벨 확인하고, 붉은 고기·조개도 같이 챙겨먹어.\n\n약국은 볼그레(종근당) 식후에. 속은 편한데 효과는 약간 떨어져.\n온라인이면 비스글리시네이트라고 적힌 거면 무난해.\n직구는 쏜 아이언 비스글리시네이트 25mg, 아이허브에서 팔어. 이틀에 한 번이면 돼-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 124
+        },
+        {
+          "kind": "product",
+          "start": 126,
+          "end": 239
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 12503,
+      "sessionId": "09ebebbf-e8bc-4868-a981-b64b215ad47d"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "철분제는 흡수율보다 진짜 부족한지가 먼저야. 피검사로 페리틴이랑 헤모글로빈부터 한번 찍어봐. 남자면 보통 안부족해서 괜히 먹으면 간에만 부담이야.\n\n여자는 생리로 철분이 매달 빠져서 페리틴이 바닥나기 쉽거든. 페리틴은 몸에 쌓아둔 철분 통장 같은 건데 이게 비면 산소를 못 날라서 자도자도 피곤해. 약만 믿지 말고 붉은 고기, 조개류를 주 2~3번은 챙겨먹어. 음식에 든 철분이 흡수는 젤 잘돼.\n\n부족하다고 나오면 킬레이트형(비스글리시네이트)으로 골라. 흡수가 잘되고 변비·속쓰림이 덜해. 난 쏜(Thorne) Iron Bisglycinate 아이허브에서 시켜먹어. 공복에 비타민C랑 같이 먹고, 커피·차·우유·칼슘은 2시간 이상 띄워. 종합비타민 먹고 있으면 라벨에 철분 들어있는지 봐서 겹치지 않게 해-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 81
+        },
+        {
+          "kind": "principle",
+          "start": 83,
+          "end": 221
+        },
+        {
+          "kind": "ingredient",
+          "start": 223,
+          "end": 396
+        }
+      ],
+      "products": [],
+      "ms": 14615,
+      "sessionId": "760525b4-f426-43a2-968f-97b2f0da70ae"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "흡수는 킬레이트형(비스글리시네이트)이 젤 좋아. 철이 아미노산에 싸여 있어서 위를 덜 긁고 흡수도 잘되거든. 근데 부족한지 피검사부터 하고, 먹을 땐 커피·우유랑 2시간 띄워-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 98
+        }
+      ],
+      "products": [],
+      "ms": 6893,
+      "sessionId": "2a74ff36-481d-4c21-ae1f-46163230c83d"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "흡수 젤 잘되는 철분은 소고기야. 철분제 사기 전에 피검사로 진짜 부족한지부터 봐-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 46
+        }
+      ],
+      "products": [],
+      "ms": 6825,
+      "sessionId": "83e1e50c-d41c-4a0d-a2d9-8f213c132f45"
+    }
+  ],
+  "failed": [],
+  "sessionId": "83e1e50c-d41c-4a0d-a2d9-8f213c132f45"
+}

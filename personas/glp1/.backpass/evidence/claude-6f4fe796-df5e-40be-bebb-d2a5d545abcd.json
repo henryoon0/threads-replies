@@ -1,0 +1,21 @@
+{
+  "transcript": {
+    "harness": "claude",
+    "id": "claude-6f4fe796-df5e-40be-bebb-d2a5d545abcd",
+    "path": "/Users/henry/.claude/projects/-Users-henry--local-share-reply-personas-glp1/6f4fe796-df5e-40be-bebb-d2a5d545abcd.jsonl",
+    "mtimeMs": 1790662053925.795,
+    "bytes": 185424,
+    "startedAt": 1790662030012,
+    "association": {
+      "tier": 1,
+      "confidence": "exact",
+      "reason": "cwd is worktree /Users/henry/.local/share/reply-personas/glp1"
+    }
+  },
+  "memoryHash": "sha256:51345796760f199c",
+  "memoryPath": "AGENTS.md",
+  "key": "1790662053925.795:185424:sha256:51345796760f199c",
+  "analyzedAt": "2026-09-29T06:22:29.138Z",
+  "status": "skipped",
+  "reason": "trivial session (1 user turn(s), 1 agent turn(s), 0 tool call(s))"
+}

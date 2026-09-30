@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790443571-windy__1225",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T06:35:55.763Z",
+  "updatedAt": "2026-09-30T06:48:55.298Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "약을 그냥 끊으면 식욕이 돌아와서 다시 쪄. 요요가 반복되는 건 뺄 때 근육까지 같이 빠지고, 그래서 몸이 쓰는 에너지가 줄어서거든. 맞는 동안 단백질 챙겨먹고 근력운동을 해둬야 끊고 나서도 버틸 수 있어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 115
+        }
+      ],
+      "products": [],
+      "ms": 6875,
+      "sessionId": "48b6c364-56cc-4f11-a638-3ba747ab3564"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "마운자로가 빼는 건 확실히 도와줘. 문제는 끊은 다음이야. 보통 2.5mg으로 시작하면 2~4주 안에 식욕이 줄어든 게 느껴지고, 체중이 눈에 띄게 빠지는 건 4주마다 증량하면서 한두 달 지나서부터야.\n\n근데 그냥 끊으면 식욕 신호가 다시 돌아와서 상당 부분 다시 찐다는 연구가 있어. 운동으로 빼도 요요가 온 것도 같은 이유야. 살 빠질 때 근육도 같이 빠지면 몸이 쓰는 에너지가 줄어서 조금만 먹어도 다시 붙거든. 그래서 목표 근처에 가면 한 번에 끊지 말고 용량을 내리거나 간격을 늘려서 천천히 내려와.\n\n유지는 근육이 결정해. 주사 맞는 동안 단백질은 체중 1kg당 1.2~1.5g, 60kg이면 하루 70~90g은 챙겨먹어. 입맛 없어도 끼니마다 계란·두부·생선부터 먹고, 근력운동은 주 3번 해. 이번엔 빼는 데서 끝내지 말고 유지까지 가보자 스친이-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 112
+        },
+        {
+          "kind": "principle",
+          "start": 114,
+          "end": 284
+        },
+        {
+          "kind": "ingredient",
+          "start": 286,
+          "end": 426
+        }
+      ],
+      "products": [],
+      "ms": 14542,
+      "sessionId": "81786db0-7e3e-4c83-856d-e5a4add2717e"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "효과는 빨라. 2.5mg으로 시작하면 2~4주 안에 식욕이 줄고, 살은 한두 달 지나 증량하면서 빠져. 근데 그냥 끊으면 식욕이 돌아와서 상당 부분 다시 쪄. 목표 근처에 오면 용량을 천천히 내리면서 끊어.\n\n유지는 근육이 결정해. 단백질은 체중 1kg당 1.2g 이상, 끼니마다 20~30g씩 나눠먹고 근력운동은 주 3번. 근육을 지켜놔야 끊어도 대사가 안떨어져-\n\n약국은 셀렉스 프로핏 웨이프로틴 1병 20g, 온라인이면 마이프로틴 임팩트웨이 1스쿱 21g 정도면 무난해. 직구는 내가 먹는 옵티멈 골드스탠다드 웨이 1스쿱 24g, 운동 끝나고 한 잔.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 115
+        },
+        {
+          "kind": "ingredient",
+          "start": 117,
+          "end": 204
+        },
+        {
+          "kind": "product",
+          "start": 206,
+          "end": 311
+        }
+      ],
+      "products": [],
+      "ms": 16555,
+      "sessionId": "b49e9e86-463b-4b52-9752-4f8994936e33"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "그냥 끊으면 요요 와. 2.5mg으로 시작하면 2~4주 안에 식욕이 줄고, 살은 증량하는 한두 달 뒤부터 빠져. 유지는 근육이 결정해. 단백질은 체중 1kg당 1~1.2g, 끼니마다 20~30g씩 챙겨먹어. 근력운동은 주 3번 하고, 끊을 땐 용량을 천천히 내려-\n\n온라인이면 마이프로틴 임팩트 웨이 1스쿱(단백질 21g) 정도면 무난해. 직구는 옵티멈 골드스탠다드 웨이 1스쿱(24g)을 운동 끝나고 바로 먹어. 이건 약보다 내가 더 믿는 거야.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 147
+        },
+        {
+          "kind": "product",
+          "start": 149,
+          "end": 250
+        }
+      ],
+      "products": [],
+      "ms": 14417,
+      "sessionId": "fba1ab6b-afdf-4f86-b29c-dd1549d1bfe9"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 비맥스 메타 하루 1정, 적게 먹는 동안 모자라는 비타민B 메우는 용도.\n온라인이면 셀렉스 코어프로틴 하루 한 포, 이 정도면 무난해.\n직구는 옵티멈 골드 스탠다드 웨이 1스쿱 24g, 근력운동 주 3회 한 날 바로 챙겨먹어.\n끊고 요요 막는 건 결국 근육이다-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 150
+        }
+      ],
+      "products": [],
+      "ms": 12488,
+      "sessionId": "1538e5c7-9706-4b6a-aab7-291d52a4b9d1"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "마운자로는 빼주는 약이지 유지해주는 약이 아니야. 맞는 동안 단백질 챙기고 근력운동 안하면 이번에도 똑같을꺼야.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 62
+        }
+      ],
+      "products": [],
+      "ms": 6069,
+      "sessionId": "cf8d4163-034b-461b-ace5-c79b187a3f90"
+    }
+  ],
+  "failed": [],
+  "sessionId": "cf8d4163-034b-461b-ace5-c79b187a3f90"
+}

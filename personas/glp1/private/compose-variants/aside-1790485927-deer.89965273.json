@@ -1,0 +1,244 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485927-deer.89965273",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:45:51.014Z",
+  "updatedAt": "2026-09-30T07:47:01.011Z",
+  "planned": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "애 둘 낳은 몸이면 영양제가 덜 채워진 게 아니라 바닥난 걸 채워야 하는 상태야. 식단이랑 운동을 하는데도 안빠지고 금방 지치면 피검사부터 해. 페리틴, 비타민D, 갑상선(TSH) 이 세 개는 꼭 봐. 식단은 너무 세게 조이지 마. 굶으면 체력이 먼저 무너져. 끼니마다 손바닥만큼 단백질 챙기고, 유산소보다 근력운동 위주로 가. 잠은 애들 잘 때 같이 자는 게 젤 남는 장사야.\n\n임신이랑 수유를 두 번 거치면 철분이랑 비타민D가 아기 쪽으로 다 빠져서 비어 있는 경우가 많어. 철분이 모자라면 산소를 잘 못 날라서 조금만 움직여도 방전되고, 근육까지 줄면 대사가 같이 떨어져서 살이 안빠지는 거야.\n\n지금 조합엔 에너지 쪽이 비어 있어. 활성형 비타민B군 하나를 아침 식후에 먹고, 비타민D는 1000~2000IU로 같이 챙겨. 철분은 수치를 보고 낮을 때만 더해. 콜라겐은 근거가 약해서 그 돈으로 단백질 사먹는 게 나아-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 211
+        },
+        {
+          "kind": "principle",
+          "start": 213,
+          "end": 335
+        },
+        {
+          "kind": "ingredient",
+          "start": 337,
+          "end": 462
+        }
+      ],
+      "products": [],
+      "ms": 15199,
+      "sessionId": "4c564765-a83f-4578-8346-517eb90a926d"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "영양제가 모자란 게 아니라 몸이 바닥난 거야. 애 둘 낳으면서 철분이랑 비타민D가 빠져나가고, 갑상선까지 떨어지면 식단·운동이 안 먹혀. 피검사로 페리틴·비타민D·TSH부터 봐. 식단은 너무 조이지 말고 끼니마다 단백질 손바닥 하나, 운동은 근력 위주로 가-\n\n콜라겐은 근거가 약해서 빼도 돼. 대신 활성형 비타민B군 아침 식후, 비타민D 2000IU 같이 챙겨먹어. 철분은 수치 보고 낮을 때만.\n\n약국은 임팩타민 아침 식후 한 알. 직구는 나우푸드 D3 2000IU 하루 하나. 철분 낮게 나오면 쏜 아이언 비스글리시네이트 이틀에 한 번, 커피랑은 띄어서.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 144
+        },
+        {
+          "kind": "ingredient",
+          "start": 146,
+          "end": 222
+        },
+        {
+          "kind": "product",
+          "start": 224,
+          "end": 313
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        },
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 12467,
+      "sessionId": "10b24a86-9803-4586-8baf-183c03b0ea10"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "콜라겐은 근거가 약해. 지금 조합에 빠진 건 B군이랑 비타민D야. 활성형 B군은 아침 식후에, D는 1000~2000IU 챙겨먹어. 체력은 영양제보다 끼니마다 손바닥만 한 단백질이랑 근력운동에서 나와. 애 둘 낳았으면 페리틴이랑 갑상선 피검사도 한번 받아봐-\n\n약국은 임팩타민 하루 한 알, 아침 식후.\n온라인이면 비타민D 1000IU 단일제 아무거나 무난해.\n직구는 내가 먹는 나우푸드 D3 2000IU. 온라인 D랑 둘 중 하나만 먹고, D는 다 합쳐서 하루 4000IU 안 넘게.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 144
+        },
+        {
+          "kind": "product",
+          "start": 146,
+          "end": 271
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 14375,
+      "sessionId": "8124bf26-3d84-4ba5-b611-8708c7fd0a32"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 임팩타민 프리미엄 하루 1알, 아침 식후.\n온라인이면 셀렉스 코어프로틴 한 스쿱 정도면 무난해. 콜라겐 대신 이걸로 아침 단백질 채워.\n직구는 나우푸드 D3 2000IU 점심 식후로. 다른 제품이랑 합쳐서 하루 4000IU 안넘게-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 133
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 15492,
+      "sessionId": "8e28ccc7-b929-49bd-bdcd-2a04547285b0"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "애 둘 낳고 체력이 바닥이면 비타민C 문제가 아니라 철분·비타민D·갑상선이 떨어졌을 수 있어. 피검사부터 하고 단백질은 끼니마다 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 77
+        }
+      ],
+      "products": [],
+      "ms": 6202,
+      "sessionId": "3e1c6962-e67f-4751-baf4-4348122130a8"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "애 둘 키우면서 체력이 남아있으면 그게 더 이상한 거야. 콜라겐 살 돈으로 계란이랑 고기 사서 끼니마다 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 63
+        }
+      ],
+      "products": [],
+      "ms": 6243,
+      "sessionId": "58a1bcd5-a9dc-4ab4-b976-29c6badd67b6"
+    }
+  ],
+  "failed": [],
+  "sessionId": "58a1bcd5-a9dc-4ab4-b976-29c6badd67b6"
+}

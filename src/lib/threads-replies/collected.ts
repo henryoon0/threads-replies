@@ -22,7 +22,9 @@ export interface CollectedFile {
 }
 
 /** 박약사 AMA 글 본문 발췌 (전문은 저장돼 있지 않다 — data/content-ideas-records/manual-2026-09-27-ama-1.json 의 sourceQuote). */
-const POST_EXCERPTS: Record<string, string> = {};
+const POST_EXCERPTS: Record<string, string> = {
+  DdvdAKek5at: "다여트주사 궁금한거 다 물어봐. … 뭐 그거말고도 뭐 영양제 비타민 이런것도 던져봐. 답해줄께.",
+};
 
 export function postIdFromSource(source: string | undefined): string {
   const m = /\/post\/([A-Za-z0-9_-]+)/.exec(source ?? "");

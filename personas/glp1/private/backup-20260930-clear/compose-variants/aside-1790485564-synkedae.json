@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485564-synkedae",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:36:37.445Z",
+  "updatedAt": "2026-09-30T05:37:45.884Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "영양제보다 잠이 먼저야. 4-5시간 자면서 약으로 버티는 건 안돼. 평일에 30분이라도 더 자.\n\n그다음 오메가3 EPA+DHA 합 1000mg 이상을 식후에 먹어. 눈건조랑 염증 둘 다 여기서 잡아. 햇빛 못 보면 비타민D는 거의 부족해.\n\n약국은 오쏘몰 가끔 말고 비맥스 메타를 매일 아침 식후에 먹어.\n온라인이면 rTG 오메가3 1000mg짜리 암거나 무난해.\n직구는 나우푸드 D3 2000IU 아침 식후. 다른 거랑 합쳐서 4000IU는 넘기지 마-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 134
+        },
+        {
+          "kind": "product",
+          "start": 136,
+          "end": 255
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 13056,
+      "sessionId": "4f440906-fe44-4e4f-8bf5-f7cc555a2b49"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "피로·염증·눈건조 다 뿌리는 잠이야. 4-5시간 자면서 주3-4 운동까지 하면 몸이 회복할 시간이 없어서 염증이 안빠지거든. 평일 30분만 더 자고 점심에 10분 햇빛 쬐어.\n\n추가할 건 오메가3랑 비타민D. 오메가3는 EPA+DHA 합 1000mg 이상, rTG형으로 식후에 먹어. 눈물막이랑 염증 둘 다 잡아줘. 마그네슘은 자기 전으로 옮기고.\n\n직구는 나우푸드 D3 2000IU 아침 식후, 오메가3는 노르딕내추럴 얼티메이트 오메가 하루 2알. 약국이면 rTG 오메가3 1000mg짜리 아무거나 무난해. D는 다 합쳐서 하루 4000IU 넘기지 마-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 97
+        },
+        {
+          "kind": "ingredient",
+          "start": 99,
+          "end": 194
+        },
+        {
+          "kind": "product",
+          "start": 196,
+          "end": 310
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 17723,
+      "sessionId": "afa81d28-a89d-4b06-bc3c-d616d70a4c0b"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 비맥스 메타 하루 1정 아침 식후, 오쏘몰 가끔 말고 이걸 매일.\n온라인이면 rTG 오메가3 EPA+DHA 합 1000mg 이상 식후, 이 정도면 무난해.\n직구는 나우푸드 D3 2000IU 점심 식후. 다른 제품이랑 합쳐서 하루 4000IU 넘기지 마.\n\n근데 4시간 자면 아무도움안돼. 평일 30분이라도 더 자-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 179
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 10163,
+      "sessionId": "50fef4b3-eaa5-4413-82d0-7de0d5f96e47"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "영양제보다 잠이 먼저야. 평일에 4-5시간 자면서 주3-4 운동까지 하면 몸이 회복할 시간이 없어. 평일에 30분만 더 자고, 잠 모자란 날은 운동 강도를 낮춰. 점심 먹고 10분이라도 밖에 나가서 햇빛 봐.\n\n잠이 모자라면 스트레스 호르몬이 계속 높게 떠 있어서 염증이 가라앉을 틈이 없거든. 거기에 햇빛까지 못 보니까 비타민D가 바닥나서 피로가 더 쌓이는 거고. 화면 보는 시간이 긴 날엔 인공눈물을 수시로 넣어.\n\n지금 조합에 두 개만 더해.\n1/ 오메가3: EPA+DHA 합쳐서 1000mg 이상, rTG형으로. 눈건조랑 염증을 둘 다 잡는 쪽이야.\n2/ 비타민D3: 하루 2000IU, 기름기 있는 점심 먹고 챙겨먹어.\n마그네슘은 자기 전으로 옮겨. 이렇게 한 달 해도 피곤하면 비타민D랑 페리틴 피검사부터 해봐-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 116
+        },
+        {
+          "kind": "principle",
+          "start": 118,
+          "end": 233
+        },
+        {
+          "kind": "ingredient",
+          "start": 235,
+          "end": 404
+        }
+      ],
+      "products": [],
+      "ms": 16124,
+      "sessionId": "59915485-1e6d-43c6-9035-712ef934c31e"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "4-5시간 자면 몸이 밤새 염증을 못 치우거든. 영양제보다 30분 더 자는 게 먼저고, 햇빛을 못 보니 비타민D 2000IU는 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 76
+        }
+      ],
+      "products": [],
+      "ms": 6757,
+      "sessionId": "f89f6b9f-0655-4903-bec8-5d93c2160d55"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "4시간 자고 운동하면서 피로 잡을 영양제는 없어. 평일에 한 시간 더 자는 게 오메가3 한 통보다 나아-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 58
+        }
+      ],
+      "products": [],
+      "ms": 4591,
+      "sessionId": "d54c0bcd-05a4-479a-9c14-ab6878d4991f"
+    }
+  ],
+  "failed": [],
+  "sessionId": "d54c0bcd-05a4-479a-9c14-ab6878d4991f"
+}

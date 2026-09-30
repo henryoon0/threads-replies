@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483301-pig00princess",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:29:49.247Z",
+  "updatedAt": "2026-09-30T08:30:57.950Z",
+  "planned": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "배란기부터 생리 끝까지 한 달에 3주를 뺏기면 그건 흔한 PMS 수준이 아니야. 졸린 안정제로 그때그때 누르는 건 답이 아니고 산부인과 가서 제대로 치료받을 일이야. 진료 전까지 생리 주기랑 증상을 2~3달 적어둬. 진료 볼 때 그게 젤 쓸모 있어. 한 달에 열흘만 사는 건 너무 손해야.\n\n이 정도면 PMDD일 수 있어. 배란 뒤에 호르몬이 출렁일 때 뇌가 유난히 세게 반응하는 거라 참는다고 나아지는 게 아니거든. 그래서 SSRI를 생리 전 기간에만 짧게 쓰거나, 피임약으로 배란 자체를 멈춰서 호르몬 요동을 없애는 방법이 있어. 둘 다 지금 안정제보다 훨씬 나을꺼야.\n\n영양제는 보조로 쓰는 거야. 프리페민(아그누스카스투스) 하루 한 알씩 3개월은 꾸준히 먹고, 칼슘은 음식까지 합쳐서 하루 1000~1200mg 맞춰. 이 둘은 근거가 있는 편이고 마그네슘·B6는 약해. 배란기 뒤에 단 거 폭식하면 혈당이 출렁여서 기분도 같이 출렁이니까 단백질 넣어서 끼니를 나눠 먹고, 커피 줄이고 매일 30분 걸어-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 161
+        },
+        {
+          "kind": "principle",
+          "start": 163,
+          "end": 320
+        },
+        {
+          "kind": "ingredient",
+          "start": 322,
+          "end": 509
+        }
+      ],
+      "products": [],
+      "ms": 15556,
+      "sessionId": "7fde3515-c1cb-4f7e-907f-766e2af636a1"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "배란기부터 생리 끝까지 가고 울고불고할 정도면 흔한 PMS가 아니라 PMDD일 수 있어. 호르몬이 출렁일 때 뇌가 과하게 반응하는 거라 졸린 안정제로 그때그때 누르는 건 답이 아니야. 산부인과 가서 SSRI나 배란 자체를 막는 피임약 상담 받아. 증상 달력 2달 적어가면 판단 빨라져-\n\n같이 챙길 건 아그누스카스투스 3개월 꾸준히, 칼슘 하루 1000mg. 이 둘은 근거 있는 편이고 마그네슘·B6는 약해. 배란 뒤 단 거 터질 땐 단백질로 끼니 나눠 먹고 매일 30분 걸어.\n\n약국은 프리페민 하루 1정 아침에. 직구는 나우푸드 칼슘&마그네슘 2정씩 하루 2번 식후에 챙겨먹어.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 159
+        },
+        {
+          "kind": "ingredient",
+          "start": 161,
+          "end": 267
+        },
+        {
+          "kind": "product",
+          "start": 269,
+          "end": 325
+        }
+      ],
+      "products": [],
+      "ms": 15659,
+      "sessionId": "adffa06d-2c24-42fa-bff2-fca3e842418f"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 프리페민 하루 1정, 효과 보려면 최소 3개월은 먹어야 돼.\n온라인이면 종근당건강 칼슘앤마그네슘 비타민D 아연, 칼슘을 하루 1000mg에 맞춰서 저녁에 나눠먹어.\n직구는 나우푸드 B-6 50mg, 아침에 한 알.\n\n배란기부터는 단 거 대신 단백질로 끼니를 쪼개 먹어-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 154
+        }
+      ],
+      "products": [],
+      "ms": 11420,
+      "sessionId": "7fc767d6-a684-4656-ae78-413090b7cf81"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "배란기부터 생리 끝까지 그 정도면 흔한 PMS 말고 PMDD일 수 있어. 호르몬 요동에 뇌가 과하게 반응하는거라 졸린 안정제로 누를 게 아니라 병원가서 피임약이나 SSRI로 잡아야 해. 그 사이 단거 폭식 끊고 매일 30분 걸어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 128
+        }
+      ],
+      "products": [],
+      "ms": 7414,
+      "sessionId": "24892ce9-b76d-4c3a-8938-180b105099a3"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "배란기부터 생리 끝까지 울고불고할 정도면 PMS 넘어 PMDD일 수 있어. 졸린 안정제로 버티지 말고 산부인과 가서 피임약이나 SSRI 얘기해봐.\n\n아그누스(프리페민)랑 칼슘 하루 1000mg은 근거가 있는 편이고 마그네슘·B6는 약해. 단 거 대신 단백질로 끼니 나누고 매일 30분 걸어.\n\n약국은 프리페민 하루 1정 아침에, 3개월은 먹어봐야 알수가 있어.\n온라인이면 종근당건강 칼마디 정도면 무난해.\n직구는 나우푸드 칼슘 앤 마그네슘, 칼슘 500mg씩 아침저녁 식후로 나눠 먹어-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 162
+        },
+        {
+          "kind": "product",
+          "start": 164,
+          "end": 272
+        }
+      ],
+      "products": [],
+      "ms": 11525,
+      "sessionId": "36bc9a81-eaac-4e79-80f0-de1e7898e2a7"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "한 달에 멀쩡한 날이 열흘이면 PMS 선 넘은 거야. 산부인과부터 가고 단 거 끊고 매일 걸어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 53
+        }
+      ],
+      "products": [],
+      "ms": 7110,
+      "sessionId": "2af8bacd-188a-4026-95f2-ffe9ac1e1787"
+    }
+  ],
+  "failed": [],
+  "sessionId": "2af8bacd-188a-4026-95f2-ffe9ac1e1787"
+}

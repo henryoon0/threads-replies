@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487504-feel1910",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:30:35.706Z",
+  "updatedAt": "2026-09-30T07:31:38.452Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "호르몬 채워주는 영양제는 없어. 이른 갱년기는 산부인과 호르몬검사가 먼저야.\n약국은 레미페민정(서양승마 추출물 20mg) 아침저녁 한알씩. 열감 잡는 용도인데 근거는 약해.\n직구는 나우푸드 D3 2000IU 하루 한알. 뼈 지키는 용도야.\n그리고 주3회 근력운동. 이게 젤 센 약이야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 159
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 12459,
+      "sessionId": "d325ce2e-48b5-43b6-bb5f-0763884dabc8"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "호르몬 영양제라는 건 없어. 영양제로 호르몬을 채울 수는 없거든. 이른 갱년기는 뼈랑 혈관이 일찍 약해지니까 산부인과 가서 호르몬 검사랑 호르몬치료 상담부터 받아. 이건 꼭이야.\n\n영양제는 증상 달래는 용도야. 칼슘 500mg이랑 비타민D는 뼈를 지키고, 마그네슘 300mg은 자기 전에 먹으면 잠에 도움돼. 근력운동 주 3회가 어떤 영양제보다 뼈에 세.\n\n약국은 레미페민(서양승마 추출물) 아침저녁 1정씩. 근거는 약하니까 3개월 먹어보고 판단해.\n온라인이면 칼슘마그네슘D 복합제 암거나 무난해.\n직구는 나우푸드 D3 2000IU. 다른 제품이랑 합쳐서 하루 4000IU 넘지 않게-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 99
+        },
+        {
+          "kind": "ingredient",
+          "start": 101,
+          "end": 198
+        },
+        {
+          "kind": "product",
+          "start": 200,
+          "end": 327
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 12852,
+      "sessionId": "1f6050cd-0b3d-49c5-abad-f23f46eb0263"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "호르몬 영양제라는 건 없어. 이른 갱년기면 산부인과에서 호르몬 검사부터 받고 HRT 상담해. 뼈랑 혈관 때문에 그게 먼저야. 칼슘 500mg이랑 비타민D는 저녁에 챙겨먹고, 근력운동은 주 2번 꼭 해-\n\n약국은 레미페민(서양승마) 하루 2번. 열감 좀 누그러뜨리는 정도고 근거는 약해.\n온라인이면 종근당건강 칼슘앤마그네슘 비타민D 정도면 무난해.\n직구는 나우푸드 D3 2000IU 하루 한 알. 다른 제품이랑 합쳐서 하루 4000IU 넘지 않게.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 112
+        },
+        {
+          "kind": "product",
+          "start": 114,
+          "end": 249
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 11028,
+      "sessionId": "edf1a7f0-d8bb-4526-a5ca-d25125b67d51"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "이른 갱년기면 영양제보다 산부인과가 먼저야. 호르몬 수치 검사를 받고 호르몬치료(HRT) 상담까지 꼭 받아. 근력운동이랑 하루 30분 걷기는 오늘부터 시작하고. 물어볼 데 없으면 여기 와서 물어봐-\n\n호르몬 영양제라는 건 사실 없어. 영양제로 에스트로겐을 채울 수는 없거든. 이른 갱년기는 호르몬이 일찍 빠지는 만큼 뼈랑 혈관이 또래보다 빨리 약해져. 그래서 열감 좀 참고 넘기면 되는 문제가 아니야.\n\n열감이랑 잠 때문에 힘들면 약국에서 훼모라(서양승마 추출물) 정도는 먹어봐도 돼. 근데 근거는 약한 편이야. 뼈 챙기려면 칼슘 500mg이랑 비타민D 1000~2000IU를 같이 챙겨먹어. 종합비타민을 먹고 있으면 라벨에서 겹치는지 확인하고, 커피는 하루 한 잔으로 줄여.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 110
+        },
+        {
+          "kind": "principle",
+          "start": 112,
+          "end": 224
+        },
+        {
+          "kind": "ingredient",
+          "start": 226,
+          "end": 378
+        }
+      ],
+      "products": [],
+      "ms": 14080,
+      "sessionId": "0310d1e8-6dcc-49d6-84a7-8112a817a18c"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "호르몬을 채워주는 영양제는 없어. 이른 갱년기는 뼈랑 혈관이 일찍 약해지니까 산부인과 호르몬 검사부터 받아. 근력운동은 오늘부터 챙겨-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 75
+        }
+      ],
+      "products": [],
+      "ms": 6156,
+      "sessionId": "83189b4f-6754-4d4f-9739-a729cf3d425d"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "호르몬 채워주는 영양제는 없어. 이른 갱년기는 산부인과 호르몬 검사가 먼저고, 뼈는 근력운동이 젤 싸게 지켜줘-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 62
+        }
+      ],
+      "products": [],
+      "ms": 6156,
+      "sessionId": "87776ac7-92ed-4465-ad36-cb9c4bfe066a"
+    }
+  ],
+  "failed": [],
+  "sessionId": "87776ac7-92ed-4465-ad36-cb9c4bfe066a"
+}

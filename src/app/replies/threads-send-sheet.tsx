@@ -21,7 +21,7 @@ export interface SheetPersona {
   send: "api" | "copy";
 }
 
-const MARKS: Record<string, string> = {};
+const MARKS: Record<string, string> = { glp1: "약" };
 
 function Preview({ persona, to, message, image, gate }: { persona: SheetPersona; to: string; message: string; image: string | null; gate: GateResult }) {
   return (

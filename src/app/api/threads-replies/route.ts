@@ -9,6 +9,7 @@ import { readAnswerJob, updateRepliesLedger } from "@/lib/threads-replies/storag
 import { groupByPost, summarize } from "@/lib/threads-replies/summary";
 import { syncIfStale } from "@/lib/threads-replies/sync";
 import { currentPersona, withPersonaRequest } from "@/lib/personas/context";
+import { readProfile } from "@/lib/profile";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,7 +33,7 @@ async function handleGET(request: NextRequest) {
     sync: ledger.sync,
     job: await readAnswerJob(),
     persona: { id: persona.id, name: persona.name, handle: persona.handle, send: persona.send, gate: persona.gate },
-    me: persona.handle,
+    me: (await readProfile()).username || persona.handle,
   });
 }
 

@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790484974-hyotamin__",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:41:30.825Z",
+  "updatedAt": "2026-09-30T05:42:36.942Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "퀘르세틴은 근거가 약해. 대부분 시험관이랑 동물 실험 얘기고 애들 비염 자료는 거의 없어. 좋아진 건 계절이 바뀐 탓일 수도 있어. 성인용 500mg 캡슐은 먹이지 말고 LGG나 파라카제이 균주가 적힌 유산균으로 바꿔. 저녁마다 식염수 코세척하고 침구는 일주일에 한 번 60도로 빨아. 이게 더 확실해-\n\n약국은 닐메드 사이너스린스 키즈로 코세척해.\n온라인이면 균주 표기된 소아 유산균은 암거나 무난해.\n직구는 내가 좋아하는 컬처렐 키즈(LGG) 하루 1포 아침에.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 169
+        },
+        {
+          "kind": "product",
+          "start": 171,
+          "end": 260
+        }
+      ],
+      "products": [],
+      "ms": 13429,
+      "sessionId": "0dafb54e-8dda-4dd2-8859-956f0da989fc"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "솔직히 기분탓일 확률이 더 커. 퀘르세틴이 히스타민을 덜 나오게 한다는 건 거의 시험관이랑 동물 실험 얘기고, 애들 비염에서 확인된 건 없어. 계절 바뀌면 원래 좀 나아지거든.\n\n계속 먹일꺼면 성인용 500mg짜리는 피해. 애들 용량 자료가 없어. 영양제로 갈 거면 차라리 LGG나 파라카제이처럼 균주 표기된 유산균이 근거가 낫고, 이불 60도 세탁이 둘 다보다 먼저야.\n\n약국은 피지오머 같은 생리식염수 코스프레이 사서 아침저녁 씻겨.\n온라인이면 균주 적힌 소아 유산균 아무거나 무난해.\n직구는 난 컬처렐 키즈(LGG 100억) 좋아해. 하루 한 포-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 98
+        },
+        {
+          "kind": "ingredient",
+          "start": 100,
+          "end": 207
+        },
+        {
+          "kind": "product",
+          "start": 209,
+          "end": 309
+        }
+      ],
+      "products": [],
+      "ms": 15153,
+      "sessionId": "d8718c69-c5a6-4574-84a8-3a4177374dee"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "퀘르세틴은 애한테 쓸 근거가 약해. 이걸로 바꿔.\n약국은 소아용 생리식염수 코세척, 아침저녁 하루 두 번.\n온라인이면 LGG나 파라카제이 균주명 적힌 소아 유산균, 아침에 하루 1포.\n직구는 컬처렐 키즈 LGG 100억, 하루 1포 찬물에 타서-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 137
+        }
+      ],
+      "products": [],
+      "ms": 11073,
+      "sessionId": "d8d7e813-d7c5-4faf-8c61-cad668a4540f"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "솔직히 기분탓일 확률이 더 커. 근데 애 비염은 영양제보다 코랑 이불 관리가 먼저야. 생리식염수로 저녁마다 코세척 한번 해주고, 이불이랑 베개커버는 일주일에 한번 60도 이상 물로 빨아. 진드기가 원인이면 이거 하나로 확 달라질꺼야.\n\n퀘르세틴이 콧물 나오게 하는 히스타민 분비를 막는다는 건 시험관이랑 동물 실험 얘기고, 사람 근거는 약해. 소아 자료는 거의 없어. 요즘 환절기라 계절 따라 좋아졌을 수도 있거든.\n\n계속 먹일꺼면 성인용 500mg짜리 고용량은 먹이지마. 소아 용량 자료가 없어서 안전선을 알수가 없어. 영양제로 갈 거면 차라리 락토바실러스 람노서스 GG나 파라카제이 균주가 표기된 유산균이 근거가 더 있어. 증상 심한 날 쓸 소아 항히스타민 시럽은 집에 하나 구비해 둬-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 130
+        },
+        {
+          "kind": "principle",
+          "start": 132,
+          "end": 232
+        },
+        {
+          "kind": "ingredient",
+          "start": 234,
+          "end": 386
+        }
+      ],
+      "products": [],
+      "ms": 12027,
+      "sessionId": "b736bfa9-0bb1-4ba7-bfeb-6f20d8a93068"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "퀘르세틴은 시험관에선 히스타민을 잡는데 사람, 특히 애들한테는 근거가 약해. 좋아진건 계절이 바뀐 덕일 수도 있어. 차라리 식염수 코세척을 매일 해줘-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 84
+        }
+      ],
+      "products": [],
+      "ms": 6243,
+      "sessionId": "cf2ec328-aea4-4c8b-8398-2582de2fee46"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "퀘르세틴은 근거가 약해서 기분탓 맞을꺼야. 매일 식염수로 코세척 시키고 이불 뜨거운 물에 빠는게 그거보다 나음-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 62
+        }
+      ],
+      "products": [],
+      "ms": 8172,
+      "sessionId": "135b2858-b09c-4232-882e-fad04a1ce751"
+    }
+  ],
+  "failed": [],
+  "sessionId": "135b2858-b09c-4232-882e-fad04a1ce751"
+}

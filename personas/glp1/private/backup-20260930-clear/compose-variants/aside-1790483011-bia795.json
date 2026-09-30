@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483011-bia795",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T06:08:48.154Z",
+  "updatedAt": "2026-09-30T06:09:59.923Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 부스코판정 10mg. 시험 전 주말에 한 번 먹여보고 맞으면 당일에 써.\n직구는 IBgard 페퍼민트오일 90mg을 식전에 먹이고, 자로우 아이디얼 바울 서포트(299v)는 시험 3주 전부터 하루 한 알. 효과는 애마다 달라.\n시험 당일 아침엔 우유랑 에너지드링크부터 빼-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 156
+        }
+      ],
+      "products": [],
+      "ms": 13317,
+      "sessionId": "45372871-cba8-452f-b316-ea2140f321ab"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "시험 때만 아프면 장이 약한 게 아니라 긴장이 장을 흔드는 거야. 평소엔 락토바실러스 플란타룸 299v 유산균을 시험 3~4주 전부터 하루 1캡슐씩 꾸준히 먹여. 효과는 사람마다 달라. 시험 주간 아침엔 우유, 기름진 거, 에너지드링크 빼고 먹던 순한 밥으로 가-\n\n약국은 부스코판정 10mg. 배가 뒤틀릴 때 1정인데, 모의고사 날 미리 한 번 먹여보고 맞는지 봐. 직구는 재로우 아이디얼 바울 서포트 299v, 하루 1캡슐. 이거 먹이면 다른 유산균은 겹쳐 먹일 필요 없어.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 147
+        },
+        {
+          "kind": "product",
+          "start": 149,
+          "end": 267
+        }
+      ],
+      "products": [],
+      "ms": 18440,
+      "sessionId": "28761f6b-69c6-4258-acf4-c504391a127d"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "시험 때만 아픈 건 장보다 긴장 문제야. 뇌랑 장이 신경으로 이어져 있어서 스트레스를 받으면 장이 먼저 꼬이거든. 시험 기간엔 우유, 기름진 거, 매운 거, 에너지드링크는 빼고 먹던 순한 밥으로 가.\n\n페퍼민트오일은 장 경련을 푸는 데 근거가 괜찮은 편이야. 장에서 녹는 캡슐로 골라서 식전 30분에 먹여. 시험날 첨 먹이지 말고 모의고사 때 미리 먹여보고 맞는지 확인해.\n\n약국은 부스코판 10mg, 배가 뒤틀릴 때 1정.\n온라인이면 플란타룸 299v 유산균, 이 정도면 무난해. 시험 4주 전부터 매일 먹여.\n직구는 IBgard 페퍼민트오일 90mg, 식전에 2캡슐. 혈변이 나오거나 살이 빠지면 영양제 말고 병원부터 가-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 111
+        },
+        {
+          "kind": "ingredient",
+          "start": 113,
+          "end": 208
+        },
+        {
+          "kind": "product",
+          "start": 210,
+          "end": 350
+        }
+      ],
+      "products": [],
+      "ms": 16079,
+      "sessionId": "b5d6e0a9-1720-40ee-b6a1-830539c615b5"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "시험 때만 아픈 거면 장보다 긴장이 문제야. 평소 관리랑 시험 당일 대처를 나눠서 준비해. 대신 혈변이 있거나 살이 빠지거나 시험 아닐 때도 계속 아프면 영양제 말고 병원부터 가.\n\n뇌랑 장은 신경으로 이어져 있어서 머리가 긴장하면 장도 같이 쥐어짜거든. 그래서 시험 기간이랑 당일 아침엔 우유, 기름진 거, 매운 거, 에너지드링크는 빼고 먹던 순한 밥으로 가. 잠 줄여서 공부시키면 배가 먼저 알어.\n\n1/ 평소엔 과민성대장 연구가 있는 균주 유산균(락토바실러스 플란타룸 299v)을 시험 3~4주 전부터 매일 먹여. 효과는 사람마다 달라.\n2/ 당일용은 페퍼민트오일 캡슐이 근거가 괜찮은 편이야. 모의고사 때 미리 한 번 먹여보고 맞는지 확인해-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 100
+        },
+        {
+          "kind": "principle",
+          "start": 102,
+          "end": 224
+        },
+        {
+          "kind": "ingredient",
+          "start": 226,
+          "end": 363
+        }
+      ],
+      "products": [],
+      "ms": 12202,
+      "sessionId": "33d9315f-77e9-4134-916d-94e0d7989b56"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "장이 약한 게 아니라 머리가 긴장하면 장이 같이 조여드는 거야. 뇌랑 장이 신경으로 붙어있거든. 그래서 시험기간엔 우유, 기름진거, 에너지드링크부터 빼는게 먼저야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 91
+        }
+      ],
+      "products": [],
+      "ms": 6196,
+      "sessionId": "0c3a8481-d5ac-46ab-9e06-6d47e4d76a30"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "시험날 아침엔 우유랑 에너지드링크부터 빼고 먹던 순한 밥 먹여. 그게 젤 싼 장약이야.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 48
+        }
+      ],
+      "products": [],
+      "ms": 5508,
+      "sessionId": "7f022d58-150a-466a-8439-5848abc05a13"
+    }
+  ],
+  "failed": [],
+  "sessionId": "7f022d58-150a-466a-8439-5848abc05a13"
+}

@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790486269-hyieye3",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:20:22.091Z",
+  "updatedAt": "2026-09-30T05:21:32.306Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "구성은 거의 괜찮아. 대신 엽산이 빠졌고 술이 젤 문제야. 술은 B군을 태우고 깊은 잠을 끊어서 자다 깨게 만들거든. 임신 준비면 술부터 줄여-\n\n아르기닌은 이 상황엔 근거가 약해서 빼도 돼. 비맥스 메타는 B2 하나가 아니라 B군 전체라 피로엔 이게 맞어. 엽산은 라벨 보고 합쳐서 400~800mcg 맞춰. 마그네슘은 저녁에.\n\n약국은 비맥스 메타 하루 1알 아침 식후.\n온라인이면 종근당 엽산 400mcg 정도면 무난해.\n직구는 나우푸드 D3 2000IU 아침 식후, 노르딕내추럴 얼티메이트 오메가 식후. 코큐텐은 필수 아냐.\nD는 다 합쳐 하루 4000IU 넘기지 마.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 80
+        },
+        {
+          "kind": "ingredient",
+          "start": 82,
+          "end": 184
+        },
+        {
+          "kind": "product",
+          "start": 186,
+          "end": 322
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 14853,
+      "sessionId": "e034cc74-b823-4d05-9d31-a94923ce0fbd"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "구성은 잘 짰어. 근데 피로랑 잠은 영양제보다 생활에서 먼저 잡아야 돼.\n\n자기 1시간 전엔 폰 내려놓고 커피는 오후 2시 전까지만 마셔. 일할 땐 20분마다 20초씩 먼 데 보는 것만 해도 눈 피로가 확 줄어-\n\n술 자주 마시면 잠이 얕아지는 게 젤 커. 알코올이 처음엔 재워주는데 새벽에 분해되면서 자꾸 깨게 만들거든. 비타민B도 같이 털어가고. 간 영양제 찾기 전에 마시는 횟수부터 줄여. 임신 준비하면 어차피 끊어야 할꺼야.\n\n1/ 아르기닌은 빼. 너한텐 근거가 약해.\n2/ 엽산이 빠졌어. 임신 3개월 전부터가 기본이라 지금부터 하루 400~800mcg 챙겨. 비맥스 메타에도 엽산이 들어 있으니 라벨 보고 합쳐서 계산해.\n3/ 마그네슘은 저녁에, 비타민D는 아침 먹고 1000~2000IU. 오메가3·D·엽산은 아이허브에서 나우푸드나 쏜 거 사면 무난해. 코큐텐은 필수는 아니고, 먹을 거면 유비퀴놀로 사.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 118
+        },
+        {
+          "kind": "principle",
+          "start": 120,
+          "end": 241
+        },
+        {
+          "kind": "ingredient",
+          "start": 243,
+          "end": 457
+        }
+      ],
+      "products": [],
+      "ms": 19131,
+      "sessionId": "db226567-b5cd-45e7-aa40-aecd43ba2c56"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "아르기닌은 빼. 너한테는 근거가 약해. 비맥스 메타는 B2만이 아니라 B군 전체라 피로엔 잘 맞고, 빠진 건 엽산이야. 임신 계획 있으면 400mcg 지금부터 챙겨먹어. 자다 깨는 건 술 탓이 커. 영양제로 못 메우니까 술부터 줄여-\n\n약국은 엽산 400mcg 단일제면 충분해. 비맥스 메타 라벨에 엽산 있으면 합쳐서 1000mcg 안 넘게.\n온라인이면 rTG 오메가3 EPA+DHA 1000mg 제품 암거나 무난해. 밥 먹고.\n직구는 나우푸드 D3 2000IU 아침에. 다른 거랑 합쳐서 하루 4000IU 넘지 마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 130
+        },
+        {
+          "kind": "product",
+          "start": 132,
+          "end": 289
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 13295,
+      "sessionId": "31a31a58-525d-4e19-85a1-91858ba17142"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "피곤하고 자다 깨는 건 술 탓이 젤 커. 알코올은 B군을 써버리고, 깨면서 새벽에 몸을 깨우거든. 영양제 늘리기 전에 술 횟수부터 줄여. 그리고 임신 계획 있으면 엽산이 빠졌어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 99
+        }
+      ],
+      "products": [],
+      "ms": 8887,
+      "sessionId": "48e7000a-de12-48a9-95eb-77678750a8b2"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 엽산 400mcg 단일제 하나, 지금부터 아침 식후에.\n온라인이면 rTG 오메가3 EPA+DHA 1000mg짜리 암거나 무난해, 점심 식후.\n직구는 나우푸드 D3 2000IU 저녁에 한알. 코큐텐은 필수 아니고 술 줄이는 게 먼저야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 134
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 10302,
+      "sessionId": "4a221beb-5b3d-4c68-8d20-f9c242ae6031"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "공부는 벌써 약대 입시 수준인데 술이 그 영양제 다 까먹는 중이야. 임신 준비하면 술부터 줄여 돈도 안들고-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "products": [],
+      "ms": 3730,
+      "sessionId": "e523c6c5-2c2c-4763-a6b7-23e7649aaeeb"
+    }
+  ],
+  "failed": [],
+  "sessionId": "e523c6c5-2c2c-4763-a6b7-23e7649aaeeb"
+}

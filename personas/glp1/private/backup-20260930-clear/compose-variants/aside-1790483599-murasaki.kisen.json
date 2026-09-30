@@ -1,0 +1,247 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483599-murasaki.kisen",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:57:19.693Z",
+  "updatedAt": "2026-09-30T05:58:34.584Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "프리네이털 한 통으로 다 해결하려니까 알이 커지는 거야. 속을 뒤집는 주범은 철분이라, 초기엔 빼고 중기에 산부인과 피검사 보고 붙여도 돼.\n\n엽산 400mcg 한 알이면 기본은 돼. 철분은 비스글리시네이트로 자기 전에, 커피·우유랑은 2시간 띄어서 먹어. 입덧 있으면 빈속에 삼키지 말고 크래커 몇 조각 먹고 넘겨.\n\n약국은 엽산 400mcg 단일제 작은 알 하나.\n온라인이면 철분 빠진 구미형 프리네이털 정도가 무난해.\n직구는 노르딕내추럴 프리네이털 DHA, 철분 필요해지면 쏜 아이언 비스글리시네이트 이틀에 한 번-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 78
+        },
+        {
+          "kind": "ingredient",
+          "start": 80,
+          "end": 177
+        },
+        {
+          "kind": "product",
+          "start": 179,
+          "end": 291
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 12174,
+      "sessionId": "b6489ec9-7df9-48ee-b30a-d03cb9d09471"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "한 알에 다 넣으려니까 알이 커지는 거야. 쪼개서 먹어. 엽산은 메틸폴레이트 400~800mcg 작은 알 하나, DHA는 따로. 철분은 중기부터 산부인과 피검사 보고 시작해도 늦지 않어. 철분 먹을 땐 물 넉넉히 마시고 저녁 식후로 옮겨.\n\n약국은 엽산 단일제 작은 알로 달라고 하면 돼.\n온라인이면 메틸폴레이트 400mcg 제품 암거나 무난해.\n직구는 쏜 아이언 비스글리시네이트 25mg, 이틀에 한 번 식후. 이건 내가 먹는 거-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 133
+        },
+        {
+          "kind": "product",
+          "start": 135,
+          "end": 242
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 16450,
+      "sessionId": "558ed4f8-fda2-4fd8-90f1-5b2ce7921e75"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 엽산 400mcg 단일제 작은 알 하나로 끝내.\n온라인이면 DHA 200mg 넘는 rTG 오메가3 아무거나 무난해. 식후 1캡슐.\n직구는 스마티팬츠 프리네이털 구미. 철분 없고 씹어먹어서 편해. 철분은 중기부터 쏜 아이언 비스글리시네이트 이틀에 한 번 자기 전, 물 넉넉히-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 157
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 15103,
+      "sessionId": "5a40f6b6-70b0-4c48-89f0-139f912ba544"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "큰 알 억지로 삼키다가 결국 안 먹게 되는 게 젤 손해야. 프리네이털 한 통으로 다 끝내려 하지 말고 필요한 것만 쪼개서 가. 그리고 끼니마다 고기나 계란 하나씩 넣고 물 넉넉히 마셔. 이것만 해도 철분 부담이 꽤 줄어-\n\n철분 때문에 속이 뒤집히는 건 맞아. 철분이 위를 자극해서 메스껍고 변비도 잘 생기거든. 근데 중기부터는 피가 늘어나서 철분 필요량이 확 뛰니까 아예 빼면 안돼. 언제 얼마나 먹을지는 산부인과 피검사로 빈혈 수치 보고 정해.\n\n1/ 엽산: 메틸폴레이트 400~800mcg 작은 알 하나, 매일\n2/ 오메가3 DHA: 따로 하루 200mg 이상, 식후에\n3/ 철분: 필요해지면 속 편한 비스글리시네이트 형태로 자기 전에. 칼슘·커피랑은 2시간 넘게 띄어",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 123
+        },
+        {
+          "kind": "principle",
+          "start": 125,
+          "end": 250
+        },
+        {
+          "kind": "ingredient",
+          "start": 252,
+          "end": 377
+        }
+      ],
+      "products": [],
+      "ms": 14391,
+      "sessionId": "74b87c30-6ecf-460e-b8d7-f78586ecc8af"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "프리네이털은 한 알에 다 때려넣으니까 알이 커지는 거야. 초기엔 엽산 작은 알 하나면 충분하고, 철분은 중기부터 필요량이 늘어서 그때 피검사 보고 따로 붙여도 늦지 않어. 그 전엔 소고기·계란 자주 먹는 걸로 버텨-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 120
+        }
+      ],
+      "products": [],
+      "ms": 8343,
+      "sessionId": "5646425b-b793-49c8-b148-4f57803d444d"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "알약 삼키기 대회 나갈거 아니면 엽산 작은 알 하나랑 DHA만 따로 챙겨먹어. 철분은 붉은 고기로 먼저 채우고 피검사 보고 붙여.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 72
+        }
+      ],
+      "products": [],
+      "ms": 8414,
+      "sessionId": "57794204-9ea0-42f2-b0f1-0ffd6aced973"
+    }
+  ],
+  "failed": [],
+  "sessionId": "57794204-9ea0-42f2-b0f1-0ffd6aced973"
+}

@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790484261-healthlife_value",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:14:26.487Z",
+  "updatedAt": "2026-09-30T08:15:40.053Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "감기를 막아주는 만능 영양제는 없어. 비타민D가 바닥나면 면역이 기본 힘을 못 내서 예방은 그걸 채우는 거고, 걸렸을 땐 아연이 바이러스가 불어나는 걸 늦춰서 앓는 기간이 줄거든. 비타민C는 기대만큼 안돼.\n\n평소엔 비타민D3 하루 1000~2000IU를 아침 식후에. 목이 칼칼하면 24시간 안에 아연 로젠지를 시작해서 일주일만 먹어. 제일 센 감기약은 7시간 잠이야-\n\n온라인이면 국산 비타민D 1000IU 단일제면 무난해.\n직구는 나우푸드 D3 2000IU 아침에 한 알, 콜드이즈 아연 로젠지는 걸렸을 때 일주일만.\nD는 종합비타민이랑 합쳐서 하루 4000IU 넘기지 마.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 115
+        },
+        {
+          "kind": "ingredient",
+          "start": 117,
+          "end": 207
+        },
+        {
+          "kind": "product",
+          "start": 209,
+          "end": 324
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 15697,
+      "sessionId": "102bad62-2c1f-4a28-8f95-fbdb3f32734c"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "감기 막아주는 만능 영양제는 없어. 예방은 비타민D3 하루 1000~2000IU를 아침 식후에 먹고, 걸렸으면 증상 나고 24시간 안에 아연 로젠지를 일주일만 먹어. 비타민C는 기대만큼 효과 없어. 젤 센 건 잠 7시간이야-\n\n약국은 비맥스 메타 하루 1정 아침 식후.\n직구는 나우푸드 D3 2000IU 아침 식후, 걸렸을 땐 콜드이즈 아연 로젠지를 2~3시간마다 일주일만.\n종합비타민이랑 D를 합쳐서 하루 4000IU 넘기지 마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 125
+        },
+        {
+          "kind": "product",
+          "start": 127,
+          "end": 241
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 14605,
+      "sessionId": "54302fa5-3e56-48b8-a47c-c324ef80e877"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "젤 좋은 건 영양제가 아니라 잠이야. 잠 줄여놓고 영양제로 버티는 건 순서가 거꾸로야. 7시간 이상 자고, 끼니마다 계란·고기·두부 중 하나는 넣고, 밖에 다녀오면 손부터 씻어. 감기가 2주 넘게 가거나 열이 높으면 영양제 말고 병원 가.\n\n감기를 막아주는 만능 영양제는 없어. 면역은 재료가 모자랄 때 흔들리거든. 그래서 예방은 부족한 걸 채우는 거야. 비타민C는 기대만큼 안 돼. 매일 먹어도 예방 효과는 약하고, 앓는 기간이 조금 줄어드는 정도야.\n\n1/ 예방은 비타민D3 하루 1000~2000IU를 아침 식후에 먹어. 종합비타민에 D가 들어 있으면 둘을 합쳐서 계산해.\n2/ 목이 칼칼한 첫날엔 아연 로젠지(글루코네이트나 아세테이트)를 하루 합계 75mg 안팎으로 일주일만 먹어. 오래 먹으면 구리가 빠지니까 딱 그 정도만-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 133
+        },
+        {
+          "kind": "principle",
+          "start": 135,
+          "end": 253
+        },
+        {
+          "kind": "ingredient",
+          "start": 255,
+          "end": 410
+        }
+      ],
+      "products": [],
+      "ms": 16199,
+      "sessionId": "1af4c61b-1d08-47ab-80f9-68ebe74db850"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 아연 로젠지 달라고 해. 걸린 첫날부터 3시간마다 하나씩, 딱 일주일만.\n온라인이면 고려은단 비타민D 1000IU 아침에 하나, 이 정도면 무난해.\n직구는 나우푸드 D3 2000IU 매일 하나. 다른 거랑 합쳐서 하루 4000IU 넘기지 마.\n\n감기 막는 만능 영양제는 없어. 잠 7시간이 젤 쎈 면역제야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 175
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 14170,
+      "sessionId": "6be970cf-d820-47c8-b460-c5f5db655fc3"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "감기 막는 만능 영양제는 없어. 비타민D가 모자라면 면역세포가 제대로 못 움직여서 잘 걸리거든. D3 1000IU 챙겨먹고 잠부터 7시간 확보해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 81
+        }
+      ],
+      "products": [],
+      "ms": 6401,
+      "sessionId": "7142685a-f97e-46bc-a6e8-893f94e85c19"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "감기 한방에 잡는 영양제 있으면 내가 벌써 약국 접고 그거 팔고 있지. 비타민D 챙겨먹고 잠부터 7시간 자-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "products": [],
+      "ms": 6477,
+      "sessionId": "3fc2634c-9761-4384-bd4d-7df8c20961c8"
+    }
+  ],
+  "failed": [],
+  "sessionId": "3fc2634c-9761-4384-bd4d-7df8c20961c8"
+}

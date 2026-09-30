@@ -25,7 +25,7 @@ function writePersonaCookie(id: string) {
 
 function writePersonaToUrl(id: string) {
   const url = new URL(window.location.href);
-  if (id === "me") url.searchParams.delete("persona");
+  if (id === "glp1") url.searchParams.delete("persona");
   else url.searchParams.set("persona", id);
   window.history.replaceState(null, "", url);
 }

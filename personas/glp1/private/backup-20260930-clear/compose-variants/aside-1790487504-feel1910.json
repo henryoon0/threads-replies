@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487504-feel1910",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:06:44.259Z",
+  "updatedAt": "2026-09-30T05:07:56.428Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "호르몬을 채워주는 영양제는 없어. 이른 갱년기면 뼈랑 혈관 때문에 산부인과 호르몬 검사부터 받아.\n약국은 레미페민(서양승마) 아침저녁 한 알씩. 열감용인데 근거는 약해.\n온라인이면 칼슘+D 복합제 저녁에 하나면 무난해.\n직구는 나우푸드 D3 2000IU 아침에 하나. 합쳐서 하루 4000IU 넘지 마.\n뼈엔 주3번 근력운동이 젤 확실해-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 189
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 11885,
+      "sessionId": "e3dc766b-16c3-463c-b0c4-731bd882505f"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "호르몬을 채워주는 영양제는 없어. 이른 갱년기는 여성호르몬이 일찍 빠지면서 뼈랑 혈관이 또래보다 빨리 약해지거든. 그래서 산부인과 가서 호르몬 검사부터 받고, 호르몬치료 상담도 받아. 이건 영양제로 못 메워.\n\n뼈를 지키려면 칼슘 하루 500mg에 비타민D 2000IU 챙겨먹고, 마그네슘은 저녁에 먹어. 근데 뼈한테는 주 3번 근력운동이 영양제보다 더 중요해-\n\n약국은 레미페민(서양승마 추출물) 아침저녁 한 알씩. 열감엔 조금 도움이 되는데 근거는 약해.\n온라인이면 칼슘·마그네슘·D 복합제면 무난해.\n직구는 나우푸드 D3 2000IU 하루 한 알. 다른 제품이랑 합쳐서 하루 4000IU 넘기지 마.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 116
+        },
+        {
+          "kind": "ingredient",
+          "start": 118,
+          "end": 202
+        },
+        {
+          "kind": "product",
+          "start": 204,
+          "end": 338
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 15259,
+      "sessionId": "251d9354-06c8-4e53-a53f-a503e9a221d8"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "호르몬 채워주는 영양제는 없어. 이른 갱년기면 산부인과 가서 호르몬 검사하고 호르몬치료 상담부터 받아. 뼈랑 혈관이 일찍 약해지는 게 진짜 문제라서 그래. 영양제는 칼슘+비타민D, 마그네슘 자기 전. 걷기랑 근력운동 주 3번, 커피랑 술은 줄여.\n\n약국은 레미페민(서양승마 추출물) 아침저녁 1정씩. 열감용인데 근거는 약해.\n온라인이면 칼슘 마그네슘 복합제 암거나 무난해.\n직구는 나우푸드 D3 2000IU 하루 한 알. 다른 제품이랑 합쳐서 4000IU 안 넘게-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 137
+        },
+        {
+          "kind": "product",
+          "start": 139,
+          "end": 260
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 13271,
+      "sessionId": "7412d67f-50e6-4097-8346-54831fc938b2"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "이른 갱년기면 영양제 고르기 전에 산부인과부터 가. 호르몬 수치 검사 받고 호르몬치료(HRT) 상담까지 꼭 받아. 또래보다 일찍 온 경우는 치료 받는 쪽이 이득인 경우가 많어.\n\n혼자 여기까지 찾아온 거 잘했어. 이제 병원만 가면 돼-\n\n호르몬 영양제라는 건 사실 없어. 영양제로 호르몬을 채울 순 없고, 열감이나 잠 같은 증상을 조금 누그러뜨리는 정도야. 에스트로겐이 뼈랑 혈관을 지켜주는데, 이게 일찍 빠지면 골다공증이랑 심혈관 위험도 그만큼 일찍 와. 그래서 이른 갱년기는 병원이 먼저야.\n\n1/ 열감이 제일 힘들면 약국에서 레미페민(서양승마 추출물) 먹어보고 판단해. 근거는 약한 편이라 기대는 조금만.\n2/ 뼈는 칼슘을 우유·두부 같은 식사로 먼저 채우고, 비타민D는 하루 1000~2000IU 매일.\n3/ 근력운동이랑 빠르게 걷기 주 3번. 뼈에도 열감에도 기분에도 이게 젤 세. 커피랑 술은 줄여.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 131
+        },
+        {
+          "kind": "principle",
+          "start": 133,
+          "end": 276
+        },
+        {
+          "kind": "ingredient",
+          "start": 278,
+          "end": 453
+        }
+      ],
+      "products": [],
+      "ms": 17067,
+      "sessionId": "334b2e91-1158-4f81-b724-41bc0b37210f"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "호르몬 영양제는 없어. 영양제로 에스트로겐을 채울 순 없거든. 이른 갱년기는 뼈가 일찍 약해지니까 산부인과 호르몬검사부터 받고, 근력운동은 매일 챙겨-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 84
+        }
+      ],
+      "products": [],
+      "ms": 6506,
+      "sessionId": "19fc8c4a-3edf-4078-8239-27cba2ed6737"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "호르몬 영양제라는 건 없어. 이른 갱년기면 산부인과 가서 호르몬 검사부터 받는게 젤 빠르고, 뼈 생각해서 오늘부터 근력운동 해-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 71
+        }
+      ],
+      "products": [],
+      "ms": 8168,
+      "sessionId": "2361292d-7238-4beb-8ea9-5f116d364169"
+    }
+  ],
+  "failed": [],
+  "sessionId": "2361292d-7238-4beb-8ea9-5f116d364169"
+}

@@ -1,0 +1,247 @@
+{
+  "version": 6,
+  "replyId": "aside-1790445645-hyiseon__",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T04:44:39.491Z",
+  "updatedAt": "2026-09-30T04:45:43.265Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "볼그레 캡슐은 단종됬어. 원료 수급이 안돼서 종근당이 접은 거야. 근데 만성빈혈이면 제품 바꾸기 전에 페리틴 수치부터 확인해. 생리량이 많으면 산부인과, 아니면 위장 출혈 쪽도 봐야 답이 나와.\n\n볼그레가 편했던 건 철분 형태가 위장에 순해서야. 철분제는 비타민C랑 같이 먹고 커피·차·우유는 2시간 이상 띄어. 붉은 고기도 주 2~3번 챙겨먹고.\n\n약국은 헤모큐플러스 식후에 먹어도 나쁘지 않고.\n\n직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번. 나도 이거 먹는데 위장엔 젤 편해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 108
+        },
+        {
+          "kind": "ingredient",
+          "start": 110,
+          "end": 194
+        },
+        {
+          "kind": "product",
+          "start": 196,
+          "end": 276
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 14190,
+      "sessionId": "9df2f81d-9083-4372-b116-e1b1f796316e"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "볼그레 캡슐은 원료 수급이 안돼서 종근당이 단종시켰어. 품귀가 아니라 아예 끝난거야.\n\n철분은 커피·차·우유와 2시간 띄우고 비타민C랑 같이 먹어. 붉은 고기도 주 2~3번 챙겨먹고. 만성빈혈이면 페리틴 수치부터 꼭 확인해-\n\n약국은 헤모큐플러스, 식후에 먹어.\n온라인이면 킬레이트철 25mg 들어간 건기식 정도면 무난해.\n직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번. 내 위장엔 이게 젤 편했어.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 125
+        },
+        {
+          "kind": "product",
+          "start": 127,
+          "end": 229
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 12909,
+      "sessionId": "281bfc5d-325f-46c0-a8da-32c378bf53a6"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "볼그레는 원료 수급 문제로 단종됬어.\n약국은 헤모큐플러스 식후에 한 알.\n직구는 쏜 아이언 비스글리시네이트 25mg 이틀에 한 번. 위장엔 이게 젤 편해서 나도 이거 먹어.\n둘 다 비타민C랑 같이 먹고 커피·우유는 2시간 띄워. 붉은 고기도 주 2~3번 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 147
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 9052,
+      "sessionId": "a34f7d43-85f1-47f0-a9e2-0649c508fb1c"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "품귀 아니고 볼그레 캡슐은 단종됬어. 종근당이 원료 수급이 안돼서 접은거라 기다린다고 다시 나오진 않아. 근데 만성빈혈이면 제품보다 페리틴 수치부터 찍어봐. 생리량이 많은거면 산부인과, 아니면 위장 출혈 있는지 내시경까지 봐야 답이 나와.\n\n볼그레가 편했던건 철분 형태 때문이야. 철분이 아미노산에 묶인 형태라 위를 덜 긁어서 속쓰림이랑 변비가 덜하거든. 형태만 맞추면 대체품 많어. 철분제한테 정 주지 마-\n\n약국에선 헤모큐플러스 무난하고, 직구면 Thorne Iron Bisglycinate 아이허브에서 시켜. 나도 이거 먹는데 위장엔 젤 편해. 비타민C랑 같이 먹고 커피·차·우유는 앞뒤 2시간 띄워. 소고기 같은 붉은 고기 주 2~3번은 챙겨먹어.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 133
+        },
+        {
+          "kind": "principle",
+          "start": 135,
+          "end": 228
+        },
+        {
+          "kind": "ingredient",
+          "start": 230,
+          "end": 366
+        }
+      ],
+      "products": [],
+      "ms": 12817,
+      "sessionId": "079ae9f4-26c5-49ae-94ac-1e294f4fa6c3"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "볼그레 캡슐은 원료 수급 문제로 단종됬어. 너한테 잘 맞았던 건 철분 형태가 위장에 편해서라, 비슷한 킬레이트 철분이면 대체돼. 커피·차는 먹고 2시간 띄워. 탄닌이 철분 흡수를 막거든. 붉은 고기도 주 2~3번 챙겨-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 122
+        }
+      ],
+      "products": [],
+      "ms": 8384,
+      "sessionId": "de1e6b2b-7299-4ea7-a63d-4ea2981c28b9"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "볼그레 캡슐은 단종됬어. 철분제한테 정 주지 마. 커피를 철분이랑 같이 마시는 습관부터 끊어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 52
+        }
+      ],
+      "products": [],
+      "ms": 6408,
+      "sessionId": "977def5b-5bdf-4a15-a9c1-9b494f0c88cc"
+    }
+  ],
+  "failed": [],
+  "sessionId": "977def5b-5bdf-4a15-a9c1-9b494f0c88cc"
+}

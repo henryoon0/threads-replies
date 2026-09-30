@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790445478-sunday.money.log",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T06:38:44.611Z",
+  "updatedAt": "2026-09-30T07:06:03.716Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "브랜드보다 비율이랑 형태가 먼저야. 이노시톨은 인슐린이 잘 듣게 도와서 다낭성·배란 쪽은 근거가 있는데, 살 빼는 효과는 약해. 그래서 정제 탄수화물 줄이고 근력운동을 같이 해야 효과가 나와.\n\n이노시톨은 마이오:디카이로 40:1로, 마이오 2g씩 하루 두 번 물에 타서 최소 3개월 먹어. 아연은 피콜리네이트 15~25mg을 저녁 식후에. 공복에 먹으면 속 쓰리고, 30mg 넘게 오래 먹으면 구리가 떨어져.\n\n온라인이면 40:1 표기된 미오이노시톨 분말 정도면 무난해.\n직구는 이노시톨은 테라로직스 오바시톨, 아연은 쏜 아연 피콜리네이트 15mg. 둘 다 내가 믿고 챙겨먹는 쪽이야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 107
+        },
+        {
+          "kind": "ingredient",
+          "start": 109,
+          "end": 229
+        },
+        {
+          "kind": "product",
+          "start": 231,
+          "end": 328
+        }
+      ],
+      "products": [],
+      "ms": 11818,
+      "sessionId": "384f07a0-c088-4bf6-a7f2-e301d10f0f3a"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "직구는 홀섬스토리 마이오+디카이로 이노시톨 40:1, 2g씩 아침저녁 물에 타서 먹어. 아연은 쏜 아연 피콜리네이트 15mg 저녁 식후에.\n\n약국은 이노시톨 따로 두는 데가 드물어서 직구가 젤 편해.\n\n정제 탄수화물 줄이고 근력운동 같이 해야 3개월 뒤에 차이 나-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 148
+        }
+      ],
+      "products": [],
+      "ms": 13160,
+      "sessionId": "232727c2-f244-430a-8804-47e1642d30e7"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "브랜드보다 비율이 먼저야. 이노시톨은 마이오:디카이로 40:1로, 마이오 하루 4g을 2g씩 두 번 물에 타서 3개월은 먹어. 아연은 피콜리네이트 15~25mg을 저녁 식후에. 종합비타민에 아연이 있으면 합쳐서 30mg 안 넘게. 단 거 줄이고 근력운동 안 하면 둘 다 아무도움안돼.\n\n약국은 아연 단일제 25mg짜리면 충분해.\n온라인이면 40:1 가루 이노시톨 중에 한 포에 마이오 2g 든 거 무난해.\n직구는 홀썸스토리 이노시톨 40:1이랑 쏜 아연 피콜리네이트 15mg. 내가 먹어보고 고른 거야-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 158
+        },
+        {
+          "kind": "product",
+          "start": 160,
+          "end": 281
+        }
+      ],
+      "products": [],
+      "ms": 11944,
+      "sessionId": "8e6b4651-9837-4149-b873-51997b1205ac"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "브랜드보다 비율이랑 형태를 먼저 맞춰야 돼. 이 둘을 같이 찾는 거면 생리불순이나 인슐린 쪽 관리일 가능성이 높은데, 그럼 영양제는 절반밖에 못 해. 정제 탄수 줄이고 밥 먹을 때 단백질 먼저, 근력운동 주 3번은 같이 가야 돼. 3개월은 버텨봐-\n\n이노시톨 임상이 마이오:디카이로 40:1 비율 기준이라서, 이 비율이 아니면 같은 효과를 기대하기 어려워. 배란이나 생리 쪽 근거는 그럭저럭 있는데 살 빼는 효과는 약해.\n\n1/ 이노시톨은 40:1 제품으로 골라서 마이오 기준 하루 4g 먹어. 2g씩 두 번 나눠서 물에 타 먹으면 돼. 직구로는 테라로직스 오바시톨이 젤 무난해.\n2/ 아연은 피콜리네이트형 15~25mg을 저녁 식후에 먹어. 공복에 먹으면 속 쓰려. 쏜 아연 피콜리네이트면 충분하고, 30mg 넘게 오래 먹으면 구리가 빠져. 종합비타민 먹고 있으면 라벨에 아연이 겹치는지부터 봐.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 138
+        },
+        {
+          "kind": "principle",
+          "start": 140,
+          "end": 235
+        },
+        {
+          "kind": "ingredient",
+          "start": 237,
+          "end": 446
+        }
+      ],
+      "products": [],
+      "ms": 17932,
+      "sessionId": "f27af318-ae03-4a7b-ab85-1af95d65d521"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "브랜드보다 이노시톨은 마이오:디카이로 40:1 비율, 아연은 피콜리네이트 형태인지가 젤 중요해. 이노시톨은 인슐린이 잘 듣게 돕는 거라 정제 탄수화물 줄이고 근력운동까지 해야 효과가 나오거든.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 107
+        }
+      ],
+      "products": [],
+      "ms": 6448,
+      "sessionId": "d43aaf15-2a10-4ca2-93af-98ec040aae42"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "브랜드보다 40:1 비율이 먼저고, 이노시톨 사기 전에 빵이랑 떡부터 끊는게 젤 싸게 먹히는 인슐린 관리야.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "products": [],
+      "ms": 5896,
+      "sessionId": "ecbd5a87-aa91-45a6-84d3-68b99dcef614"
+    }
+  ],
+  "failed": [],
+  "sessionId": "ecbd5a87-aa91-45a6-84d3-68b99dcef614"
+}

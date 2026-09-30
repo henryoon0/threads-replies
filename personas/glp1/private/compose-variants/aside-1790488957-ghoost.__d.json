@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790488957-ghoost.__d",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:17:20.206Z",
+  "updatedAt": "2026-09-30T07:18:29.749Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 일회용 히알루론산 0.3%(뉴히알유니 같은거) 하루 4~6번, 다회용은 꼭 무방부제로 골라.\n온라인이면 rTG 오메가3 EPA+DHA 1000mg 식후. 근거는 중간이야.\n직구는 시스테인 울트라 PF 멀티도즈가 갠적으로 젤 낫다.\n자기 전 따뜻한 찜질 10분은 매일 해-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 155
+        }
+      ],
+      "products": [],
+      "ms": 10841,
+      "sessionId": "2e021f25-d0cb-434c-8241-caecc21f168e"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "심하면 다회용을 수시로 넣는 게 오히려 독이야. 보존제(벤잘코늄)가 하루에 여러 번 들어가면 각막을 자극하거든. 그리고 눈물이 빨리 마르는 건 눈꺼풀 기름샘이 막혀서인 경우가 많어.\n\n기본은 방부제 없는 일회용 히알루론산 0.1%로 깔아. 다회용은 하루 4번까지만 넣어. 자기 전에 따뜻한 찜질을 5분씩 매일 해서 기름샘부터 뚫어-\n\n약국은 히아레인미니 0.1% 일회용.\n\n온라인이면 rTG 오메가3 1000mg 정도인데 근거는 중간이야.\n\n직구는 다회용으로 시스테인 울트라가 보존제가 순한 편이라 난 이거 좋아해. 이렇게 해도 계속 심하면 안과 가.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 101
+        },
+        {
+          "kind": "ingredient",
+          "start": 103,
+          "end": 185
+        },
+        {
+          "kind": "product",
+          "start": 187,
+          "end": 308
+        }
+      ],
+      "products": [],
+      "ms": 16255,
+      "sessionId": "5707eec3-3466-42ff-8353-23a3204e9c62"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "심하면 방부제 없는 것부터 골라. 하루 5~6번 넘게 넣을꺼면 다회용 방부제가 오히려 각막을 자극해. 자기 전에 따뜻한 찜질 10분 해서 눈꺼풀 기름샘부터 풀어줘.\n\n약국 일회용은 리프레쉬 플러스(CMC 0.5%)가 무난해.\n다회용은 리프레쉬 옵티브, 방부제가 순한 편이라 낮에 가끔 넣는 용도로 써.\n직구는 테아로즈 듀오(트레할로스 3%+히알루론산 0.15%) 젤 좋아해. 다회용인데 방부제가 없어-\n이래도 계속 심하면 안과 가서 처방 안약 받아.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 91
+        },
+        {
+          "kind": "product",
+          "start": 93,
+          "end": 251
+        }
+      ],
+      "products": [],
+      "ms": 16915,
+      "sessionId": "35924789-a90f-4573-9818-52c118cb0a51"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "심한 건조증이면 인공눈물만으로는 못 버텨. 눈물이 마르는 원인부터 같이 잡아야 해.\n\n1/ 자기 전에 따뜻한 찜질 5분 하고 눈꺼풀 가장자리 닦어. 기름샘(마이봄샘)이 막히면 눈물이 금방 날아가거든\n2/ 화면 20분 보면 20초는 먼 데 봐\n3/ 방에 가습기 틀어\n\n다회용에는 보존제가 들어 있어서 자주 넣을수록 눈 표면이 오히려 까져. 그래서 하루 4~6번 넘게 넣어야 하는 사람은 일회용이 기본이야.\n\n일회용은 보존제 없는 히알루론산으로 골라. 낮에는 0.1%, 심한 날이나 자기 전에는 0.3%. 다회용은 리프레쉬 옵티브처럼 순한 보존제 쓴 걸로 가방에 하나 두고, 넣는 건 하루 네 번까지만. 이렇게 한 달 해도 똑같으면 안과 가서 처방 안약 받아-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 147
+        },
+        {
+          "kind": "principle",
+          "start": 149,
+          "end": 225
+        },
+        {
+          "kind": "ingredient",
+          "start": 227,
+          "end": 367
+        }
+      ],
+      "products": [],
+      "ms": 10904,
+      "sessionId": "877266d0-a648-4fd4-b41d-dcb4af8d9f8d"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "심하면 일회용이 답이야. 다회용에 든 보존제가 하루 여러 번 들어가면 오히려 각막을 긁거든.\n\n눈꺼풀 기름샘이 막혀서 눈물이 금방 마르는 경우가 많어. 자기 전에 따뜻한 찜질 5분은 꼭 해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 106
+        }
+      ],
+      "products": [],
+      "ms": 8362,
+      "sessionId": "5de9c8ff-07ac-4ccb-aad7-368a278a4f68"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "칠 눈물은 있네. 인공눈물 고르기 전에 폰부터 내려놓고 20분마다 먼 데 봐.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 43
+        }
+      ],
+      "products": [],
+      "ms": 6245,
+      "sessionId": "5e5e0bdf-7f98-4e81-ba73-3391488cb2a0"
+    }
+  ],
+  "failed": [],
+  "sessionId": "5e5e0bdf-7f98-4e81-ba73-3391488cb2a0"
+}

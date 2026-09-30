@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790486638-minaminajeong",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:17:38.963Z",
+  "updatedAt": "2026-09-30T05:18:55.345Z",
+  "planned": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "브랜드보다 라벨을 봐. 비타민D가 400~1000IU 들었는지, 당이 적은지만 보면 돼. 편식 안 하고 잘먹는 애면 종합비타민 말고 D 하나로 충분해. 콧물 시럽은 증상만 눌러주는 약이야. 나이·체중별 용량 꼭 지키고, 식염수로 코 닦어주고 가습기 틀어줘. 열이 3일 넘게 가면 소아과 가.\n\n약국은 챔큐든 아이벨타민이든 둘 다 괜찮아. 애가 잘 먹는 쪽으로 골라.\n온라인이면 비타민D 400IU 드롭 정도면 무난해.\n직구는 칼슨 키즈 슈퍼데일리 D3 400IU, 아침에 한 방울. 종합비타민에 D가 들어 있으면 드롭은 빼-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 162
+        },
+        {
+          "kind": "product",
+          "start": 164,
+          "end": 293
+        }
+      ],
+      "products": [],
+      "ms": 16009,
+      "sessionId": "37f54041-a8b2-45c8-bee1-b6b4a980bd28"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "둘 다 나쁘지 않어. 근데 잘먹는 애면 종합비타민 굳이 안 먹여도 돼. 밥에서 거의 채우거든. 모자라기 쉬운 건 햇빛 봐야 만들어지는 비타민D 정도야.\n\n고를 땐 이름 말고 라벨 봐. 비타민D 400IU 이상인지, 젤리형이면 당이 얼마나 들었는지. 콧물약은 병원약이랑 성분이 비슷해도 증상만 눌러주는 거지 감기를 낫게 하진 않어. 나이·체중별 용량 꼭 지키고 두 돌 전이면 약사한테 묻고 먹여. 식염수 코세척이랑 가습은 같이 해.\n\n약국은 챔프 콧물약 상비해두면 되고, 온라인이면 챔큐든 아이벨타민이든 애가 잘먹는 걸로. 직구는 칼슨 베이비 D 드롭 400IU, 하루 한 방울이면 끝이야. 열이 3일 넘게 가면 소아과 가-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 84
+        },
+        {
+          "kind": "ingredient",
+          "start": 86,
+          "end": 240
+        },
+        {
+          "kind": "product",
+          "start": 242,
+          "end": 348
+        }
+      ],
+      "products": [],
+      "ms": 15823,
+      "sessionId": "0b415572-dd16-42b6-825e-6bf77be4ba8b"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "둘 다 크게 나쁜 제품은 아니야. 브랜드끼리 싸움 붙이지 말고 애가 잘 먹는 걸로 골라. 매일 먹이는 건 결국 안 뱉는 쪽이 이기거든.\n\n라벨 뒤에서 볼 건 세 개야.\n1/ 비타민D가 400~1000IU 들어 있는지\n2/ 비타민A가 과하게 들어 있지 않은지\n3/ 젤리나 츄어블이면 당이 넘 많지 않은지\n편식 없이 잘 먹는 애면 종합비타민 말고 비타민D 하나로 충분해.\n\n약국 어린이 콧물시럽은 병원약이랑 성분이 비슷한 게 많아서 증상 가라앉히는 데는 효과 있어. 근데 콧물을 말려 주는 거지 감기를 낫게 하는 약은 아니야. 나이·체중별 용량은 꼭 지키고, 2세 미만이면 약사한테 먼저 물어봐. 식염수로 코 씻겨 주고 가습기 틀어 주는 게 약보다 먼저고, 열이 3일 넘게 가거나 숨 쉬기 힘들어하면 버티지 말고 소아과 가 -",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 75
+        },
+        {
+          "kind": "ingredient",
+          "start": 77,
+          "end": 205
+        },
+        {
+          "kind": "principle",
+          "start": 207,
+          "end": 404
+        }
+      ],
+      "products": [],
+      "ms": 19622,
+      "sessionId": "62f1ffa9-e855-4d0a-a92c-c4f51f833f60"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 챔프 콧물약도 병원약이랑 성분 비슷해서 증상엔 들어. 개월수 용량만 지키고 식염수 코세척 같이.\n온라인이면 챔큐든 아이벨타민이든 둘다 무난해. 당 적고 애가 잘먹는 걸로.\n직구는 칼슨 베이비 D3 400IU 하루 한방울. 편식 안하는 애면 이거 하나로 충분해-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 149
+        }
+      ],
+      "products": [],
+      "ms": 10212,
+      "sessionId": "c19c9c65-f293-463b-8d53-935de9c43918"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "브랜드보다 함량 봐. 잘먹는 애면 햇빛으로 모자란 비타민D만 채우면 돼. 콧물약은 증상만 눌러주는 거라 식염수 코세척이랑 가습 같이 해.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 76
+        }
+      ],
+      "products": [],
+      "ms": 7467,
+      "sessionId": "d79d67e7-b4cd-470e-8a2e-4ce75dff2d7b"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "둘 다 무난해. 어차피 고르는 건 엄마가 아니라 애 입맛이야. 밥 잘먹는 애면 비타민D 하나로 충분해-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 57
+        }
+      ],
+      "products": [],
+      "ms": 7233,
+      "sessionId": "77a178e4-36c5-43e0-a158-f4864566f1b5"
+    }
+  ],
+  "failed": [],
+  "sessionId": "77a178e4-36c5-43e0-a158-f4864566f1b5"
+}

@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790484881-rachieeesxo",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:42:36.976Z",
+  "updatedAt": "2026-09-30T05:43:47.334Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "몇년째 그대로인 결절이면 맞을 수 있어. 간결절은 거의 상관없고 걸리는 건 췌장이야. 이 주사들엔 췌장염 주의 문구가 붙어 있거든. 처방받을 때 결절 있다고 꼭 말하고, 추적검사는 하던 주기대로 계속 받어. 술 끊고 기름진 거 줄이는 게 젤 큰 보험이야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 142
+        }
+      ],
+      "products": [],
+      "ms": 7214,
+      "sessionId": "6b615215-680d-4fda-a926-e9e366bfbb9f"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "몇년째 변화 없는 결절이면 맞을 수 있어. 간결절은 거의 상관없고, 신경 쓸 건 췌장 하나야. 처방받을 때 결절 있다고 꼭 말하고, 하던 추적검사는 주사 맞는 동안에도 원래 주기대로 계속 받아.\n\nGLP-1 주사에는 췌장염 주의 문구가 붙어있어. 그래서 결절이 물혹(낭종) 같은 건지 속이 찬 고형 결절인지, 췌장염 앓은 적 있는지가 판단의 핵심이야. 시작 전에 아밀라아제·리파아제 피검사로 기준치 한번 찍어두면 나중에 비교할 수 있어.\n\n용량은 젤 낮은 데서 시작해. 위고비 0.25mg, 마운자로 2.5mg으로 시작해서 4주씩 표준 스케줄대로 천천히 올려. 빨리 빠질수록 담석이랑 췌장에 부담이 커지거든. 술이랑 기름진 거 줄이고 물 충분히 마시고. 등까지 뻗치는 명치 통증 오면 바로 병원 가-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 108
+        },
+        {
+          "kind": "principle",
+          "start": 110,
+          "end": 244
+        },
+        {
+          "kind": "ingredient",
+          "start": 246,
+          "end": 391
+        }
+      ],
+      "products": [],
+      "ms": 12601,
+      "sessionId": "fccdba05-edbe-4627-86e5-fa67e245a93c"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "간결절은 거의 상관없고, 몇년째 그대로인 췌장결절도 무조건 금기는 아냐. 다만 GLP-1은 췌장염 주의 문구가 붙어 있어서 결절이 물혹인지 고형인지, 췌장염 앓은 적 있는지가 핵심이야. 처방받을 때 결절 있다고 꼭 말하고 추적검사는 원래 주기대로 계속해-\n\n시작은 젤 낮은 용량(위고비 0.25mg, 마운자로 2.5mg)부터 천천히. 빨리 빠질수록 담석이랑 췌장에 부담이 가거든. 술이랑 기름진 건 줄이고 물은 하루 1.5L 이상. 등까지 뻗치는 명치 통증이 오면 바로 병원 가.\n\n결절에 좋은 영양제는 없어. 약국은 비맥스 메타 하루 한 알 아침 식후. 주사 맞으면 밥이 줄어서 비타민B가 비는 거 메우는 용도야.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 142
+        },
+        {
+          "kind": "ingredient",
+          "start": 144,
+          "end": 268
+        },
+        {
+          "kind": "product",
+          "start": 270,
+          "end": 344
+        }
+      ],
+      "products": [],
+      "ms": 13464,
+      "sessionId": "c520babc-4035-47dd-ab56-8302ea6c2a71"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "맞을 수 있어. 처방받을 때 췌장결절 있다고 꼭 말하고 젤 낮은 용량부터 시작해.\n약국은 결절 때문에 따로 살 거 없어. 간에 좋다는 밀크씨슬도 근거 약해.\n온라인도 패스. 물 하루 2L 마시고 술이랑 기름진 거 줄이는 게 먼저야.\n직구는 옵티멈 골드스탠다드 웨이 1스쿱(24g) 하루 한 번. 너무 빨리 빠지면 담석 생겨-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 181
+        }
+      ],
+      "products": [],
+      "ms": 13720,
+      "sessionId": "254c2332-1708-4599-bac2-64ffba0487b2"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "간결절은 거의 상관없고 걸리는 건 췌장이야. GLP-1은 췌장염 주의 약이라 결절이 물혹인지 고형인지, 췌장염 병력 있는지 처방 때 꼭 말하고 시작 전에 리파아제 한번 찍어둬. 최저용량부터 천천히 올리고 술이랑 기름진거 줄여. 등까지 뻗치는 명치 통증 오면 바로 병원가-\n\n췌장 지켜주는 영양제는 없어. 변비만 챙겨.\n약국은 아락실 과립, 직구는 나우푸드 차전자피 허스크 500mg 물 한컵 꽉 채워서 같이 먹어.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 151
+        },
+        {
+          "kind": "product",
+          "start": 153,
+          "end": 231
+        }
+      ],
+      "products": [],
+      "ms": 15378,
+      "sessionId": "757e4aa0-c345-47a3-addf-79fea0d1d05a"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "몇년째 그대로인 결절이면 맞아도 돼. 췌장 아끼려면 주사보다 술 끊는게 먼저고, 처방받을 때 결절 있다고 꼭 말해-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 64
+        }
+      ],
+      "products": [],
+      "ms": 7954,
+      "sessionId": "1d8993bc-67c2-4961-858c-58afa28f0b68"
+    }
+  ],
+  "failed": [],
+  "sessionId": "1d8993bc-67c2-4961-858c-58afa28f0b68"
+}

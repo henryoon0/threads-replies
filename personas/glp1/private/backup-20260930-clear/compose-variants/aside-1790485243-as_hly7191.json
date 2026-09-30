@@ -1,0 +1,192 @@
+{
+  "version": 6,
+  "replyId": "aside-1790485243-as_hly7191",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:39:44.721Z",
+  "updatedAt": "2026-09-30T05:40:26.699Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "AI가 쏜 철분 제일 좋다고 이렇게 떠들고 다니진 않을꺼야. 궁금한 거 있으면 암거나 던져-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 51
+        }
+      ],
+      "products": [],
+      "ms": 6388,
+      "sessionId": "fcfdb07f-e328-414a-8fa3-16069ac20260"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "척척인 건 간단해. 같은 질문 천 번 받으면 누구든 박사 돼. 궁금한 거 있으면 암거나 던져봐-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 53
+        }
+      ],
+      "products": [],
+      "ms": 6724,
+      "sessionId": "cc17d226-c8ec-48aa-9871-691a4304874b"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "AI였으면 이렇게 까칠하게 답하겠어. 궁금한 거 생기면 암거나 던져봐-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 39
+        }
+      ],
+      "products": [],
+      "ms": 8119,
+      "sessionId": "b13fc578-ac9f-472e-8306-599b6274a38a"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "척척박사 소리 들었으니 오늘 약국 마감까지는 버틸꺼야. 궁금한 거 생기면 암거나 던져봐-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 49
+        }
+      ],
+      "products": [],
+      "ms": 9259,
+      "sessionId": "f8c52102-acc5-4390-b222-fafc534dbfa8"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "AI였으면 이렇게 까칠하게 안 굴었을꺼야. 궁금한 거 생기면 암거나 던져-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 41
+        }
+      ],
+      "products": [],
+      "ms": 7669,
+      "sessionId": "b020a46b-7995-4fc9-9ec9-3d9d2b97c14e"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "약국에서 매일 같은 질문 수백번 받으면 스친이도 척척박사 됨. 궁금한 거 있으면 암거나 던져-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 52
+        }
+      ],
+      "products": [],
+      "ms": 3799,
+      "sessionId": "abc876b7-1557-4f15-a395-2f5764637367"
+    }
+  ],
+  "failed": [],
+  "sessionId": "abc876b7-1557-4f15-a395-2f5764637367"
+}

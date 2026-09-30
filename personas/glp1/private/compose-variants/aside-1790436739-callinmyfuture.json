@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790436739-callinmyfuture",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T06:34:44.819Z",
+  "updatedAt": "2026-09-30T06:47:44.334Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "2.5는 몸 적응시키는 용량이지 살 빼는 용량이 아니야. 4주 맞고 올렸어야 되는데 3개월 머물렀으니 변화가 없는게 당연하지. 1년 쉬었으면 2.5로 4주만 적응하고 5로 올려. 술은 이번엔 확 줄이고-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 113
+        }
+      ],
+      "products": [],
+      "ms": 7576,
+      "sessionId": "1a30050a-35ea-4f61-8fcc-34211a02c6b7"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "작년엔 약이 안 맞은 게 아니라 용량을 안 올린 거야. 게다가 술이랑 커피는 그대로 두고 밥만 1/3 줄였으니 변화가 없는 게 당연하지. 이번엔 술부터 확 줄여. 술은 칼로리도 크고 식욕까지 끌어올려서 주사 효과를 그대로 까먹어.\n\n2.5는 원래 4주만 맞는 적응용 용량이야. 몸이 약에 익숙해지게 하는 단계라서 이걸로 살을 빼는 게 아니거든. 1년 쉬었으면 몸은 다시 첨 상태라 5로 바로 들어가면 메스꺼움이 세게 올 수 있어.\n\n그래서 이렇게 가.\n1/ 2.5로 4주\n2/ 5로 올려서 4주\n3/ 반응이 약하면 7.5\n이번엔 2.5에 머물지 마. 단백질은 체중 1kg당 1.2g 정도 챙기고 주 2~3번 근력운동 붙여. 근육 지키면서 천천히 빼야 요요도 덜 와. 이번엔 될꺼야-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 128
+        },
+        {
+          "kind": "principle",
+          "start": 130,
+          "end": 240
+        },
+        {
+          "kind": "ingredient",
+          "start": 242,
+          "end": 381
+        }
+      ],
+      "products": [],
+      "ms": 14067,
+      "sessionId": "242d3107-47d4-46fc-9b20-7f94217de9bf"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "효과 없던 게 당연해. 2.5는 몸 적응용으로 4주만 맞는 용량이라 3개월 버텨봐야 식욕이 안 꺾여. 1년 쉬었으면 몸은 다시 첨이니까 5 직행 말고 2.5로 4주, 그다음 5로 올려. 이번엔 반응 보면서 제때 7.5까지 가.\n\n술은 확 줄여. 칼로리도 크고 식욕을 다시 끌어올려서 주사 효과를 깎아먹거든. 대신 단백질을 체중 1kg당 1.2g씩 챙기고 근력운동 주 2~3번 같이 해야 근육 안 빠지고 요요도 덜 와.\n\n밥으로 모자라면 온라인은 마이프로틴 임팩트 웨이 1스쿱(단백질 21g)이면 무난하고, 직구는 옵티멈 뉴트리션 골드스탠다드 웨이 1스쿱(24g)을 운동 끝나고 바로 먹어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 126
+        },
+        {
+          "kind": "ingredient",
+          "start": 128,
+          "end": 233
+        },
+        {
+          "kind": "product",
+          "start": 235,
+          "end": 329
+        }
+      ],
+      "products": [],
+      "ms": 13453,
+      "sessionId": "2fc70822-f06d-424c-8bdd-131643cc6f74"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약이 안 맞은 게 아니라 증량을 안 한 거야. 2.5는 원래 4주만 맞는 적응용이라 3개월 머물러 있으면 안 빠지는 게 정상이야. 1년 쉬었으면 몸은 다시 처음이라 5로 바로 가면 메스꺼움 세게 와. 2.5로 4주, 그다음 5, 반응 보고 7.5까지 제때 올려. 술은 투약 기간엔 확 줄여.\n\n끼니마다 단백질 20g은 채우고 근력운동 같이 해.\n온라인이면 셀렉스 프로핏 웨이프로틴 드링크 하루 한 병이면 무난해.\n직구는 옵티멈 골드스탠다드 웨이 1스쿱(단백질 24g), 난 운동 끝나고 이거 먹어-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 162
+        },
+        {
+          "kind": "product",
+          "start": 164,
+          "end": 278
+        }
+      ],
+      "products": [],
+      "ms": 16823,
+      "sessionId": "bd1157dc-19f4-453a-9b54-5131aa95df87"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "이번엔 2.5 4주만 하고 5로 올려. 3개월 머문게 문제였어.\n약국은 비맥스 메타 하루 1정 아침 식후.\n온라인이면 셀렉스 프로핏 웨이프로틴 25g 한 팩, 근력운동 끝나고.\n직구는 옵티멈 뉴트리션 골드스탠다드 웨이 한 스쿱 24g, 끼니 거를 때 대신-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 143
+        }
+      ],
+      "products": [],
+      "ms": 12877,
+      "sessionId": "1ba4a2df-d6a3-43c6-9248-3790c3b72a47"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "2.5에 3개월이면 워밍업만 하다 끝난 거야. 이번엔 2.5 4주 하고 5로 올려. 술은 젤 먼저 줄이고-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 59
+        }
+      ],
+      "products": [],
+      "ms": 5703,
+      "sessionId": "19ce16bb-1814-4f9a-8955-bfe83290f9d8"
+    }
+  ],
+  "failed": [],
+  "sessionId": "19ce16bb-1814-4f9a-8955-bfe83290f9d8"
+}

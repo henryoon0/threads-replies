@@ -1,0 +1,229 @@
+{
+  "version": 6,
+  "replyId": "aside-1790486228-yagoojomhaela",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:43:33.393Z",
+  "updatedAt": "2026-09-30T07:44:42.384Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "오남용 지정은 BMI 기준 밖 미용 처방이랑 쇼핑하듯 받는 처방 막으려는 거라, 기준 맞춰 대면으로 받는 사람은 달라질 게 거의 없어. 기준 밖이면 식단·운동부터 해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 93
+        }
+      ],
+      "products": [],
+      "ms": 6653,
+      "sessionId": "5b099d35-aa50-4142-b4aa-240b0568dd9e"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "기준대로 처방받는 스친이는 크게 달라질 게 없어. 오남용 지정은 BMI 기준 밖 미용 처방, 비대면으로 쇼핑하듯 받는 처방, 중고거래를 막으려는 거라서 대면 진료랑 처방전 확인이 더 깐깐해지는 쪽이야. 기준이 안 되면 주사보다 식단이랑 주 3회 근력운동부터 해.\n\n맞는 중이면 단백질을 체중 1kg당 1.2g 챙겨먹어. 빨리 빠지면 근육이랑 모발로 갈 영양이 먼저 털리거든.\n\n약국은 비맥스 메타 하루 1정 아침 식후.\n온라인이면 WPI 단백질 파우더 하루 1스쿱 정도면 무난해.\n직구는 나우푸드 비오틴 5000mcg 아침 식후로 먹어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 146
+        },
+        {
+          "kind": "ingredient",
+          "start": 148,
+          "end": 209
+        },
+        {
+          "kind": "product",
+          "start": 211,
+          "end": 300
+        }
+      ],
+      "products": [],
+      "ms": 14741,
+      "sessionId": "217affdc-cee7-429f-86c7-4a4e004973ae"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "기준에 맞게 처방받는 스친이한테는 아직 체감될 만큼 달라진 건 없어. 달라지는 건 기준 밖에서 쉽게 받던 쪽이야. 대면 진료, BMI 확인, 처방전 관리가 더 깐깐해질 수 있다는 정도만 알어두면 돼.\n\n취지는 단순해. BMI 기준 밖에서 미용 목적으로 맞거나, 비대면으로 쇼핑하듯 받거나, 남은 펜을 중고로 넘기는 걸 막으려는 거야. 세부 기준은 아직 다 나온 게 아니라서 거기까지는 단정 못하는데, 방향은 그쪽이 맞아.\n\n기준에 딱 걸치는 몸이면 주사보다 식단이랑 운동이 먼저야. 끼니마다 단백질 한 가지 넣고 주 3회 근력운동부터 잡아. 그래도 맞게 되면 2.5mg부터 시작해서 4주씩 천천히 올리고, 감량하는 동안에는 단백질을 체중 1kg당 하루 1.2g 정도 챙겨야 근육이 덜 빠져-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 111
+        },
+        {
+          "kind": "principle",
+          "start": 113,
+          "end": 235
+        },
+        {
+          "kind": "ingredient",
+          "start": 237,
+          "end": 386
+        }
+      ],
+      "products": [],
+      "ms": 13163,
+      "sessionId": "9883ee17-e25a-42ed-8361-d54061ecdc97"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "기준 맞춰 대면으로 처방받는 사람은 체감되는 차이 거의 없어. 먹는 양 줄 때 빠지는 거나 챙겨.\n약국은 비맥스 메타 하루 1정 아침 식후.\n온라인이면 셀렉스 단백질 1스쿱, 근력운동 끝나고.\n직구는 나우푸드 D3 2000IU 점심 식후, 합쳐서 하루 4000IU 넘지 마-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 153
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 11810,
+      "sessionId": "4e67f0a7-58b4-48bd-bf4b-9e3313117ce4"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "현장에서 체감되는 건 처방전을 한 번 더 확인하는 정도야. 기준에 맞고 대면으로 받는 사람은 크게 달라질꺼 없어. 대신 맞는 동안 근육이 젤 먼저 빠지니까 단백질은 체중 1kg당 1.2g씩 챙기고 근력운동은 주 3번 해. 실내에 오래 있으면 비타민D 2000IU도 같이 챙겨.\n\n약국은 셀렉스 프로틴을 식사 대신 말고 식간에 먹어.\n온라인이면 마이밀 뉴프로틴 정도면 무난해.\n직구는 나우푸드 D3 2000IU를 아침 먹고 한 알. 다른 제품이랑 합쳐서 하루 4000IU 넘기지 마-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 154
+        },
+        {
+          "kind": "product",
+          "start": 156,
+          "end": 269
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 15827,
+      "sessionId": "ec7da34b-1c69-46de-8e87-2b36582be2e3"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "제대로 처방받는 사람한테는 별 차이 없어. 이제 마운자로도 아무나 못 맞는 주사 되는 거고, 기준 안되면 저녁 탄수화물부터 줄여-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 72
+        }
+      ],
+      "products": [],
+      "ms": 6780,
+      "sessionId": "4318c591-277b-47ba-9a08-1bfeff84195b"
+    }
+  ],
+  "failed": [],
+  "sessionId": "4318c591-277b-47ba-9a08-1bfeff84195b"
+}

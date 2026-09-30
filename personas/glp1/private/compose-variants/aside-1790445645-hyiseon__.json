@@ -1,0 +1,247 @@
+{
+  "version": 6,
+  "replyId": "aside-1790445645-hyiseon__",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T06:39:58.101Z",
+  "updatedAt": "2026-09-30T06:53:16.298Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "품귀는 원료 수급이나 생산 쪽 문제일꺼야. 근데 진짜 문제는 만성빈혈인데 제품 하나에만 기대고 있다는 거야. 피검사로 페리틴 한 번 확인하고, 빈혈이 왜 자꾸 오는지는 진료로 한 번은 봐.\n\n볼그레가 편했던 건 속쓰림이랑 변비가 덜한 형태라서야. 대체품도 그런 걸로 고르면 돼. 비타민C랑 같이 먹고 커피·차·우유는 2시간 띄어. 소고기도 주 2~3번은 챙겨먹어.\n\n약국은 헤모큐플러스, 식후에 먹어.\n\n직구는 쏜 아이언 비스글리시네이트 25mg, 이틀에 한 번. 내가 먹는 거야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 105
+        },
+        {
+          "kind": "ingredient",
+          "start": 107,
+          "end": 203
+        },
+        {
+          "kind": "product",
+          "start": 205,
+          "end": 269
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 19459,
+      "sessionId": "3068c432-4d8e-4176-a589-92e79a521abf"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "품귀는 원료 수급이나 생산 쪽 문제일꺼야. 근데 만성빈혈이면 제품 하나에만 기대면 안돼. 철분은 비타민C랑 같이 먹고, 커피·차·우유는 2시간 띄어. 소고기도 주 2~3번 먹고, 페리틴 피검사는 한 번 꼭 봐.\n\n약국은 훼로바-유 같은 서방형 철분제를 하루 1알 식후에 먹어.\n직구는 내가 먹는 쏜 아이언 비스글리시네이트 25mg을 이틀에 한 번. 속 편하고 아이허브에서 구하기 쉬워-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 117
+        },
+        {
+          "kind": "product",
+          "start": 119,
+          "end": 215
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 18404,
+      "sessionId": "e6c499ae-b5a9-43e5-805d-9e1e89c13fd2"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 볼그레랑 같은 철단백숙시닐레이트 액상제 있냐고 물어봐. 성분이 같으면 속 편한 것도 비슷해.\n직구는 쏜 아이언 비스글리시네이트 25mg, 이틀에 한 번 오렌지주스랑 먹고 커피는 2시간 띄워.\n그리고 소고기 주 2~3번은 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 132
+        }
+      ],
+      "products": [
+        {
+          "id": "10a00359",
+          "name": "쏜 아이언 비스글리시네이트",
+          "url": "https://www.iherb.com/pr/thorne-iron-bisglycinate-60-capsules-25-mg-per-capsule/52838",
+          "capture": {
+            "image": "10a00359-1790673101368.png",
+            "capturedAt": "2026-09-29T09:11:52.382Z"
+          }
+        }
+      ],
+      "ms": 18124,
+      "sessionId": "866f73b6-d8d5-4dcc-96e4-ed8122f48b78"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "품귀는 원료나 생산 쪽 문제로 공급이 한동안 끊기는 거라 기다리면 풀려. 근데 만성빈혈이면 제품 하나에만 매달리는 게 젤 위험해. 이참에 볼그레 없을 때 먹을 대체품을 하나 정해두자.\n\n만성이라는 건 채우는 속도보다 빠지는 속도가 빠르다는 뜻이야. 그래서 철분제만 계속 바꿔 먹으면 끝이 안 나. 페리틴 수치를 한 번 찍어보고, 생리량이 많으면 산부인과도 한 번은 가봐. 원인을 안 막으면 뭘 먹어도 밑 빠진 독이야-\n\n볼그레는 철단백숙시닐산염 액상이라 속쓰림이랑 변비가 덜한 거야. 약국에서 성분명을 대고 같은 성분 액상을 달라고 하면 다른 이름으로 나온 게 있어.\n\n먹는 법도 같이 알려줄께. 1/ 비타민C 500mg이랑 같이 먹고 2/ 커피·녹차·우유·칼슘제랑은 2시간 넘게 띄어서 먹고 3/ 소고기나 간을 일주일에 두세 번 먹어. 음식으로 들어오는 헴철이 흡수가 제일 잘 돼.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 102
+        },
+        {
+          "kind": "principle",
+          "start": 104,
+          "end": 233
+        },
+        {
+          "kind": "ingredient",
+          "start": 235,
+          "end": 438
+        }
+      ],
+      "products": [],
+      "ms": 21108,
+      "sessionId": "9cc312d7-8677-4daa-b72b-0f4e7d00060b"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "품귀는 보통 원료나 생산 사정이야. 볼그레가 편한 건 단백질에 싸인 철이라 위를 덜 긁어서거든. 같은 단백철 찾고 소고기도 일주일에 두세 번 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 84
+        }
+      ],
+      "products": [],
+      "ms": 12965,
+      "sessionId": "ab541f27-f4bd-484e-aa25-ea2adbccb94b"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "철분제는 대체재 많아서 한 제품에 목맬 필요 없어. 그보다 페리틴 수치부터 찍어보고 소고기도 좀 챙겨먹어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 59
+        }
+      ],
+      "products": [],
+      "ms": 5962,
+      "sessionId": "f0054d2e-91f4-4923-b4ae-3af4ab664c36"
+    }
+  ],
+  "failed": [],
+  "sessionId": "f0054d2e-91f4-4923-b4ae-3af4ab664c36"
+}

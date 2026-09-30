@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790443571-windy__1225",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T04:43:29.285Z",
+  "updatedAt": "2026-09-30T04:44:39.466Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "그냥 끊으면 식욕이 다시 올라와서 요요와. 뺄 때 근육까지 빠지면 대사가 떨어지거든. 맞는 동안 단백질 먹고 근력운동해서 근육을 지켜놔야 끊어도 버텨-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 84
+        }
+      ],
+      "products": [],
+      "ms": 6927,
+      "sessionId": "c434b375-c47f-47df-ac5a-b3f9ab02ed87"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "요요 반복하는 사람은 빼는 게 문제가 아니라 붙잡는 게 문제야. 이번엔 빼는 동안 붙잡을 준비까지 같이 하자-\n\n효과는 빨라. 2.5mg으로 시작하면 2~4주 안에 식욕 줄어든 게 느껴지고, 4주마다 용량 올리면서 한두 달 지나면 체중계 숫자가 움직여. 문제는 끊고 나서야. 그냥 끊으면 식욕이 돌아와서 1년 안에 뺀 것 중 70-80%가 다시 올라와. 빠지는 동안 근육도 같이 빠져서 대사가 떨어져 있거든. 운동으로 빼도 요요 온 이유도 결국 이거야.\n\n그래서 맞는 동안 젤 중요한 건 단백질이야. 체중 1kg당 1.2~1.5g, 60kg이면 하루 70~90g. 입맛 없어서 밥으로 못 채우면 유청단백 쉐이크 하나 끼워서 챙겨먹어. 근력운동은 주 3번, 하체 위주로. 끊을 땐 한 번에 끊지 말고 용량 내리거나 간격 늘려가면서 내려와.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 61
+        },
+        {
+          "kind": "principle",
+          "start": 63,
+          "end": 253
+        },
+        {
+          "kind": "ingredient",
+          "start": 255,
+          "end": 412
+        }
+      ],
+      "products": [],
+      "ms": 14331,
+      "sessionId": "f0fb7440-1ac7-4c08-b0d4-bf7647908e9f"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "효과는 빨리 와. 2.5mg으로 첨 시작하면 2-4주 안에 식욕부터 줄고, 4주마다 올리면서 한두 달 지나면 체중이 눈에 띄게 빠져. 문제는 끊을 때야. 그냥 끊으면 식욕이 돌아와서 1년 안에 뺀 거 70-80%가 다시 올라와. 근육까지 같이 빠져 있으면 대사가 떨어져서 더 빨리 붙거든.\n\n그래서 맞는 동안 단백질이 핵심이야. 체중 1kg당 1.2g, 60kg면 하루 70g 정도. 입맛 없어도 끼니마다 단백질부터 먹고, 근력운동은 주 3번 무조건 해.\n\n끼니로 못 채우면 온라인은 셀렉스 코어프로틴 정도면 무난해. 직구는 옵티멈 뉴트리션 골드스탠다드 웨이, 1스쿱에 단백질 24g이라 운동 끝나고 한 잔이면 될꺼야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 161
+        },
+        {
+          "kind": "ingredient",
+          "start": 163,
+          "end": 254
+        },
+        {
+          "kind": "product",
+          "start": 256,
+          "end": 346
+        }
+      ],
+      "products": [],
+      "ms": 15494,
+      "sessionId": "f4266c09-21f3-44f3-95cb-42b2b5e8b7cf"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "2.5mg으로 시작하면 2~4주 안에 식욕부터 줄고, 체중은 한두 달 지나 증량하면서 빠져. 끊고 버티는 건 결국 근육이야. 단백질은 체중 kg당 1.2g, 끼니마다 20~30g씩 나눠먹고 근력운동 주 3번은 꼭 해-\n\n온라인이면 셀렉스 프로핏 웨이프로틴 드링크 1병(단백질 20g), 이 정도면 무난해.\n직구는 옵티멈 뉴트리션 골드스탠다드 웨이 1스쿱 24g. 나도 운동 끝나고 이거 타먹어.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 121
+        },
+        {
+          "kind": "product",
+          "start": 123,
+          "end": 220
+        }
+      ],
+      "products": [],
+      "ms": 15299,
+      "sessionId": "459fdb2d-a407-4440-90c0-d4ffa94811fd"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 하이뮨 프로틴 밸런스, 하루 한 번 아침에 한 잔.\n온라인이면 셀렉스 정도면 무난해, 끼니 거를 때 한 잔.\n직구는 옵티멈 골드스탠다드 웨이 1스쿱(단백질 24g), 근력운동 끝나고 바로. 이건 내가 먹는 거.\n가루만 먹고 운동 안하면 끊는 순간 원복이야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 147
+        }
+      ],
+      "products": [],
+      "ms": 12726,
+      "sessionId": "3905fa4d-10fb-49f7-90e5-30d1d60236f4"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "요요 반복이면 체중계랑 밀당 중인 거네. 약은 빼주기만 하고 붙잡아두는 건 근육밖에 없어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 50
+        }
+      ],
+      "products": [],
+      "ms": 5390,
+      "sessionId": "cb2b32d2-f5b8-4e6f-8442-52c4718731ce"
+    }
+  ],
+  "failed": [],
+  "sessionId": "cb2b32d2-f5b8-4e6f-8442-52c4718731ce"
+}

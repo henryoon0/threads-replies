@@ -1,0 +1,1310 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-29T08:34:21.410Z",
+  "decisions": {
+    "v088e8bfd27": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "위고비"
+        }
+      ]
+    },
+    "v8df957e49e": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "쏜"
+        },
+        {
+          "kind": "약 이름",
+          "phrase": "씬지로이드"
+        }
+      ]
+    },
+    "v456d201ff6": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "v0f301de154": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "v5ce4b27359": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "코스트코"
+        }
+      ]
+    },
+    "vee5789aa30": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "쏜"
+        }
+      ]
+    },
+    "vb0a2957d8e": {
+      "decision": "exclude",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "용량"
+        }
+      ]
+    },
+    "v2a8f2ce141": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "쏜"
+        }
+      ]
+    },
+    "ve96cd73c24": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "ve276be74e2": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "글루콤"
+        }
+      ]
+    },
+    "vc47ccc479c": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "위고비"
+        }
+      ]
+    },
+    "v8243c02241": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "vb616885093": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "Thorne"
+        }
+      ]
+    },
+    "vb25e6df2fd": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "vdff7714f48": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "2.5mg"
+        }
+      ]
+    },
+    "v4e7703c527": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "봐도 괜찮"
+        }
+      ]
+    },
+    "v308e21a93f": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "veca4ed0cda": {
+      "decision": "exclude",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "바꾸"
+        }
+      ]
+    },
+    "v6dca386e9a": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "v27f903d847": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "vec93307d85": {
+      "decision": "exclude",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "5로 올"
+        }
+      ]
+    },
+    "v180674a50f": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "v7532e29ad3": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "아마존"
+        }
+      ]
+    },
+    "vdb93e5d9ed": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "v31f31e9be6": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "Prohealth"
+        }
+      ]
+    },
+    "v982bd15139": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "Prohealth"
+        }
+      ]
+    },
+    "vb8340defed": {
+      "decision": "keep",
+      "at": "2026-09-29T08:32:23.746Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "테라로직스"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "Theralogix Ovasitol"
+        }
+      ]
+    },
+    "v971c8fd85b": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "제품은 좀 비싼거 추천"
+        }
+      ]
+    },
+    "v263f0bc216": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "쏜"
+        }
+      ]
+    },
+    "v7722ff547b": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "프로헬스"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "Pro 1"
+        }
+      ]
+    },
+    "v771e4e2a1b": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "v108326749a": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "v56be57a7eb": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "나우푸드"
+        }
+      ]
+    },
+    "va96272c7d3": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "v6b385c3f01": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "아이허브"
+        }
+      ]
+    },
+    "va9fc62aae8": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "볼그레"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "Thorne Iron Bisglycinate"
+        }
+      ]
+    },
+    "vccf3ebee8f": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "브랜드는 아직"
+        }
+      ]
+    },
+    "v174bfd3f1c": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "테라로직스"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "Thorne Zinc Picolinate"
+        }
+      ]
+    },
+    "v7321916a8e": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "리츄얼"
+        }
+      ]
+    },
+    "v5fac5f49d9": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "v5228ccd90b": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "추천"
+        }
+      ]
+    },
+    "v5a468bb779": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "vabd0383ed7": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "스파톤"
+        }
+      ]
+    },
+    "vddfcb3ebee": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "바이오가이아"
+        }
+      ]
+    },
+    "v30d82968a8": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "바이오가이아"
+        }
+      ]
+    },
+    "v111bd583fa": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "벤포벨"
+        }
+      ]
+    },
+    "ve904627c88": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "스마티팬츠"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "큰회사꺼 먹어"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "Thorne Iron Bisglycinate"
+        }
+      ]
+    },
+    "vd4542022f4": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "아이허브"
+        }
+      ]
+    },
+    "va8bdf1d6b5": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "용량"
+        }
+      ]
+    },
+    "vd00a1a7776": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "Thorne"
+        }
+      ]
+    },
+    "va58eb189b0": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "약 이름",
+          "phrase": "항우울제"
+        }
+      ]
+    },
+    "vb9afcaa02c": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "v0fa22b042d": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "웰틴"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "Wellteen Him"
+        }
+      ]
+    },
+    "v7004691cbe": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "1mg"
+        }
+      ]
+    },
+    "v3734f2ae3e": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "비추"
+        }
+      ]
+    },
+    "vb13224b0f7": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "리츄얼"
+        }
+      ]
+    },
+    "va6e19bec97": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        },
+        {
+          "kind": "약 이름",
+          "phrase": "신지로이드"
+        }
+      ]
+    },
+    "vdd426d1e0c": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "해도 상관"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "쏜"
+        },
+        {
+          "kind": "약 이름",
+          "phrase": "신지로이드"
+        }
+      ]
+    },
+    "vae6c5b1aca": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "바이크롬"
+        }
+      ]
+    },
+    "v72e35ab70f": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "추천"
+        }
+      ]
+    },
+    "vfa79ad2d2a": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "창고형약국"
+        },
+        {
+          "kind": "약 이름",
+          "phrase": "노자임"
+        }
+      ]
+    },
+    "vcfdaa68945": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "테라로직스"
+        }
+      ]
+    },
+    "vb9b1f09c87": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "리브온"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "LivOn Labs Lypo-Spheric Vitamin C"
+        }
+      ]
+    },
+    "vf9bb5c6c5a": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "Ovavite"
+        }
+      ]
+    },
+    "ve2a6e5d2d8": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "Prohealth"
+        }
+      ]
+    },
+    "vd6e6a7c02e": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "v1be87d186b": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "엘레나"
+        }
+      ]
+    },
+    "v9593432224": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "쏜"
+        }
+      ]
+    },
+    "ve6787c08be": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "키포텐"
+        }
+      ]
+    },
+    "v6c4651e012": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "ARMRA"
+        }
+      ]
+    },
+    "v8cba530fc7": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "v27c2a3ae5d": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "용량"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "v0f5f49f50e": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "바이오가이아"
+        }
+      ]
+    },
+    "v3ce205faeb": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "아이허브"
+        },
+        {
+          "kind": "약 이름",
+          "phrase": "락툴로오스"
+        }
+      ]
+    },
+    "v2307b91031": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "Prohealth"
+        }
+      ]
+    },
+    "v5d3921f496": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "vc740a1f8a9": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "약 이름",
+          "phrase": "발라시클로버"
+        }
+      ]
+    },
+    "va9ed3f6cd8": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "글리프"
+        },
+        {
+          "kind": "약 이름",
+          "phrase": "미녹시딜"
+        }
+      ]
+    },
+    "v3413fd5517": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "약 이름",
+          "phrase": "오마코"
+        }
+      ]
+    },
+    "v2b132a73ce": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "약 이름",
+          "phrase": "마그밀"
+        }
+      ]
+    },
+    "v5848642719": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "마이칼디"
+        }
+      ]
+    },
+    "va1f5618652": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "vd80d4f64b8": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "약 이름",
+          "phrase": "신지로이드"
+        }
+      ]
+    },
+    "v1bead16d8a": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "볼그레"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "Thorne Iron Bisglycinate"
+        }
+      ]
+    },
+    "v8054357270": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "vf6ad448a45": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "용량"
+        },
+        {
+          "kind": "약 이름",
+          "phrase": "콘서타"
+        }
+      ]
+    },
+    "vcdd50006a6": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "글리프"
+        },
+        {
+          "kind": "약 이름",
+          "phrase": "판시딜"
+        }
+      ]
+    },
+    "v14f3e70db9": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        },
+        {
+          "kind": "약 이름",
+          "phrase": "박카스"
+        }
+      ]
+    },
+    "v9401ed71b7": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "추천"
+        }
+      ]
+    },
+    "vadae9e07f0": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "v80c78f90f7": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "바이탈뉴트리언츠"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "Sharp-PS"
+        },
+        {
+          "kind": "약 이름",
+          "phrase": "기넥신"
+        }
+      ]
+    },
+    "v9ba2576617": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "처방받"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "나만의닥터"
+        }
+      ]
+    },
+    "vdb69b7d3e5": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "바이크롬"
+        }
+      ]
+    },
+    "vbfedd30b49": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "vaf3d3ec8ce": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "어디꺼 먹어"
+        }
+      ]
+    },
+    "vf6b0aaf25d": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "비맥스"
+        }
+      ]
+    },
+    "vf7be1118b1": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "임팩타민"
+        },
+        {
+          "kind": "약 이름",
+          "phrase": "루나팜"
+        }
+      ]
+    },
+    "v8e58ad4302": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "글리프"
+        }
+      ]
+    },
+    "v2e468d20ae": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "임팩타민"
+        }
+      ]
+    },
+    "vdea279d0a9": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "글루콤"
+        }
+      ]
+    },
+    "v65f9b79af9": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        }
+      ]
+    },
+    "vb2ae805334": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "보다 훨씬 효과"
+        }
+      ]
+    },
+    "v81e08aff26": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "용량"
+        }
+      ]
+    },
+    "v424617ad10": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "쏜"
+        }
+      ]
+    },
+    "v5374f5541c": {
+      "decision": "exclude",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 용량·선택",
+          "phrase": "용량"
+        }
+      ]
+    },
+    "vda61033535": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "알티쥐"
+        }
+      ]
+    },
+    "vf7b5cb9e89": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "처방약 언급",
+          "phrase": "마운자로"
+        },
+        {
+          "kind": "제품·구매처",
+          "phrase": "지오영"
+        }
+      ]
+    },
+    "vc892018d21": {
+      "decision": "keep",
+      "at": "2026-09-29T06:01:19.729Z",
+      "source": "default",
+      "reasons": [
+        {
+          "kind": "제품·구매처",
+          "phrase": "글루콤"
+        }
+      ]
+    }
+  }
+}

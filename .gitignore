@@ -9,3 +9,4 @@ next-env.d.ts
 data-backup-*
 public/threads-evidence
 .wrangler
+

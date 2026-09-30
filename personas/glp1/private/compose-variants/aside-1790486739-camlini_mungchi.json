@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790486739-camlini_mungchi",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:38:38.075Z",
+  "updatedAt": "2026-09-30T07:39:51.522Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "보균자가 요즘 부쩍 피곤하면 영양제보다 간 수치부터 봐야 돼. 6개월마다 받는 검사 앞당겨서 받고, 피 뽑을 때 페리틴이랑 비타민D도 같이 봐달라고 해.\n\n종합비타민은 아침으로 옮겨. 활성B 들었으면 저녁엔 잠을 깨워. 수면은 마그네슘 글리시네이트 200mg 저녁 식후 하나면 충분하고, 헛개나 밀크씨슬 고함량은 간 생각하면 손대지 마. 오후 커피 끊고 자기 1시간 전에 폰 꺼-\n\n직구는 닥터스베스트 고흡수 마그네슘 2정(200mg) 저녁 식후. 약국은 마그네슘 글리시네이트 단일제로 달라고 하면 돼.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 85
+        },
+        {
+          "kind": "ingredient",
+          "start": 87,
+          "end": 212
+        },
+        {
+          "kind": "product",
+          "start": 214,
+          "end": 281
+        }
+      ],
+      "products": [],
+      "ms": 17398,
+      "sessionId": "6ecc13ef-506c-4f1e-a710-55d2b5440b20"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "B형 간염 보균자가 요즘 부쩍 피곤하면 영양제보다 간검사가 먼저야. 6개월마다 받는 검사를 당겨서 받고, 피 뽑을 때 페리틴이랑 비타민D도 같이 봐달라고 해. 잠은 마그네슘 글리시네이트 200mg 하나만 저녁 식후에 더해. 종합비타민은 아침으로 옮기고 오후 커피는 끊어.\n\n약국은 마그네슘 단일제로 달라고 하고, 온라인이면 종근당건강 마그네슘 정도면 무난해. 직구는 나우푸드 마그네슘 비스글리시네이트 200mg 저녁 식후. 헛개·밀크씨슬 섞인 복합제품은 간에 안좋아-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 151
+        },
+        {
+          "kind": "product",
+          "start": 153,
+          "end": 261
+        }
+      ],
+      "products": [],
+      "ms": 13325,
+      "sessionId": "13c12c8f-757a-4ba5-b9b3-f6790ef80626"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "보균자가 요즘 부쩍 피곤하면 영양제보다 간 검사가 먼저야. 6개월마다 보는 간수치·바이러스 수치·초음파, 마지막 검사가 좀 됬으면 앞당겨서 받아. 피 뽑을 때 페리틴(철분)이랑 비타민D도 같이 봐달라고 해. 겁주는 거 아니고 확인만 하자는 거야.\n\n지금은 잠을 못자서 피곤하고, 피곤해서 또 잠이 안드는 돌림노래야. 오후 커피 끊고, 자기 1시간 전 폰 끄고, 방은 완전히 깜깜하게. 낮에 햇볕 보면서 20분 걷는 게 밤잠에 젤 잘 들어. 술은 간 때문에라도 끊고.\n\n영양제는 마그네슘 하나만 추가해. 글리시네이트로 200~300mg, 저녁 식후에. 종합비타민에 마그네슘이 들어있으면 그만큼 빼고 계산하고, 종합비타민은 아침으로 옮겨. 활성비타민B 든 제품이면 저녁에 먹을 때 잠을 깨워. 헛개·밀크씨슬 고함량이나 이것저것 섞인 건강식품은 손대지 마-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 137
+        },
+        {
+          "kind": "principle",
+          "start": 139,
+          "end": 260
+        },
+        {
+          "kind": "ingredient",
+          "start": 262,
+          "end": 420
+        }
+      ],
+      "products": [],
+      "ms": 13646,
+      "sessionId": "4d9a3ead-fcfa-4cbe-81f3-525ed9b9f8d1"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 마그네슘에 B6 들어간 일반의약품 하나면 돼. 저녁 식후 1알.\n온라인이면 종근당건강 마그네슘 300mg 정도가 무난해.\n직구는 내가 먹는 나우푸드 마그네슘 비스글리시네이트 200mg, 자기 1시간 전에.\n헛개·밀크씨슬 고함량은 빼고 오후 커피도 끊어-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 145
+        }
+      ],
+      "products": [],
+      "ms": 14361,
+      "sessionId": "8f9bb7a0-5f48-4a22-a841-8d86e76945b4"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "보균자가 요즘 부쩍 피곤하면 영양제가 모자라서라기보다 간 수치부터 봐야돼. 간이 지치면 피로가 제일 먼저 오거든. 6개월 검사 앞당기고, 오후 커피는 오늘부터 끊어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 92
+        }
+      ],
+      "products": [],
+      "ms": 6508,
+      "sessionId": "fbc8536a-36e5-4c28-a1e8-e8be3bf9bf50"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "보균자가 요즘 부쩍 피곤하면 영양제 늘릴 때가 아니라 간검사 앞당길 때야. 오후 커피 끊는게 젤 싼 수면제고.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 61
+        }
+      ],
+      "products": [],
+      "ms": 8193,
+      "sessionId": "b76be4dc-e246-4c29-bd15-9dc16d982c31"
+    }
+  ],
+  "failed": [],
+  "sessionId": "b76be4dc-e246-4c29-bd15-9dc16d982c31"
+}

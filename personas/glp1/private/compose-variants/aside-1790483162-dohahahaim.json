@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483162-dohahahaim",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T08:32:21.417Z",
+  "updatedAt": "2026-09-30T08:33:26.186Z",
+  "planned": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "산화나 구연산 마그네슘이면 제품을 바꿔도 계속 설사해. 형태를 바꿔야 돼.\n직구는 닥터스베스트 고흡수 마그네슘 100mg(비스글리시네이트) 추천. 첫 주는 하루 한 알 식후로 먹어보고, 괜찮으면 저녁에 한 알 더 먹어.\n그리고 커피 줄이고 잠부터 채워. 눈밑 떨림은 그게 먼저야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 156
+        }
+      ],
+      "products": [],
+      "ms": 10970,
+      "sessionId": "4051db17-934a-4fa3-a173-07b9e92d471c"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "배탈은 어느 회사 제품이냐보다 마그네슘 형태 문제일꺼야. 그리고 눈밑 떨림은 마그네슘만 탓할 게 아니야. 커피는 하루 한 잔으로 줄이고, 잠은 7시간 채우고, 자기 전 폰 보는 시간도 줄여. 한 달 넘게 계속 떨리거나 볼·입가까지 번지면 영양제 바꾸지 말고 병원 가.\n\n산화마그네슘이랑 구연산마그네슘은 흡수가 덜 돼서 장에 많이 남거든. 남은 마그네슘이 장으로 물을 끌어당겨서 설사가 나. 변비약으로 쓰는 게 이 원리라, 직구로 바꿔도 형태가 같으면 똑같이 배탈나.\n\n마그네슘 비스글리시네이트로 바꿔. 아미노산에 붙은 형태라 장 자극이 훨씬 적어. 하루 100mg부터 시작해서 식후에 나눠 먹고, 괜찮으면 200mg까지 올려. 직구면 닥터스베스트 고흡수 마그네슘이 무난해. 종합비타민에도 마그네슘이 들어 있으면 그 함량까지 합쳐서 계산해 -",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 149
+        },
+        {
+          "kind": "principle",
+          "start": 151,
+          "end": 260
+        },
+        {
+          "kind": "ingredient",
+          "start": 262,
+          "end": 414
+        }
+      ],
+      "products": [],
+      "ms": 15891,
+      "sessionId": "507af896-2cb6-4e49-8465-732bc31d6ea6"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "제품 문제가 아니라 형태 문제야. 산화·구연산 마그네슘은 장에 남아서 물을 끌어당겨. 비스글리시네이트로 바꾸고 하루치를 100mg씩 두 번 나눠 식후에 먹어. 떨림엔 커피 줄이고 잠 채우는 게 더 빨라.\n\n직구는 닥터스베스트 고흡수 마그네슘(비스글리시네이트) 한 알 100mg, 아침저녁 식후 한 알씩. 갠적으로 이게 젤 무난해-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 113
+        },
+        {
+          "kind": "product",
+          "start": 115,
+          "end": 184
+        }
+      ],
+      "products": [],
+      "ms": 11363,
+      "sessionId": "7464d33d-d286-45a2-90ec-5c8e69570eaa"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "설사는 제품 탓이 아니라 형태 탓이야. 산화·구연산 마그네슘은 흡수가 덜 돼서 장에 남아 물을 끌어당기거든. 직구로 바꿔도 똑같았던 이유가 그거야. 그리고 눈밑 떨림은 마그네슘만 문제가 아니야. 커피 줄이고 잠부터 채우는게 젤 먼저야.\n\n마그네슘 비스글리시네이트로 바꿔. 아미노산에 붙인 형태라 장에 덜 남아. 하루 100mg씩 두 번, 식후에 나눠 먹으면 배가 훨씬 덜 놀라.\n\n직구는 Doctor's Best 고흡수 마그네슘 100mg, 저녁 식후 한 알부터 시작해봐.\n온라인이면 라벨에 비스글리시네이트라고 적힌 거면 무난해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 131
+        },
+        {
+          "kind": "ingredient",
+          "start": 133,
+          "end": 211
+        },
+        {
+          "kind": "product",
+          "start": 213,
+          "end": 296
+        }
+      ],
+      "products": [],
+      "ms": 14407,
+      "sessionId": "8ae5889f-c3d3-4c7a-93eb-5897918076f6"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "설사는 제품 탓이 아니라 형태 탓이야. 산화·구연산 마그네슘은 흡수가 덜 돼서 장에 남아 물을 끌어오거든. 비스글리시네이트로 바꾸고, 눈밑 떨림은 커피 줄이고 잠 채우는게 먼저야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 100
+        }
+      ],
+      "products": [],
+      "ms": 6591,
+      "sessionId": "e2dad8f7-6bb1-4158-aa7a-9e796f22745b"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "눈 떨림 잡으려다 화장실만 들락거리는 중이네. 비스글리시네이트로 바꾸고 커피부터 줄여-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 48
+        }
+      ],
+      "products": [],
+      "ms": 5526,
+      "sessionId": "bf6e4ef9-d197-47da-bec6-f14850c3e979"
+    }
+  ],
+  "failed": [],
+  "sessionId": "bf6e4ef9-d197-47da-bec6-f14850c3e979"
+}

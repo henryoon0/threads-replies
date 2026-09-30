@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487329-jejeeee0110",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T07:33:50.194Z",
+  "updatedAt": "2026-09-30T07:35:21.183Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "혈액순환이 타고나게 나쁜게 아니라 오래 앉아있어서 종아리가 안 움직이는 거야. 종아리 근육이 피를 위로 올려주는 펌프라서 안 쓰면 피가 다리에 고여서 붓거든. 1시간마다 일어나고 앉아서 까치발 20번씩 들어. 이게 약보다 먼저야.\n\n성분은 정맥벽을 조여서 피가 덜 고이게 하는 정맥순환 개선제 쪽이 근거가 있어. 최소 4주는 먹어봐야 알어. 한쪽만 붓거나 아프고 열나면 영양제 말고 병원가.\n\n약국은 안토리브(적포도엽 추출물 360mg) 아침에 한 번.\n\n직구는 나우푸드 호스체스트넛(마로니에) 300mg 식후에 먹어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 128
+        },
+        {
+          "kind": "ingredient",
+          "start": 130,
+          "end": 218
+        },
+        {
+          "kind": "product",
+          "start": 220,
+          "end": 290
+        }
+      ],
+      "products": [],
+      "ms": 18273,
+      "sessionId": "502881cf-10e6-4e3c-9146-620bc826df1e"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "약보다 급한 건 계속 앉아있는 시간을 끊는 거야. 1시간마다 한 번은 일어나고, 앉아서도 까치발 20번씩 수시로 들어. 일할 땐 약국에서 파는 종아리용 압박스타킹을 낮은 압력으로 신어봐. 약보다 이게 체감이 빨라.\n\n혈액순환이 원래 나쁜 게 아니라 종아리가 멈춘 거야. 종아리 근육이 짜줘야 다리 피가 위로 올라가는데, 앉아만 있으면 그 펌프가 안 돌아서 물이 발 쪽으로 고이거든. 짠 거 먹은 날 더 붓는 것도 같은 이유야.\n\n약은 약국에서 정맥순환 개선제 달라고 해. 디오스민 들어간 거나 적포도엽 추출물(안토리브) 쪽이면 무난해. 최소 4주는 먹어봐야 효과를 알수가 있어. 대신 한쪽만 붓거나 아프고 열감이 있으면 약 말고 바로 병원 가-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 119
+        },
+        {
+          "kind": "principle",
+          "start": 121,
+          "end": 238
+        },
+        {
+          "kind": "ingredient",
+          "start": 240,
+          "end": 360
+        }
+      ],
+      "products": [],
+      "ms": 21669,
+      "sessionId": "c508974f-7333-4a09-a58b-c7022cb067a8"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "혈액순환이 타고나게 나쁜 게 아니라 종아리가 하루 종일 안 움직이는 게 문제야. 1시간마다 일어나서 까치발 20번 하고, 퇴근하면 다리를 심장보다 높게 올려놔. 먹는 거로는 정맥 벽을 잡아주는 적포도잎·마로니에 추출물 정도가 근거 있는 편이야. 몇 주는 먹어봐야 알어-\n\n약국은 안토리브(적포도잎 추출물 360mg), 아침 식후에 1정.\n직구는 나우푸드 호스체스트넛(마로니에 추출물), 식후에 먹어. 와파린 같은 피 묽게 하는 약을 먹고 있으면 먹기 전에 약사한테 먼저 물어봐.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 150
+        },
+        {
+          "kind": "product",
+          "start": 152,
+          "end": 267
+        }
+      ],
+      "products": [],
+      "ms": 19281,
+      "sessionId": "79264123-67ed-4172-abe9-2838ee3c0a15"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "혈액순환이 원래 나빠서가 아니라 종아리가 안 움직여서 그래. 종아리 근육이 피를 위로 짜올리는 펌프라서 앉아만 있으면 다리에 고이거든. 약보다 1시간마다 일어나서 까치발 20번이 먼저야-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 104
+        }
+      ],
+      "products": [],
+      "ms": 6670,
+      "sessionId": "d8402b59-9a3c-4bb7-9e8c-9f722408cca3"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 안토리브(적포도잎추출물 360mg) 아침에 1~2정, 4주는 먹어봐야 알어.\n직구는 나우푸드 호스체스트넛 300mg 하루 두 번 식후. 갠적으로 젤 무난해.\n근데 약보다 급한 건 1시간마다 일어나서 까치발 20번. 종아리가 펌프라 앉아만 있으면 약도 못 이겨-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 149
+        }
+      ],
+      "products": [],
+      "ms": 14835,
+      "sessionId": "8b1161a0-e523-40be-b43c-3ed09125e1c7"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "약 찾기 전에 1시간마다 일어나서 까치발 20번부터 해. 앉아서 부은 다리는 일어나야 빠져-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 51
+        }
+      ],
+      "products": [],
+      "ms": 10215,
+      "sessionId": "cfb5db3b-9e5a-4b36-b54b-6669e0bf9c1b"
+    }
+  ],
+  "failed": [],
+  "sessionId": "cfb5db3b-9e5a-4b36-b54b-6669e0bf9c1b"
+}

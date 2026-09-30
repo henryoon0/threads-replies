@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790445478-sunday.money.log",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T04:49:09.135Z",
+  "updatedAt": "2026-09-30T04:50:50.580Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "이노시톨이랑 아연을 같이 묻는 거 보니 공부 좀 하고 왔네. 근데 브랜드보다 함량이랑 비율이 먼저야. 임상에서 효과 본 게 다 그 기준이거든. 정제 탄수화물 줄이고 근력운동 같이 안 하면 이노시톨도 반쪽짜리야.\n\n이노시톨은 미오이노시톨 하루 4g에 미오:DCI 40:1 비율. 최소 3개월은 먹어봐야 알수가 있어. 아연은 30mg, 피콜리네이트나 비스글리시네이트 형태로 저녁 식후에. 공복엔 속 쓰리고 그보다 많이 오래 먹으면 구리가 떨어져.\n\n직구는 이노시톨은 테라로직스 오바시톨, 좀 싼 건 홀썸스토리. 아연은 Thorne Zinc Picolinate 30mg, 아이허브에서 팔어-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 117
+        },
+        {
+          "kind": "ingredient",
+          "start": 119,
+          "end": 247
+        },
+        {
+          "kind": "product",
+          "start": 249,
+          "end": 327
+        }
+      ],
+      "products": [],
+      "ms": 14011,
+      "sessionId": "ff0cabca-247c-487e-abe7-3f93af8bd209"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "직구는 테라로직스 오바시톨(미오이노시톨 4g, 미오:DCI 40:1)이랑 Thorne Zinc Picolinate 30mg. 아연은 저녁 식후에 먹어. 공복에 먹으면 속 쓰려.\n온라인이면 좀 싼 홀썸스토리 이노시톨. 용량이랑 비율만 똑같이 확인하고 사.\n근데 단거 안 줄이고 근력운동 안 하면 둘 다 반쪽짜리야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 174
+        }
+      ],
+      "products": [],
+      "ms": 10072,
+      "sessionId": "6c8f2b84-d589-49e0-823c-988cf341a472"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "둘을 같이 찾는 거 보니 공부 좀 하고 왔네. 이노시톨은 미오이노시톨 하루 4g, 미오:DCI 40:1 비율인걸로 골라. 아연은 피콜리네이트나 비스글리시네이트 형태로 30mg, 저녁 식후에. 종합비타민에 아연 들어있으면 합쳐서 30mg 안 넘게 해. 정제 탄수화물 줄이고 근력운동 같이 해야 효과가 제대로 나와-\n\n온라인이면 홀썸스토리 이노시톨 좀 싸고 무난해.\n직구는 이노시톨은 테라로직스 오바시톨이 갠적으로 원픽이고, 아연은 Thorne Zinc Picolinate 30mg 아이허브에서 팔어.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 174
+        },
+        {
+          "kind": "product",
+          "start": 176,
+          "end": 278
+        }
+      ],
+      "products": [],
+      "ms": 11206,
+      "sessionId": "57c4927c-fd30-4bc5-8e11-5912dc37aeaa"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "브랜드보다 라벨 숫자부터 봐. 이 조합 찾는 거면 다낭성이나 혈당 관리 쪽일 텐데 영양제만으로 끝나는 건 아니야. 밥 먹을 때 단백질이랑 채소 먼저 먹고, 흰쌀·빵은 줄이고, 주 3번 하체 근력운동은 같이 가야 돼. 생리가 몇 달째 불규칙하면 산부인과에서 호르몬 검사부터 받아-\n\n이노시톨은 인슐린 신호가 잘 전달되게 도와줘서 배란 쪽 근거는 그럭저럭 있어. 근데 살 빼주는 효과는 약해. 그러니까 최소 3개월은 꾸준히 먹어보고 판단해.\n\n1/ 이노시톨: 미오이노시톨 4g, 미오:DCI 40:1 비율로 골라. 테라로직스 오바시톨이 젤 무난하고, 좀 싼건 홀썸스토리.\n2/ 아연: 30mg, 비스글리시네이트나 피콜리네이트 형태로 저녁 식후에 먹어. 공복에 먹으면 속 쓰려. Thorne Zinc Picolinate 아이허브에 있어. 종합비타민에 아연이 들어있으면 합쳐서 30mg 안 넘게 맞춰.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 155
+        },
+        {
+          "kind": "principle",
+          "start": 157,
+          "end": 244
+        },
+        {
+          "kind": "ingredient",
+          "start": 246,
+          "end": 444
+        }
+      ],
+      "products": [],
+      "ms": 15931,
+      "sessionId": "79c657c8-125c-4982-a7dd-fb4104e5a47f"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "브랜드보다 비율이 먼저야. 난소는 미오이노시톨을 쓰는데 DCI가 넘치면 오히려 배란을 방해하거든. 그래서 40:1로 골라. 밥은 단백질부터 먹고-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 81
+        }
+      ],
+      "products": [],
+      "ms": 9941,
+      "sessionId": "d744a731-30a0-46c5-a6c0-363268aa0917"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "브랜드보다 미오:DCI 40:1 비율부터 봐. 빵이랑 흰밥 줄이는게 젤 싼 이노시톨이야.",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 49
+        }
+      ],
+      "products": [],
+      "ms": 7126,
+      "sessionId": "5d7d602b-8b2d-4b3c-bad5-871c0487d80f"
+    }
+  ],
+  "failed": [],
+  "sessionId": "5d7d602b-8b2d-4b3c-bad5-871c0487d80f"
+}

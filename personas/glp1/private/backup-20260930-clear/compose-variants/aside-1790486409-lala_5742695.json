@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790486409-lala_5742695",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:18:55.373Z",
+  "updatedAt": "2026-09-30T05:20:22.060Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "이건 영양제보다 원인부터야. 출산 뒤엔 호르몬 때문에 몸에 물이 남고, 아기 안느라 손목을 계속 쓰니까 아침에 손이 붓는 거일 수 있어. 짠 거랑 야식 줄이고 물은 오히려 충분히 마셔. 잘 때 손은 베개 위에 올려둬.\n\n붓기 영양제는 근거가 약해. 칼륨은 바나나·시금치로 먹는 게 낫고, 한 달 넘게 가거나 피곤하고 추위 타면 갑상선·빈혈 피검사부터 받어.\n\n굳이 먹을꺼면 가볍게.\n약국은 비맥스 제트, B6 든 활성B군으로 아침 식후 1알.\n온라인이면 늙은호박즙 하루 1포 정도면 무난해.\n직구는 나우푸드 마그네슘 글리시네이트 200mg 자기 전. 수유 중이면 라벨부터 확인해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 121
+        },
+        {
+          "kind": "ingredient",
+          "start": 123,
+          "end": 199
+        },
+        {
+          "kind": "product",
+          "start": 201,
+          "end": 324
+        }
+      ],
+      "products": [],
+      "ms": 17707,
+      "sessionId": "85ba8579-75c4-4610-a229-1429ae860439"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "붓기 영양제는 근거가 약해. 칼륨이 나트륨을 빼주긴 하는데 알약보다 바나나·시금치로 챙겨먹어. 짠 거랑 야식 라면 줄이고 물은 오히려 충분히 마셔. 잘 때 손은 베개 위에 올려둬. 한 달 넘게 가면 영양제 말고 갑상선 피검사부터 받아-\n\n굳이 먹겠다면 온라인 호박즙 하루 1포 정도가 무난해. 약국에서 붓기 빼는 약은 수유 중이면 사지 마. 직구로 붓기 때문에 살 건 없어.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 131
+        },
+        {
+          "kind": "product",
+          "start": 133,
+          "end": 209
+        }
+      ],
+      "products": [],
+      "ms": 16572,
+      "sessionId": "2ad62f68-4240-4486-9767-b5a97866a710"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "출산하고 새로 생긴 손 붓기는 영양제보다 원인부터 가려야 돼. 몸이 아직 출산 전으로 안 돌아왔고, 손목은 아기 안느라 매일 혹사 중이거든. 제일 먼저 닳는 게 엄마 손목이야. 잘 버티고 있어.\n\n산후엔 호르몬 때문에 몸에 물이 한동안 차 있어. 자는 동안 손이 아래로 처져 있으니까 아침에 제일 띵띵한 거고. 근데 손끝이 저리거나 밤에 손이 저려서 깨면 손목터널 증후군일 수 있어. 그럼 정형외과 가. 한 달 넘게 계속 붓는데 피곤하고 추위 타고 체중까지 변하면 산후 갑상선 문제일 수 있으니까 갑상선·빈혈 피검사부터 받아.\n\n붓기 빼는 영양제는 근거가 약해. 브랜드 골라줄 만한 게 없어서 안 고르는 거야. 호박즙·팥물도 기대는 넘 하지 말고, 수유 중이면 그것도 하루 한 잔 정도만.\n\n1/ 짠 국물이랑 밤 라면부터 끊고\n2/ 물은 오히려 충분히 마시고\n3/ 바나나·시금치로 칼륨 챙기고\n4/ 잘 때 손은 베개 위에, 아침엔 주먹 쥐었다 폈다 20번\n\n아기 안을 땐 손목 말고 팔 전체로 받쳐-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 108
+        },
+        {
+          "kind": "principle",
+          "start": 110,
+          "end": 294
+        },
+        {
+          "kind": "ingredient",
+          "start": 296,
+          "end": 503
+        }
+      ],
+      "products": [],
+      "ms": 23575,
+      "sessionId": "bfadf0c7-30b3-4f02-83f7-4a8b56d09b2c"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "붓기 영양제는 근거가 약해. 짜게 먹는 거 줄이고, 잘 때 손을 베개 위에 올려두는 게 먼저야.\n온라인이면 호박팥즙 하루 한 포 정도. 이 정도면 무난해.\n직구는 나우푸드 포타슘 시트레이트 99mg 하루 1알, 식사 중에.\n수유 중이면 먹기 전에 한번 말해줘-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 145
+        }
+      ],
+      "products": [],
+      "ms": 13200,
+      "sessionId": "743e3545-fd56-466b-9699-ac0862853153"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "출산하고 호르몬이 바뀌면 몸에 물이 차고, 아기 안느라 손목을 계속 써서 아침에 손이 붓는거야. 붓기 영양제는 근거가 약해. 짠거 줄이고 잘때 손을 베개 위에 올려둬-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 93
+        }
+      ],
+      "products": [],
+      "ms": 6372,
+      "sessionId": "59c64b4b-13b0-47ef-9f83-d98b6d6f29e5"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "붓기 영양제 찾기 전에 야식 라면 국물부터 끊어. 젤 싸고 젤 잘 들어-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 40
+        }
+      ],
+      "products": [],
+      "ms": 9239,
+      "sessionId": "fd95a6cb-4135-49af-8248-dda5930e845d"
+    }
+  ],
+  "failed": [],
+  "sessionId": "fd95a6cb-4135-49af-8248-dda5930e845d"
+}

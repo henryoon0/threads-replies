@@ -16,7 +16,7 @@ import { packDir, packPrivateDir } from "@/lib/personas/registry";
 // ── 예산·설정 ───────────────────────────────────────────
 
 /** 규칙책 크기 상한(토큰). 설계 4-5: AICC 3,500 · 박약사 3,000 */
-const BUDGETS: Readonly<Record<string, number>> = { me: 3500 };
+const BUDGETS: Readonly<Record<string, number>> = { glp1: 3000, me: 3500 };
 const DEFAULT_BUDGET = 3000;
 
 export function learningBudget(id: string): number {

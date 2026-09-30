@@ -50,7 +50,7 @@ export type Catalog = { builtAt: string; ingredients: CatalogIngredient[] };
 function catalogPath(): string {
   return (
     process.env.SUPPLEMENT_CATALOG_PATH ??
-    path.join(process.cwd(), "data", "domains", "wellness", "body-brain", "catalog.json")
+    path.join(process.cwd(), "seed", "catalog.json")
   );
 }
 

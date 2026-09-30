@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790487835-bori.tanny",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:04:31.972Z",
+  "updatedAt": "2026-09-30T05:05:32.013Z",
+  "planned": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "기생충이 진짜 있던 사람이면 좋아질 수 있어. 근데 암이나 아토피가 낫는다는 건 세포·동물 실험 수준이고 사람 대상 근거는 약해. 좋아진 사람만 후기를 올리고, 다른 치료를 같이 받던 경우가 섞여서 많아 보이는 거야. 거기에 파는 사람 홍보까지 붙고.\n\n동물용 펜벤다졸을 고용량으로 오래 먹다가 간수치가 오른 보고가 있어. 기존 치료를 끊는 게 젤 위험하고. 진짜 예방은 채소 잘 씻고 민물고기 날로 안먹는 거야.\n\n약국은 알벤다졸 400mg(젠텔) 1정, 봄·가을 한 번씩이면 충분해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 140
+        },
+        {
+          "kind": "ingredient",
+          "start": 142,
+          "end": 231
+        },
+        {
+          "kind": "product",
+          "start": 233,
+          "end": 272
+        }
+      ],
+      "products": [],
+      "ms": 10344,
+      "sessionId": "61848df2-7cd1-47df-a163-fde0d8b4f182"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "결론부터 말할게. 진짜 기생충이 있던 사람이면 먹고 좋아질 수 있어. 근데 암이나 아토피가 구충제로 낫는다는 건 사람한테서 확인된 근거가 약해. 몸을 바꾸고 싶으면 잠 7시간이랑 매일 30분 걷기가 구충제보다 확실해-\n\n후기가 많어 보이는 이유가 있어.\n1/ 다른 치료를 같이 받고 있었거나\n2/ 원래 좋아졌다 나빠졌다 하는 병이거나\n3/ 좋아진 사람만 글을 올려서야.\n여기에 파는 사람들 홍보까지 섞여 있고. 세포 실험이나 동물 실험에서 되던 게 사람한테는 안 된 경우가 이미 있었어. 코로나 때 이버멕틴이 그랬어.\n\n펜벤다졸은 동물용이야. 고용량으로 오래 먹다가 간수치가 올라갔다는 보고가 있어. 그거 믿고 원래 받던 치료를 끊는 게 젤 위험하고. 사람용 알벤다졸 400mg을 봄, 가을에 한 번씩 먹으면 충분해. 병 때문에 먹고 싶으면 주치의랑 먼저 상의하고 간수치 피검사부터 해.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 121
+        },
+        {
+          "kind": "principle",
+          "start": 123,
+          "end": 289
+        },
+        {
+          "kind": "ingredient",
+          "start": 291,
+          "end": 440
+        }
+      ],
+      "products": [],
+      "ms": 14364,
+      "sessionId": "548efb73-d238-4f8a-8b51-f1b6c98c784f"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "기생충이 진짜 있던 사람이면 좋아질 수 있어. 근데 암이나 아토피가 낫는다는 건 세포·동물 실험 수준이고 사람 근거는 약해. 체험담에 판매 홍보가 넘 많이 섞여 있어. 동물용 펜벤다졸을 고용량으로 오래 먹으면 간수치가 오른 보고도 있고, 그거 믿고 원래 치료를 끊는 게 젤 위험해.\n\n약국은 알벤다졸 성분 젠텔 400mg 한 알, 봄·가을에 한 번씩이면 충분해. 민물회·덜 익힌 고기 줄이고 손 잘 닦는 게 구충제보다 먼저야-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 157
+        },
+        {
+          "kind": "product",
+          "start": 159,
+          "end": 238
+        }
+      ],
+      "products": [],
+      "ms": 12499,
+      "sessionId": "a1acb33d-6b2a-4390-873c-83215c137f94"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "구충제 먹고 다른 병이 낫는다는 건 사람 대상 근거가 약해. 홍보가 섞였어.\n약국은 젠텔(알벤다졸 400mg) 한 알. 봄·가을에 한 번씩 먹으면 끝이야.\n온라인이나 직구로 동물용 펜벤다졸 사서 오래 먹으면 간수치만 올라가. 비추야.\n병을 고치고 싶으면 그 돈으로 잘먹고 잘자고 매일 30분 걷는 게 나아-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 171
+        }
+      ],
+      "products": [],
+      "ms": 9783,
+      "sessionId": "35255aa0-2f4d-445d-9487-6f7b6921f8c3"
+    },
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "기생충이 진짜 있던 사람이면 좋아질 수 있어. 근데 암·아토피가 낫는다는 건 세포실험 수준이라 근거가 약해. 좋아진 사람만 후기 올리거든. 그 돈이면 잘먹고 잘자는 게 낫다-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 97
+        }
+      ],
+      "products": [],
+      "ms": 6029,
+      "sessionId": "6ecca201-93cd-40a8-9d34-7c36a84a4042"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "구충제로 병이 다 나으면 약국은 알벤다졸만 팔고 있지. 기생충 있던 사람 아니면 홍보고, 그 돈이면 잘먹고 잘자는 게 나아-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "products": [],
+      "ms": 7005,
+      "sessionId": "e76dd8e4-b28c-42c1-984c-529ff6e7acba"
+    }
+  ],
+  "failed": [],
+  "sessionId": "e76dd8e4-b28c-42c1-984c-529ff6e7acba"
+}

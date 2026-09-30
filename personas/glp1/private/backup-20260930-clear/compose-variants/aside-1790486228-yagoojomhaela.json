@@ -1,0 +1,235 @@
+{
+  "version": 6,
+  "replyId": "aside-1790486228-yagoojomhaela",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:21:32.336Z",
+  "updatedAt": "2026-09-30T05:22:39.711Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "기준 맞춰 처방받는 사람은 현장에서 체감되는 차이 거의 없어. 막으려는 건 BMI 안 되는데 미용으로 받거나 중고로 돌리는 거거든. 기준 밖이면 식단이랑 운동부터 해.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 93
+        }
+      ],
+      "products": [],
+      "ms": 6293,
+      "sessionId": "9260ba89-8b84-4c48-9e0c-78960a3da727"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "현장에서 아직 크게 달라진 건 없고, 처방전 확인이 좀 더 깐깐해진 정도야. 취지가 BMI 기준 밖 미용 처방, 쇼핑하듯 받는 비대면 처방, 중고거래를 막는 거거든. 기준 맞춰서 대면으로 처방받는 사람은 달라질꺼 없어.\n\n기준이 애매하면 주사보다 식단이랑 근력운동부터 해. 맞게 되면 저용량부터 천천히 올리고, 단백질은 체중 1kg당 1.2g 챙겨야 근육이 덜 빠져.\n\n약국은 비맥스 메타 하루 1정 아침 식후.\n온라인이면 분리유청 단백질 쉐이크 한 스쿱 25g 정도면 무난해.\n직구는 나우푸드 D3 2000IU 아침 식후. 다른 거랑 합쳐서 하루 4000IU 넘기지 마-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 122
+        },
+        {
+          "kind": "ingredient",
+          "start": 124,
+          "end": 205
+        },
+        {
+          "kind": "product",
+          "start": 207,
+          "end": 320
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 13299,
+      "sessionId": "912aa583-4c71-4f4b-90a0-d95324029c1f"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "기준에 맞춰서 제대로 처방받는 사람한테는 아직 체감되는 차이 거의 없어. 병원 가서 진료 받고 처방전 들고 오면 예전이랑 똑같이 받아가.\n\n지정 취지는 살 뺄 필요 없는 사람이 미용 목적으로 받거나, 쇼핑하듯 처방받아서 중고로 팔고 사는 걸 막으려는 거야. 그래서 앞으로 BMI 기준 확인이랑 처방 기록 관리는 더 깐깐해질 수 있어. 세부 절차는 아직 병원마다 다르니까 진료 받을 때 확인해.\n\n기준에 안 맞는데 맞추려는 거면 식단이랑 운동부터 해. 주 3회 근력운동 하고 끼니마다 단백질 챙겨먹어. 기준에 맞아서 시작하면 2.5mg부터 4주씩 적응하고 천천히 올려. 단백질은 체중 1kg당 1.2g 이상 채워야 근육 덜 빠져. 급하게 올리면 속만 뒤집어지고 결과는 같아-",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 76
+        },
+        {
+          "kind": "principle",
+          "start": 78,
+          "end": 219
+        },
+        {
+          "kind": "ingredient",
+          "start": 221,
+          "end": 376
+        }
+      ],
+      "products": [],
+      "ms": 12829,
+      "sessionId": "9cb8cafa-869a-487f-8975-6c6790fc1604"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "기준 맞춰 대면으로 처방받는 사람은 크게 달라질 거 없어. 진짜 챙길 건 감량 중 근손실이야.\n약국은 비맥스 메타 하루 1정 아침 식후.\n온라인이면 셀렉스 프로핏 하루 1팩, 운동 끝나고.\n직구는 나우푸드 D3 2000IU 하루 1알, 다른 거랑 합쳐 4000IU 안 넘게.\n근력운동 주 3회가 이거 다보다 먼저야-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 176
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 11021,
+      "sessionId": "20919c7c-e2e0-4279-8ad1-9fab1ffd3f4e"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "현장 체감은 아직 크게 없어. 취지가 기준 밖 미용 처방이랑 쇼핑하듯 받아가는 거 막자는 거라, BMI 맞춰서 제대로 처방받는 사람은 걱정 안해도 돼. 티르제파타이드는 2.5mg로 4주 적응하고 2.5mg씩 천천히 올리는 약이야. 약보다 끼니마다 단백질 20g, 주 3회 근력운동이 먼저-\n\n약국은 변비 오면 마그밀(산화마그네슘) 자기 전 1~2알.\n온라인이면 분리유청단백 1회 25g 정도면 무난해.\n직구는 나우푸드 D3 2000IU 아침 식후 한 알, 다른 거랑 합쳐서 하루 4000IU 넘지 마.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 161
+        },
+        {
+          "kind": "product",
+          "start": 163,
+          "end": 280
+        }
+      ],
+      "products": [
+        {
+          "id": "855c1e5a",
+          "name": "나우푸드 D3 2000IU",
+          "url": "https://www.iherb.com/pr/now-foods-vitamin-d3-2-000-iu-120-softgels/8229"
+        }
+      ],
+      "ms": 14756,
+      "sessionId": "e764fd33-1f3c-44f7-811f-2e4baa1e259c"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "기준 맞춰 처방받던 사람은 달라질 거 없어. 쇼핑하듯 맞던 사람만 긴장하면 돼. 식단 잡는 게 젤 싼 주사-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "products": [],
+      "ms": 9158,
+      "sessionId": "e5c18a5c-76b5-49f6-83b7-75eb1f5abfab"
+    }
+  ],
+  "failed": [],
+  "sessionId": "e5c18a5c-76b5-49f6-83b7-75eb1f5abfab"
+}

@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790483662-iqqqiqii",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T05:56:14.760Z",
+  "updatedAt": "2026-09-30T05:57:19.664Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "둘 중 고르라면 마운자로. 근데 부작용이 적어서가 아니라 살이 더 많이 빠져서야. 초반 울렁거림은 둘 다 비슷하고, 큰 부작용은 약보다 너무 빨리 빼서 생기거든. 저용량부터 천천히 올리고 기름진 거 줄이면 젤 편해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 120
+        }
+      ],
+      "products": [],
+      "ms": 6761,
+      "sessionId": "e70ae47d-ad71-43d6-bc89-34a1809abd90"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "둘 중 고르라면 마운자로. 근데 부작용이 적어서가 아니라 살이 더 잘 빠져서야. 첫 2-3주 울렁거림은 둘 다 비슷하고, 탈모랑 근손실은 약 종류보다 너무 빨리 빠질 때 오거든.\n\n부작용은 약보다 속도가 정해. 2.5mg으로 시작해서 4주씩 버티고 올려. 초반엔 기름진거 줄이고 조금씩 나눠먹고, 단백질은 체중 1kg당 1.2g에 주 3회 근력운동-\n\n약국은 더부룩할 때 훼스탈플러스 식후 1정.\n온라인이면 셀렉스 프로핏 하루 한 병 정도 무난해.\n직구는 내가 먹는 옵티멈 골드스탠다드 웨이 1스쿱(단백질 24g) 운동 끝나고.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 99
+        },
+        {
+          "kind": "ingredient",
+          "start": 101,
+          "end": 195
+        },
+        {
+          "kind": "product",
+          "start": 197,
+          "end": 295
+        }
+      ],
+      "products": [],
+      "ms": 13927,
+      "sessionId": "8480d6e3-8425-4e99-98db-8396c011535a"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "고르라면 마운자로. 근데 부작용이 적어서가 아니라 살이 더 많이 빠져서야. 첫 몇 주 울렁거림은 둘 다 비슷해. 부작용은 약보다 용량을 얼마나 빨리 올리느냐가 좌우해. 2.5mg에서 시작해서 4주마다 천천히 올려. 근손실 막으려면 근력운동은 주 3회 같이 해-\n\n약국은 비맥스 메타 하루 1정, 아침 식후. 먹는 양이 줄면 비타민B부터 모자라.\n온라인이면 단백질 쉐이크는 1회 20g 이상이면 암거나 무난해.\n직구는 옵티멈 뉴트리션 골드 스탠다드 웨이 1스쿱(24g), 운동 끝나고 바로 먹어.",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 145
+        },
+        {
+          "kind": "product",
+          "start": 147,
+          "end": 276
+        }
+      ],
+      "products": [],
+      "ms": 13830,
+      "sessionId": "89a22c64-bbb2-4247-8983-3d8b894874ac"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "약국은 마운자로 2.5mg 처방부터 받아. 감량 폭이 더 커서 추천하는거지 부작용이 적어서 그런 게 아니야. 4주마다 천천히 올려.\n온라인이면 셀렉스 프로틴을 하루 한 번 먹어. 단백질 채우는 용도로는 무난해.\n직구는 옵티멈 골드스탠다드 웨이 1스쿱(24g). 주 3회 근력운동 끝나고 먹어-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 163
+        }
+      ],
+      "products": [],
+      "ms": 12546,
+      "sessionId": "b806bff7-1cc3-4cd3-a929-d35ba20b9c46"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "둘 중 고르라면 마운자로. 근데 부작용이 적어서가 아니라 감량 폭이 더 크게 나와서야. 고르는 기준부터 바꿔-\n\n첫 2~3주 울렁거림, 더부룩함은 두 약 다 비슷하게 와. 몸이 적응하는 기간이라 그래. 탈모, 피부처짐, 근손실은 약 종류 때문이라기보다 살이 너무 빨리 빠질 때 생기는 거고. 그래서 부작용은 어떤 약을 고르냐보다 얼마나 천천히 올리고 천천히 빼느냐에서 갈려.\n\n마운자로는 2.5mg에서 시작해서 4주마다 한 단계씩 올려. 급하게 올리면 그게 젤 힘들어. 초반엔 기름진 거 줄이고 조금씩 나눠 먹고, 단백질은 체중 1kg당 1.2g 이상 챙겨. 근력운동을 주 2~3회라도 같이 해야 근육 대신 지방이 빠져. 가격이나 식욕 줄어드는 느낌이 안 맞으면 나중에 위고비로 바꿔도 되니까 첫 선택에 너무 목숨 걸지 마. 천천히 가면 될꺼야.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 61
+        },
+        {
+          "kind": "principle",
+          "start": 63,
+          "end": 209
+        },
+        {
+          "kind": "ingredient",
+          "start": 211,
+          "end": 417
+        }
+      ],
+      "products": [],
+      "ms": 11346,
+      "sessionId": "1ed08b36-0998-4079-ac7a-e5c43f5f3aaf"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "고르라면 마운자로. 근데 부작용은 약 이름보다 급하게 올리고 기름진 거 먹을 때 와-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 47
+        }
+      ],
+      "products": [],
+      "ms": 6475,
+      "sessionId": "44dbadb2-30b7-4ff3-869f-08da9b9d0494"
+    }
+  ],
+  "failed": [],
+  "sessionId": "44dbadb2-30b7-4ff3-869f-08da9b9d0494"
+}

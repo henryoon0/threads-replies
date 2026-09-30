@@ -1,0 +1,217 @@
+{
+  "version": 6,
+  "replyId": "aside-1790488931-_keep.going_smile.again_",
+  "rulebookSha": "09ea45e94952c0c7ae06bf4ae465baadd37b26ac",
+  "status": "done",
+  "startedAt": "2026-09-30T04:54:16.641Z",
+  "updatedAt": "2026-09-30T04:55:21.922Z",
+  "planned": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "name": "원리 썰"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "원리부터 제품까지"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "name": "성실 장문"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "제품만 3분할"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "name": "성분 + 제품 3분할"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "name": "뒤통수 한 방"
+    }
+  ],
+  "variants": [
+    {
+      "key": "principle",
+      "toggles": {
+        "principle": true
+      },
+      "draft": "8번째면 5를 4주 다 채운거라 담주에 7.5로 올려. 마운자로는 보통 7.5부터 식욕이 확 꺾이거든. 작년엔 딱 그 직전에 멈춘거고, 이번엔 끼니마다 단백질 챙기고 근력운동 같이 해-",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 103
+        }
+      ],
+      "products": [],
+      "ms": 7386,
+      "sessionId": "ff1f7cdc-de9c-430b-b8a4-bb9687f58f60"
+    },
+    {
+      "key": "principle+ingredient+product",
+      "toggles": {
+        "principle": true,
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "8번째면 5를 4주 다 채운 거라 담주에 7.5로 올리는 게 맞아. 마운자로는 보통 7.5부터 체감이 확 오거든. 작년에도 딱 5에서 멈춘 거라 아직 제대로 맞아본 적이 없는거야-\n\n식단은 끼니마다 단백질부터 손바닥 하나만큼 먹고, 운동은 유산소만 하지 말고 웨이트를 주3회 넣어. 운동하는 날엔 크레아틴 하루 3~5g, 매일먹어도 돼.\n\n약국은 비맥스 메타 아침 식후 1알, 온라인이면 유청 단백질 한 스쿱 25g짜리 정도면 무난해, 직구는 옵티멈 뉴트리션 크레아틴 파우더 하루 5g 운동 후에.",
+      "sections": [
+        {
+          "kind": "principle",
+          "start": 0,
+          "end": 100
+        },
+        {
+          "kind": "ingredient",
+          "start": 102,
+          "end": 188
+        },
+        {
+          "kind": "product",
+          "start": 190,
+          "end": 278
+        }
+      ],
+      "products": [],
+      "ms": 12107,
+      "sessionId": "b90078d6-34e1-413f-b77e-1f37bbca4e6b"
+    },
+    {
+      "key": "empathy+principle+ingredient",
+      "toggles": {
+        "empathy": true,
+        "principle": true,
+        "ingredient": true
+      },
+      "draft": "8번째 맞았으면 5 4주 다 채운 거야. 부작용 심하지 않으면 담주에 7.5로 올려. 작년엔 약이 제대로 들기 시작하는 용량까지 가보지도 못하고 멈춘 거고. 이번에 여섯달 버텨보겠다는 거 잘 정했어-\n\n마운자로는 보통 7.5~10부터 식욕이 확 꺾이는 게 느껴져. 5에서 1키로 빠졌으면 약이 안 듣는 게 아니라 아직 용량이 모자란 거야. 그리고 운동 시작하면 근육이랑 수분이 붙어서 체중계 숫자는 한동안 멈춰 보일 수 있거든. 체중 말고 인바디로 체지방이 줄고 있는지 봐.\n\n식단은 사흘만 먹는 걸 다 적어봐. 음료, 간식, 탄수가 생각보다 많을 거야. 단백질은 끼니마다 20~30g, 운동하는 날은 크레아틴 하루 3~5g 같이 챙겨먹어. 유산소만 하지 말고 근력운동 주 3회 넣고. 7.5로 4주 맞아도 거의 안 빠지면 그때는 병원 가서 갑상선이랑 인슐린저항성 피검사부터 받아.",
+      "sections": [
+        {
+          "kind": "empathy",
+          "start": 0,
+          "end": 111
+        },
+        {
+          "kind": "principle",
+          "start": 113,
+          "end": 265
+        },
+        {
+          "kind": "ingredient",
+          "start": 267,
+          "end": 437
+        }
+      ],
+      "products": [],
+      "ms": 15559,
+      "sessionId": "5a43a1e2-0e60-47ad-874e-79fc4b301e1f"
+    },
+    {
+      "key": "product",
+      "toggles": {
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "담주에 7.5로 올려. 5를 네 번 채웠으면 딱 올릴 타이밍이야.\n약국은 비맥스 메타 하루 1정 아침 식후.\n온라인이면 뉴케어 올프로틴 한 팩, 단백질 모자란 끼니에 챙겨먹어. 이 정도면 무난해.\n직구는 내가 먹는 옵티멈 뉴트리션 크레아틴 하루 5g. 유산소만 하지 말고 웨이트 같이 쳐-",
+      "sections": [
+        {
+          "kind": "product",
+          "start": 0,
+          "end": 161
+        }
+      ],
+      "products": [],
+      "ms": 12076,
+      "sessionId": "44c7b4a2-c26e-4157-8a6d-d485fbd34e29"
+    },
+    {
+      "key": "ingredient+product",
+      "toggles": {
+        "ingredient": true,
+        "product": {
+          "pharmacy": true,
+          "online": true,
+          "overseas": true
+        }
+      },
+      "draft": "5로 4번 다 채웠으면 담주에 7.5 올려. 마운자로는 보통 7.5부터 체감이 와. 대신 운동은 근력 위주로 바꾸고, 단백질은 끼니마다 20~30g 챙겨먹어. 크레아틴은 하루 3~5g이면 되고 운동 후에 먹어.\n\n약국은 비맥스 메타, 아침 식후 1알.\n온라인이면 분리유청 단백질 1스쿱(25g 정도), 운동 끝나고 먹으면 무난해.\n직구는 옵티멈 뉴트리션 크레아틴 모노하이드레이트 5g, 매일-",
+      "sections": [
+        {
+          "kind": "ingredient",
+          "start": 0,
+          "end": 117
+        },
+        {
+          "kind": "product",
+          "start": 119,
+          "end": 219
+        }
+      ],
+      "products": [],
+      "ms": 10092,
+      "sessionId": "136e1e97-35a9-4ec3-bb6c-1969007c3585"
+    },
+    {
+      "key": "joke",
+      "toggles": {
+        "joke": true
+      },
+      "draft": "8번 맞았으면 담주에 7.5로 올리고, 하루 먹은거 다 적어봐. 작년엔 용량 오르기도 전에 그만둔거야-",
+      "sections": [
+        {
+          "kind": "joke",
+          "start": 0,
+          "end": 57
+        }
+      ],
+      "products": [],
+      "ms": 8044,
+      "sessionId": "2da5e7b7-bc6b-4729-9fb6-695ee2c1fa2d"
+    }
+  ],
+  "failed": [],
+  "sessionId": "2da5e7b7-bc6b-4729-9fb6-695ee2c1fa2d"
+}
