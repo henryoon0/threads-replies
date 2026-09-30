@@ -31,7 +31,7 @@ const QUICK: { title: string; body: React.ReactNode }[] = [
   },
 ];
 
-export function TokenModal({ onConnected, onClose }: { onConnected: () => void; onClose: () => void }) {
+export function TokenModal({ onConnected, onClose, tried }: { onConnected: () => void; onClose: () => void; tried?: number }) {
   const [token, setToken] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -64,6 +64,11 @@ export function TokenModal({ onConnected, onClose }: { onConnected: () => void; 
         <h2 id="token-title" className="text-lg font-semibold text-neutral-900">스레드 토큰을 넣어 주세요</h2>
         <p className="mt-1 break-keep text-[13px] leading-relaxed text-neutral-500">
           토큰을 넣으면 새 댓글을 받아오고 답을 바로 보낼 수 있어요. 토큰은 이 컴퓨터에만 저장돼요.
+        </p>
+        <p className="mt-2 rounded-lg bg-neutral-50 px-3 py-2 text-[12.5px] leading-relaxed text-neutral-600">
+          {tried
+            ? `이 컴퓨터에서 토큰 ${tried}개를 찾았지만 만료됐거나 박약사 계정 것이 아니었어요. 새로 만들어 주세요.`
+            : "이 컴퓨터에서 저장된 토큰을 찾아봤지만 없었어요. 아래 순서로 새로 만들어 주세요."}
         </p>
 
         <ol className="mt-4 space-y-2.5">

@@ -2,12 +2,17 @@ import { NextResponse } from "next/server";
 import { accountStatus, connectAccount, ConnectError, disconnectAccount } from "@/lib/account";
 import { capabilities } from "@/lib/capabilities";
 import { writeProfile } from "@/lib/profile";
+import { findOnce } from "@/lib/token-finder";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const [account, caps] = await Promise.all([accountStatus(), capabilities()]);
-  return NextResponse.json({ ...account, caps });
+  let account = await accountStatus();
+  // 연결 안 됐으면 이 컴퓨터에 남은 토큰을 한 번 찾아 붙인다. 못 찾으면 화면이 토큰 팝업을 띄운다.
+  const found = account.connected ? null : await findOnce();
+  if (found?.state === "connected") account = await accountStatus();
+  const caps = await capabilities();
+  return NextResponse.json({ ...account, caps, found });
 }
 
 /** 토큰 붙여넣기 → 검증 → 저장. intro 는 한 줄 소개(선택). */

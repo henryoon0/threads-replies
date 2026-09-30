@@ -111,6 +111,7 @@ function Workbench({ account, reload }: { account: AccountView; reload: () => Pr
     <div className="min-h-screen">
       {ask && !account.connected ? (
         <TokenModal
+          tried={account.found?.state === "none" ? account.found.tried : 0}
           onClose={() => setAsk(false)}
           onConnected={() => {
             setAsk(false);
