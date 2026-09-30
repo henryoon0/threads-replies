@@ -59,6 +59,28 @@ export interface DraftSentence {
   sourceIds: string[];
 }
 
+/** 주인이 예전에 단 답 한 건 (초안 프롬프트의 "예전에 한 말" · 어긋남 검사의 비교 대상) */
+export interface PastSaid {
+  id: string;
+  text: string;
+  /** 그 답이 달린 댓글 */
+  comment?: string;
+  date?: string;
+  permalink?: string;
+  /** 지금 댓글 단 사람에게 했던 답 */
+  sameCommenter?: boolean;
+}
+
+/** 초안 문장 하나가 예전 답과 어긋남. 위치는 그 글(draft) 안 [start, end). */
+export interface ConsistencyHit {
+  sentenceStart: number;
+  sentenceEnd: number;
+  /** text = 예전 답에서 그대로 옮긴 구절 (원문에 있는지 코드가 확인한 것만 남는다) */
+  past: { text: string; date?: string; permalink?: string; comment?: string };
+  /** 어떻게 다른지 한 줄 */
+  note: string;
+}
+
 /** 답할 수 있음 판정 (픽 4). */
 export type AnswerVerdict = "answerable" | "partial" | "unknown";
 
@@ -74,8 +96,16 @@ export interface ReplyAnswer {
   myAsk?: string;
   model: string;
   generatedAt: string;
-  /** 초안이 참고한 henry 과거 답글 예시 수 (말투 학습 확인용) */
+  /** 초안이 참고한 과거 답글 예시 수 (말투 학습 확인용) */
   styleExamples: number;
+  /** 근거 인용에 없는 사실이라 초안에서 뺀 문장 (fact-check.ts) */
+  dropped?: { text: string; reason: string }[];
+  /** 초안 전에 찾은 주인의 예전 답 (같은 주제 · 같은 사람). 어긋남 검사가 이것과 비교한다 */
+  pastSaid?: PastSaid[];
+  /** draft(=consistencyFor) 기준 예전 답과 어긋나는 문장 */
+  consistency?: ConsistencyHit[];
+  /** consistency 를 잰 글. draft 와 다르면 옛 결과다 */
+  consistencyFor?: string;
 }
 
 /** 원문 형광 캡처 (픽 6). 원본 X 글·웹 글만 찍는다. henry 노트는 찍지 않는다. */

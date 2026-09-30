@@ -5,8 +5,10 @@
 // 한 번에 잡 하나만 (CLI 슬롯 보호). 질문만 근거를 찾고, 나머지는 근거 없이 짧은 답만 만든다.
 import { randomUUID } from "crypto";
 import { registerSweepAdapter, type ActiveJobRef, type ListResumeSweepAdapter } from "@/lib/jobs/sweep";
+import { withConsistency } from "./consistency";
 import { generateAnswer } from "./draft";
 import { isPending, type AnswerSource, type ReplyAnswer, type ThreadsPostRef, type ThreadsRepliesLedger, type ThreadsReply } from "./model";
+import { pastSaidFor } from "./past-said";
 import { retrieveForReply } from "./retrieve";
 import { envMs, readAnswerJob, readRepliesLedger, updateRepliesLedger, writeAnswerJob, type AnswerJob } from "./storage";
 import { readProfile } from "@/lib/profile";
@@ -116,14 +118,18 @@ async function draftOne(
       sources = found.sources;
       trace = found.trace;
     }
-    const answer = await generateAnswer({
+    const profile = await readProfile();
+    const drafted = await generateAnswer({
       reply,
       post,
       sources,
-      conversation: conversationFor(ledger, reply, (await readProfile()).username),
+      conversation: conversationFor(ledger, reply, profile.username),
       instruction: opts.instruction,
       myNote: opts.myNote,
+      pastSaid: pastSaidFor(ledger, reply),
     });
+    // 예전 답과 어긋나는 문장을 찾아 붙인다 (글은 고치지 않는다, 실패해도 초안은 그대로).
+    const answer = await withConsistency(drafted, profile.username ? `@${profile.username}` : "주인");
     return { answer, trace };
   })();
   return withDeadline(work, controller, envMs("THREADS_ANSWER_TIMEOUT_MS", DEFAULT_ANSWER_TIMEOUT_MS));

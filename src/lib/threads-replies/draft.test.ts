@@ -109,7 +109,7 @@ describe("normalizeAnswer", () => {
     expect(a.verdictReason).toContain("근거 달린 문장 없음");
   });
 
-  it("근거 없는 숫자 문장이 있으면 answerable 을 partial 로", () => {
+  it("근거 인용에 없는 숫자 문장은 초안에서 빼고 뺀 문장으로 남긴다", () => {
     const a = normalizeAnswer(
       {
         verdict: "answerable",
@@ -120,8 +120,9 @@ describe("normalizeAnswer", () => {
       },
       ctx(true)
     );
-    expect(a.verdict).toBe("partial");
-    expect(a.draft).toBe("대부분 low로 쓴다고 하더라고요 가격은 3배 싸요");
+    expect(a.draft).toBe("대부분 low로 쓴다고 하더라고요");
+    expect(a.sentences.map((x) => x.text)).toEqual(["대부분 low로 쓴다고 하더라고요"]);
+    expect(a.dropped?.[0].text).toBe("가격은 3배 싸요");
   });
 
   it("내 글(p)을 인용하면 근거 목록에 내 글을 더한다", () => {
@@ -185,5 +186,16 @@ describe("generateAnswer", () => {
     expect(seen).not.toContain("I use low effort");
     expect(a.sources).toEqual([]);
     expect(a.draft).toBe("🥰");
+  });
+});
+
+describe("pastSaidBlock", () => {
+  it("예전 답을 싣고, 없으면 빈 문자열", async () => {
+    const { pastSaidBlock } = await import("./draft");
+    expect(pastSaidBlock([])).toBe("");
+    const b = pastSaidBlock([{ id: "m1", text: "저녁에 올려요", comment: "언제 올려요?", sameCommenter: true }]);
+    expect(b).toContain("<owner_past_replies>");
+    expect(b).toContain('same_person="true"');
+    expect(b).toContain("어긋나면 안 된다");
   });
 });

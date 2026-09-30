@@ -3,15 +3,19 @@
 // Opus 5.5 한 번 호출. 프롬프트 = 말투 규칙책 전문 + 닮은 실제 답글 예시 + 내 글 + 대화 줄기
 // + 댓글 + 번호 붙은 근거(원문 인용). 출력은 문장마다 받치는 근거 id 를 단 JSON.
 // 정확성 장치는 프롬프트와 코드 양쪽에 있다: 모델이 없는 근거 id 를 달면 버리고,
-// 질문인데 근거 달린 문장이 하나도 없으면 판정을 "unknown" 으로 내린다.
+// 근거 인용에 없는 사실 문장은 초안에서 뺀다(fact-check.ts), 질문인데 근거 달린 문장이
+// 하나도 없으면 판정을 "unknown" 으로 내린다. 주인이 예전에 한 말(past-said.ts)도 함께 보여
+// 새 답이 예전 답과 어긋나지 않게 한다.
 
 import { runClaudeCLI } from "@/lib/ai/claude-cli";
 import { ownerLine, readProfile, type OwnerProfile } from "@/lib/profile";
 import { parseJsonObject } from "@/lib/ai/json";
+import { dropUnsupported, removeFromDraft, sourceCorpus, trustedContext } from "./fact-check";
 import type {
   AnswerSource,
   AnswerVerdict,
   DraftSentence,
+  PastSaid,
   ReplyAnswer,
   ThreadsPostRef,
   ThreadsReply,
@@ -27,7 +31,7 @@ import {
 } from "./voice";
 
 export const ANSWER_MODEL = "claude-opus-5-5";
-const DEFAULT_TIMEOUT_MS = 120_000;
+const DEFAULT_TIMEOUT_MS = 240_000;
 const STYLE_EXAMPLE_COUNT = 10;
 const POST_CHARS = 1500;
 const QUOTE_CHARS = 900;
@@ -41,6 +45,8 @@ export interface AnswerInput {
   conversation?: { username: string; text: string }[];
   instruction?: string;
   myNote?: string;
+  /** 주인이 예전에 같은 주제·같은 사람에게 한 답 (past-said.ts). 새 답은 이와 어긋나면 안 된다 */
+  pastSaid?: PastSaid[];
 }
 
 export interface AnswerDeps {
@@ -60,6 +66,7 @@ export interface AnswerPromptParts {
   conversation?: { username: string; text: string }[];
   instruction?: string;
   myNote?: string;
+  pastSaid?: PastSaid[];
   styleBook: string;
   examples: VoiceExample[];
   situation: ReplySituation;
@@ -121,6 +128,19 @@ function conversationBlock(conv: AnswerPromptParts["conversation"]): string {
   return `\n<conversation_so_far>\n${body}\n</conversation_so_far>\n`;
 }
 
+/** 예전에 한 말: 새 답이 이와 어긋나지 않게 (되풀이·덧붙임은 된다). 없으면 빈 문자열. */
+export function pastSaidBlock(past: readonly PastSaid[] | undefined): string {
+  if (!past?.length) return "";
+  const items = past
+    .map((p) => {
+      const attrs = `${p.date ? ` date="${p.date}"` : ""}${p.sameCommenter ? ` same_person="true"` : ""}`;
+      const comment = p.comment ? `\n(받은 댓글: ${clip(p.comment, 160)})` : "";
+      return `<past${attrs}>${comment}\n${clip(p.text, 400)}\n</past>`;
+    })
+    .join("\n");
+  return `\n<owner_past_replies>\n예전에 한 말: 주인이 같은 주제로(또는 이 댓글 단 사람에게) 실제로 단 답이다. same_person="true" 는 지금 댓글 단 사람에게 한 답이다.\n${items}\n</owner_past_replies>\n새 답은 이 예전 답과 어긋나면 안 된다. 같은 점(방법·수치·추천 여부·가능 여부·순서)에 대해 다른 말을 하지 않는다. 예전 말을 되풀이하거나 더 자세히 덧붙이는 건 된다. 근거가 예전 답과 다르면 근거 쪽 사실만 쓰되 단정하지 말고, 예전 답을 뒤집는 말은 쓰지 않는다.\n`;
+}
+
 const OUTPUT_SCHEMA = `{
   "verdict": "answerable" | "partial" | "unknown",
   "verdictReason": "주인에게 보이는 판정 이유 한 줄 (예: \\"s1 원문에 설정 방법이 그대로 있음\\")",
@@ -131,21 +151,21 @@ const OUTPUT_SCHEMA = `{
 
 function questionTask(hasSources: boolean): string {
   return `## 이번 일
-댓글은 질문이다. 주인가 직접 답하는 것처럼 답글 초안을 쓰고, 문장마다 어느 근거에서 왔는지 표시한다.
+댓글은 질문이다. 주인이 직접 답하는 것처럼 답글 초안을 쓰고, 문장마다 어느 근거에서 왔는지 표시한다.
 
 1. 먼저 <sources>에서 질문에 직접 답하는 부분을 찾는다. ${hasSources ? "붙은 근거와 내 글 본문(id \"p\")을 모두 본다." : "붙은 근거가 없으니 내 글 본문(id \"p\")만 근거로 쓸 수 있다."}
-2. 사실을 말하는 문장(수치, 이름, 기능, 방법, 날짜, 가격, 가능 여부)은 그 사실이 적힌 근거 id를 sourceIds에 넣는다. 근거 원문에 있는 말만 사실로 쓴다.
-3. 근거가 받치지 않는 문장은 sourceIds를 []로 두고, 주인의 느낌·경험·짐작으로 들리게 쓴다("~것 같아요", "저는 ~" 등). 인사·맞장구·약속 문장도 [].
+2. 사실은 근거 인용에 있는 말만 쓴다. 사실을 말하는 문장(수치, 이름, 기능, 방법, 날짜, 가격, 가능 여부, 효과)은 그 사실이 그대로 적힌 근거 id를 sourceIds에 넣는다. 근거에 없는 사실은 "내가 알기론"을 붙여도 쓰지 않는다. 모르면 쓰지 말고 모른다고 짧게 말한다.
+3. 근거가 받치지 않는 문장은 sourceIds를 []로 두고, 사실이 아닌 말(권유·질문·맞장구·인사·약속·주인의 느낌)만 쓴다. 근거 없는 사실 문장은 코드가 초안에서 지운다.
 4. 판정:
    - answerable: 질문의 핵심에 근거 달린 문장으로 답했다.
    - partial: 일부만 근거로 답했고 나머지는 주인 확인이 필요하다.
-   - unknown: 근거가 질문에 답하지 못한다. 이때 draft는 근거로 말할 수 있는 만큼만 한 문장으로 말하거나, 아직 써보지 못했다고 짧게 인정한다(규칙책 2-3). 나중에 알려주겠다는 약속은 주인가 직접 확인할 수 있는 일일 때 한 번만 쓴다.
+   - unknown: 근거가 질문에 답하지 못한다. 이때 draft는 근거로 말할 수 있는 만큼만 한 문장으로 말하거나, 아직 써보지 못했다고 짧게 인정한다(규칙책 2-3). 나중에 알려주겠다는 약속은 주인이 직접 확인할 수 있는 일일 때 한 번만 쓴다.
 5. myAsk: 주인만 아는 경험(직접 써봤는지, 어떤 설정을 쓰는지 등)이 답을 크게 낫게 만들 때 그 질문 한 줄. 필요 없으면 "".`;
 }
 
 function reactionTask(): string {
   return `## 이번 일
-댓글은 질문이 아니다(감사·감탄·농담·대화). 근거는 쓰지 않는다. 주인가 실제로 달 법한 짧은 답글 하나를 쓴다.
+댓글은 질문이 아니다(감사·감탄·농담·대화). 근거는 쓰지 않는다. 주인이 실제로 달 법한 짧은 답글 하나를 쓴다.
 - verdict는 "answerable", verdictReason은 "반응 댓글", 모든 sentences의 sourceIds는 [], myAsk는 "".`;
 }
 
@@ -179,7 +199,7 @@ ${conversationBlock(parts.conversation)}${addressed}
 <comment author="${reply.username}" situation="${SITUATION_LABEL[situation]}">
 ${reply.text.trim()}
 </comment>
-${question ? `\n<sources>\n${sourceBlock(sources, post)}\n</sources>\n` : ""}
+${question ? `\n<sources>\n${sourceBlock(sources, post)}\n</sources>\n` : ""}${pastSaidBlock(parts.pastSaid)}
 ${extras ? `\n${extras}\n` : ""}
 ${question ? questionTask(sources.length > 0) : reactionTask()}
 
@@ -215,6 +235,9 @@ export interface NormalizeContext {
   generatedAt: string;
   styleExamples: number;
   myNote?: string;
+  /** 되풀이해도 되는 글 (댓글·대화·예전 답). 여기 있는 숫자·이름은 지어낸 말이 아니다 */
+  context?: string;
+  pastSaid?: PastSaid[];
 }
 
 /** 모델 JSON 을 계약 모양으로 고친다: 없는 근거 id 제거, 질문인데 근거 0이면 unknown. */
@@ -235,6 +258,22 @@ export function normalizeAnswer(raw: RawAnswer, ctx: NormalizeContext): ReplyAns
 
   let draft = typeof raw.draft === "string" ? raw.draft.trim() : "";
   if (!draft) draft = sentences.map((s) => s.text).join(" ");
+
+  // 근거 인용에 없는 사실 문장은 뺀다 (질문일 때만: 반응 답은 사실을 말하지 않는다).
+  let dropped: { text: string; reason: string }[] = [];
+  if (ctx.question) {
+    const corpora = [
+      ...ctx.sources.map(sourceCorpus),
+      { id: POST_SOURCE_ID, text: ctx.post.text },
+      ...(ctx.myNote?.trim() ? [{ id: "me", text: ctx.myNote.trim() }] : []),
+    ];
+    const checked = dropUnsupported(sentences, corpora, ctx.context ?? "");
+    if (checked.dropped.length && checked.kept.length) {
+      dropped = checked.dropped;
+      draft = removeFromDraft(draft, dropped, checked.kept);
+      sentences.splice(0, sentences.length, ...checked.kept);
+    }
+  }
 
   const cited = new Set(sentences.flatMap((s) => s.sourceIds));
   // 붙은 근거는 인용 여부와 상관없이 전부 남긴다 (칩으로 접혀 보이고, henry 가 바꿔 끼운다).
@@ -280,6 +319,8 @@ export function normalizeAnswer(raw: RawAnswer, ctx: NormalizeContext): ReplyAns
     model: ctx.model,
     generatedAt: ctx.generatedAt,
     styleExamples: ctx.styleExamples,
+    ...(dropped.length ? { dropped } : {}),
+    ...(ctx.pastSaid?.length ? { pastSaid: ctx.pastSaid } : {}),
   };
 }
 
@@ -319,5 +360,10 @@ export async function generateAnswer(input: AnswerInput, deps: AnswerDeps = {}):
     generatedAt: (deps.now?.() ?? new Date()).toISOString(),
     styleExamples: examples.length,
     myNote: input.myNote,
+    pastSaid: input.pastSaid,
+    context: trustedContext({
+      thread: [input.reply.text, input.reply.repliedToText ?? "", ...(input.conversation ?? []).map((m) => m.text)],
+      pastSaid: input.pastSaid,
+    }),
   });
 }
