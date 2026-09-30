@@ -1,10 +1,13 @@
 // 스레드 댓글 답하기 — 디스크 영속화. 경로 계산은 여기에만 둔다 (AGENTS.md 저장 규칙).
-import { mkdir, readFile, writeFile } from "fs/promises";
+import { mkdir, readFile, rename, writeFile } from "fs/promises";
 import path from "path";
+import { currentPersona } from "@/lib/personas/context";
+import { personaDataDir } from "@/lib/personas/registry";
 import { createRepliesLedger, type ThreadsRepliesLedger } from "./model";
 
+/** 원장·잡 파일 폴더 = 지금 페르소나의 폴더 (AICC 는 data/threads-replies 그대로). 테스트는 env 로 덮는다. */
 export function threadsRepliesDir(): string {
-  return process.env.THREADS_REPLIES_DIR ?? path.join(process.cwd(), "data", "threads-replies");
+  return process.env.THREADS_REPLIES_DIR ?? personaDataDir(currentPersona());
 }
 
 export function ledgerPath(): string {
@@ -45,9 +48,15 @@ async function readJson<T>(filePath: string): Promise<T | null> {
   }
 }
 
+/**
+ * 임시 파일에 다 쓴 뒤 rename 으로 바꿔 끼운다. 제자리 덮어쓰기는 쓰는 도중 다른 요청이
+ * 반쯤 쓴 파일을 읽어 "Unexpected end of JSON input" 500 을 냈다 (2026-09-29 실측).
+ */
 async function writeJson(filePath: string, value: unknown): Promise<void> {
   await mkdir(path.dirname(filePath), { recursive: true });
-  await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  const tmp = `${filePath}.${process.pid}.${Date.now()}.tmp`;
+  await writeFile(tmp, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  await rename(tmp, filePath);
 }
 
 export async function readRepliesLedger(filePath = ledgerPath()): Promise<ThreadsRepliesLedger> {
@@ -61,11 +70,21 @@ export async function writeRepliesLedger(ledger: ThreadsRepliesLedger, filePath 
 }
 
 // 원장 쓰기는 한 줄로 세운다 — 동기화와 초안 잡이 같은 파일을 읽고-고치고-쓰기 때문.
-// hot reload 재평가에도 하나의 줄을 쓰도록 globalThis 에 둔다.
+// 줄은 원장 파일마다 따로다 (페르소나마다 원장이 다르다). hot reload 에도 같은 줄을 쓰도록 globalThis 에 둔다.
+export function keyedLock(name: string, key: string): { tail: Promise<unknown> } {
+  const g = globalThis as typeof globalThis & { __threadsRepliesLocks?: Map<string, { tail: Promise<unknown> }> };
+  g.__threadsRepliesLocks ??= new Map();
+  const id = `${name}:${key}`;
+  let lock = g.__threadsRepliesLocks.get(id);
+  if (!lock) {
+    lock = { tail: Promise.resolve() };
+    g.__threadsRepliesLocks.set(id, lock);
+  }
+  return lock;
+}
+
 function ledgerLock(): { tail: Promise<unknown> } {
-  const g = globalThis as typeof globalThis & { __threadsRepliesLedgerLock?: { tail: Promise<unknown> } };
-  g.__threadsRepliesLedgerLock ??= { tail: Promise.resolve() };
-  return g.__threadsRepliesLedgerLock;
+  return keyedLock("ledger", ledgerPath());
 }
 
 /** 최신 원장을 읽어 fn 으로 고친 뒤 저장. 동시에 하나만 돈다. fn 이 던지면 저장하지 않는다. */
@@ -102,7 +121,6 @@ export interface AnswerJob {
 export async function readAnswerJob(filePath = answerJobPath()): Promise<AnswerJob | null> {
   const parsed = await readJson<Partial<AnswerJob>>(filePath);
   if (!parsed?.id || !Array.isArray(parsed.replyIds)) return null;
-  const now = new Date().toISOString();
   return {
     id: parsed.id,
     scope: parsed.scope ?? "all",
@@ -110,10 +128,14 @@ export async function readAnswerJob(filePath = answerJobPath()): Promise<AnswerJ
     done: parsed.done ?? [],
     failed: parsed.failed ?? [],
     status: parsed.status ?? "done",
-    createdAt: parsed.createdAt ?? now,
-    updatedAt: parsed.updatedAt ?? now,
+    ...jobTimes(parsed),
     current: parsed.current,
   };
+}
+
+function jobTimes(parsed: Partial<AnswerJob>): Pick<AnswerJob, "createdAt" | "updatedAt"> {
+  const now = new Date().toISOString();
+  return { createdAt: parsed.createdAt ?? now, updatedAt: parsed.updatedAt ?? now };
 }
 
 export async function writeAnswerJob(job: AnswerJob, filePath = answerJobPath()): Promise<void> {

@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readRepliesLedger } from "@/lib/threads-replies/storage";
 import { captureEvidence, isShootable } from "@/lib/threads-replies/evidence-shot";
+import { withPersonaRequest } from "@/lib/personas/context";
 
 // 근거 한 건의 원문 형광 캡처 (픽 6). POST { sourceId } → { shot }.
 // 원장에는 쓰지 않는다 — 캡처를 답글에 붙일지는 호출하는 쪽이 정한다.
-export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+async function handlePOST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const body = (await request.json().catch(() => ({}))) as { sourceId?: unknown };
   const sourceId = typeof body.sourceId === "string" ? body.sourceId.trim() : "";
@@ -27,4 +28,9 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     return NextResponse.json({ error: "원문에서 인용을 찾아 찍지 못했어요" }, { status: 502 });
   }
   return NextResponse.json({ shot });
+}
+
+// 요청마다 지금 페르소나(?persona= 또는 쿠키)로 감싼다 — 원장·토큰·규칙책이 그 계정 것으로 갈린다.
+export async function POST(request: NextRequest, ctx: { params: Promise<{ id: string }> }) {
+  return withPersonaRequest(request, () => handlePOST(request, ctx));
 }

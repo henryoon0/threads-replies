@@ -1,19 +1,31 @@
 "use client";
 
 // 스레드 댓글 답 패널 (오른쪽). 목록은 다른 파일이 그리고, 이 패널은 댓글 한 건을 받아
-// 판정·근거·초안 → 근거 확인 → 5초 되돌리기 보내기 → 다음 질문까지 맡는다.
+// 완성된 답(칸 안 카테고리 칩 · 관문 칠하기) + 오른쪽 참고 칸(제품·비슷한 글·자료) → 확인 시트 → 보내기까지 맡는다.
 // 답한 질문(기록 보기)도 같은 패널: 보낸 답 + [콘텐츠 보드로].
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowTopRightOnSquareIcon, ArrowUturnLeftIcon, CheckIcon, ForwardIcon, PaperAirplaneIcon } from "@heroicons/react/16/solid";
+import { ArrowTopRightOnSquareIcon, ArrowUturnLeftIcon, CheckIcon, ChevronRightIcon } from "@heroicons/react/16/solid";
+import { editorPaint } from "@/lib/threads-replies/editor-paint";
+import { trustedContext, unsupportedSpans } from "@/lib/threads-replies/fact-check";
+import type { ConsistencyHit } from "@/lib/threads-replies/model";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
 import { spring } from "@/lib/springs";
 import { cn } from "@/lib/utils";
-import { EvidenceStrip } from "./threads-answer-evidence";
-import { ThreadsDraftCard } from "./threads-answer-draft";
+import { FinalAnswer } from "./threads-answer-final";
 import { ReplyImageRow, useReplyImage } from "./threads-answer-image";
 import { useCanAttach } from "./threads-mark";
+import { AnswerSources } from "./threads-answer-sources";
+import { ComposeBar } from "./threads-compose-bar";
+import { SimilarPast } from "./threads-similar";
+import { useCompose } from "./use-compose";
+import { useGate, type GateChecker } from "./threads-gate";
+import { usePastCheck } from "./use-past-check";
+import { announceReceipt, ThreadsReceipt } from "./threads-receipt";
+import { SendSheet, type SheetPersona } from "./threads-send-sheet";
+import { ThreadsStanceCard } from "./threads-stance-card";
+import { ThreadsProducts, useProductLibrary } from "./threads-products";
 import { SeedButton, SendFailureNote, UndoBar, useUndoSend, type PendingSend } from "./threads-answer-send";
 import { SourceChips, press } from "./threads-answer-verdict";
 import { isShootableSource, patchReply, shotKey, useEvidenceShots, useThreadsAnswer, type ThreadsReplyView } from "./use-threads-answer";
@@ -97,6 +109,7 @@ function AnsweredBlock({ reply }: { reply: ThreadsReply }) {
       </p>
       <p className="mt-1.5 whitespace-pre-line break-keep text-[14px] leading-[1.7] text-neutral-800">{mine.text}</p>
       {reply.answer && reply.answer.sources.length > 0 ? <SourceChips answer={reply.answer} open={open} onOpen={setOpen} /> : null}
+      <ThreadsReceipt replyId={reply.id} className="mt-2" />
       {reply.intent === "question" ? (
         <div className="mt-3 pt-2 shadow-[0_-1px_0_0_rgba(10,10,10,0.05)]">
           <SeedButton replyId={reply.id} answer={mine.text} />
@@ -122,32 +135,6 @@ function SkippedBlock({ onRestore }: { onRestore: () => void }) {
   );
 }
 
-function SendActions({ canSend, waiting, onSkip, onSend }: { canSend: boolean; waiting: boolean; onSkip: () => void; onSend: () => void }) {
-  return (
-    <>
-      <button
-        type="button"
-        onClick={onSkip}
-        disabled={waiting}
-        className={cn("inline-flex h-9 items-center gap-1.5 rounded-[10px] px-2.5 text-xs text-neutral-500 hover:bg-neutral-50 hover:text-neutral-700 disabled:opacity-40", press)}
-      >
-        <ForwardIcon className="size-3.5" />
-        건너뛰기
-      </button>
-      <button
-        type="button"
-        onClick={onSend}
-        disabled={!canSend || waiting}
-        className={cn("inline-flex h-9 items-center gap-1.5 rounded-[10px] bg-emerald-700 px-3.5 text-xs font-medium text-white hover:bg-emerald-800 disabled:opacity-40", press)}
-      >
-        <PaperAirplaneIcon className="size-3.5" />
-        {waiting ? "곧 보내요" : "보내기"}
-        {waiting ? null : <span className="ml-0.5 text-[10px] font-normal text-white/70">⌘↵</span>}
-      </button>
-    </>
-  );
-}
-
 type AnswerState = ReturnType<typeof useThreadsAnswer>;
 type Sender = ReturnType<typeof useUndoSend>;
 type Shots = ReturnType<typeof useEvidenceShots>;
@@ -157,13 +144,18 @@ interface OpenReplyProps {
   a: AnswerState;
   sender: Sender;
   ev: Shots;
+  persona: SheetPersona;
+  gate: GateChecker;
   onSent: (reply: ThreadsReply) => void;
   onSkip: (skipped: boolean) => void;
 }
 
-/** 근거 중 캡처가 끝난 첫 장 — 답글에 자동으로 붙는다 */
+/** 캡처가 끝난 근거 중 초안 문장이 가장 많이 기댄 한 장 — 답글에 자동으로 붙는다 */
 function firstEvidenceShot(reply: ThreadsReply, shots: Shots["shots"]): string | null {
-  for (const s of reply.answer?.sources ?? []) {
+  const sentences = reply.answer?.sentences ?? [];
+  const uses = (id: string) => sentences.filter((x) => x.sourceIds.includes(id)).length;
+  const ranked = [...(reply.answer?.sources ?? [])].sort((a, b) => uses(b.id) - uses(a.id));
+  for (const s of ranked) {
     if (!isShootableSource(s)) continue;
     const st = shots[shotKey(reply.id, s)];
     if (st?.status === "done") return st.shot.image;
@@ -173,48 +165,167 @@ function firstEvidenceShot(reply: ThreadsReply, shots: Shots["shots"]): string |
 
 /** 답글 첨부: 직접 붙인 이미지가 우선, 없으면 근거 캡처가 자동으로 붙는다. */
 function useReplyAttachments(reply: ThreadsReply, shots: Shots["shots"], waiting: boolean) {
+  // Cloudflare 로그인이 없으면 첨부를 올릴 곳이 없어 발송이 실패한다 — 첨부 줄을 숨긴다.
   const canAttach = useCanAttach();
   const image = useReplyImage(canAttach && !waiting);
   const [evidenceOff, setEvidenceOff] = useState(false);
   const evidenceImage = evidenceOff || !canAttach ? null : firstEvidenceShot(reply, shots);
-  const payload = () =>
-    image.dataUrl ? { image: image.dataUrl } : evidenceImage ? { evidenceImage } : {};
+  const payload = () => (image.dataUrl ? { image: image.dataUrl } : evidenceImage ? { evidenceImage } : {});
   const row = !canAttach ? null : <ReplyImageRow image={image} evidence={{ image: evidenceImage, onExclude: () => setEvidenceOff(true) }} disabled={waiting} />;
-  return { image, payload, row };
+  return { image, payload, row, shown: image.dataUrl ?? evidenceImage, canAttach };
 }
 
-/** 아직 답하지 않은 댓글: 초안 칸 → (실패 시 폴백) → 보내기 전 근거. */
-function OpenReply({ view, a, sender, ev, onSent, onSkip }: OpenReplyProps) {
-  const { reply } = view;
-  const isQuestion = reply.intent === "question";
-  const waiting = sender.pending?.replyId === reply.id;
-  const failure = sender.failure?.replyId === reply.id ? sender.failure : null;
-  const attach = useReplyAttachments(reply, ev.shots, waiting);
-  const canSend = (Boolean(a.draft.trim()) || Boolean(attach.image.dataUrl)) && !a.regenerating;
+/**
+ * 완성된 답 칠하기 (editor-paint.ts): 예전 답과 다름 + 근거 없음(질문 댓글·자료가 있을 때)만 칠한다.
+ * 관문 확인 표현은 칠하지 않고, 막음(링크 등)은 칸 아래 한 줄로만. strict 계정은 근거 없음·막음이 남으면 보내기를 막는다.
+ */
+function usePaint(view: ThreadsReplyView, draft: string, gate: GateChecker, past: readonly ConsistencyHit[]) {
+  const { reply, post, conversation } = view;
+  const sources = reply.answer?.sources ?? [];
+  const products = useProductLibrary();
+  // 주인이 예전에 단 답·제품 창고에 있는 숫자·이름은 지어낸 말이 아니다 — 거기에도 없는 것만 "근거 없음"
+  const context = trustedContext({
+    thread: [reply.text, reply.repliedToText ?? "", post?.text ?? "", ...conversation.map((c) => c.text)],
+    pastSaid: reply.answer?.pastSaid,
+    products: products as unknown as Record<string, unknown>[],
+  });
+  const checkFacts = reply.intent === "question" && draft.trim() && sources.length;
+  const facts = checkFacts ? unsupportedSpans(draft, sources, context) : [];
+  return editorPaint({ text: draft, gate: gate.check(draft), facts, sources, past, strict: gate.mode === "strict" });
+}
 
-  const send = () => {
+/** 보내기 흐름 상태: 첨부 · 관문 결과 · 보낼 수 있나 · 확인 시트 */
+function useSendFlow({ view, a, sender, ev, gate }: Pick<OpenReplyProps, "view" | "a" | "sender" | "ev" | "gate">) {
+  const { reply } = view;
+  const waiting = sender.pending?.replyId === reply.id;
+  const attach = useReplyAttachments(reply, ev.shots, waiting);
+  const [sheet, setSheet] = useState(false);
+  const past = usePastCheck(reply.id, reply.answer, a.draft);
+  // 예전 답과 다른 문장은 칠하기만 한다 — 보내기(status)는 막지 않는다
+  const result = usePaint(view, a.draft, gate, past.hits);
+  const hasBody = Boolean(a.draft.trim()) || Boolean(attach.image.dataUrl);
+  const canSend = hasBody && !a.regenerating && result.status !== "block";
+  const openSheet = () => {
     if (!canSend || sender.pending) return;
     a.flushDraft();
+    setSheet(true);
+  };
+  const confirmApi = () => {
+    setSheet(false);
     const p: PendingSend = { replyId: reply.id, username: reply.username, message: a.draft.trim(), ...attach.payload() };
     sender.start(p);
   };
+  return { waiting, attach, sheet, setSheet, result, canSend, openSheet, confirmApi, past };
+}
+
+/** 고친 뒤 [되돌리기]가 돌아갈 AI 원문. 손으로 쓴 답이면 없다. */
+function aiDraftOf(answer: ThreadsReply["answer"]): string | null {
+  if (!answer || answer.model === "henry") return null;
+  return answer.aiDraft ?? answer.draft;
+}
+
+type Compose = ReturnType<typeof useCompose>;
+
+/** 답 버전 버튼 (완성된 답 칸 안). 버전 초안기가 없으면 [새로 쓰기]는 옛 다시 쓰기(POST .../answer)로 간다. 손으로 쓴 답엔 없다. */
+function ComposeSlot({ a, compose, answer }: { a: AnswerState; compose: Compose; answer: ThreadsReply["answer"] }) {
+  if (answer?.model === "henry") return null;
+  const rewrite = compose.status === "missing" && !compose.hasVariants ? () => void a.regenerate() : compose.rewrite;
+  return (
+    <ComposeBar
+      presets={compose.presets}
+      selected={compose.selected}
+      ready={compose.ready}
+      status={compose.status}
+      note={compose.note}
+      busy={a.regenerating || a.drafting}
+      loadingId={compose.loadingId}
+      onPick={compose.pick}
+      onRewrite={rewrite}
+      onRestartAll={compose.status === "missing" ? undefined : () => void compose.restartAll()}
+      writingAll={compose.writingAll}
+    />
+  );
+}
+
+function hasSources(answer: ThreadsReply["answer"]): boolean {
+  return Boolean(answer && (answer.sources.length > 0 || answer.dropped?.length));
+}
+
+/** 덜 쓰는 참고 칸은 접어 둔다. 펼쳐야 그리므로(마운트) 안 여는 칸은 서버도 안 부른다. */
+function Fold({ title, children }: { title: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="rounded-[18px] bg-white ring-1 ring-neutral-950/5">
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        className="flex h-10 w-full items-center gap-1.5 rounded-[18px] px-3 text-left text-[12.5px] font-medium text-neutral-700 hover:bg-neutral-950/[0.02]"
+      >
+        <ChevronRightIcon className={cn("size-3.5 text-neutral-400 transition-transform duration-150", open && "rotate-90")} aria-hidden />
+        {title}
+      </button>
+      {open ? <div className="px-1 pb-1">{children}</div> : null}
+    </div>
+  );
+}
+
+/** 완성된 답 오른쪽 참고 칸: 답에 든 제품 · 비슷한 맥락에서 남긴 글 · 가져온 자료 · (접힘) 내가 해 온 말 */
+function ReferenceColumn({ view, a, ev, compose, onInsert }: Pick<OpenReplyProps, "view" | "a" | "ev"> & { compose: Compose; onInsert: (text: string) => void }) {
+  const { reply } = view;
+  const answer = reply.answer;
+  const isQuestion = reply.intent === "question";
+  return (
+    <aside aria-label="참고할 내용" className="min-w-0 space-y-3">
+      <ThreadsProducts draft={a.draft} fromVariant={compose.products} />
+      <SimilarPast replyId={reply.id} onInsert={onInsert} />
+      {isQuestion && answer && hasSources(answer) ? <AnswerSources replyId={reply.id} answer={answer} shots={ev.shots} request={ev.request} /> : null}
+      {isQuestion ? (
+        <Fold title="이 주제에 내가 해 온 말">
+          <ThreadsStanceCard replyId={reply.id} />
+        </Fold>
+      ) : null}
+    </aside>
+  );
+}
+
+function appendText(draft: string, text: string): string {
+  return draft.trim() ? `${draft.trimEnd()}\n\n${text}` : text;
+}
+
+/** 아직 답하지 않은 댓글: 완성된 답(칩) | 참고 칸 → 확인 시트. */
+function OpenReply({ view, a, sender, ev, persona, gate, onSent, onSkip }: OpenReplyProps) {
+  const { reply } = view;
+  const flow = useSendFlow({ view, a, sender, ev, gate });
+  const failure = sender.failure?.replyId === reply.id ? sender.failure : null;
+  const canMake = !reply.answer && !a.drafting && !a.regenerating;
+  const compose = useCompose(reply.id, a.draft, a.setDraft);
+  const insert = (text: string) => a.setDraft(appendText(a.draft, text));
 
   return (
-    <>
-      <ThreadsDraftCard
-        answer={reply.answer}
-        isQuestion={isQuestion}
+    // 09-29 henry: 완성된 답(칩 포함)이 넓게 왼쪽, 참고할 내용이 오른쪽. 좁으면 세로로 쌓는다.
+    <div className="@container">
+    <div className="grid grid-cols-1 items-start gap-4 @3xl:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] @6xl:grid-cols-[minmax(0,1fr)_minmax(22rem,28rem)]">
+      <div className="min-w-0 space-y-3 @3xl:sticky @3xl:top-0">
+      <FinalAnswer
         draft={a.draft}
         setDraft={a.setDraft}
+        aiDraft={aiDraftOf(reply.answer)}
+        gate={flow.result}
+        gateMode={gate.mode}
+        past={flow.past}
+        locked={flow.waiting}
         busy={a.regenerating}
         drafting={a.drafting}
         error={a.regenError}
-        regenerate={(input) => void a.regenerate(input)}
-        onSubmit={send}
-        locked={waiting}
-        onImage={attach.image.pick}
-        attachment={attach.row}
-        actions={<SendActions canSend={canSend} waiting={waiting} onSkip={() => onSkip(true)} onSend={send} />}
+        canSend={flow.canSend}
+        waiting={flow.waiting}
+        attachment={flow.attach.row}
+        toolbar={<ComposeSlot a={a} compose={compose} answer={reply.answer} />}
+        onImage={flow.waiting || !flow.attach.canAttach ? null : flow.attach.image.pick}
+        onMakeDraft={canMake ? () => void a.regenerate() : null}
+        onSkip={() => onSkip(true)}
+        onSend={flow.openSheet}
       />
       {failure ? (
         <SendFailureNote
@@ -226,10 +337,27 @@ function OpenReply({ view, a, sender, ev, onSent, onSkip }: OpenReplyProps) {
           }}
         />
       ) : null}
-      {isQuestion && reply.answer ? (
-        <EvidenceStrip replyId={reply.id} sources={reply.answer.sources} shots={ev.shots} request={ev.request} />
-      ) : null}
-    </>
+      </div>
+      <ReferenceColumn view={view} a={a} ev={ev} compose={compose} onInsert={insert} />
+      <SendSheet
+        open={flow.sheet}
+        onOpenChange={flow.setSheet}
+        persona={persona}
+        replyId={reply.id}
+        to={reply.username}
+        message={a.draft.trim()}
+        image={flow.attach.shown}
+        gate={flow.result}
+        gateMode={gate.mode}
+        permalink={view.post?.permalink}
+        onConfirmApi={flow.confirmApi}
+        onMarked={(r) => {
+          flow.setSheet(false);
+          onSent(r);
+        }}
+      />
+    </div>
+    </div>
   );
 }
 
@@ -240,8 +368,24 @@ function ReplyBody(props: OpenReplyProps) {
   return <OpenReply {...props} />;
 }
 
-export function ThreadsAnswerPanel({ replyId, onChanged, onNext }: { replyId: string; onChanged: () => void; onNext: () => void }) {
+const DEFAULT_PERSONA: SheetPersona = { id: "me", name: "내 계정", handle: "", send: "api" };
+
+export function ThreadsAnswerPanel({
+  replyId,
+  onChanged,
+  onNext,
+  persona = DEFAULT_PERSONA,
+  gate: gateProp,
+}: {
+  replyId: string;
+  onChanged: () => void;
+  onNext: () => void;
+  persona?: SheetPersona;
+  gate?: GateChecker;
+}) {
   const reduce = useReducedMotion();
+  const ownGate = useGate(persona.id);
+  const gate = gateProp ?? ownGate;
   const a = useThreadsAnswer(replyId, onChanged);
   const ev = useEvidenceShots();
   const shown = useRef(replyId);
@@ -253,6 +397,7 @@ export function ThreadsAnswerPanel({ replyId, onChanged, onNext }: { replyId: st
   const onSent = useCallback(
     (reply: ThreadsReply) => {
       replaceReply(reply);
+      announceReceipt(reply.id, reply.username);
       onChanged();
       if (shown.current === reply.id) onNext();
     },
@@ -291,7 +436,7 @@ export function ThreadsAnswerPanel({ replyId, onChanged, onNext }: { replyId: st
       className="min-w-0"
     >
       <QuestionHead view={view} />
-      <ReplyBody view={view} a={a} sender={sender} ev={ev} onSent={onSent} onSkip={(v) => void onSkip(v)} />
+      <ReplyBody view={view} a={a} sender={sender} ev={ev} persona={persona} gate={gate} onSent={onSent} onSkip={(v) => void onSkip(v)} />
       {bar}
     </motion.div>
   );

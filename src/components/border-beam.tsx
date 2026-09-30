@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import type { CSSProperties } from "react";
+import { playUi } from "@/lib/sound/events";
 
 /**
  * A single light segment that travels around a card's perimeter, signalling
@@ -23,6 +25,7 @@ export function BorderBeam({
   delay = 0,
   colorFrom = "#00BD7D",
   colorTo = "#34e2a8",
+  silent = false,
   className = "",
 }: {
   /** Corner radius in px, match the host card (e.g. rounded-2xl -> 16). */
@@ -39,8 +42,17 @@ export function BorderBeam({
   colorFrom?: string;
   /** Trailing color that fades into transparent. */
   colorTo?: string;
+  /** 소리 없이 띄운다(장식용으로 쓸 때). */
+  silent?: boolean;
   className?: string;
 }) {
+  // 빔이 나타나는 순간 = 생성이 시작된 순간. 생성 시작을 알리는 곳이 화면마다
+  // 흩어져 있어서, 표시가 켜지는 이 한 곳에서 소리를 낸다. 시안 3벌처럼 빔이
+  // 여러 개 뜨면 playSound 의 최소 간격(45ms)이 하나로 합쳐 준다.
+  useEffect(() => {
+    if (!silent) playUi("jobStart");
+  }, [silent]);
+
   return (
     <div
       aria-hidden

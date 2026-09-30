@@ -4,14 +4,28 @@
 // 내 글 첫 줄 아래로 댓글을 묶고, 묶음 안에서는 댓글 → 내 답 → 상대 재답을 들여쓴 줄기로 그린다.
 // 내 차례인 대화 줄기만 펴 두고, 나머지 한 줄 댓글은 한 줄로 접는다. 100건 넘어도 가볍게 — 행에는 레이아웃 애니메이션을 걸지 않는다.
 
-import { memo } from "react";
+import { createContext, memo, useContext, useMemo } from "react";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
 import type { ReplyIntent, ThreadsReply } from "@/lib/threads-replies/model";
 import type { ReplyThread } from "@/lib/threads-replies/summary";
-import { ThreadsMark, useMe } from "./threads-mark";
-import { Avatar, relativeTime } from "./shared";
+import { ChannelMark } from "./channel-switch";
+import { Avatar, relativeTime } from "./comments-shared";
+import { GateText, type GateChecker } from "./threads-gate";
 import { chainOf, firstLine, isExpandedThread, isFocusable, type ThreadsView, type VisibleGroup } from "./threads-view";
 
+
+/** 목록 전체가 같이 쓰는 것: 지금 계정 핸들(내 답 줄기)과 관문 검사기(초안 칠하기) */
+interface ListEnv {
+  handle: string;
+  gate: GateChecker | null;
+}
+const ListEnvContext = createContext<ListEnv>({ handle: "", gate: null });
+
+/** 초안 한 줄 — 관문에 걸린 표현은 칠해서 */
+function DraftLine({ draft, className }: { draft: string; className: string }) {
+  const { gate } = useContext(ListEnvContext);
+  return <GateText text={draft} hits={gate ? gate.check(draft).hits : []} className={className} />;
+}
 
 const INTENT_LABEL: Record<ReplyIntent, string> = { question: "질문", conversation: "대화", chat: "말 걸기", reaction: "반응" };
 
@@ -55,7 +69,7 @@ function Pressable({
 function DraftPreview({ reply }: { reply: ThreadsReply }) {
   const draft = reply.answer?.draft;
   if (!draft || reply.myReply || reply.skipped) return null;
-  return <p className="mt-1 truncate text-[11px] text-emerald-700">{draft}</p>;
+  return <DraftLine draft={draft} className="mt-1 block truncate text-[11px] text-emerald-700" />;
 }
 
 function Meta({ reply }: { reply: ThreadsReply }) {
@@ -70,14 +84,14 @@ function Meta({ reply }: { reply: ThreadsReply }) {
 }
 
 function MeNode({ text }: { text: string }) {
-  const me = useMe();
+  const { handle } = useContext(ListEnvContext);
   return (
     <div className="flex gap-2 px-2 py-1.5">
       <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-[#00BD7D] text-[10px] font-semibold text-white">
         나
       </span>
       <div className="min-w-0 flex-1">
-        <p className="text-[11px] font-medium text-neutral-800">@{me}</p>
+        <p className="text-[11px] font-medium text-neutral-800">@{handle}</p>
         <p className="line-clamp-2 whitespace-pre-line break-keep text-xs leading-relaxed text-neutral-600">{text}</p>
       </div>
     </div>
@@ -142,7 +156,7 @@ function ThreadLine({ thread, view, selectedId, onSelect }: { thread: ReplyThrea
         <span className="shrink-0 text-[11px] tabular-nums text-neutral-500">{relativeTime(reply.timestamp)}</span>
       </span>
       {reply.answer?.draft && !reply.myReply ? (
-        <span className="mt-0.5 block truncate pl-9 text-[11px] text-emerald-700">{reply.answer.draft}</span>
+        <DraftLine draft={reply.answer.draft} className="mt-0.5 block truncate pl-9 text-[11px] text-emerald-700" />
       ) : null}
     </Pressable>
   );
@@ -152,7 +166,7 @@ function PostHead({ group }: { group: VisibleGroup }) {
   const { post } = group;
   return (
     <div className="flex items-center gap-2 px-2 pb-2 pt-1 shadow-[0_1px_0_0_rgba(10,10,10,0.05)]">
-      <ThreadsMark size={14} className="text-neutral-500" />
+      <ChannelMark channel="threads" size={14} className="text-neutral-500" />
       <p className="min-w-0 flex-1 truncate text-xs font-medium text-neutral-700" title={post.text}>
         {firstLine(post.text)}
       </p>
@@ -202,14 +216,21 @@ export function ThreadsList({
   selectedId,
   onSelect,
   groupOf,
+  handle,
+  gate,
 }: RowProps & {
+  /** 지금 계정 핸들 (@ 없이) — 내 답 줄기에 쓴다 */
+  handle: string;
+  gate: GateChecker | null;
   groups: VisibleGroup[];
   /** 댓글 id → 글 id. 고른 댓글이 없는 묶음은 selectedId 를 null 로 받아 다시 그리지 않는다 */
   groupOf: Map<string, string>;
 }) {
   const selectedPost = selectedId ? groupOf.get(selectedId) : undefined;
+  const env = useMemo(() => ({ handle, gate }), [handle, gate]);
   return (
-    <div className="space-y-3">
+    <ListEnvContext.Provider value={env}>
+      <div className="space-y-3">
       {groups.map((g) => (
         <PostGroupCard
           key={g.post.id}
@@ -218,7 +239,8 @@ export function ThreadsList({
           selectedId={g.post.id === selectedPost ? selectedId : null}
           onSelect={onSelect}
         />
-      ))}
-    </div>
+        ))}
+      </div>
+    </ListEnvContext.Provider>
   );
 }

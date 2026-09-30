@@ -1,15 +1,14 @@
 // 초안 전에 찾는 "예전에 한 말" — 같은 주제로 주인이 단 답 + 지금 댓글 단 사람에게 했던 답.
 //
-// 이 앱은 주인이 보낸 답이 원장(myReply)에 쌓인다. 그 안에서 찾는다 (외부 검색 없음).
-//   같은 사람: 지금 댓글 단 사람에게 했던 답, 최신 순.
-//   같은 주제: 받은 댓글·내 답이 지금 댓글과 낱말이 겹치는 답, 겹친 낱말 수 → 글자 닮음 → 최신 순.
+// 입장 카드(stance.ts)와 같은 검색을 쓰되, 학습 제외 답(learn=false: 처방약·제품 권유)도 넣는다.
+// 말투 예시로는 안 쓰지만 "예전에 이렇게 말했다"는 일관성 비교 대상이기 때문이다.
 // 찾은 답은 초안 프롬프트의 <owner_past_replies> 와 어긋남 검사(consistency.ts)가 함께 쓴다.
-//
-// Pure — I/O 없음.
 
-import { textSimilarity } from "@/lib/text-similarity";
-import { koreanTerms, nameTokens } from "./fact-check";
+import { knowledgeTerms, matchedTermCount, retrievalTerms, weightedMatch, type KnowledgeHit } from "@/lib/personas/knowledge/rows";
+import { termWeights } from "@/lib/personas/knowledge/sources";
+import { searchPastReplies } from "@/lib/personas/knowledge/supabase";
 import type { PastSaid, ThreadsRepliesLedger, ThreadsReply } from "./model";
+import { hasSubstance, relevanceFloor, WEIGHT_SHARE_FLOOR } from "./stance";
 
 export const PAST_TOPIC_MAX = 5;
 export const PAST_SAME_PERSON_MAX = 3;
@@ -24,81 +23,52 @@ function dateOf(iso: string | undefined): string | undefined {
   return iso && /^\d{4}-\d{2}-\d{2}/.test(iso) ? iso.slice(0, 10) : undefined;
 }
 
-/** 감사·응원처럼 내용 없는 답은 비교할 게 없다. */
-export function hasSubstance(text: string): boolean {
-  const core = text.replace(/[ㄱ-ㅎㅏ-ㅣ]|[^\p{L}\p{N}\s]/gu, "").replace(/\s+/g, " ").trim();
-  if (Array.from(core).length < 8) return false;
-  return !/^(감사|고맙|좋은\s?글|축하|화이팅|응원)/.test(core);
-}
-
-type Answered = ThreadsReply & { myReply: NonNullable<ThreadsReply["myReply"]> };
-
-function answered(ledger: Pick<ThreadsRepliesLedger, "replies">, reply: Pick<ThreadsReply, "id">): Answered[] {
-  return ledger.replies.filter(
-    (r): r is Answered => r.id !== reply.id && Boolean(r.myReply?.text?.trim()) && hasSubstance(r.myReply!.text)
-  );
-}
-
-function toPast(r: Answered, sameCommenter: boolean): PastSaid {
-  const date = dateOf(r.myReply.timestamp);
-  return {
-    id: r.myReply.id,
-    text: clip(r.myReply.text),
-    comment: r.text,
-    ...(date ? { date } : {}),
-    ...(sameCommenter ? { sameCommenter: true } : {}),
-  };
-}
-
 /** 같은 사람에게 했던 답 (원장의 myReply). 최신 순. */
-export function sameCommenterPast(
-  ledger: Pick<ThreadsRepliesLedger, "replies">,
-  reply: Pick<ThreadsReply, "id" | "username">,
-  max = PAST_SAME_PERSON_MAX
-): PastSaid[] {
-  return answered(ledger, reply)
-    .filter((r) => r.username === reply.username)
-    .sort((a, b) => b.myReply.timestamp.localeCompare(a.myReply.timestamp))
+export function sameCommenterPast(ledger: Pick<ThreadsRepliesLedger, "replies">, reply: Pick<ThreadsReply, "id" | "username">, max = PAST_SAME_PERSON_MAX): PastSaid[] {
+  return ledger.replies
+    .filter((r) => r.id !== reply.id && r.username === reply.username && r.myReply?.text?.trim() && hasSubstance(r.myReply.text))
+    .sort((a, b) => (b.myReply?.timestamp ?? "").localeCompare(a.myReply?.timestamp ?? ""))
     .slice(0, max)
-    .map((r) => toPast(r, true));
+    .map((r) => ({
+      id: r.myReply!.id,
+      text: clip(r.myReply!.text),
+      comment: r.text,
+      ...(dateOf(r.myReply!.timestamp) ? { date: dateOf(r.myReply!.timestamp) } : {}),
+      sameCommenter: true,
+    }));
 }
 
-function terms(text: string): string[] {
-  return [...koreanTerms(text), ...nameTokens(text)];
-}
-
-/** 겹친 낱말 수 기준: 낱말이 적은 댓글은 1개, 많으면 2개 이상 겹쳐야 같은 주제로 본다. */
-export function relevanceFloor(termCount: number): number {
-  return termCount <= 3 ? 1 : 2;
-}
-
-/** 같은 주제로 했던 답. 낱말이 없으면 빈 목록. */
-export function topicPast(
-  ledger: Pick<ThreadsRepliesLedger, "replies">,
-  reply: Pick<ThreadsReply, "id" | "text">,
-  opts: { excludeIds?: readonly string[]; max?: number } = {}
+/** 주제 검색 결과 고르기: 내용 없는 답·제외 id·관련 약한 답을 빼고 무게 → 걸린 낱말 수 → 최신 순. */
+export function pickTopicPast(
+  hits: readonly KnowledgeHit[],
+  terms: readonly string[],
+  opts: { excludeIds?: readonly string[]; weights?: ReadonlyMap<string, number>; max?: number } = {}
 ): PastSaid[] {
-  const want = terms(reply.text);
-  if (!want.length) return [];
-  const floor = relevanceFloor(want.length);
+  const floor = relevanceFloor(terms.length);
+  let total = 0;
+  for (const w of opts.weights?.values() ?? []) total += w;
+  const minWeight = opts.weights ? total * WEIGHT_SHARE_FLOOR : 0;
   const skip = new Set(opts.excludeIds ?? []);
   const seen = new Set<string>();
-  return answered(ledger, reply)
-    .filter((r) => !skip.has(r.myReply.id))
-    .map((r) => {
-      const hay = `${r.text}\n${r.myReply.text}`.toLowerCase();
-      return { r, m: want.filter((t) => hay.includes(t)).length, sim: textSimilarity(reply.text, r.text) };
-    })
-    .filter((x) => x.m >= floor)
-    .sort((a, b) => b.m - a.m || b.sim - a.sim || b.r.myReply.timestamp.localeCompare(a.r.myReply.timestamp))
+  return hits
+    .filter((h) => h.kind === "reply" && !skip.has(h.id) && hasSubstance(h.body))
+    .map((h) => ({ h, m: matchedTermCount(h, terms), w: weightedMatch(h, terms, opts.weights) }))
+    .filter((x) => x.m >= floor && x.w >= minWeight)
+    .sort((a, b) => b.w - a.w || b.m - a.m || (b.h.postedAt ?? "").localeCompare(a.h.postedAt ?? ""))
     .filter((x) => {
-      const key = x.r.myReply.text.replace(/[^\p{L}\p{N}]/gu, "").slice(0, 60);
+      const key = x.h.body.replace(/[^\p{L}\p{N}]/gu, "").slice(0, 60);
       if (seen.has(key)) return false;
       seen.add(key);
       return true;
     })
     .slice(0, opts.max ?? PAST_TOPIC_MAX)
-    .map((x) => toPast(x.r, false));
+    .map(({ h }) => ({
+      id: h.id,
+      text: clip(h.body),
+      ...(h.commentBody ? { comment: h.commentBody } : {}),
+      ...(dateOf(h.postedAt) ? { date: dateOf(h.postedAt) } : {}),
+      ...(h.permalink ? { permalink: h.permalink } : {}),
+    }));
 }
 
 /** 같은 사람 답을 앞에, 주제 답을 뒤에. 같은 답은 한 번만. */
@@ -113,9 +83,19 @@ export function mergePast(samePerson: readonly PastSaid[], topic: readonly PastS
   return out;
 }
 
-/** 댓글 하나의 "예전에 한 말". */
-export function pastSaidFor(ledger: Pick<ThreadsRepliesLedger, "replies">, reply: ThreadsReply): PastSaid[] {
+/** 댓글 하나의 "예전에 한 말". 검색이 실패해도 같은 사람 답만으로 돌려준다 (초안은 멈추지 않는다). */
+export async function pastSaidFor(personaId: string, ledger: Pick<ThreadsRepliesLedger, "replies">, reply: ThreadsReply): Promise<PastSaid[]> {
   const same = sameCommenterPast(ledger, reply);
-  const exclude = [...(reply.myReply ? [reply.myReply.id] : []), ...same.map((p) => p.id)];
-  return mergePast(same, topicPast(ledger, reply, { excludeIds: exclude }));
+  const query = reply.text.trim();
+  const terms = knowledgeTerms(query);
+  if (!terms.length) return same;
+  try {
+    const weights = (await termWeights(personaId, terms)) ?? undefined;
+    const found = await searchPastReplies(personaId, query, 16, { terms: retrievalTerms(terms, weights) });
+    const exclude = [...(reply.myReply ? [reply.myReply.id] : []), ...same.map((p) => p.id)];
+    return mergePast(same, pickTopicPast(found.hits, terms, { excludeIds: exclude, weights }));
+  } catch (error) {
+    console.warn("[past-said] 예전 답 검색 실패:", error instanceof Error ? error.message : error);
+    return same;
+  }
 }

@@ -1,8 +1,10 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
 import { ThreadsAnswerPanel } from "./threads-answer-panel";
+import type { GateChecker } from "./threads-gate";
+import { checkGate, applyGateMode, type GateRules } from "@/lib/personas/gate";
 
 // 답 패널이 "언제 무엇을 서버에 보내는가"만 고정한다. 실제 스레드 발송은 fetch 가짜로 막는다.
 vi.mock("@/lib/sound/events", () => ({ playUi: vi.fn() }));
@@ -71,27 +73,203 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-async function mount(onNext = vi.fn()) {
-  render(<ThreadsAnswerPanel replyId="c1" onChanged={vi.fn()} onNext={onNext} />);
+const RULES: GateRules = {
+  version: 1,
+  rules: [{ id: "drug", kind: "drug-choice", action: "block", pattern: "마운자로[^.!?\\n]{0,10}?강추", reason: "처방약 선택은 답하지 않아요", suggest: "처방한 의사쌤께 물어봐" }],
+};
+const gateOf = (mode: "light" | "strict"): GateChecker => ({ mode, check: (t) => applyGateMode(checkGate(t, RULES), mode) });
+const COPY = { id: "glp1", name: "박약사", handle: "glp1.pharmacy", send: "copy" as const };
+
+async function mount(onNext = vi.fn(), props: Partial<React.ComponentProps<typeof ThreadsAnswerPanel>> = {}) {
+  render(<ThreadsAnswerPanel replyId="c1" onChanged={vi.fn()} onNext={onNext} gate={gateOf("light")} {...props} />);
   await flush();
   return onNext;
 }
 
+const editor = () => screen.getByRole("textbox", { name: "완성된 답" }) as HTMLTextAreaElement;
+
+/** [보내기] → 확인 시트 → 시트의 [보내기] */
+async function confirmSend() {
+  fireEvent.click(screen.getByRole("button", { name: /^보내기/ }));
+  await flush();
+  const sheet = screen.getByRole("dialog");
+  fireEvent.click(within(sheet).getByRole("button", { name: /^보내기/ }));
+  await flush();
+}
+
+const threeOptions: ThreadsReply = {
+  ...question,
+  answer: {
+    ...question.answer!,
+    chosen: 0,
+    aiDraft: question.answer!.draft,
+    options: [
+      { categoryId: "short", categoryName: "짧게 확인", draft: question.answer!.draft, sentences: question.answer!.sentences },
+      { categoryId: "how", categoryName: "방법 알려주기", draft: "두 번째 벌이에요", sentences: [{ text: "두 번째 벌이에요", sourceIds: ["s1"] }] },
+      { categoryId: "warm", categoryName: "공감하고 답", draft: "세 번째 벌이에요", sentences: [{ text: "세 번째 벌이에요", sourceIds: [] }] },
+    ],
+  },
+};
+
+const PRESETS = [
+  { id: "principle", name: "원리 썰", parts: "원리", count: 11, recommended: true, toggles: { principle: true } },
+  { id: "ingredient+product", name: "성분 + 제품 3분할", parts: "성분+제품 3분할", count: 17, recommended: true, toggles: { ingredient: true, product: { pharmacy: true, online: true, overseas: true } } },
+  { id: "joke", name: "뒤통수 한 방", parts: "드립", count: 1, recommended: false, toggles: { joke: true } },
+];
+
 describe("ThreadsAnswerPanel", () => {
-  it("판정 한 줄과 근거 칩을 보여주고, 칩을 누르면 그 근거를 쓴 문장을 칠한다", async () => {
-    await mount();
+  it("가져온 자료를 카드로 보여주고(쓴 문장 번호), 버전 초안기가 없으면(404) [새로 쓰기]가 옛 다시 쓰기로 간다", async () => {
+    extra = (url) => (url.endsWith("/c1/compose") ? json({ error: "없음" }, 404) : undefined);
+    await mount(vi.fn(), { persona: COPY });
+    expect(screen.getByText(/버전 초안기를 준비하는 중/)).toBeTruthy();
+    expect(screen.queryByRole("button", { name: /성분/ })).toBeNull();
     expect(screen.getByText("일부만 자료로 답할 수 있어요")).toBeTruthy();
-    const sentence = screen.getByText("실패만 직접 열어봐요");
-    expect(sentence.className).not.toContain("bg-emerald-50");
-    fireEvent.click(screen.getByRole("button", { name: /검증 원칙/ }));
-    expect(sentence.className).toContain("bg-emerald-50");
-    // 펼친 카드 + 보내기 전 근거(노트는 글로만) 두 곳
-    expect(screen.getAllByText("“실패만 직접 연다”")).toHaveLength(2);
+    const card = screen.getByText("“실패만 직접 연다”").closest("li")!;
+    expect(card.getAttribute("data-source")).toBe("s1");
+    expect(within(card).getByText("문장 1")).toBeTruthy();
+    expect(within(card).getByText("실패만 직접 열어봐요")).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: /새로 쓰기/ }));
+    await flush();
+    expect(callsTo("/c1/answer", "POST")).toHaveLength(1);
   });
 
-  it("[보내기] 뒤 5초 안에 [되돌리기]를 누르면 발송을 부르지 않는다", async () => {
-    const onNext = await mount();
+  it("팟캐스트 발언은 말한 사람·원문 그대로·한국어 요약·그 초에서 여는 링크를 보여준다", async () => {
+    const podcast: ThreadsReply = {
+      ...question,
+      answer: {
+        ...question.answer!,
+        sources: [
+          {
+            id: "s1",
+            kind: "팟캐스트 발언",
+            title: "Andrew Huberman · 마그네슘 (관점일 뿐, 추천 근거 아님)",
+            quote: "neurons need sodium, they need magnesium",
+            claimKo: "뉴런이 기능하려면 마그네슘이 필요하다",
+            speaker: "Andrew Huberman",
+            videoTitle: "Daily Tools",
+            startSec: 1645,
+            url: "https://www.youtube.com/watch?v=aXvDEmo6uS4&t=1645s",
+          },
+        ],
+        dropped: [{ text: "마그네슘은 하루 400mg이 좋아", reason: "자료에 없는 말: 400, mg" }],
+      },
+    };
+    extra = (url, init) => (url.endsWith("/api/threads-replies/c1") && !init?.method ? json({ reply: podcast, post: null, conversation: [], drafting: false }) : undefined);
+    await mount();
+    expect(screen.getByText("Andrew Huberman")).toBeTruthy();
+    expect(screen.getByText("“neurons need sodium, they need magnesium”")).toBeTruthy();
+    expect(screen.getByText(/뉴런이 기능하려면/)).toBeTruthy();
+    expect(screen.getByRole("link", { name: /27:25부터 보기/ }).getAttribute("href")).toBe("https://www.youtube.com/watch?v=aXvDEmo6uS4&t=1645s");
+    expect(screen.getByText("근거 없어 뺀 문장 1")).toBeTruthy();
+    expect(screen.getByText("마그네슘은 하루 400mg이 좋아")).toBeTruthy();
+  });
+
+  it("strict 계정은 완성된 답에 근거 없는 숫자 문장을 써 넣으면 칠하고(자료 이름과 함께) 보내기를 막는다", async () => {
+    await mount(vi.fn(), { gate: gateOf("strict") });
+    fireEvent.change(editor(), { target: { value: "실패만 직접 열어봐요. 그러면 오류가 80% 줄어요." } });
+    const mark = document.querySelector('mark[data-gate="block"]') as HTMLElement;
+    expect(mark.textContent).toBe("그러면 오류가 80% 줄어요.");
+    expect(screen.getByText(/근거 없음 1문장/)).toBeTruthy();
+    expect((screen.getByRole("button", { name: /^보내기/ }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it("따로 떨어진 다시 쓰기 도구(주소 붙이기·지시문)는 없다", async () => {
+    await mount();
+    expect(screen.queryByLabelText("근거로 붙일 주소")).toBeNull();
+    expect(screen.queryByRole("button", { name: /웹에서 찾기/ })).toBeNull();
+  });
+
+  it("버전 버튼을 댓글에 맞는 순서로(추천 표시) 두고, 안 써 둔 버전을 누르면 compose 에 { toggles, preset } 를 보내 답을 바꾼다 (칠하지 않는다)", async () => {
+    const next = "실패만 직접 열어봐요. 아연은 상처 회복을 돕는 성분이야.";
+    extra = (url, init) => {
+      if (url.endsWith("/c1/compose") && !init?.method) return json({ presets: PRESETS });
+      if (url.endsWith("/c1/compose") && init?.method === "POST") return json({ draft: next, products: [{ id: "p1", name: "쏜 아이언", url: "https://iherb.com/x" }] });
+      return undefined;
+    };
+    await mount(vi.fn(), { persona: COPY });
+    const names = within(screen.getByRole("group", { name: "답 버전" })).getAllByRole("button").map((b) => b.textContent);
+    expect(names.slice(0, 3)).toEqual(["원리 썰추천", "성분 + 제품 3분할추천", "뒤통수 한 방"]);
+    fireEvent.click(screen.getByRole("button", { name: /성분 \+ 제품 3분할/ }));
+    await flush();
+    const body = JSON.parse(String((callsTo("/c1/compose", "POST")[0][1] as RequestInit).body));
+    expect(body).toEqual({ toggles: PRESETS[1].toggles, preset: "ingredient+product" });
+    expect(editor().value).toBe(next);
+    expect(screen.getByRole("button", { name: /성분 \+ 제품 3분할/ }).getAttribute("aria-pressed")).toBe("true");
+    expect(document.querySelector("mark[data-gate]")).toBeNull();
+  });
+
+  it("미리 써 둔 버전은 누르는 즉시 그 글로 바꾸고 고른 벌을 알린다 (compose POST 없음), 쓰는 중이면 버튼이 돌다가 도착하면 바뀐다", async () => {
+    const withProduct = "철분은 약국은 훼럼포라, 직구는 쏜 아이언 비스글리시네이트 25mg.";
+    const withJoke = "야식이나 끊어라.";
+    let jokeReady = false;
+    extra = (url, init) => {
+      if (url.endsWith("/c1/compose") && !init?.method) return json({ presets: PRESETS });
+      if (url.endsWith("/c1/compose/variants") && init?.method === "POST") return json({ ok: true });
+      if (url.endsWith("/c1/compose/variants")) {
+        const variants = [{ key: "ingredient+product", draft: withProduct, products: [] }];
+        if (jokeReady) variants.push({ key: "joke", draft: withJoke, products: [] });
+        return json({ variants, pending: jokeReady ? [] : ["joke"] });
+      }
+      return undefined;
+    };
+    await mount(vi.fn(), { persona: COPY });
+    fireEvent.click(screen.getByRole("button", { name: /성분 \+ 제품 3분할/ }));
+    expect(editor().value).toBe(withProduct);
+    expect(callsTo("/c1/compose", "POST").filter(([u]) => String(u).endsWith("/compose"))).toHaveLength(0);
+    await flush();
+    expect(JSON.parse(String((callsTo("/compose/variants", "POST")[0][1] as RequestInit).body))).toEqual({ key: "ingredient+product" });
+    fireEvent.click(screen.getByRole("button", { name: /뒤통수 한 방/ }));
+    expect(screen.getByRole("button", { name: /뒤통수 한 방/ }).getAttribute("aria-busy")).toBe("true");
+    jokeReady = true;
+    await flush(2600);
+    expect(editor().value).toBe(withJoke);
+    expect(screen.getByRole("button", { name: /뒤통수 한 방/ }).getAttribute("aria-busy")).toBeNull();
+    expect(screen.getByRole("button", { name: /뒤통수 한 방/ }).getAttribute("aria-pressed")).toBe("true");
+  });
+
+  it("버전을 새로 쓰다 실패하면 이유를 보여주고 글은 그대로 둔다", async () => {
+    extra = (url, init) => {
+      if (url.endsWith("/c1/compose") && !init?.method) return json({ presets: PRESETS });
+      if (url.endsWith("/c1/compose") && init?.method === "POST") return json({ error: "모델 오류" }, 502);
+      return undefined;
+    };
+    await mount(vi.fn(), { persona: COPY });
+    fireEvent.click(screen.getByRole("button", { name: /원리 썰/ }));
+    await flush();
+    expect(screen.getByText("모델 오류")).toBeTruthy();
+    expect(editor().value).toBe(question.answer!.draft);
+    expect(screen.getByRole("button", { name: /원리 썰/ }).getAttribute("aria-pressed")).toBe("false");
+  });
+
+  it("관문 막는 표현은 칠하지 않고 칸 아래 한 줄로 알리며, [바꾸기]로 제안 표현을 넣는다", async () => {
+    await mount(vi.fn(), { gate: gateOf("strict") });
+    fireEvent.change(editor(), { target: { value: "마운자로 강추해요" } });
+    expect(document.querySelector("mark[data-gate]")).toBeNull();
+    expect(screen.getByText(/보낼 수 없는 표현 1개/)).toBeTruthy();
+    expect((screen.getByRole("button", { name: /^보내기/ }) as HTMLButtonElement).disabled).toBe(true);
+    fireEvent.click(screen.getByRole("button", { name: /로 바꾸기/ }));
+    expect(editor().value).toBe("처방한 의사쌤께 물어봐해요");
+    expect((screen.getByRole("button", { name: /^보내기/ }) as HTMLButtonElement).disabled).toBe(false);
+    await flush(700);
+    const patch = callsTo("/api/threads-replies", "PATCH").map(([, i]) => JSON.parse(String((i as RequestInit).body)));
+    expect(patch.at(-1)).toEqual({ replyId: "c1", draft: "처방한 의사쌤께 물어봐해요" });
+  });
+
+  it("[보내기]는 확인 시트를 열고, 취소하면 아무것도 보내지 않는다", async () => {
+    await mount();
     fireEvent.click(screen.getByRole("button", { name: /^보내기/ }));
+    await flush();
+    const sheet = screen.getByRole("dialog");
+    expect(within(sheet).getByText("이대로 보낼까요")).toBeTruthy();
+    expect(within(sheet).getByText("@kim 님에게 답글")).toBeTruthy();
+    fireEvent.click(within(sheet).getByRole("button", { name: "취소" }));
+    await flush(6000);
+    expect(callsTo("/send")).toHaveLength(0);
+  });
+
+  it("시트에서 확정한 뒤 5초 안에 [되돌리기]를 누르면 발송을 부르지 않는다", async () => {
+    const onNext = await mount();
+    await confirmSend();
     await flush(2000);
     fireEvent.click(screen.getByRole("button", { name: "되돌리기" }));
     await flush(6000);
@@ -99,16 +277,42 @@ describe("ThreadsAnswerPanel", () => {
     expect(onNext).not.toHaveBeenCalled();
   });
 
-  it("5초가 지나면 초안을 보내고 다음 질문으로 넘긴다", async () => {
-    extra = (url) => (url.endsWith("/c1/send") ? json({ reply: { ...question, myReply: { id: "x", text: "t", timestamp: "" } } }) : undefined);
+  it("확정하고 5초가 지나면 초안을 보내고 다음 질문으로 넘긴다", async () => {
+    extra = (url) => (url.endsWith("/c1/send") ? json({ mode: "api", reply: { ...question, myReply: { id: "x", text: "t", timestamp: "" } } }) : undefined);
     const onNext = await mount();
-    fireEvent.click(screen.getByRole("button", { name: /^보내기/ }));
+    await confirmSend();
     await flush(4900);
     expect(callsTo("/send")).toHaveLength(0);
     await flush(200);
     const [, init] = callsTo("/send")[0];
     expect(JSON.parse(String((init as RequestInit).body))).toEqual({ message: question.answer!.draft });
     expect(onNext).toHaveBeenCalledTimes(1);
+  });
+
+  it("복사 계정은 시트에서 복사하고 원글을 연 뒤 [달았어요]로 기록한다 (5초 대기 없음)", async () => {
+    const writeText = vi.fn(async () => {});
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    const open = vi.spyOn(window, "open").mockReturnValue(null);
+    extra = (url, init) => {
+      if (url.endsWith("/c1/send")) return json({ mode: "copy", text: "복사할 글", permalink: "https://www.threads.com/p" });
+      if (init?.method === "PATCH") return json({ reply: { ...question, myReply: { id: "manual", text: "t", timestamp: "" } } });
+      return undefined;
+    };
+    const onNext = await mount(vi.fn(), { persona: COPY });
+    fireEvent.click(screen.getByRole("button", { name: /^보내기/ }));
+    await flush();
+    const sheet = screen.getByRole("dialog");
+    expect(within(sheet).getByText("glp1.pharmacy")).toBeTruthy();
+    fireEvent.click(within(sheet).getByRole("button", { name: /복사하고 스레드 열기/ }));
+    await flush();
+    expect(writeText).toHaveBeenCalledWith("복사할 글");
+    expect(open).toHaveBeenCalledWith("https://www.threads.com/p", "_blank", "noopener,noreferrer");
+    fireEvent.click(within(sheet).getByRole("button", { name: /달았어요/ }));
+    await flush();
+    const patch = callsTo("/api/threads-replies", "PATCH").map(([, i]) => JSON.parse(String((i as RequestInit).body)));
+    expect(patch).toContainEqual({ replyId: "c1", markedAnswered: question.answer!.draft });
+    expect(onNext).toHaveBeenCalledTimes(1);
+    open.mockRestore();
   });
 
   it("권한이 없으면 폴백을 띄우고 [달았어요]는 markedAnswered 로 기록한다", async () => {
@@ -118,7 +322,7 @@ describe("ThreadsAnswerPanel", () => {
       return undefined;
     };
     const onNext = await mount();
-    fireEvent.click(screen.getByRole("button", { name: /^보내기/ }));
+    await confirmSend();
     await flush(5100);
     expect(screen.getByRole("button", { name: /복사하고 스레드에서 열기/ })).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: /달았어요/ }));
@@ -128,14 +332,20 @@ describe("ThreadsAnswerPanel", () => {
     expect(onNext).toHaveBeenCalledTimes(1);
   });
 
-  it("주소를 입력하고 Enter 를 누르면 그 링크를 근거로 붙여 다시 쓴다", async () => {
+  it("질문이면 이 주제에 내가 해 온 말 카드를 번호 붙은 원 답과 함께 보여준다", async () => {
+    extra = (url) =>
+      url.endsWith("/c1/stance")
+        ? json({ topic: "검증", summary: "실패만 직접 연다고 말해 왔어요 [1]", items: [{ n: 1, text: "실패한 것만 열어 봐요", date: "2026-09-01T00:00:00Z", permalink: "https://t/1" }], source: "local" })
+        : undefined;
     await mount();
-    const input = screen.getByLabelText("근거로 붙일 주소");
-    fireEvent.change(input, { target: { value: "https://example.com/a" } });
-    fireEvent.keyDown(input, { key: "Enter" });
+    // 덜 쓰는 칸이라 접혀 있고, 펼쳐야 서버를 부른다
+    expect(callsTo("/c1/stance")).toHaveLength(0);
+    fireEvent.click(screen.getByRole("button", { name: "이 주제에 내가 해 온 말" }));
     await flush();
-    const [, init] = callsTo("/c1/answer", "POST")[0];
-    expect(JSON.parse(String((init as RequestInit).body))).toEqual({ extraLinks: ["https://example.com/a"] });
+    const card = screen.getByRole("region", { name: "이 주제에 내가 해 온 말" });
+    expect(within(card).getByText("검증")).toBeTruthy();
+    expect(within(card).getByText("실패한 것만 열어 봐요")).toBeTruthy();
+    expect(within(card).getByRole("link", { name: "원 답 열기" }).getAttribute("href")).toBe("https://t/1");
   });
 
   describe("답글 이미지 (09-27 버그: 붙였는데 이미지 없이 올라감)", () => {
@@ -145,7 +355,7 @@ describe("ThreadsAnswerPanel", () => {
       return init ? (JSON.parse(String((init as RequestInit).body)) as { image?: string }).image : "보내기 안 됨";
     };
     async function sendNow() {
-      fireEvent.click(screen.getByRole("button", { name: /^보내기/ }));
+      await confirmSend();
       await flush(5100);
     }
     async function settleReader() {
@@ -162,10 +372,9 @@ describe("ThreadsAnswerPanel", () => {
       expect(sentImage()).toMatch(/^data:image\/png;base64,/);
     });
 
-    it("초안을 손대지 않은 채(입력칸이 아닌 상태) ⌘V 해도 image 가 같이 간다", async () => {
+    it("입력칸 밖에서 ⌘V 해도 image 가 같이 간다", async () => {
       await mount();
-      const target = screen.getByRole("button", { name: "초안 고치기" });
-      fireEvent.paste(target, { clipboardData: { items: [{ kind: "file", getAsFile: png }], getData: () => "" } });
+      fireEvent.paste(window, { clipboardData: { items: [{ kind: "file", getAsFile: png }], getData: () => "" } });
       await settleReader();
       await sendNow();
       expect(sentImage()).toMatch(/^data:image\/png;base64,/);
@@ -177,6 +386,7 @@ describe("ThreadsAnswerPanel", () => {
         answer: {
           ...question.answer!,
           sources: [{ id: "s2", kind: "원글 원본", title: "OpenAI", quote: "Astra", url: "https://x.com/OpenAI/status/1" }],
+          sentences: [{ text: "Astra 래요", sourceIds: ["s2"] }],
         },
       };
       extra = (url, init) => {
@@ -194,9 +404,9 @@ describe("ThreadsAnswerPanel", () => {
       expect((JSON.parse(String((init as RequestInit).body)) as { evidenceImage?: string }).evidenceImage).toBe("/threads-evidence/c1/s2.png");
     });
 
-    it("카드에 끌어 놓아도 image 가 같이 간다", async () => {
+    it("완성된 답 카드에 끌어 놓아도 image 가 같이 간다", async () => {
       await mount();
-      const card = screen.getByRole("button", { name: "초안 고치기" });
+      const card = screen.getByRole("region", { name: "완성된 답" });
       fireEvent.drop(card, { dataTransfer: { files: [png()], getData: () => "" } });
       await settleReader();
       await sendNow();

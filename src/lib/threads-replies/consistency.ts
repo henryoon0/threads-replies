@@ -1,5 +1,5 @@
-// 예전 답과 어긋남 찾기: 예전에 대답한 내용과 다르게 말하면 안 된다.
-// 어긋나는 문장이 있으면 화면에 "예전엔 이렇게 답했어요"로 알려준다.
+// 예전 답과 어긋남 찾기 (09-29 henry: "이전에 대답했던 내용과 다르게 제안하면 안 된다.
+// 그런 경우가 있으면 글에 색을 칠해서 너 예전에 이렇게 대답했어 알려주는 건 좋다").
 //
 // 초안 문장 × 주인의 예전 답(pastSaid)을 fast 티어 한 번으로 대조해, 같은 점에 대해 다른 말을 하는
 // 문장만 돌려받는다. 모델은 예전 답에서 그대로 옮긴 구절을 함께 내야 하고, 코드가 그 구절이
@@ -64,17 +64,38 @@ export function findConflicts(
   return job;
 }
 
-const DRAFT_KEY = "A";
+/** 옵션 표시 A, B, C … */
+export function optionKey(i: number): string {
+  return String.fromCharCode(65 + i);
+}
 
 /**
- * 초안을 예전 답과 대조해 consistency 를 붙인다.
- * 실패해도 초안은 그대로 돌려준다 (알림이 없을 뿐).
+ * 초안 전체(모든 벌)를 예전 답과 한 번에 대조해 벌마다 consistency 를 붙인다.
+ * 실패해도 초안은 그대로 돌려준다 (칠하기가 없을 뿐).
+ */
+function draftsOf(answer: ReplyAnswer): DraftForCheck[] {
+  const options = answer.options ?? [];
+  return options.length ? options.map((o, i) => ({ key: optionKey(i), text: o.draft })) : [{ key: optionKey(0), text: answer.draft }];
+}
+
+/** 벌마다 결과를 붙이고, 고른 벌이 지금 글이면 그 결과를 완성된 답에도 둔다. */
+function attach(answer: ReplyAnswer, found: Record<string, ConsistencyHit[]>): ReplyAnswer {
+  const options = answer.options ?? [];
+  if (!options.length) return { ...answer, consistency: found[optionKey(0)] ?? [], consistencyFor: answer.draft };
+  const nextOptions = options.map((o, i) => ({ ...o, consistency: found[optionKey(i)] ?? [] }));
+  const chosen = nextOptions[answer.chosen ?? 0];
+  const forDraft = chosen?.draft === answer.draft ? chosen.consistency : [];
+  return { ...answer, options: nextOptions, consistency: forDraft, consistencyFor: answer.draft };
+}
+
+/**
+ * 초안 전체(모든 벌)를 예전 답과 한 번에 대조해 벌마다 consistency 를 붙인다.
+ * 실패해도 초안은 그대로 돌려준다 (칠하기가 없을 뿐).
  */
 export async function withConsistency(answer: ReplyAnswer, ownerName: string, run?: ConsistencyRun): Promise<ReplyAnswer> {
-  if (!answer.pastSaid?.length || !answer.draft.trim()) return answer;
+  if (!answer.pastSaid?.length) return answer;
   try {
-    const found = await findConflicts(ownerName, [{ key: DRAFT_KEY, text: answer.draft }], answer.pastSaid, run);
-    return { ...answer, consistency: found[DRAFT_KEY] ?? [], consistencyFor: answer.draft };
+    return attach(answer, await findConflicts(ownerName, draftsOf(answer), answer.pastSaid, run));
   } catch (error) {
     console.warn("[consistency] 예전 답 대조 실패:", error instanceof Error ? error.message : error);
     return answer;

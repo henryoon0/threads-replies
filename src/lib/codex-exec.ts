@@ -121,6 +121,8 @@ const MAX_LIMIT_PAUSE_MS = 24 * 60 * 60_000;
 
 let codexLimitedUntil = 0;
 
+const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+
 const USAGE_LIMIT_RE = /usage limit|insufficient_quota|quota|rate limit|too many requests|\b429\b/i;
 
 function errMessage(err: unknown): string {
@@ -134,6 +136,15 @@ export function isCodexUsageLimit(err: unknown): boolean {
 
 /** "try again at 8:12 PM" 을 다음 도래 시각(epoch ms)으로. 못 읽으면 now+30분. */
 export function limitResetAt(message: string, now: number): number {
+  // 주간 한도: "try again at Oct 4th, 2026 4:24 AM" (날짜가 붙는다)
+  const d = /try again at ([A-Za-z]{3})[a-z]* (\d{1,2})(?:st|nd|rd|th)?,? (\d{4}),? (\d{1,2}):(\d{2})\s*(AM|PM)/i.exec(message);
+  if (d) {
+    const month = MONTHS.indexOf(d[1].toLowerCase());
+    let hour = Number(d[4]) % 12;
+    if (d[6].toUpperCase() === "PM") hour += 12;
+    const at = new Date(Number(d[3]), month, Number(d[2]), hour, Number(d[5])).getTime();
+    if (month >= 0 && at > now) return Math.min(at, now + MAX_LIMIT_PAUSE_MS);
+  }
   const m = /try again at (\d{1,2}):(\d{2})\s*(AM|PM)?/i.exec(message);
   if (!m) return now + DEFAULT_LIMIT_PAUSE_MS;
   let hour = Number(m[1]) % 12;

@@ -9,12 +9,15 @@
 // 모델 선택은 scripts/threads-replies/retrieval-eval.ts 실측으로 정했다 (DEFAULT_CONFIG 주석).
 import { runClaudeCLI } from "@/lib/ai/claude-cli";
 import { parseJsonObject } from "@/lib/ai/json";
+import { currentPersona } from "@/lib/personas/context";
 import type { AnswerSource, ThreadsPostRef, ThreadsReply } from "./model";
+import { findAnchors } from "./anchor";
 import { loadEvidenceCorpus } from "./evidence-docs";
 import { fillAliases, readAliasCache, warmAliasesInBackground } from "./evidence-aliases";
 import { buildIndexRows, docsMissingAliases, formatIndexSheet, type EvidenceDoc } from "./evidence-index";
 import { fetchLinkDoc } from "./link-fetch";
 import { locateVerbatim, queryTerms, selectExcerpt } from "./passage";
+import { retrieveFromBrain } from "./retrieve-brain";
 import { normalizeSourceUrl } from "./run-source";
 import {
   buildExtractPrompt,
@@ -261,10 +264,21 @@ function shouldTryWeb(input: RetrieveInput, cands: readonly RankCandidate[]): bo
   return !!input.allowWeb && cands.length === 0 && !input.signal?.aborted;
 }
 
-/** 질문 댓글 하나의 근거를 찾는다. 최대 5건, 순위·중복 제거 후. 던지지 않는다. */
+/**
+ * 질문 댓글 하나의 근거를 찾는다. 최대 5건, 순위·중복 제거 후. 던지지 않는다.
+ * 지금 페르소나가 보충제 지식 뇌를 쓰면(박약사) 그쪽(retrieve-brain.ts)으로, 아니면 AICC 자료 5단계로.
+ */
 export async function retrieveForReply(
   input: RetrieveInput,
   overrides: Partial<RetrieveConfig> = {}
+): Promise<{ sources: AnswerSource[]; trace: RetrieveTrace }> {
+  if (currentPersona().knowledge.includes("supplement-brain")) return retrieveFromBrain(input);
+  return retrieveFromDashboard(input, overrides);
+}
+
+async function retrieveFromDashboard(
+  input: RetrieveInput,
+  overrides: Partial<RetrieveConfig>
 ): Promise<{ sources: AnswerSource[]; trace: RetrieveTrace }> {
   const cfg = { ...DEFAULT_CONFIG, ...overrides };
   const trace: RetrieveTrace = [];
@@ -274,8 +288,7 @@ export async function retrieveForReply(
   // 4단계 링크 읽기는 네트워크라 먼저 띄워 두고 1·2단계와 겹친다
   const linksP = readPastedLinks(input, trace, linkTimeout);
 
-  // 공유본엔 "이 글의 재료" 짝(대시보드 콘텐츠 보드)이 없다. 색인 단계만 쓴다.
-  const anchor = await timed(trace, "anchor", async () => ({ anchors: [] as EvidenceDoc[], candidates: [] as EvidenceDoc[] }), (v) => v.anchors.length, (v) =>
+  const anchor = await timed(trace, "anchor", () => findAnchors(input.post), (v) => v.anchors.length, (v) =>
     v.anchors.length ? undefined : `짝 없음 · 후보 원본 ${v.candidates.length}`
   );
   const anchorDocs = anchor?.anchors ?? [];

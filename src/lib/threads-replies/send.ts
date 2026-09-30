@@ -2,6 +2,12 @@
 // 게시는 자동 발행과 같은 컨테이너 → 준비 대기 → 발행 3단계를 쓴다 (publish/threads.ts). reply_to_id = 댓글 id.
 // 남의 댓글에 답하려면 threads_manage_replies 스코프가 필요하다. 없으면 권한 오류로 분류해
 // 화면이 [복사하고 스레드에서 열기] 폴백을 띄운다.
+//
+// 페르소나별 보내기 (docs/reply-persona-design.md 4-6, 시안 픽 14):
+//   - 서버가 보낼 글로 안전 관문을 다시 돈다. strict 팩(박약사)에 block 표현이 있으면 절대 안 보낸다(kind "gate").
+//   - send: "copy" 팩은 Threads API 를 부르지 않고 { mode: "copy", text, permalink } 를 돌려준다.
+//     주인이 스레드에서 직접 단 뒤 [달았어요] → recordMarkedAnswered 가 원장과 학습 기록을 남긴다.
+//   - 보낸 답은 팩 private/reply-log.jsonl 에 한 줄 (학습 기록, 시안 픽 15). 기록 실패가 보내기를 실패시키지 않는다.
 import { buildAuthUrl } from "@/lib/threads-archive/graph";
 import {
   ThreadsPublishError,
@@ -12,16 +18,27 @@ import {
 import { removeEphemeralMedia, uploadEphemeralMedia } from "@/lib/share/ephemeral-media";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { currentPersona } from "@/lib/personas/context";
+import { gateForPersona } from "@/lib/personas/gate-rules";
+import { startReplyOutcomeTimer } from "@/lib/personas/learning/outcome";
+import { aiDraftOf, logReply, sentAction, type ReplyLogAction, type ReplyLogEntry } from "@/lib/personas/learning/reply-log";
 import { readyToken } from "./graph";
 import { evidenceReplyDir } from "./storage";
-import type { ThreadsReply } from "./model";
+import type { GateResult, ThreadsRepliesLedger, ThreadsReply } from "./model";
 import { readRepliesLedger, updateRepliesLedger } from "./storage";
 
 export type SendErrorKind = "permission" | "token" | "rate" | "other";
 
 export type SendResult =
-  | { ok: true; reply: ThreadsReply }
-  | { ok: false; kind: SendErrorKind | "not-found" | "already" | "empty" | "busy"; message: string; reauthUrl?: string };
+  | { ok: true; mode: "api"; reply: ThreadsReply; log?: ReplyLogEntry }
+  | { ok: true; mode: "copy"; text: string; permalink?: string }
+  | {
+      ok: false;
+      kind: SendErrorKind | "not-found" | "already" | "empty" | "busy" | "gate";
+      message: string;
+      reauthUrl?: string;
+      gate?: GateResult;
+    };
 
 const MAX_LEN = 500;
 
@@ -154,16 +171,30 @@ export async function recordMyReply(replyId: string, myReply: NonNullable<Thread
 
 type Failure = Extract<SendResult, { ok: false }>;
 
-/** 보내기 전 확인: 빈 답 · 너무 긴 답 · 없는 댓글 · 이미 답한 댓글. 통과하면 그 댓글. */
-async function precheck(replyId: string, text: string, hasImage = false): Promise<ThreadsReply | Failure> {
+/** 보내기 전 확인: 빈 답 · 너무 긴 답 · 없는 댓글 · 이미 답한 댓글. 통과하면 그 댓글과 원장. */
+async function precheck(replyId: string, text: string, hasImage = false): Promise<{ reply: ThreadsReply; ledger: ThreadsRepliesLedger } | Failure> {
   if (!text && !hasImage) return { ok: false, kind: "empty", message: "보낼 답글이 비어 있어요." };
   if (text.length > MAX_LEN) return { ok: false, kind: "empty", message: `답글은 ${MAX_LEN}자까지 보낼 수 있어요.` };
   const ledger = await readRepliesLedger();
   const reply = ledger.replies.find((r) => r.id === replyId);
   if (!reply) return { ok: false, kind: "not-found", message: "해당 댓글이 원장에 없어요." };
   if (reply.myReply) return { ok: false, kind: "already", message: "이미 답한 댓글이에요." };
-  return reply;
+  return { reply, ledger };
 }
+
+/** 학습 기록 한 줄. 실패해도 보내기 결과는 그대로다(기록은 부가). */
+async function logSafely(reply: ThreadsReply, final: string, action: ReplyLogAction, gate: GateResult): Promise<ReplyLogEntry | undefined> {
+  try {
+    const entry = await logReply({ reply, persona: currentPersona().id, action, final, gate: gate.status });
+    if (entry.outcome === "pending") startReplyOutcomeTimer(); // 유예가 지나면 결과 기록 턴을 쓸 스윕이 돌고 있게
+    return entry;
+  } catch (error) {
+    console.warn("[threads-replies] 학습 기록 실패:", error instanceof Error ? error.message : error);
+    return undefined;
+  }
+}
+
+const GATE_MESSAGE = "안전 관문에 걸린 표현이 있어 보내지 않았어요. 칠해진 부분을 고친 뒤 다시 보내 주세요.";
 
 function failureOf(error: unknown): Failure {
   const kind = classifySendError(error);
@@ -177,22 +208,49 @@ function failureOf(error: unknown): Failure {
   };
 }
 
+async function postAndRecord(reply: ThreadsReply, text: string, gate: GateResult, image?: ReplyImage): Promise<SendResult> {
+  const sending = inFlight();
+  if (sending.has(reply.id)) return { ok: false, kind: "busy", message: "이 댓글에 보내는 중이에요." };
+  sending.add(reply.id);
+  try {
+    const postedId = await postReply(reply.id, text, image);
+    const myReply = { id: postedId, text, timestamp: new Date().toISOString(), ...(image ? { withImage: true } : {}) };
+    const saved = await recordMyReply(reply.id, myReply);
+    const log = await logSafely(reply, text, sentAction(aiDraftOf(reply.answer), text), gate);
+    return { ok: true, mode: "api", reply: saved ?? { ...reply, myReply }, log };
+  } catch (error) {
+    return failureOf(error);
+  } finally {
+    sending.delete(reply.id);
+  }
+}
+
 export async function sendThreadsReply(replyId: string, message: string, image?: ReplyImage): Promise<SendResult> {
   const text = message.trim();
   const checked = await precheck(replyId, text, Boolean(image));
   if ("ok" in checked) return checked;
-
-  const sending = inFlight();
-  if (sending.has(replyId)) return { ok: false, kind: "busy", message: "이 댓글에 보내는 중이에요." };
-  sending.add(replyId);
-  try {
-    const postedId = await postReply(checked.id, text, image);
-    const myReply = { id: postedId, text, timestamp: new Date().toISOString(), ...(image ? { withImage: true } : {}) };
-    const saved = await recordMyReply(replyId, myReply);
-    return { ok: true, reply: saved ?? { ...checked, myReply } };
-  } catch (error) {
-    return failureOf(error);
-  } finally {
-    sending.delete(replyId);
+  const { reply, ledger } = checked;
+  const persona = currentPersona();
+  // 화면이 무엇을 보여줬든 서버가 보낼 글로 다시 검사한다. light 팩은 block 이 check 로 낮춰져 막히지 않는다.
+  const gate = await gateForPersona(text, persona);
+  if (gate.status === "block") {
+    await logSafely(reply, text, "gate_blocked", gate);
+    return { ok: false, kind: "gate", message: GATE_MESSAGE, gate };
   }
+  if (persona.send === "copy") {
+    return { ok: true, mode: "copy", text, permalink: ledger.posts.find((p) => p.id === reply.postId)?.permalink };
+  }
+  return postAndRecord(reply, text, gate, image);
+}
+
+/**
+ * 스레드 앱에서 직접 단 답을 기록한다 — 복사 모드 팩의 [달았어요]와 권한 폴백의 [달았어요].
+ * PATCH /api/threads-replies { markedAnswered } 가 recordMyReply 대신 이걸 부른다: 원장 myReply + 학습 기록(action "copied").
+ * 관문에 걸린 글이면 기록은 남기되 학습에서 뺀다(learn: false).
+ */
+export async function recordMarkedAnswered(replyId: string, text: string): Promise<ThreadsReply | undefined> {
+  const final = text.trim();
+  const reply = await recordMyReply(replyId, { id: "manual", text: final, timestamp: new Date().toISOString() });
+  if (reply) await logSafely(reply, final, "copied", await gateForPersona(final));
+  return reply;
 }

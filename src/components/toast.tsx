@@ -25,6 +25,11 @@ let seq = 0;
 
 function emit(kind: ToastKind, message: string) {
   listener?.({ id: ++seq, kind, message });
+  // 알림 소리. 동적 import라 소리 레시피가 첫 토스트 전까지 번들에 안 실린다.
+  // 소리가 실패해도 토스트는 이미 떴다 — 그래서 결과를 기다리지 않는다.
+  void import("@/lib/sound")
+    .then((m) => m.playSound(kind === "success" ? "success" : "error"))
+    .catch(() => {});
 }
 
 export const toast = {

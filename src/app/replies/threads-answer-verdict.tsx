@@ -16,13 +16,15 @@ const KIND_TONE: Record<SourceKind, string> = {
   "원글 원본": "bg-emerald-50 text-emerald-700",
   "수집한 원문": "bg-emerald-50 text-emerald-700",
   "붙인 링크": "bg-emerald-50 text-emerald-700",
+  "내 자료": "bg-sky-50 text-sky-700",
   웹: "bg-neutral-100 text-neutral-600",
   수집노트: "bg-sky-50 text-sky-700",
   FAQ: "bg-sky-50 text-sky-700",
   "강의 자료": "bg-amber-50 text-amber-700",
   "지난 글": "bg-neutral-100 text-neutral-600",
   "내 경험": "bg-rose-50 text-rose-700",
-  "내 자료": "bg-sky-50 text-sky-700",
+  "성분 페이지": "bg-sky-50 text-sky-700",
+  "팟캐스트 발언": "bg-amber-50 text-amber-700",
 };
 
 export function SourceKindChip({ kind }: { kind: SourceKind }) {
@@ -156,7 +158,7 @@ export function SourceChips({
               <SourceCard s={openSrc} />
             ) : (
               <p className="rounded-xl bg-amber-50 p-3 text-[11.5px] leading-relaxed text-amber-800 ring-1 ring-amber-700/20 break-keep">
-                주황 점이 붙은 문장은 어느 자료에도 없어요. henry 님 경험인지 확인하세요.
+                주황 점이 붙은 문장은 어느 자료에도 없어요. 내 경험인지 확인하세요.
               </p>
             )}
           </motion.div>

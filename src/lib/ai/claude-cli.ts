@@ -55,6 +55,13 @@ export interface ClaudeCliOpts {
    * 오프가 사라진다: 글자가 흐르는 한 살려두고, 멈춘 것만 죽인다.
    */
   stallTimeoutMs?: number;
+  /**
+   * 답글 페르소나 팩에서 대화 기록을 남기며 돈다 (docs/reply-persona-design.md 4장).
+   * cwd = 팩 폴더라 팩의 CLAUDE.md(→ AGENTS.md 규칙책)만 읽히고, 세션이 저장돼 backpass 가
+   * 이 팩의 학습 재료로 읽는다. resume 이면 같은 세션에 이어 쓴다(다시 쓰기·보낸 결과 기록).
+   * 2026-09-29 실측: 규칙책 반영됨 · 첫 턴 5초 · 이어 쓰기 6초 · backpass scan 이 t1(정확)으로 잡음.
+   */
+  workspace?: { dir: string; sessionId: string; resume?: boolean };
 }
 
 const DEFAULT_TIMEOUT_MS = 360_000;
@@ -130,9 +137,18 @@ function webSearchCliArgs(opts: ClaudeCliOpts): { tools: string[]; extraArgs: st
 // --bare는 구독(OAuth) 로그인을 안 읽어서 못 쓴다. cwd를 지정한 호출은 그 폴더의
 // 스킬이 필요한 경우라 제외하고, CLAUDE_CLI_LOAD_USER_SETTINGS=1이면 예전처럼 돈다.
 function isolationCliArgs(opts: ClaudeCliOpts, searchArgs: readonly string[]): string[] {
+  if (opts.workspace) return workspaceCliArgs(opts.workspace, searchArgs);
   if (opts.cwd || process.env.CLAUDE_CLI_LOAD_USER_SETTINGS === "1") return [];
   const args = ["--setting-sources=", "--disable-slash-commands", "--no-session-persistence"];
   if (!searchArgs.includes("--strict-mcp-config")) args.push("--strict-mcp-config");
+  return args;
+}
+
+/** 팩 폴더 호출: 사용자 전역 설정은 여전히 끄고(속도 유지), 팩의 project 설정만 읽고, 세션은 저장한다. */
+function workspaceCliArgs(ws: NonNullable<ClaudeCliOpts["workspace"]>, searchArgs: readonly string[]): string[] {
+  const args = ["--setting-sources=project", "--disable-slash-commands"];
+  if (!searchArgs.includes("--strict-mcp-config")) args.push("--strict-mcp-config");
+  args.push(ws.resume ? "--resume" : "--session-id", ws.sessionId);
   return args;
 }
 
@@ -188,7 +204,7 @@ function runClaudeCLISpawn(
     let child;
     try {
       child = spawn(resolveCliBin("claude"), args, {
-        cwd: opts.cwd ?? os.tmpdir(),
+        cwd: opts.workspace?.dir ?? opts.cwd ?? os.tmpdir(),
         stdio: ["pipe", "pipe", "pipe"],
         env: { ...process.env, PATH: augmentedPath() },
         // 그룹 리더로 띄운다 — 래퍼 뒤의 진짜 바이너리까지 한 번에 죽이기 위해.
@@ -334,7 +350,7 @@ function runClaudeCLIStreamSpawn(
     let child;
     try {
       child = spawn(resolveCliBin("claude"), args, {
-        cwd: opts.cwd ?? os.tmpdir(),
+        cwd: opts.workspace?.dir ?? opts.cwd ?? os.tmpdir(),
         stdio: ["pipe", "pipe", "pipe"],
         env: { ...process.env, PATH: augmentedPath() },
         // 그룹 리더로 띄운다 — 래퍼 뒤의 진짜 바이너리까지 한 번에 죽이기 위해.

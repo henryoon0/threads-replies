@@ -9,8 +9,8 @@ import { locateVerbatim } from "./passage";
 const POST_CHARS = 700;
 
 function questionBlock(reply: ThreadsReply, post: ThreadsPostRef): string {
-  const prev = reply.repliedToText ? `\n(이 댓글은 주인 의 답글 "${reply.repliedToText.slice(0, 300)}" 에 이어 단 것)` : "";
-  return `계정 주인의 스레드 글 (${post.timestamp.slice(0, 10)}):
+  const prev = reply.repliedToText ? `\n(이 댓글은 주인의 답글 "${reply.repliedToText.slice(0, 300)}" 에 이어 단 것)` : "";
+  return `주인의 스레드 글 (${post.timestamp.slice(0, 10)}):
 """
 ${post.text.slice(0, POST_CHARS)}
 """
@@ -32,15 +32,15 @@ export function buildPickPrompt(
   hasCandidates: boolean
 ): string {
   const candidateNote = hasCandidates
-    ? `\n[원본] 줄은 주인 가 이 글을 쓸 무렵 모아 둔 재료 후보입니다. 글이 소개한 사례의 원문이 그중에 있으면 꼭 고르세요.`
+    ? `\n[원본] 줄은 주인이 이 글을 쓸 무렵 모아 둔 재료 후보입니다. 글이 소개한 사례의 원문이 그중에 있으면 꼭 고르세요.`
     : "";
   return `${questionBlock(reply, post)}
 
-주인 가 이 질문에 답글을 달 때 근거로 인용할 자료를 아래 색인에서 고르세요.
-한 줄 = 자료 하나: "번호 [종류] 연.월 제목 | 별칭". 종류: 원본=글의 재료가 된 원문, 자료=주인이 모아 둔 자료·주인이 직접 답한 노트, 글=주인의 지난 스레드 글.${candidateNote}
+주인이 이 질문에 답글을 달 때 근거로 인용할 자료를 아래 색인에서 고르세요.
+한 줄 = 자료 하나: "번호 [종류] 연.월 제목 | 별칭". 종류: 원본=글의 재료가 된 원문, 노트=수집노트, 강의=강의 모듈, FAQ=수강생 질문 답변 노트, 글=주인의 지난 스레드 글.${candidateNote}
 
 고르는 기준:
-- 질문에 대한 답(사실·방법·주인 의 경험)이 그 자료 안에 들어 있을 것 같은 자료
+- 질문에 대한 답(사실·방법·주인의 경험)이 그 자료 안에 들어 있을 것 같은 자료
 - 질문이 글 속 사례를 묻는다면, 그 사례를 다룬 원문·수집노트
 - 질문 속 제품·사람 이름이 별칭에 있는 자료
 
@@ -97,7 +97,7 @@ function extractRules(mode: ExtractMode): string {
 - 질문에 도움이 안 되는 자료는 건너뜁니다. 어느 자료도 도움이 안 되면 빈 목록이 정답입니다.`;
   }
   return `- support: 질문에 바로 답하면 "direct", 답의 일부(질문이 묻는 것의 한쪽만)면 "partial".
-- 질문이 묻는 것(가능 여부·방법·차이·이유·사실)에 대한 정보가 담긴 문장만 고릅니다. 주제만 같고 답은 없는 소개 문장은 건너뜁니다. 어느 자료에도 답이 없으면 빈 목록이 정답이고, 그러면 주인 가 "확인해보고 알려드릴게요"로 솔직하게 답합니다.
+- 질문이 묻는 것(가능 여부·방법·차이·이유·사실)에 대한 정보가 담긴 문장만 고릅니다. 주제만 같고 답은 없는 소개 문장은 건너뜁니다. 어느 자료에도 답이 없으면 빈 목록이 정답이고, 그러면 주인이 "확인해보고 알려드릴게요"로 솔직하게 답합니다.
 
 예) 질문 "Windsurf 랑 비교하면 뭐가 나아요?" 인데 자료에는 Cursor 소개("Cursor is an AI code editor.")만 있고 Windsurf 이야기는 없다 → 빈 목록.`;
 }
@@ -113,7 +113,7 @@ export function buildExtractPrompt(
     .join("\n\n");
   return `${questionBlock(reply, post)}
 
-아래 자료에서 이 질문에 답하는 데 쓸 문장을 찾아 원문 그대로 옮겨 주세요. 주인 가 답글의 근거로 보여주고, 원문 화면에서 그 문장에 형광펜을 칠합니다.
+아래 자료에서 이 질문에 답하는 데 쓸 문장을 찾아 원문 그대로 옮겨 주세요. 주인이 답글의 근거로 보여주고, 원문 화면에서 그 문장에 형광펜을 칠합니다.
 
 옮기는 법:
 - 자료 안의 연속된 문장 1~3개를 글자 하나 바꾸지 않고 복사합니다. 영어 원문은 영어 그대로 둡니다.
@@ -165,7 +165,7 @@ export function verifyPassages(
 export function buildWebPrompt(reply: ThreadsReply, post: ThreadsPostRef): string {
   return `${questionBlock(reply, post)}
 
-주인 의 자료에는 이 질문의 답이 없습니다. 웹을 검색해 답이 되는 공식 문서·원문 글을 최대 3개 찾아 주세요.
+주인의 자료에는 이 질문의 답이 없습니다. 웹을 검색해 답이 되는 공식 문서·원문 글을 최대 3개 찾아 주세요.
 공식 문서, 제품 발표, 작성자 본인의 글을 먼저 찾습니다. quote 에는 그 페이지 본문 문장을 그대로 복사합니다(번역하지 않음).
 
 JSON 하나만 답하세요. 못 찾으면 빈 목록.
@@ -208,7 +208,7 @@ export function leadingPassage(text: string, maxChars = 220): string {
 }
 
 /**
- * henry 가 직접 붙인 링크는 질문에 딱 맞는 문장이 없어도 근거로 남긴다 (09-27 QA: 추출 단계가
+ * 주인이 직접 붙인 링크는 질문에 딱 맞는 문장이 없어도 근거로 남긴다 (09-27 QA: 추출 단계가
  * 엄격해 붙인 링크가 통째로 사라졌다). 인용은 글 앞부분 원문 그대로라 형광 캡처가 찾을 수 있다.
  */
 export function keepPastedLinks(cands: RankCandidate[], links: EvidenceDoc[]): RankCandidate[] {

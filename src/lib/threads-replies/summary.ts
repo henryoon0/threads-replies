@@ -1,8 +1,13 @@
 // 스레드 댓글 — 읽기 전용 보기: 레일·질문 띠 숫자, 글별 묶음 + 대화 줄기.
 // 원장만 다룬다 (동기화·AI·외부 호출 없음).
 import { isPending, type ThreadsPostRef, type ThreadsRepliesLedger, type ThreadsReply } from "./model";
+import { currentPersona } from "@/lib/personas/context";
 import { readRepliesLedger } from "./storage";
 
+/** 지금 페르소나의 스레드 핸들 (대화 줄기에서 "내 답"을 표시하는 이름). */
+export function myUsername(): string {
+  return currentPersona().handle;
+}
 const MAX_CHAIN_DEPTH = 8;
 
 export interface ThreadsSummary {
@@ -55,19 +60,17 @@ function ancestors(ledger: ThreadsRepliesLedger, reply: ThreadsReply): ThreadsRe
  */
 export function conversationFor(
   ledger: ThreadsRepliesLedger,
-  reply: ThreadsReply,
-  /** 내 아이디 (연결된 계정) — 대화 줄기에서 내 답을 표시한다 */
-  me: string
+  reply: ThreadsReply
 ): { username: string; text: string }[] | undefined {
   if (reply.repliedToId === reply.postId) return undefined;
   const turns: { username: string; text: string }[] = [];
   for (const a of ancestors(ledger, reply)) {
     turns.push({ username: a.username, text: a.text });
-    if (a.myReply) turns.push({ username: me, text: a.myReply.text });
+    if (a.myReply) turns.push({ username: myUsername(), text: a.myReply.text });
   }
   const last = turns[turns.length - 1];
-  if (reply.repliedToText && !(last?.username === me && last.text === reply.repliedToText)) {
-    turns.push({ username: me, text: reply.repliedToText });
+  if (reply.repliedToText && !(last?.username === myUsername() && last.text === reply.repliedToText)) {
+    turns.push({ username: myUsername(), text: reply.repliedToText });
   }
   return turns.length ? turns : undefined;
 }

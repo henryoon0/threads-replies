@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
+import { pairId } from "@/lib/personas/voice-exclusions";
 import {
   classifySituation,
+  parseOwnerPairs,
   pickStyleExamples,
   situationForReply,
   toVoiceExamples,
@@ -96,5 +98,21 @@ describe("toVoiceExamples", () => {
     ]);
     expect(got).toHaveLength(1);
     expect(got[0].situation).toBe("thanks");
+  });
+});
+
+describe("parseOwnerPairs", () => {
+  it("AICC 모양 [{comment, reply}] 과 박약사 모양 {pairs:[{q, a}]} 을 같은 쌍으로 읽는다", () => {
+    const aicc = parseOwnerPairs([{ comment: "좋은 글 감사합니다", reply: "🥰", at: "2026-01-01", commenter: "x", root: "r1" }, { comment: "", reply: "a" }]);
+    expect(aicc).toEqual([{ id: pairId("좋은 글 감사합니다", "🥰"), comment: "좋은 글 감사합니다", reply: "🥰", at: "2026-01-01", commenter: "x", root: "r1" }]);
+    const glp1 = parseOwnerPairs({ source: "aside", pairs: [{ q: "마그네슘 뭐가 좋아?", a: "글리시네이트 형태 찾아봐-" }] });
+    expect(glp1).toHaveLength(1);
+    expect(glp1[0]).toMatchObject({ comment: "마그네슘 뭐가 좋아?", reply: "글리시네이트 형태 찾아봐-" });
+    expect(parseOwnerPairs("nope")).toEqual([]);
+  });
+
+  it("예시에 쌍 id 가 붙는다 (카테고리 exampleIds 가 가리키는 값)", () => {
+    const [e] = toVoiceExamples([{ comment: "감사합니다", reply: "🥰", at: "" }]);
+    expect(e.id).toBe(pairId("감사합니다", "🥰"));
   });
 });

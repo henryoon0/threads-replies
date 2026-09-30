@@ -1,10 +1,13 @@
 // 스레드 댓글 동기화: 최근 글 → 대화 트리 → 원장 병합. 읽기 전용 API 만 쓴다.
 // 병합(mergeConversations)은 Pure 라 테스트로 고정하고, syncReplies 가 I/O 를 맡는다.
 import { isRateLimited, isTokenExpired } from "@/lib/threads-archive/graph";
+import { currentPersona } from "@/lib/personas/context";
+import { hasPersonaToken, repoPath } from "@/lib/personas/registry";
+import { ledgerFromCollected, readCollectedFile } from "./collected";
 import { classifyIntent } from "./intent";
 import { fetchConversation, listRecentPosts, readyToken, type RawConversationReply } from "./graph";
 import type { ThreadsPostRef, ThreadsRepliesLedger, ThreadsReply } from "./model";
-import { readRepliesLedger, updateRepliesLedger } from "./storage";
+import { ledgerPath, readRepliesLedger, updateRepliesLedger } from "./storage";
 
 export const SYNC_STALE_MS = 10 * 60 * 1000;
 const DEFAULT_POSTS = 20;
@@ -35,24 +38,36 @@ function repliesOfPost(post: ThreadsPostRef, raw: RawConversationReply[], prev: 
       const parentMine = myById.get(repliedToId);
       // 내 이어쓰기 칸(원글에 바로 단 내 답)에 단 말은 원글 댓글과 같다. 남의 댓글에 단 내 답에 온 말만 대화 줄기.
       const isReplyToMyReply = !!parentMine && parentMine.replied_to?.id !== post.id;
-      const text = r.text ?? "";
-      const old = prev.get(r.id);
-      const mineReply = myByParent.get(r.id);
-      const next: ThreadsReply = {
-        id: r.id,
-        postId: post.id,
-        username: r.username ?? "(알 수 없음)",
-        text,
-        timestamp: r.timestamp ?? "",
-        repliedToId,
-        intent: classifyIntent(text, isReplyToMyReply),
-      };
-      if (parentMine?.text) next.repliedToText = parentMine.text;
-      if (mineReply) next.myReply = { id: mineReply.id, text: mineReply.text ?? "", timestamp: mineReply.timestamp ?? "" };
-      if (old?.skipped) next.skipped = true;
-      if (old?.answer) next.answer = old.answer;
+      const next = baseReply(r, post.id, repliedToId, isReplyToMyReply);
+      attachKnown(next, parentMine, myByParent.get(r.id), prev.get(r.id));
       return next;
     });
+}
+
+function baseReply(r: RawConversationReply, postId: string, repliedToId: string, isReplyToMyReply: boolean): ThreadsReply {
+  const text = r.text ?? "";
+  return {
+    id: r.id,
+    postId,
+    username: r.username ?? "(알 수 없음)",
+    text,
+    timestamp: r.timestamp ?? "",
+    repliedToId,
+    intent: classifyIntent(text, isReplyToMyReply),
+  };
+}
+
+/** 내 답(위 칸·이 댓글에 단 답)과 원장에 있던 건너뛰기·초안을 붙인다. */
+function attachKnown(
+  next: ThreadsReply,
+  parentMine: RawConversationReply | undefined,
+  mineReply: RawConversationReply | undefined,
+  old: ThreadsReply | undefined
+): void {
+  if (parentMine?.text) next.repliedToText = parentMine.text;
+  if (mineReply) next.myReply = { id: mineReply.id, text: mineReply.text ?? "", timestamp: mineReply.timestamp ?? "" };
+  if (old?.skipped) next.skipped = true;
+  if (old?.answer) next.answer = old.answer;
 }
 
 /**
@@ -107,8 +122,16 @@ async function fetchAll(
   return { fetched, errors };
 }
 
+/** 토큰 없는 페르소나: aside 수집본으로 받은함을 채운다 (읽기 전용). */
+async function importCollected(rel: string): Promise<ThreadsRepliesLedger> {
+  const file = await readCollectedFile(repoPath(rel));
+  return updateRepliesLedger((ledger) => ledgerFromCollected(file, ledger, new Date().toISOString()));
+}
+
 async function runSync(postLimit: number): Promise<ThreadsRepliesLedger> {
+  const persona = currentPersona();
   try {
+    if (persona.collectedComments && !(await hasPersonaToken(persona))) return await importCollected(persona.collectedComments);
     const token = await readyToken();
     const raw = await listRecentPosts(postLimit, token);
     const posts: ThreadsPostRef[] = raw.map((p) => ({
@@ -120,6 +143,7 @@ async function runSync(postLimit: number): Promise<ThreadsRepliesLedger> {
     const { fetched, errors } = await fetchAll(posts, token);
     return await updateRepliesLedger((ledger) => {
       const next = mergeConversations(ledger, fetched, new Date().toISOString());
+      next.sync.source = "api";
       next.sync.lastError = errors.length ? `대화 ${errors.length}건 못 읽음 · ${errors[0]}` : undefined;
       return next;
     });
@@ -131,12 +155,16 @@ async function runSync(postLimit: number): Promise<ThreadsRepliesLedger> {
 
 /** 실동기화. 이미 도는 동기화가 있으면 그 결과를 같이 기다린다. 실패는 원장 sync.lastError 로 남는다. */
 export async function syncReplies(opts: { posts?: number } = {}): Promise<ThreadsRepliesLedger> {
-  const g = globalThis as typeof globalThis & { __threadsRepliesSync?: Promise<ThreadsRepliesLedger> };
-  if (g.__threadsRepliesSync) return g.__threadsRepliesSync;
+  // 도는 동기화는 원장마다 하나 (페르소나마다 원장이 다르다).
+  const g = globalThis as typeof globalThis & { __threadsRepliesSyncs?: Map<string, Promise<ThreadsRepliesLedger>> };
+  g.__threadsRepliesSyncs ??= new Map();
+  const key = ledgerPath();
+  const running = g.__threadsRepliesSyncs.get(key);
+  if (running) return running;
   const run = runSync(opts.posts ?? DEFAULT_POSTS).finally(() => {
-    g.__threadsRepliesSync = undefined;
+    g.__threadsRepliesSyncs?.delete(key);
   });
-  g.__threadsRepliesSync = run;
+  g.__threadsRepliesSyncs.set(key, run);
   return run;
 }
 

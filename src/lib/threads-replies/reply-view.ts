@@ -2,7 +2,6 @@
 // 원장·잡 파일만 읽는다 (동기화·AI·외부 호출 없음).
 import type { ThreadsPostRef, ThreadsReply } from "./model";
 import { readAnswerJob, readRepliesLedger } from "./storage";
-import { readProfile } from "@/lib/profile";
 import { conversationFor } from "./summary";
 
 export interface ReplyView {
@@ -25,7 +24,7 @@ export async function readReplyView(replyId: string): Promise<ReplyView | null> 
   return {
     reply,
     post: ledger.posts.find((p) => p.id === reply.postId) ?? null,
-    conversation: conversationFor(ledger, reply, (await readProfile()).username) ?? [],
+    conversation: conversationFor(ledger, reply) ?? [],
     drafting: !reply.answer && Boolean(waiting),
   };
 }

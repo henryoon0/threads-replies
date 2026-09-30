@@ -14,9 +14,6 @@ export interface ThreadsReplyView {
 }
 
 export interface RegenerateInput {
-  extraLinks?: string[];
-  myNote?: string;
-  instruction?: string;
   allowWeb?: boolean;
 }
 
@@ -65,8 +62,15 @@ function useDraftSaver(replyId: string) {
     [replyId, flush]
   );
 
+  /** 남은 저장을 버린다 (3벌 중 다른 벌을 고르면 옛 초안을 덮어쓰지 않게) */
+  const cancel = useCallback(() => {
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = null;
+    pending.current = null;
+  }, []);
+
   useEffect(() => flush, [replyId, flush]);
-  return { schedule, flush };
+  return { schedule, flush, cancel };
 }
 
 export function useThreadsAnswer(replyId: string, onChanged: () => void) {
@@ -154,19 +158,50 @@ export function useThreadsAnswer(replyId: string, onChanged: () => void) {
     [replyId, saver, applyAnswer, onChanged]
   );
 
+  /** 3벌 중 n번째를 고른다: 화면은 바로 바꾸고, 서버(PATCH chosen)가 draft·aiDraft 를 그 벌로 맞춘다. */
+  const choose = useCallback(
+    async (n: number) => {
+      const id = replyId;
+      const opt = view?.reply.answer?.options?.[n];
+      if (!opt) return;
+      saver.cancel();
+      setDraftState(opt.draft);
+      setView((v) => {
+        const a = v?.reply.answer;
+        return v && a ? { ...v, reply: { ...v.reply, answer: { ...a, chosen: n, draft: opt.draft, aiDraft: opt.draft, sentences: opt.sentences } } } : v;
+      });
+      try {
+        const { reply } = await patchReply({ replyId: id, chosen: n });
+        if (current.current === id) setView((v) => (v ? { ...v, reply } : v));
+      } catch (e) {
+        if (current.current === id) setRegenError(e instanceof Error ? e.message : String(e));
+      }
+    },
+    [replyId, view, saver]
+  );
+
+  /** 다른 버전이 붙은 answer 에서 options 만 받아 온다 (고른 벌·편집 중 초안은 그대로). */
+  const mergeOptions = useCallback((id: string, answer: ReplyAnswer) => {
+    if (current.current !== id) return;
+    setView((v) => {
+      const a = v?.reply.answer;
+      return v && a ? { ...v, reply: { ...v.reply, answer: { ...a, options: answer.options } } } : v;
+    });
+  }, []);
+
   const replaceReply = useCallback((reply: ThreadsReply) => {
     if (current.current !== reply.id) return;
     setView((v) => (v ? { ...v, reply } : v));
   }, []);
 
-  return { view, error, draft, setDraft, flushDraft: saver.flush, regenerating, regenError, regenerate, reload: load, drafting, replaceReply };
+  return { view, error, draft, setDraft, flushDraft: saver.flush, regenerating, regenError, regenerate, choose, mergeOptions, reload: load, drafting, replaceReply };
 }
 
 /* ── 원문 형광 캡처 ─────────────────────────────────── */
 
 const SHOT_KINDS: ReadonlySet<SourceKind> = new Set<SourceKind>(["원글 원본", "수집한 원문", "웹", "붙인 링크"]);
 
-/** 원본 화면을 찍을 수 있는 근거인가. henry 노트(수집노트·강의 자료·FAQ·지난 글·내 경험)는 찍지 않는다. */
+/** 원본 화면을 찍을 수 있는 근거인가. henry 노트(수집노트·강의 자료·FAQ·지난 글·henry 경험)는 찍지 않는다. */
 export function isShootableSource(s: AnswerSource): boolean {
   return SHOT_KINDS.has(s.kind) && /^https?:\/\//i.test(s.url ?? "") && Boolean(s.quote?.trim());
 }

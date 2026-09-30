@@ -32,8 +32,8 @@ describe("locateVerbatim", () => {
 
 describe("queryTerms", () => {
   it("keeps Korean words and English tokens and strips common particles", () => {
-    const t = queryTerms("Note-sync는 api사용 아니어도 써도 되나요.?");
-    expect(t).toContain("note-sync");
+    const t = queryTerms("Prompt-audit는 api사용 아니어도 써도 되나요.?");
+    expect(t).toContain("prompt-audit");
     expect(t).toContain("api");
   });
 });

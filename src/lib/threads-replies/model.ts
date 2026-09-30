@@ -22,6 +22,8 @@ export interface ThreadsReply {
   username: string;
   text: string;
   timestamp: string;
+  /** 이 댓글 자체의 스레드 주소 (수집 때 댓글 코드를 받았을 때만) */
+  permalink?: string;
   /** 무엇에 단 답인지. postId 와 같으면 원글에 단 댓글, 아니면 대화 줄기 속 답. */
   repliedToId: string;
   /** repliedToId 가 내 답글일 때 그 본문 (대화 줄기 그리기용) */
@@ -40,7 +42,21 @@ export interface ThreadsReply {
  * 수집한 원문 = henry 가 link 잡으로 조사해 둔 X·웹 원문 (data/threads-runs/<runId>/00_input/source.md) 중
  * 이 글의 재료로 짝지어지지 않은 것. 진짜 원문이라 형광 캡처 대상이다.
  */
-export type SourceKind = "원글 원본" | "수집한 원문" | "수집노트" | "강의 자료" | "FAQ" | "지난 글" | "웹" | "내 경험" | "붙인 링크" | "내 자료";
+export type SourceKind =
+  | "원글 원본"
+  | "수집한 원문"
+  | "수집노트"
+  | "강의 자료"
+  | "FAQ"
+  | "지난 글"
+  | "웹"
+  | "내 경험"
+  | "붙인 링크"
+  // 받는 사람의 내 자료 폴더 (evidence-docs.ts)
+  | "내 자료"
+  // 박약사 팩(보충제 지식 뇌): 성분 설명·근거 강도 칸 / 팟캐스트 발언 요약 (retrieve-brain.ts)
+  | "성분 페이지"
+  | "팟캐스트 발언";
 
 export interface AnswerSource {
   id: string;
@@ -51,6 +67,16 @@ export interface AnswerSource {
   url?: string;
   /** 저장소 안 출처 (파일 경로·id). 사람이 따라가 확인하는 용도. */
   origin?: string;
+  /** 팟캐스트·유튜브 발언: 말한 사람 */
+  speaker?: string;
+  /** 팟캐스트·유튜브 발언: 영상 제목 */
+  videoTitle?: string;
+  /** 팟캐스트·유튜브 발언: 말한 시각(초). url 은 이 초에서 열린다 */
+  startSec?: number;
+  /** 원문(영어) 발언의 한국어 한 줄 요약. quote 는 원문 그대로 */
+  claimKo?: string;
+  /** 성분 페이지: 근거 강도 한 줄 (NIH 안내서·문헌고찰 수) */
+  strength?: string;
 }
 
 /** 초안 문장 하나와 그 문장을 받치는 근거 id. 빈 배열 = 근거 없음(확인 필요). */
@@ -58,6 +84,30 @@ export interface DraftSentence {
   text: string;
   sourceIds: string[];
 }
+
+/** 답할 수 있음 판정 (픽 4). */
+export type AnswerVerdict = "answerable" | "partial" | "unknown";
+
+/**
+ * 초안 한 벌 (시안 픽 9 "초안 3벌"). 주인이 실제로 단 답을 유형별로 나눈 카테고리(팩 categories.json)
+ * 가운데 이 댓글에 맞는 셋을 골라, 카테고리마다 그 유형의 정교한 지시문으로 한 벌씩 쓴다.
+ */
+export interface DraftOption {
+  categoryId: string;
+  categoryName: string;
+  /** 이 유형을 쓰는 때 (카테고리 when). "다른 버전" 칸에 "왜 이런 느낌인지"로 보인다 */
+  categoryWhen?: string;
+  draft: string;
+  sentences: DraftSentence[];
+  /** 근거 인용에 없는 사실이라 초안에서 뺀 문장 (fact-check.ts). 화면에 "근거 없어 뺀 문장"으로 보인다 */
+  dropped?: { text: string; reason: string }[];
+  /** 길이 역할 (length-plan.ts): 기본 3벌은 짧게·중간·길게가 하나씩 */
+  lengthRole?: LengthRole;
+  /** 예전 답과 어긋나는 문장 (consistency.ts). 글은 바꾸지 않고 칠하기만 한다 */
+  consistency?: ConsistencyHit[];
+}
+
+export type LengthRole = "short" | "mid" | "long";
 
 /** 주인이 예전에 단 답 한 건 (초안 프롬프트의 "예전에 한 말" · 어긋남 검사의 비교 대상) */
 export interface PastSaid {
@@ -81,8 +131,32 @@ export interface ConsistencyHit {
   note: string;
 }
 
-/** 답할 수 있음 판정 (픽 4). */
-export type AnswerVerdict = "answerable" | "partial" | "unknown";
+/** 안전 관문이 초안에서 찾은 표현 하나 (시안 픽 7·11: 빨간 배지 대신 글자 위 색칠 + 호버 이유). */
+export interface GateHit {
+  /** draft 문자열 안 위치 [start, end) */
+  start: number;
+  end: number;
+  phrase: string;
+  kind: string;
+  /** block = 고치기 전엔 못 보냄 (strict 팩), check = 확인만 */
+  action: "block" | "check";
+  reason: string;
+  /** 바꿔 쓸 표현 제안 (있으면 누르면 바뀐다) */
+  suggest?: string;
+  /** 예전 답과 어긋남 칠하기일 때 그 예전 답 (kind = PAST_HIT_KIND) */
+  past?: ConsistencyHit["past"];
+  /** 근거 없는 사실 칠하기일 때 대조한 자료 (kind = FACT_HIT_KIND) */
+  sources?: { title: string; url?: string }[];
+  /** 근거 없는 사실 칠하기일 때 자료에서 못 찾은 낱말 ("4주짜리", "24g") */
+  missing?: string[];
+}
+
+export interface GateResult {
+  status: "pass" | "check" | "block";
+  hits: GateHit[];
+  /** 칠하지 않고 칸 아래 한 줄로만 알리는 막는 표현 (링크 등, editor-paint.ts) */
+  notes?: GateHit[];
+}
 
 export interface ReplyAnswer {
   verdict: AnswerVerdict;
@@ -92,19 +166,29 @@ export interface ReplyAnswer {
   sentences: DraftSentence[];
   /** 보낼 답글 (sentences 를 henry 말투로 이은 것. henry 가 고치면 이 값만 바뀐다) */
   draft: string;
-  /** 자료로는 못 채우는 내 경험 질문 한 줄 (없으면 비움) */
-  myAsk?: string;
+  /** 자료로는 못 채우는 henry 경험 질문 한 줄 (없으면 비움) */
+  henryAsk?: string;
   model: string;
   generatedAt: string;
-  /** 초안이 참고한 과거 답글 예시 수 (말투 학습 확인용) */
+  /** 초안이 참고한 henry 과거 답글 예시 수 (말투 학습 확인용) */
   styleExamples: number;
-  /** 근거 인용에 없는 사실이라 초안에서 뺀 문장 (fact-check.ts) */
+  /** 초안 3벌 (픽 9). 없으면 예전 한 벌짜리 답. */
+  options?: DraftOption[];
+  /** 고른 벌 (options 의 index) */
+  chosen?: number;
+  /** AI 가 처음 쓴 초안 원문 — 주인이 고쳐도 안 바뀐다. 학습 신호 = aiDraft 와 보낸 답의 차이. */
+  aiDraft?: string;
+  /** 이 댓글의 Claude 세션 (팩 폴더). 다시 쓰기·보낸 결과 기록이 같은 세션에 이어 쓴다. */
+  sessionId?: string;
+  /** 안전 관문 결과 (draft 기준) */
+  gate?: GateResult;
+  /** 근거 없어 뺀 문장 (고른 벌 기준) */
   dropped?: { text: string; reason: string }[];
   /** 초안 전에 찾은 주인의 예전 답 (같은 주제 · 같은 사람). 어긋남 검사가 이것과 비교한다 */
   pastSaid?: PastSaid[];
   /** draft(=consistencyFor) 기준 예전 답과 어긋나는 문장 */
   consistency?: ConsistencyHit[];
-  /** consistency 를 잰 글. draft 와 다르면 옛 결과다 */
+  /** consistency 를 잰 글. draft 와 다르면 옛 결과라 다시 잰다 */
   consistencyFor?: string;
 }
 
@@ -132,7 +216,8 @@ export interface PendingSend {
 export interface ThreadsRepliesLedger {
   posts: ThreadsPostRef[];
   replies: ThreadsReply[];
-  sync: { lastSyncAt?: string; lastError?: string; postsScanned?: number };
+  /** source: api = Threads API 동기화, collected = 토큰 없는 페르소나의 aside 수집본(읽기 전용) */
+  sync: { lastSyncAt?: string; lastError?: string; postsScanned?: number; source?: "api" | "collected" };
 }
 
 export function createRepliesLedger(): ThreadsRepliesLedger {

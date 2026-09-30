@@ -90,24 +90,6 @@ export function nextId(order: string[], current: string | null, previousOrder: s
   return order.at(-1) ?? null;
 }
 
-export interface BandQuestion {
-  reply: ThreadsReply;
-  ready: boolean;
-}
-
-/** 질문 띠: 답이 필요한 질문 전부 (글 순서 그대로) + 근거 준비된 수 */
-export function openQuestions(groups: PostGroup[]): { items: BandQuestion[]; ready: number } {
-  const items: BandQuestion[] = [];
-  for (const g of groups) {
-    for (const t of g.threads) {
-      for (const r of repliesOf(t)) {
-        if (isOpenQuestion(r)) items.push({ reply: r, ready: r.answer?.verdict === "answerable" });
-      }
-    }
-  }
-  return { items, ready: items.filter((q) => q.ready).length };
-}
-
 /** 글 머리의 첫 줄 */
 export function firstLine(text: string): string {
   return text.split("\n").find((l) => l.trim())?.trim() ?? "(본문 없는 글)";
@@ -116,4 +98,52 @@ export function firstLine(text: string): string {
 /** 글에 달린 댓글 수 (묶음 안 전체) */
 function replyCount(g: PostGroup): number {
   return g.threads.reduce((n, t) => n + 1 + t.followUps.length, 0);
+}
+
+/* ── 지금 답할 5개 (시안 픽 7) ─────────────────────────── */
+
+export const TOP_N = 5;
+
+export type UrgentReason = "질문" | "관문" | "오래 기다림";
+
+export interface UrgentItem {
+  reply: ThreadsReply;
+  reasons: UrgentReason[];
+}
+
+const DAY_MS = 86_400_000;
+
+function waitedMs(r: ThreadsReply, now: number): number {
+  const t = Date.parse(r.timestamp.replace(/([+-]\d{2})(\d{2})$/, "$1:$2"));
+  return Number.isFinite(t) ? now - t : 0;
+}
+
+/**
+ * 답할 차례 댓글 가운데 지금 답할 n개: 질문 → 관문에 걸린 초안 → 오래 기다린 순.
+ * gated(reply) = 그 댓글 초안이 관문에 걸렸나 (화면이 규칙으로 검사해 넘긴다).
+ */
+export function urgentReplies(
+  groups: PostGroup[],
+  view: ThreadsView,
+  gated: (r: ThreadsReply) => boolean,
+  n = TOP_N,
+  now = Date.now()
+): UrgentItem[] {
+  const pool = focusOrder(groups, view === "history" ? "comments" : view);
+  const byId = new Map<string, ThreadsReply>();
+  for (const g of groups) for (const t of g.threads) for (const r of repliesOf(t)) byId.set(r.id, r);
+  const scored = pool
+    .map((id) => byId.get(id))
+    .filter((r): r is ThreadsReply => Boolean(r))
+    .map((reply) => {
+      const q = reply.intent === "question";
+      const gate = gated(reply);
+      const reasons: UrgentReason[] = [];
+      if (q) reasons.push("질문");
+      if (gate) reasons.push("관문");
+      if (waitedMs(reply, now) >= DAY_MS) reasons.push("오래 기다림");
+      return { reply, reasons, rank: (q ? 0 : 2) + (gate ? 0 : 1), waited: waitedMs(reply, now) };
+    });
+  scored.sort((a, b) => a.rank - b.rank || b.waited - a.waited);
+  return scored.slice(0, n).map(({ reply, reasons }) => ({ reply, reasons }));
 }

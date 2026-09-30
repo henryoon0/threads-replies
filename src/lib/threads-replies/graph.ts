@@ -9,6 +9,10 @@ import {
   refreshTokenIfNeeded,
   resolveAccessToken,
 } from "@/lib/threads-archive/graph";
+import { readFile } from "fs/promises";
+import { currentPersona } from "@/lib/personas/context";
+import { DEFAULT_PERSONA_ID } from "@/lib/personas/model";
+import { personaTokenPath } from "@/lib/personas/registry";
 import { envMs } from "./storage";
 
 const DEFAULT_FETCH_TIMEOUT_MS = 30_000;
@@ -52,10 +56,25 @@ function buildUrl(pathName: string, token: string, params: Record<string, string
   return `${THREADS_GRAPH_BASE}/${pathName}?${qs}`;
 }
 
-/** 갱신을 한 번 시도한 뒤 쓸 토큰. */
+/**
+ * 갱신을 한 번 시도한 뒤 쓸 토큰. AICC 는 기존 threads-archive 토큰(.env.local + token.json),
+ * 다른 페르소나는 팩 private/token.json 의 accessToken 을 쓴다 (갱신은 아직 AICC 만).
+ */
 export async function readyToken(): Promise<string> {
+  const persona = currentPersona();
+  if (persona.id !== DEFAULT_PERSONA_ID) return readPersonaToken(persona.id);
   await refreshTokenIfNeeded();
   return resolveAccessToken();
+}
+
+async function readPersonaToken(id: string): Promise<string> {
+  try {
+    const raw = JSON.parse(await readFile(personaTokenPath(id), "utf8")) as { accessToken?: unknown };
+    if (typeof raw.accessToken === "string" && raw.accessToken.trim()) return raw.accessToken.trim();
+  } catch {
+    // 아래에서 안내
+  }
+  throw new ThreadsGraphError(`${id} 팩에 스레드 토큰이 없어요 (private/token.json)`, 401, "");
 }
 
 /** 최근 루트 글 limit 개 (최신순). */
@@ -82,4 +101,35 @@ export async function fetchConversation(postId: string, token?: string): Promise
     url = page.paging?.next;
   }
   return out;
+}
+
+const MY_REPLY_FIELDS = "id,text,timestamp,permalink,replied_to,root_post";
+
+export interface RawMyReply {
+  id: string;
+  text?: string;
+  timestamp?: string;
+  permalink?: string;
+  replied_to?: { id?: string };
+  root_post?: { id?: string };
+}
+
+/**
+ * 내가 단 답글 전부 (최신순). 남의 글에 단 답 + 내 글에 이어 쓴 연재 본문이 같이 온다.
+ * 실측 (2026-09-28): GET /me/replies 200, replied_to·root_post 는 id 만 준다.
+ * stopAtId 를 만나면 멈춘다 (이미 받아 둔 곳부터는 다시 받지 않는다).
+ */
+export async function listMyReplies(max: number, stopAtId?: string, token?: string): Promise<RawMyReply[]> {
+  const t = token ?? (await readyToken());
+  const out: RawMyReply[] = [];
+  let url: string | undefined = buildUrl("me/replies", t, { fields: MY_REPLY_FIELDS, limit: "100" });
+  while (url && out.length < max) {
+    const page: Page<RawMyReply> = await fetchJson<Page<RawMyReply>>(url);
+    for (const r of page.data ?? []) {
+      if (r.id === stopAtId) return out;
+      out.push(r);
+    }
+    url = page.paging?.next;
+  }
+  return out.slice(0, max);
 }

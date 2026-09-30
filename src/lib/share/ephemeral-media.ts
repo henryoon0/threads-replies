@@ -9,8 +9,7 @@ import { randomBytes } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { promisify } from "node:util";
-import { augmentedPath } from "@/lib/cli-bin";
-import { deployShareSite, wranglerBin } from "./deploy";
+import { deployShareSite } from "./deploy";
 import { shareBaseUrl, shareProjectName, shareRootDir, shareSiteDir } from "./paths";
 
 const execFileAsync = promisify(execFile);
@@ -100,10 +99,10 @@ export async function removeEphemeralMedia(media: EphemeralMedia): Promise<{ ok:
 }
 
 async function wrangler(args: string[]): Promise<string> {
-  const { stdout } = await execFileAsync(wranglerBin(), args, {
+  const { stdout } = await execFileAsync(process.env.WRANGLER_BIN || "wrangler", args, {
     timeout: 60_000,
     maxBuffer: 8 * 1024 * 1024,
-    env: { ...process.env, PATH: augmentedPath(), CI: "1" },
+    env: { ...process.env, CI: "1" },
   });
   return String(stdout);
 }

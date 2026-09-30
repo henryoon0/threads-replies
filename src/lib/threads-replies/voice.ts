@@ -1,13 +1,20 @@
-// henry 답글 말투 — 규칙책(data/threads-reply-style.md)과 실제 (댓글, 답글) 예시 고르기.
+// 답글 말투 재료 — 지금 페르소나(주인)의 규칙책과 실제 (댓글, 답글) 예시 고르기.
 //
-// 초안기(draft.ts)는 매 호출마다 규칙책 전문 + 지금 댓글과 닮은 henry 실제 답글 k개를 싣는다.
-// 규칙책은 "어떤 상황에서 어떻게 쓰는지", 예시는 "이번 댓글과 비슷한 자리에서 실제로 쓴 글"을 맡는다.
+// 규칙책은 팩의 AGENTS.md 다. 초안기는 팩 폴더에서 Claude 를 돌려 규칙책을 세션이 직접 읽게 하고,
+// 팩이 없을 때만 규칙책 전문을 프롬프트에 싣는다(loadStyleBook).
+// 예시 = 주인이 실제로 단 답: AICC 는 voice-pairs.json(260쌍), 박약사는 qa-pairs {q,a}(122쌍)를 같은 모양으로.
+// 팩 private/voice-pairs.json 이 있으면 그쪽이 먼저다. 제외 심사(personas/voice-exclusions.ts)에서
+// 제외된 답은 빼고, 가림(mask)은 걸린 표현을 ○○ 로 가려 넣는다.
 // 고르는 순서: 같은 상황 → 댓글 글자 유사도 → 최근 → 거의 같은 답글 중복 제거.
 // 순수 선택 로직(classifySituation·pickStyleExamples)은 I/O 가 없어 테스트가 바로 부른다.
 
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
-import { textSimilarity } from "@/lib/text-similarity";
+import { textSimilarity } from "@/lib/content-ideas-style-eval";
+import { currentPersona } from "@/lib/personas/context";
+import type { PersonaConfig } from "@/lib/personas/model";
+import { packPrivateDir, packRulebookPath, repoPath } from "@/lib/personas/registry";
+import { learnablePairs, pairId, reviewPairs, type OwnerPair } from "@/lib/personas/voice-exclusions";
 import { asksForInfo, isQuestionShaped } from "./intent";
 import type { ThreadsReply } from "./model";
 
@@ -27,11 +34,13 @@ export const SITUATION_LABEL: Record<ReplySituation, string> = {
   question_unknown: "질문(모르는 것)",
   conversation: "대화 이어가기",
   joke: "농담",
-  class_inquiry: "신청·구매 문의",
+  class_inquiry: "강의 문의",
   share: "추천/정보 공유",
 };
 
 export interface VoiceExample {
+  /** 쌍 id (personas/voice-exclusions pairId). 카테고리 exampleIds 가 이 값을 가리킨다. */
+  id?: string;
   comment: string;
   commenter?: string;
   reply: string;
@@ -67,16 +76,27 @@ export function isQuestionText(text: string): boolean {
 export function classifySituation(comment: string, reply?: string): ReplySituation {
   const c = comment ?? "";
   const r = reply ?? "";
+  const asked = inquiryOrQuestion(c, r);
+  if (asked) return asked;
+  if (isShare(c, r)) return "share";
+  if (THANKS_WORDS.test(c)) return "thanks";
+  return isJoke(c, r) ? "joke" : "conversation";
+}
+
+/** 강의 문의(카톡 링크 답 포함) · 질문(모름/사실). 질문이 아니면 null. */
+function inquiryOrQuestion(c: string, r: string): ReplySituation | null {
   const question = isQuestionText(c);
   if (KAKAO_LINK.test(r) || (question && CLASS_WORDS.test(c))) return "class_inquiry";
-  if (question) {
-    if (r && UNKNOWN_REPLY.test(r) && !LINK.test(r)) return "question_unknown";
-    return "question_fact";
-  }
-  if (LINK.test(r) || (/(추천|공유|정보|링크)/.test(c.slice(0, 80)) && c.length > 60)) return "share";
-  if (THANKS_WORDS.test(c)) return "thanks";
-  if (LAUGH.test(c) || (r && LAUGH.test(r) && c.length < 40)) return "joke";
-  return "conversation";
+  if (!question) return null;
+  return r && UNKNOWN_REPLY.test(r) && !LINK.test(r) ? "question_unknown" : "question_fact";
+}
+
+function isShare(c: string, r: string): boolean {
+  return LINK.test(r) || (/(추천|공유|정보|링크)/.test(c.slice(0, 80)) && c.length > 60);
+}
+
+function isJoke(c: string, r: string): boolean {
+  return LAUGH.test(c) || (!!r && LAUGH.test(r) && c.length < 40);
 }
 
 /** 새 댓글의 상황. 계약의 intent 를 먼저 믿고, 질문이면 강의 문의인지만 더 가른다. */
@@ -152,10 +172,12 @@ export function pickStyleExamples(
 
 // ── 파일 (I/O) ──────────────────────────────────────────────────────
 
+/** 예전 AICC 경로. THREADS_REPLIES_DIR 가 있으면 그 폴더의 voice-pairs.json 을 쓴다 (테스트·평가 스크립트). */
 export function threadsRepliesDataDir(): string {
   return process.env.THREADS_REPLIES_DIR ?? path.join(process.cwd(), "data", "threads-replies");
 }
 
+/** 팩이 없을 때 쓰는 예전 규칙책 경로 */
 export function styleBookPath(): string {
   return (
     process.env.THREADS_REPLY_STYLE_PATH ??
@@ -163,15 +185,38 @@ export function styleBookPath(): string {
   );
 }
 
-export async function loadStyleBook(): Promise<string> {
+async function exists(p: string): Promise<boolean> {
   try {
-    return await readFile(styleBookPath(), "utf8");
+    await stat(p);
+    return true;
   } catch {
-    return "";
+    return false;
   }
 }
 
+/** 지금 페르소나의 규칙책 전문 (팩 AGENTS.md → 예전 경로). 팩 폴더에서 돌지 못할 때만 프롬프트에 싣는다. */
+export async function loadStyleBook(persona: PersonaConfig = currentPersona()): Promise<string> {
+  for (const file of [packRulebookPath(persona.id), styleBookPath()]) {
+    try {
+      return await readFile(file, "utf8");
+    } catch {
+      // 다음 후보
+    }
+  }
+  return "";
+}
+
+/** 말투 재료 파일: env 덮어쓰기 → 팩 private/voice-pairs.json → persona.voicePairs → 예전 AICC 경로. */
+export async function ownerPairsPath(persona: PersonaConfig = currentPersona()): Promise<string> {
+  if (process.env.THREADS_REPLIES_DIR) return path.join(process.env.THREADS_REPLIES_DIR, "voice-pairs.json");
+  const override = path.join(packPrivateDir(persona.id), "voice-pairs.json");
+  if (await exists(override)) return override;
+  if (persona.voicePairs) return repoPath(persona.voicePairs);
+  return path.join(threadsRepliesDataDir(), "voice-pairs.json");
+}
+
 interface RawPair {
+  id?: string;
   comment?: string | null;
   commenter?: string;
   reply?: string;
@@ -179,27 +224,71 @@ interface RawPair {
   root?: string;
 }
 
-let poolCache: { key: string; pool: VoiceExample[] } | null = null;
+function text(v: unknown): string {
+  return typeof v === "string" ? v.trim() : "";
+}
 
-/** voice-pairs.json → 상황이 붙은 예시 풀. 같은 경로면 메모리 캐시. */
-export async function loadVoiceExamples(): Promise<VoiceExample[]> {
-  const file = path.join(threadsRepliesDataDir(), "voice-pairs.json");
-  if (poolCache?.key === file) return poolCache.pool;
-  let raw: RawPair[] = [];
+function pairList(raw: unknown): unknown[] {
+  if (Array.isArray(raw)) return raw;
+  const pairs = (raw as { pairs?: unknown } | null)?.pairs;
+  return Array.isArray(pairs) ? pairs : [];
+}
+
+function toOwnerPair(item: unknown): OwnerPair | null {
+  const o = (item ?? {}) as Record<string, unknown>;
+  const comment = text(o.comment ?? o.q);
+  const reply = text(o.reply ?? o.a);
+  if (!comment || !reply) return null;
+  return { id: pairId(comment, reply), comment, reply, at: text(o.at), commenter: text(o.commenter) || undefined, root: text(o.root) || undefined };
+}
+
+/** 두 모양을 받는다: [{comment, reply, …}] (AICC) · {pairs:[{q, a}]} (박약사 수집본). */
+export function parseOwnerPairs(raw: unknown): OwnerPair[] {
+  return pairList(raw)
+    .map(toOwnerPair)
+    .filter((p): p is OwnerPair => p !== null);
+}
+
+// 페르소나마다 파일이 달라 파일별로 캐시한다. hot reload 에도 살아남게 globalThis.
+type PairCache = Map<string, { mtimeMs: number; pairs: OwnerPair[] }>;
+function pairCache(): PairCache {
+  const g = globalThis as typeof globalThis & { __ownerPairsCache?: PairCache };
+  g.__ownerPairsCache ??= new Map();
+  return g.__ownerPairsCache;
+}
+
+/** 주인의 실제 (댓글, 답) 전부. 제외 심사 전. 같은 파일·같은 수정 시각이면 메모리 캐시. */
+export async function loadOwnerPairs(persona: PersonaConfig = currentPersona()): Promise<OwnerPair[]> {
+  const file = await ownerPairsPath(persona);
   try {
-    raw = JSON.parse(await readFile(file, "utf8")) as RawPair[];
+    const s = await stat(file);
+    const hit = pairCache().get(file);
+    if (hit && hit.mtimeMs === s.mtimeMs) return hit.pairs;
+    const pairs = parseOwnerPairs(JSON.parse(await readFile(file, "utf8")));
+    pairCache().set(file, { mtimeMs: s.mtimeMs, pairs });
+    return pairs;
   } catch {
-    raw = [];
+    return [];
   }
-  const pool = toVoiceExamples(raw);
-  poolCache = { key: file, pool };
-  return pool;
+}
+
+/** 배울 수 있는 주인 답만 (제외 빼고 가림 적용). 카테고리 만들기와 예시 고르기가 같은 함수를 쓴다. */
+export async function loadLearnablePairs(persona: PersonaConfig = currentPersona()): Promise<OwnerPair[]> {
+  const pairs = await loadOwnerPairs(persona);
+  const reviews = await reviewPairs(persona, pairs);
+  return learnablePairs(pairs, new Map(reviews.map((r) => [r.id, r])));
+}
+
+/** 지금 페르소나의 예시 풀 (상황이 붙은 모양). */
+export async function loadVoiceExamples(persona: PersonaConfig = currentPersona()): Promise<VoiceExample[]> {
+  return toVoiceExamples(await loadLearnablePairs(persona));
 }
 
 export function toVoiceExamples(raw: readonly RawPair[]): VoiceExample[] {
   return raw
     .filter((p) => (p.comment ?? "").trim() && (p.reply ?? "").trim())
     .map((p) => ({
+      id: p.id ?? pairId(String(p.comment), String(p.reply)),
       comment: String(p.comment).trim(),
       commenter: p.commenter,
       reply: String(p.reply).trim(),

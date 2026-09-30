@@ -1,4 +1,4 @@
-// 근거 없는 사실 문장 거르기 (지어낸 사실이 답글에 섞이지 않게).
+// 근거 없는 사실 문장 거르기 (2026-09-29, henry "할루시네이션이 있으면 안돼").
 //
 // 질문 댓글 초안에서 사실을 말하는 문장(숫자·이름·기능·가격·날짜·효과·용량)은
 // 그 사실이 근거 인용에 실제로 적혀 있어야 남는다. 없으면 초안에서 빼고 "근거 없어 뺀 문장"으로 남긴다.
@@ -9,7 +9,7 @@
 //
 // Pure — I/O 없음.
 
-import type { AnswerSource, DraftSentence } from "./model";
+import type { AnswerSource, DraftSentence, GateHit, GateResult } from "./model";
 
 export interface DroppedSentence {
   text: string;
@@ -97,12 +97,21 @@ function overlaps(sentence: string, corpus: string): boolean {
 
 /** 근거 한 건이 사실 대조에 내놓는 글: 인용 + 제목 + 한국어 요약 */
 export function sourceCorpus(s: AnswerSource): FactCorpus {
-  return { id: s.id, text: [s.title, s.quote].join("\n") };
+  return { id: s.id, text: [s.title, s.quote, s.claimKo ?? ""].join("\n") };
 }
 
-/** 되풀이해도 되는 믿을 글: 댓글·대화 + 주인이 예전에 실제로 단 답. 여기 있는 숫자·이름은 지어낸 말이 아니다. */
-export function trustedContext(parts: { thread: readonly string[]; pastSaid?: readonly { text: string }[] }): string {
-  return [...parts.thread, ...(parts.pastSaid ?? []).map((p) => p.text)].filter(Boolean).join("\n");
+/**
+ * 되풀이해도 되는 믿을 글 (2026-09-30 henry: 칠하기 = ① 예전 답과 다름 ② 틀릴 수 있는 말).
+ * 댓글·대화 + 주인이 예전에 실제로 단 답 + 주인이 직접 넣은 제품 창고. 여기 있는 숫자·이름은 지어낸 말이 아니다.
+ * 제품은 이름·브랜드·성분·메모 칸을 모두 쓴다 (화면이 받은 모양이 느슨해서 문자열 칸만 줍는다).
+ */
+export function trustedContext(parts: {
+  thread: readonly string[];
+  pastSaid?: readonly { text: string }[];
+  products?: readonly Record<string, unknown>[];
+}): string {
+  const productText = (parts.products ?? []).map((p) => ["name", "brand", "ingredient", "note"].map((k) => (typeof p[k] === "string" ? p[k] : "")).join(" "));
+  return [...parts.thread, ...(parts.pastSaid ?? []).map((p) => p.text), ...productText].filter(Boolean).join("\n");
 }
 
 /**
@@ -161,7 +170,8 @@ export function removeFromDraft(draft: string, dropped: readonly DroppedSentence
 /** 완성된 답 글에서 문장 구간 [start, end) 을 나눈다 (마침표·물음표·느낌표·물결·줄바꿈 기준). */
 export function sentenceSpans(text: string): { start: number; end: number; text: string }[] {
   const out: { start: number; end: number; text: string }[] = [];
-  const re = /[^.!?~\n]+[.!?~]*/g;
+  // 숫자 사이의 점·물결(2.5, 20~30g)은 문장 끝이 아니다
+  const re = /(?:\d[.~]\d|[^.!?~\n])+[.!?~]*/g;
   for (const m of text.matchAll(re)) {
     const raw = m[0];
     const lead = raw.length - raw.trimStart().length;
@@ -173,15 +183,68 @@ export function sentenceSpans(text: string): { start: number; end: number; text:
   return out;
 }
 
-/** 완성된 답에서 근거 없는 사실 문장 구간 (화면 칠하기용). */
+/** 빠진 토큰이 든 낱말을 그대로 돌려준다 ("4" → "4주짜리"). 사람이 보고 바로 어느 말인지 알게. */
+function missingWords(sentence: string, all: string): string[] {
+  const miss = missingHard(sentence, all);
+  const words = sentence.split(/\s+/).map((w) => w.replace(/[.,!?]+$/, ""));
+  const out: string[] = [];
+  for (const m of miss) {
+    // "5"가 "2.5는"에 걸리지 않게 숫자는 앞뒤가 숫자·점이 아닐 때만 맞춘다
+    const edge = /^\d/.test(m) ? new RegExp(`(^|[^0-9.])${m.replace(/\./g, "\\.")}($|[^0-9])`) : null;
+    const w = words.find((x) => (edge ? edge.test(x.replace(/,/g, "")) : x.toLowerCase().includes(m))) ?? m;
+    if (!out.includes(w)) out.push(w);
+  }
+  return out;
+}
+
+// 칠할 만큼 위험한 말 (2026-09-30 henry "색칠은 정말 확인할 필요가 있을 때만").
+// 자료에 없어도 틀려서 크게 다치지 않는 숫자(단백질 20~30g, 1스쿱 24g 같은 영양·제품 정보)는 칠하지 않는다.
+// 칠하는 것: 약 용량·증량 문장의 숫자, 용량·돈·비율 단위가 붙은 숫자, 자료에 없는 영문 이름.
+const DOSE_CUE = /(마운자로|위고비|삭센다|젭바운드|오젬픽|용량|증량|감량|적응|올려|올리|내려|줄여|복용|투여|주사|처방|mg|미리)/i;
+const RISKY_UNIT = /\d\s*(mg|mcg|㎎|µg|ml|iu|미리|밀리|단위|원|만원|%|퍼센트)/i;
+
+function isRisky(sentence: string, words: readonly string[]): boolean {
+  if (DOSE_CUE.test(sentence)) return true;
+  return words.some((w) => RISKY_UNIT.test(w) || !/\d/.test(w));
+}
+
+/** 완성된 답에서 근거 없는 사실 문장 구간 (화면 칠하기용). missing = 자료에서 못 찾은 낱말 (굳은 사실일 때만). */
 export function unsupportedSpans(
   text: string,
   sources: readonly AnswerSource[],
   context: string
-): { start: number; end: number; text: string; reason: string }[] {
+): { start: number; end: number; text: string; reason: string; missing?: string[] }[] {
   const corpora = sources.map(sourceCorpus);
+  const all = [context, ...corpora.map((c) => c.text)].join("\n");
   return sentenceSpans(text).flatMap((s) => {
     const reason = unsupportedReason(s.text, corpora, context);
-    return reason ? [{ ...s, reason }] : [];
+    if (!reason) return [];
+    const missing = factKind(s.text) === "hard" ? missingWords(s.text, all) : [];
+    if (missing.length && !isRisky(s.text, missing)) return [];
+    return [{ ...s, reason, ...(missing.length ? { missing } : {}) }];
   });
+}
+
+export const FACT_HIT_KIND = "근거 없는 사실";
+
+/**
+ * 완성된 답의 관문 결과에 근거 없는 사실 문장을 더한다. strict 계정이면 막음(block), 아니면 확인(check).
+ * 관문이 이미 칠한 구간과 겹치는 문장은 관문 쪽을 남긴다.
+ */
+export function withFactHits(result: GateResult, spans: ReturnType<typeof unsupportedSpans>, strict: boolean): GateResult {
+  const extra: GateHit[] = spans
+    .filter((s) => !result.hits.some((h) => h.start < s.end && s.start < h.end))
+    .map((s) => ({
+      start: s.start,
+      end: s.end,
+      phrase: s.text,
+      kind: FACT_HIT_KIND,
+      action: strict ? "block" : "check",
+      reason: s.reason,
+      ...(s.missing ? { missing: s.missing } : {}),
+    }));
+  if (!extra.length) return result;
+  const hits = [...result.hits, ...extra].sort((a, b) => a.start - b.start);
+  const status = hits.some((h) => h.action === "block") ? "block" : "check";
+  return { status, hits };
 }

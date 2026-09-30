@@ -5,13 +5,13 @@
 // 한 번에 잡 하나만 (CLI 슬롯 보호). 질문만 근거를 찾고, 나머지는 근거 없이 짧은 답만 만든다.
 import { randomUUID } from "crypto";
 import { registerSweepAdapter, type ActiveJobRef, type ListResumeSweepAdapter } from "@/lib/jobs/sweep";
+import { currentPersona } from "@/lib/personas/context";
 import { withConsistency } from "./consistency";
 import { generateAnswer } from "./draft";
-import { isPending, type AnswerSource, type ReplyAnswer, type ThreadsPostRef, type ThreadsRepliesLedger, type ThreadsReply } from "./model";
 import { pastSaidFor } from "./past-said";
+import { isPending, type AnswerSource, type ReplyAnswer, type ThreadsPostRef, type ThreadsRepliesLedger, type ThreadsReply } from "./model";
 import { retrieveForReply } from "./retrieve";
-import { envMs, readAnswerJob, readRepliesLedger, updateRepliesLedger, writeAnswerJob, type AnswerJob } from "./storage";
-import { readProfile } from "@/lib/profile";
+import { answerJobPath, envMs, keyedLock, readAnswerJob, readRepliesLedger, updateRepliesLedger, writeAnswerJob, type AnswerJob } from "./storage";
 import { conversationFor } from "./summary";
 
 const DEFAULT_ANSWER_TIMEOUT_MS = 10 * 60 * 1000;
@@ -22,7 +22,7 @@ export type AnswerScope = "all" | "questions" | { postId: string } | { replyIds:
 export interface RegenerateOptions {
   extraLinks?: string[];
   instruction?: string;
-  myNote?: string;
+  henryNote?: string;
   allowWeb?: boolean;
 }
 
@@ -52,9 +52,7 @@ export function answerTargets(ledger: ThreadsRepliesLedger, scope: AnswerScope):
 
 // ── 잡 파일 쓰기는 한 줄로 (heartbeat 와 진행 갱신이 겹치지 않게) ──
 function jobLock(): { tail: Promise<unknown> } {
-  const g = globalThis as typeof globalThis & { __threadsAnswerJobLock?: { tail: Promise<unknown> } };
-  g.__threadsAnswerJobLock ??= { tail: Promise.resolve() };
-  return g.__threadsAnswerJobLock;
+  return keyedLock("answer-job", answerJobPath());
 }
 
 /** 같은 잡일 때만 고쳐 저장한다. 다른 잡이거나 없으면 null. */
@@ -96,11 +94,15 @@ async function withDeadline<T>(work: Promise<T>, controller: AbortController, ms
   }
 }
 
-/** 댓글 하나의 답 초안: 질문(또는 붙인 링크가 있으면) 근거 검색 → 초안. 원장에는 쓰지 않는다. */
+/**
+ * 댓글 하나의 답 초안: 질문(또는 붙인 링크가 있으면) 근거 검색 → 초안. 원장에는 쓰지 않는다.
+ * 초안은 지금 페르소나 팩 폴더의 Claude 세션에서 쓴다. resumeSessionId 가 있으면(다시 쓰기) 그 세션에 이어 쓴다.
+ */
 async function draftOne(
   ledger: ThreadsRepliesLedger,
   reply: ThreadsReply,
-  opts: RegenerateOptions = {}
+  opts: RegenerateOptions = {},
+  resumeSessionId?: string
 ): Promise<{ answer: ReplyAnswer; trace: RetrieveTrace }> {
   const post = postOf(ledger, reply);
   const controller = new AbortController();
@@ -118,28 +120,77 @@ async function draftOne(
       sources = found.sources;
       trace = found.trace;
     }
-    const profile = await readProfile();
-    const drafted = await generateAnswer({
-      reply,
-      post,
-      sources,
-      conversation: conversationFor(ledger, reply, profile.username),
-      instruction: opts.instruction,
-      myNote: opts.myNote,
-      pastSaid: pastSaidFor(ledger, reply),
-    });
-    // 예전 답과 어긋나는 문장을 찾아 붙인다 (글은 고치지 않는다, 실패해도 초안은 그대로).
-    const answer = await withConsistency(drafted, profile.username ? `@${profile.username}` : "주인");
+    const persona = currentPersona();
+    const pastSaid = await pastSaidFor(persona.id, ledger, reply);
+    const drafted = await generateAnswer(
+      {
+        reply,
+        post,
+        sources,
+        conversation: conversationFor(ledger, reply),
+        instruction: opts.instruction,
+        henryNote: opts.henryNote,
+        pastSaid,
+      },
+      { signal: controller.signal, resumeSessionId }
+    );
+    // 예전 답과 어긋나는 문장 칠하기 (글은 바꾸지 않는다)
+    const answer = await withConsistency(pastSaid.length ? { ...drafted, pastSaid } : drafted, persona.ownerName);
     return { answer, trace };
   })();
   return withDeadline(work, controller, envMs("THREADS_ANSWER_TIMEOUT_MS", DEFAULT_ANSWER_TIMEOUT_MS));
 }
 
+/**
+ * 새 초안을 원장에 저장한다. 3벌·고른 벌·AI 원문(aiDraft)·세션 id 가 한 묶음으로 바뀐다.
+ * 이전 안전 관문 결과(gate)는 옛 draft 기준이라 새 답에 따라가지 않는다.
+ */
 async function saveAnswer(replyId: string, answer: ReplyAnswer): Promise<void> {
   await updateRepliesLedger((l) => ({
     ...l,
     replies: l.replies.map((r) => (r.id === replyId ? { ...r, answer } : r)),
   }));
+}
+
+function isActiveJob(job: AnswerJob | null, jobId: string): job is AnswerJob {
+  return !!job && job.id === jobId && job.status === "running";
+}
+
+function alreadyHandled(job: AnswerJob, replyId: string): boolean {
+  return job.done.includes(replyId) || job.failed.some((f) => f.replyId === replyId);
+}
+
+async function draftAndSave(jobId: string, ledger: ThreadsRepliesLedger, reply: ThreadsReply): Promise<void> {
+  const replyId = reply.id;
+  await patchJob(jobId, (j) => ({ ...j, current: replyId }));
+  try {
+    const { answer } = await draftOne(ledger, reply);
+    await saveAnswer(replyId, answer);
+    await patchJob(jobId, (j) => ({ ...j, current: undefined, done: [...j.done, replyId] }));
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    await patchJob(jobId, (j) => ({
+      ...j,
+      current: undefined,
+      failed: [...j.failed, { replyId, error: message.slice(0, 300) }],
+    }));
+  }
+}
+
+/** 댓글 하나 처리. 잡이 멈췄으면 false (루프 종료). */
+async function stepJob(jobId: string, replyId: string): Promise<boolean> {
+  const current = await readAnswerJob();
+  if (!isActiveJob(current, jobId)) return false;
+  if (alreadyHandled(current, replyId)) return true;
+  const ledger = await readRepliesLedger();
+  const reply = ledger.replies.find((r) => r.id === replyId);
+  // 그 사이 답했거나 건너뛰었거나 초안이 생긴 댓글은 조용히 완료 처리
+  if (!reply || !isPending(reply) || reply.answer) {
+    await patchJob(jobId, (j) => ({ ...j, done: [...j.done, replyId] }));
+    return true;
+  }
+  await draftAndSave(jobId, ledger, reply);
+  return true;
 }
 
 /** 잡 실행 — 멱등, 절대 reject 하지 않는다. sweep·GET 이 언제든 다시 불러도 안전. */
@@ -150,31 +201,9 @@ export async function runAnswerJob(jobId: string): Promise<void> {
   const heartbeat = setInterval(() => void patchJob(jobId, (j) => j).catch(() => {}), HEARTBEAT_MS);
   try {
     const job = await readAnswerJob();
-    if (!job || job.id !== jobId || job.status !== "running") return;
+    if (!isActiveJob(job, jobId)) return;
     for (const replyId of job.replyIds) {
-      const current = await readAnswerJob();
-      if (!current || current.id !== jobId || current.status !== "running") return; // 중지됨
-      if (current.done.includes(replyId) || current.failed.some((f) => f.replyId === replyId)) continue;
-      const ledger = await readRepliesLedger();
-      const reply = ledger.replies.find((r) => r.id === replyId);
-      // 그 사이 답했거나 건너뛰었거나 초안이 생긴 댓글은 조용히 완료 처리
-      if (!reply || !isPending(reply) || reply.answer) {
-        await patchJob(jobId, (j) => ({ ...j, done: [...j.done, replyId] }));
-        continue;
-      }
-      await patchJob(jobId, (j) => ({ ...j, current: replyId }));
-      try {
-        const { answer } = await draftOne(ledger, reply);
-        await saveAnswer(replyId, answer);
-        await patchJob(jobId, (j) => ({ ...j, current: undefined, done: [...j.done, replyId] }));
-      } catch (error) {
-        const message = error instanceof Error ? error.message : String(error);
-        await patchJob(jobId, (j) => ({
-          ...j,
-          current: undefined,
-          failed: [...j.failed, { replyId, error: message.slice(0, 300) }],
-        }));
-      }
+      if (!(await stepJob(jobId, replyId))) return; // 중지됨
     }
     await patchJob(jobId, (j) => (j.status === "running" ? { ...j, status: "done" } : j));
   } catch {
@@ -222,7 +251,10 @@ export async function stopAnswerJob(): Promise<AnswerJob | null> {
   return patchJob(job.id, (j) => ({ ...j, status: "stopped" }));
 }
 
-/** henry 가 누른 다시 쓰기: 붙인 링크·지시·henry 메모를 얹어 바로 다시 만든다(잡을 거치지 않음). 원장에 저장. */
+/**
+ * 주인이 누른 다시 쓰기: 붙인 링크·지시·주인 메모를 얹어 바로 다시 만든다(잡을 거치지 않음). 원장에 저장.
+ * 이전 초안의 세션이 있으면 같은 세션에 이어 쓴다 — backpass 가 "AI 초안 → 주인 요청 → 다시 쓴 초안"을 한 대화로 읽는다.
+ */
 export async function regenerateAnswer(
   replyId: string,
   opts: RegenerateOptions = {}
@@ -230,7 +262,7 @@ export async function regenerateAnswer(
   const ledger = await readRepliesLedger();
   const reply = ledger.replies.find((r) => r.id === replyId);
   if (!reply) return null;
-  const result = await draftOne(ledger, reply, opts);
+  const result = await draftOne(ledger, reply, opts, reply.answer?.sessionId);
   await saveAnswer(replyId, result.answer);
   return result;
 }

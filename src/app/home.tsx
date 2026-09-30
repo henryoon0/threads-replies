@@ -6,9 +6,12 @@ import { PageHeader } from "@/components/page-header";
 import { useAccount, type AccountView } from "@/hooks/use-account";
 import { usePolling } from "@/hooks/use-polling";
 import { ThreadsClient } from "./replies/threads-client";
-import { ThreadsRail } from "./replies/threads-rail";
+import { ThreadsLearn } from "./replies/threads-learn";
+import { isLearnView, type ThreadsPlace } from "./replies/threads-place";
+import { ThreadsNav } from "./replies/threads-rail";
 import { AttachContext } from "./replies/threads-mark";
-import type { ThreadsView } from "./replies/threads-view";
+import { usePersona } from "./replies/use-persona";
+import { useThreadsWide } from "./replies/use-wide";
 import type { ThreadsSummary } from "@/lib/threads-replies/summary";
 import { SetupGuide } from "./setup-guide";
 
@@ -70,12 +73,12 @@ function VoiceBar() {
   );
 }
 
-function useSummary() {
+function useSummary(persona: string) {
   const [summary, setSummary] = useState<ThreadsSummary | null>(null);
   const load = useCallback(async () => {
-    const res = await fetch("/api/threads-replies/summary", { cache: "no-store" });
+    const res = await fetch(`/api/threads-replies/summary?persona=${encodeURIComponent(persona)}`, { cache: "no-store" });
     if (res.ok) setSummary((await res.json()) as ThreadsSummary);
-  }, []);
+  }, [persona]);
   useEffect(() => {
     void load();
   }, [load]);
@@ -83,8 +86,15 @@ function useSummary() {
 }
 
 function Workbench({ account, reload }: { account: AccountView; reload: () => Promise<void> }) {
-  const [view, setView] = useState<ThreadsView>("comments");
-  const [summary, loadSummary] = useSummary();
+  const [place, setPlace] = useState<ThreadsPlace>("comments");
+  const { persona, current, list, switchPersona, reloadList } = usePersona("me");
+  const [summary, loadSummary] = useSummary(persona);
+  const wide = useThreadsWide();
+  const onChanged = useCallback(() => {
+    void loadSummary();
+    reloadList();
+  }, [loadSummary, reloadList]);
+  const nav = <ThreadsNav summary={summary} place={place} go={setPlace} persona={{ current, list, onSwitch: switchPersona }} />;
   const left = daysLeft(account.expiresAt);
   const ai = account.caps?.ai;
   const aiReady = Boolean(ai?.claude || ai?.codex);
@@ -126,13 +136,18 @@ function Workbench({ account, reload }: { account: AccountView; reload: () => Pr
         </p>
       )}
       <VoiceBar />
-      <div className="mx-auto flex max-w-6xl gap-6 px-6 pb-12 pt-2">
-        <ThreadsRail summary={summary} view={view} go={setView} />
-        <div className="min-w-0 flex-1">
-          <AttachContext.Provider value={Boolean(account.caps?.imageAttach)}>
-            <ThreadsClient view={view} onChanged={() => void loadSummary()} />
-          </AttachContext.Provider>
-        </div>
+      <div className={`mx-auto px-6 pb-12 pt-2 ${wide ? "max-w-none" : "max-w-[1760px]"}`}>
+        <AttachContext.Provider value={Boolean(account.caps?.imageAttach)}>
+          {isLearnView(place) ? (
+            <>
+              <div className="mb-4">{nav}</div>
+              <ThreadsLearn key={`${persona}-${place}`} view={place} persona={persona} />
+            </>
+          ) : (
+            // 계정을 바꾸면 통째로 새로 그린다 — 받은함·초안·보내기 대기가 섞이지 않게.
+            <ThreadsClient key={persona} view={place} onChanged={onChanged} nav={nav} />
+          )}
+        </AttachContext.Provider>
       </div>
     </div>
   );
