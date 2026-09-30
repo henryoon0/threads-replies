@@ -6,7 +6,7 @@
 import { useState } from "react";
 import { ArrowTopRightOnSquareIcon, CheckCircleIcon, ExclamationTriangleIcon, SparklesIcon } from "@heroicons/react/16/solid";
 
-interface Step {
+export interface Step {
   title: string;
   body: React.ReactNode;
   link?: { href: string; label: string };
@@ -14,7 +14,7 @@ interface Step {
 
 const ASIDE_CMD = "bash ~/.threads-replies/app/scripts/connect-with-aside.sh";
 
-const STEPS: Step[] = [
+export const STEPS: Step[] = [
   {
     title: "스레드 계정이 공개인지 확인해 주세요",
     body: (

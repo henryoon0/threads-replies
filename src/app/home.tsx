@@ -13,7 +13,7 @@ import { AttachContext } from "./replies/threads-mark";
 import { usePersona } from "./replies/use-persona";
 import { useThreadsWide } from "./replies/use-wide";
 import type { ThreadsSummary } from "@/lib/threads-replies/summary";
-import { SetupGuide } from "./setup-guide";
+import { TokenModal } from "./token-modal";
 
 function daysLeft(iso?: string): number | null {
   if (!iso) return null;
@@ -87,6 +87,8 @@ function useSummary(persona: string) {
 
 function Workbench({ account, reload }: { account: AccountView; reload: () => Promise<void> }) {
   const [place, setPlace] = useState<ThreadsPlace>("comments");
+  // 토큰이 없어도 화면은 그대로 보여주고, 처음 들어오면 토큰 팝업을 띄운다.
+  const [ask, setAsk] = useState(!account.connected);
   const { persona, current, list, switchPersona, reloadList } = usePersona("glp1");
   const [summary, loadSummary] = useSummary(persona);
   const wide = useThreadsWide();
@@ -107,16 +109,31 @@ function Workbench({ account, reload }: { account: AccountView; reload: () => Pr
 
   return (
     <div className="min-h-screen">
+      {ask && !account.connected ? (
+        <TokenModal
+          onClose={() => setAsk(false)}
+          onConnected={() => {
+            setAsk(false);
+            void reload();
+          }}
+        />
+      ) : null}
       <PageHeader
         className="mx-auto max-w-6xl !px-6"
         title="스레드 답글"
         subtitle="내 글에 달린 댓글에 내 말투로 초안을 쓰고, 근거를 찾아 붙여요. 보내기는 직접 누른 것만 나가요."
         actions={
           <>
-            <span className="rounded-full bg-white px-3 py-1.5 text-xs text-neutral-700 ring-1 ring-neutral-950/5">
-              @{account.username ?? "연결됨"}
-              {left !== null ? <span className="text-neutral-400"> · 토큰 {left}일 남음(자동 연장)</span> : null}
-            </span>
+            {account.connected ? (
+              <span className="rounded-full bg-white px-3 py-1.5 text-xs text-neutral-700 ring-1 ring-neutral-950/5">
+                @{account.username ?? "연결됨"}
+                {left !== null ? <span className="text-neutral-400"> · 토큰 {left}일 남음(자동 연장)</span> : null}
+              </span>
+            ) : (
+              <button onClick={() => setAsk(true)} className="btn-accent px-3 py-1.5 text-xs">
+                토큰 넣기
+              </button>
+            )}
             <button
               onClick={openDocs}
               title="여기 넣은 .md·.txt 파일이 답글 근거가 돼요"
@@ -124,9 +141,11 @@ function Workbench({ account, reload }: { account: AccountView; reload: () => Pr
             >
               <FolderOpenIcon className="size-3.5" />내 자료 폴더
             </button>
-            <button onClick={disconnect} className="rounded-full px-3 py-1.5 text-xs text-neutral-500 ring-1 ring-neutral-950/5 hover:bg-white">
-              연결 해제
-            </button>
+            {account.connected ? (
+              <button onClick={disconnect} className="rounded-full px-3 py-1.5 text-xs text-neutral-500 ring-1 ring-neutral-950/5 hover:bg-white">
+                연결 해제
+              </button>
+            ) : null}
           </>
         }
       />
@@ -156,6 +175,5 @@ function Workbench({ account, reload }: { account: AccountView; reload: () => Pr
 export function Home() {
   const [account, reload] = useAccount();
   if (account === null) return null;
-  if (!account.connected) return <SetupGuide onConnected={() => void reload()} />;
   return <Workbench account={account} reload={reload} />;
 }
