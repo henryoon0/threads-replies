@@ -80,7 +80,7 @@ function BatchRow({ n, reply, gate, onOk, onOpen }: { n: number; reply: ThreadsR
   const { draft, setDraft, busy, error, save, refresh } = useBatchDraft(reply);
   // 일괄 칸엔 예전 답·자료 대조가 없다: 관문 막음만 칸 아래 한 줄로 (확인 표현은 칠하지 않는다)
   const result = notesOnly(gate.check(draft));
-  const status = statusLine(error, draft, gateLine(result, gate.mode));
+  const status = statusLine(error, draft, gateLine(result));
   const canOk = Boolean(draft.trim()) && !busy && result.status !== "block" && draft.length <= MAX_LEN;
 
   return (
@@ -181,7 +181,6 @@ export function ThreadsBatch({
           message={sheet.message}
           image={null}
           gate={gate.check(sheet.message)}
-          gateMode={gate.mode}
           onConfirmApi={() => {
             const p: PendingSend = { replyId: sheet.reply.id, username: sheet.reply.username, message: sheet.message };
             setSheet(null);

@@ -11,7 +11,7 @@ import type { GateResult } from "@/lib/threads-replies/model";
 import { cn } from "@/lib/utils";
 import { press } from "./threads-answer-verdict";
 import { imageFileOf } from "./threads-answer-image";
-import { applySuggest, GateEditor, gateLine, type GateMode } from "./threads-gate";
+import { applySuggest, GateEditor, gateLine } from "./threads-gate";
 
 /** 카드에 이미지를 끌어 놓으면 답글 이미지로 붙인다 */
 function useImageDrop(onImage: ((file: File) => void) | null) {
@@ -138,7 +138,6 @@ export function FinalAnswer({
   setDraft,
   aiDraft,
   gate,
-  gateMode,
   past,
   locked,
   busy,
@@ -160,7 +159,6 @@ export function FinalAnswer({
   /** 고른 벌의 AI 원문 — 고쳤으면 [되돌리기]로 돌아간다 */
   aiDraft: string | null;
   gate: GateResult;
-  gateMode: GateMode;
   /** 예전 답과 다른 문장 (칠하기는 gate 에 이미 들어 있다) */
   past?: { hits: readonly unknown[]; checking: boolean };
   locked: boolean;
@@ -176,7 +174,7 @@ export function FinalAnswer({
   onSkip: () => void;
   onSend: () => void;
 }) {
-  const line = gateLine(gate, gateMode);
+  const line = gateLine(gate);
   const edited = aiDraft != null && !locked && draft.trim() !== aiDraft.trim();
   const drop = useImageDrop(onImage);
   const working = busy || drafting;

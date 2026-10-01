@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/compone
 import type { GateResult, ThreadsReply } from "@/lib/threads-replies/model";
 import { cn } from "@/lib/utils";
 import { press } from "./threads-answer-verdict";
-import { GateText, gateLine, type GateMode } from "./threads-gate";
+import { GateText, gateLine } from "./threads-gate";
 import { patchReply } from "./use-threads-answer";
 
 export interface SheetPersona {
@@ -163,7 +163,6 @@ export function SendSheet({
   message,
   image,
   gate,
-  gateMode,
   permalink,
   onConfirmApi,
   onMarked,
@@ -176,7 +175,6 @@ export function SendSheet({
   message: string;
   image: string | null;
   gate: GateResult;
-  gateMode: GateMode;
   permalink?: string;
   /** api 계정: 확정 → 5초 되돌리기 시작 */
   onConfirmApi: () => void;
@@ -186,7 +184,7 @@ export function SendSheet({
   const copyMode = persona.send === "copy";
   const flow = useCopyFlow(replyId, message, permalink, onMarked);
   const blocked = gate.status === "block";
-  const line = gateLine(gate, gateMode);
+  const line = gateLine(gate);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

@@ -7,9 +7,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowTopRightOnSquareIcon, ArrowUturnLeftIcon, CheckIcon, ChevronRightIcon } from "@heroicons/react/16/solid";
-import { editorPaint } from "@/lib/threads-replies/editor-paint";
-import { trustedContext, unsupportedSpans } from "@/lib/threads-replies/fact-check";
-import type { ConsistencyHit } from "@/lib/threads-replies/model";
+import { notesOnly } from "@/lib/threads-replies/editor-paint";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
 import { spring } from "@/lib/springs";
 import { cn } from "@/lib/utils";
@@ -21,11 +19,10 @@ import { ComposeBar } from "./threads-compose-bar";
 import { SimilarPast } from "./threads-similar";
 import { useCompose } from "./use-compose";
 import { useGate, type GateChecker } from "./threads-gate";
-import { usePastCheck } from "./use-past-check";
 import { announceReceipt, ThreadsReceipt } from "./threads-receipt";
 import { SendSheet, type SheetPersona } from "./threads-send-sheet";
 import { ThreadsStanceCard } from "./threads-stance-card";
-import { ThreadsProducts, useProductLibrary } from "./threads-products";
+import { ThreadsProducts } from "./threads-products";
 import { SeedButton, SendFailureNote, UndoBar, useUndoSend, type PendingSend } from "./threads-answer-send";
 import { SourceChips, press } from "./threads-answer-verdict";
 import { isShootableSource, patchReply, shotKey, useEvidenceShots, useThreadsAnswer, type ThreadsReplyView } from "./use-threads-answer";
@@ -176,22 +173,11 @@ function useReplyAttachments(reply: ThreadsReply, shots: Shots["shots"], waiting
 }
 
 /**
- * 완성된 답 칠하기 (editor-paint.ts): 예전 답과 다름 + 근거 없음(질문 댓글·자료가 있을 때)만 칠한다.
- * 관문 확인 표현은 칠하지 않고, 막음(링크 등)은 칸 아래 한 줄로만. strict 계정은 근거 없음·막음이 남으면 보내기를 막는다.
+ * 완성된 답 칸 아래 알림 (2026-10-01 henry "형광펜이 왜 도움이 되는지 안 와닿는다, 빼 달라"):
+ * 글 위에 칠하지 않는다. 관문의 막는 표현(링크 등)만 칸 아래 한 줄로 알리고 보내기를 막는다.
  */
-function usePaint(view: ThreadsReplyView, draft: string, gate: GateChecker, past: readonly ConsistencyHit[]) {
-  const { reply, post, conversation } = view;
-  const sources = reply.answer?.sources ?? [];
-  const products = useProductLibrary();
-  // 주인이 예전에 단 답·제품 창고에 있는 숫자·이름은 지어낸 말이 아니다 — 거기에도 없는 것만 "근거 없음"
-  const context = trustedContext({
-    thread: [reply.text, reply.repliedToText ?? "", post?.text ?? "", ...conversation.map((c) => c.text)],
-    pastSaid: reply.answer?.pastSaid,
-    products: products as unknown as Record<string, unknown>[],
-  });
-  const checkFacts = reply.intent === "question" && draft.trim() && sources.length;
-  const facts = checkFacts ? unsupportedSpans(draft, sources, context) : [];
-  return editorPaint({ text: draft, gate: gate.check(draft), facts, sources, past, strict: gate.mode === "strict" });
+function noteOnly(draft: string, gate: GateChecker) {
+  return notesOnly(gate.check(draft));
 }
 
 /** 보내기 흐름 상태: 첨부 · 관문 결과 · 보낼 수 있나 · 확인 시트 */
@@ -200,9 +186,7 @@ function useSendFlow({ view, a, sender, ev, gate }: Pick<OpenReplyProps, "view" 
   const waiting = sender.pending?.replyId === reply.id;
   const attach = useReplyAttachments(reply, ev.shots, waiting);
   const [sheet, setSheet] = useState(false);
-  const past = usePastCheck(reply.id, reply.answer, a.draft);
-  // 예전 답과 다른 문장은 칠하기만 한다 — 보내기(status)는 막지 않는다
-  const result = usePaint(view, a.draft, gate, past.hits);
+  const result = noteOnly(a.draft, gate);
   const hasBody = Boolean(a.draft.trim()) || Boolean(attach.image.dataUrl);
   const canSend = hasBody && !a.regenerating && result.status !== "block";
   const openSheet = () => {
@@ -215,7 +199,7 @@ function useSendFlow({ view, a, sender, ev, gate }: Pick<OpenReplyProps, "view" 
     const p: PendingSend = { replyId: reply.id, username: reply.username, message: a.draft.trim(), ...attach.payload() };
     sender.start(p);
   };
-  return { waiting, attach, sheet, setSheet, result, canSend, openSheet, confirmApi, past };
+  return { waiting, attach, sheet, setSheet, result, canSend, openSheet, confirmApi };
 }
 
 /** 고친 뒤 [되돌리기]가 돌아갈 AI 원문. 손으로 쓴 답이면 없다. */
@@ -312,8 +296,6 @@ function OpenReply({ view, a, sender, ev, persona, gate, onSent, onSkip }: OpenR
         setDraft={a.setDraft}
         aiDraft={aiDraftOf(reply.answer)}
         gate={flow.result}
-        gateMode={gate.mode}
-        past={flow.past}
         locked={flow.waiting}
         busy={a.regenerating}
         drafting={a.drafting}
@@ -348,7 +330,6 @@ function OpenReply({ view, a, sender, ev, persona, gate, onSent, onSkip }: OpenR
         message={a.draft.trim()}
         image={flow.attach.shown}
         gate={flow.result}
-        gateMode={gate.mode}
         permalink={view.post?.permalink}
         onConfirmApi={flow.confirmApi}
         onMarked={(r) => {

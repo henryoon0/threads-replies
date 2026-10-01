@@ -164,13 +164,13 @@ describe("ThreadsAnswerPanel", () => {
     expect(screen.getByText("마그네슘은 하루 400mg이 좋아")).toBeTruthy();
   });
 
-  it("strict 계정은 완성된 답에 근거 없는 숫자 문장을 써 넣으면 칠하고(자료 이름과 함께) 보내기를 막는다", async () => {
+  it("완성된 답 글 위에 형광펜을 칠하지 않는다 (근거 없는 숫자가 있어도 보내기는 열려 있다, 10-01)", async () => {
     await mount(vi.fn(), { gate: gateOf("strict") });
     fireEvent.change(editor(), { target: { value: "실패만 직접 열어봐요. 그러면 오류가 80% 줄어요." } });
-    const mark = document.querySelector('mark[data-gate="block"]') as HTMLElement;
-    expect(mark.textContent).toBe("그러면 오류가 80% 줄어요.");
-    expect(screen.getByText(/근거 없음 1문장/)).toBeTruthy();
-    expect((screen.getByRole("button", { name: /^보내기/ }) as HTMLButtonElement).disabled).toBe(true);
+    expect(document.querySelector("mark[data-gate]")).toBeNull();
+    expect(screen.queryByText(/근거 없음/)).toBeNull();
+    expect(screen.queryByText(/칠한 곳/)).toBeNull();
+    expect((screen.getByRole("button", { name: /^보내기/ }) as HTMLButtonElement).disabled).toBe(false);
   });
 
   it("따로 떨어진 다시 쓰기 도구(주소 붙이기·지시문)는 없다", async () => {

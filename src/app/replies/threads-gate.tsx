@@ -279,7 +279,7 @@ function noteLine(notes: readonly GateHit[]): string {
  * 칸 아래 한 줄 (완성된 답·확인 시트·일괄 칸). 칠한 것은 예전 답과 다름·근거 없음 둘뿐이라 그 둘을 센다.
  * 관문 막음(링크 등)은 칠하지 않고 여기에만 적는다.
  */
-export function gateLine(result: GateResult, mode: GateMode): { text: string; tone: string } {
+export function gateLine(result: GateResult): { text: string; tone: string } {
   const facts = result.hits.filter((h) => h.kind === FACT_HIT_KIND).length;
   const past = result.hits.filter((h) => h.kind === PAST_HIT_KIND).length;
   const other = result.hits.length - facts - past;
@@ -290,7 +290,8 @@ export function gateLine(result: GateResult, mode: GateMode): { text: string; to
     facts ? `근거 없음 ${facts}문장(호박색)` : "",
     other ? `확인할 표현 ${other}개` : "",
   ].filter(Boolean);
-  if (!parts.length) return { text: mode === "strict" ? "칠한 곳 없음 · 예전 답이나 근거와 부딪히는 문장이 없어요" : "칠한 곳 없음", tone: "text-emerald-700" };
+  // 칠하기를 뺐으니(10-01) 알릴 게 없으면 줄을 비운다
+  if (!parts.length) return { text: "", tone: "text-neutral-500" };
   const hint = result.hits.length ? " · 칠한 곳에 손을 올리면 이유가 보여요" : "";
   return { text: `${parts.join(" · ")}${hint}`, tone: result.status === "block" ? "text-amber-800" : "text-stone-600" };
 }
