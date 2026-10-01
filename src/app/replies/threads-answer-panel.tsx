@@ -210,9 +210,8 @@ function aiDraftOf(answer: ThreadsReply["answer"]): string | null {
 
 type Compose = ReturnType<typeof useCompose>;
 
-/** 답 버전 버튼 (완성된 답 칸 안). 버전 초안기가 없으면 [새로 쓰기]는 옛 다시 쓰기(POST .../answer)로 간다. 손으로 쓴 답엔 없다. */
-function ComposeSlot({ a, compose, answer }: { a: AnswerState; compose: Compose; answer: ThreadsReply["answer"] }) {
-  if (answer?.model === "henry") return null;
+/** 답 버전 버튼 (완성된 답 칸 안). 버전 초안기가 없으면 [새로 쓰기]는 옛 다시 쓰기(POST .../answer)로 간다. 손으로 쓴 답에도 둔다(고친 글은 그 버전 칸에 남는다). */
+function ComposeSlot({ a, compose }: { a: AnswerState; compose: Compose }) {
   const rewrite = compose.status === "missing" && !compose.hasVariants ? () => void a.regenerate() : compose.rewrite;
   return (
     <ComposeBar
@@ -277,13 +276,25 @@ function appendText(draft: string, text: string): string {
   return draft.trim() ? `${draft.trimEnd()}\n\n${text}` : text;
 }
 
+/** 원장 초안이 이 댓글 것으로 들어왔나 + 손글인가 (버전 칸이 열 때 쓴다) */
+function savedDraftOf(a: AnswerState, reply: ThreadsReply) {
+  return { loaded: a.view?.reply.id === reply.id, byHand: isByHand(reply.answer) };
+}
+
+/** 손글 = 주인이 쓴 답이거나 AI 원문과 달라진 초안 (열 때 버리지 않고 그 버전 칸에 둔다) */
+function isByHand(answer: ThreadsReply["answer"]): boolean {
+  if (!answer) return false;
+  if (answer.model === "henry") return true;
+  return answer.aiDraft !== undefined && answer.draft.trim() !== answer.aiDraft.trim();
+}
+
 /** 아직 답하지 않은 댓글: 완성된 답(칩) | 참고 칸 → 확인 시트. */
 function OpenReply({ view, a, sender, ev, persona, gate, onSent, onSkip }: OpenReplyProps) {
   const { reply } = view;
   const flow = useSendFlow({ view, a, sender, ev, gate });
   const failure = sender.failure?.replyId === reply.id ? sender.failure : null;
   const canMake = !reply.answer && !a.drafting && !a.regenerating;
-  const compose = useCompose(reply.id, a.draft, a.setDraft);
+  const compose = useCompose(reply.id, a.draft, a.setDraft, savedDraftOf(a, reply));
   const insert = (text: string) => a.setDraft(appendText(a.draft, text));
 
   return (
@@ -303,7 +314,7 @@ function OpenReply({ view, a, sender, ev, persona, gate, onSent, onSkip }: OpenR
         canSend={flow.canSend}
         waiting={flow.waiting}
         attachment={flow.attach.row}
-        toolbar={<ComposeSlot a={a} compose={compose} answer={reply.answer} />}
+        toolbar={<ComposeSlot a={a} compose={compose} />}
         onImage={flow.waiting || !flow.attach.canAttach ? null : flow.attach.image.pick}
         onMakeDraft={canMake ? () => void a.regenerate() : null}
         onSkip={() => onSkip(true)}

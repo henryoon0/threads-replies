@@ -83,10 +83,12 @@ export function ComposeBar({
 }) {
   const working = status === "working" || busy || writingAll;
   const current = presets.find((p) => p.id === selected);
+  // 고른 버전을 맨 앞에 둔다 (2026-10-01 henry). 나머지는 댓글에 맞는 순서(추천 먼저) 그대로.
+  const ordered = current ? [current, ...presets.filter((p) => p.id !== current.id)] : presets;
   return (
     <div aria-label="답 버전" role="group" className="px-3 pt-1">
       <div className="flex flex-wrap items-center gap-1.5">
-        {presets.map((p) => (
+        {ordered.map((p) => (
           <VersionButton key={p.id} preset={p} on={p.id === selected} ready={ready.has(p.id)} loading={loadingId === p.id || (writingAll && !ready.has(p.id))} disabled={working} onClick={() => onPick(p.id)} />
         ))}
         <RegenControls working={working} title={current ? `${current.name} 버전을 처음부터 다시 써요` : "처음부터 다시 써요"} onRewrite={onRewrite} onRestartAll={onRestartAll} />

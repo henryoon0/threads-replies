@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { clearDraftSlots } from "./use-compose";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
 import { ThreadsAnswerPanel } from "./threads-answer-panel";
@@ -51,6 +52,7 @@ async function flush(ms = 0) {
 }
 
 beforeEach(() => {
+  clearDraftSlots();
   vi.useFakeTimers();
   extra = () => undefined;
   vi.stubGlobal(
@@ -191,8 +193,10 @@ describe("ThreadsAnswerPanel", () => {
     expect(names.slice(0, 3)).toEqual(["원리 썰추천", "성분 + 제품 3분할추천", "뒤통수 한 방"]);
     fireEvent.click(screen.getByRole("button", { name: /성분 \+ 제품 3분할/ }));
     await flush();
-    const body = JSON.parse(String((callsTo("/c1/compose", "POST")[0][1] as RequestInit).body));
-    expect(body).toEqual({ toggles: PRESETS[1].toggles, preset: "ingredient+product" });
+    // 열 때 추천 1순위(원리 썰)를 먼저 쓰고, 누른 버전을 이어서 쓴다
+    const bodies = callsTo("/c1/compose", "POST").map(([, init]) => JSON.parse(String((init as RequestInit).body)));
+    expect(bodies[0].preset).toBe("principle");
+    expect(bodies).toContainEqual({ toggles: PRESETS[1].toggles, preset: "ingredient+product" });
     expect(editor().value).toBe(next);
     expect(screen.getByRole("button", { name: /성분 \+ 제품 3분할/ }).getAttribute("aria-pressed")).toBe("true");
     expect(document.querySelector("mark[data-gate]")).toBeNull();
@@ -215,7 +219,8 @@ describe("ThreadsAnswerPanel", () => {
     await mount(vi.fn(), { persona: COPY });
     fireEvent.click(screen.getByRole("button", { name: /성분 \+ 제품 3분할/ }));
     expect(editor().value).toBe(withProduct);
-    expect(callsTo("/c1/compose", "POST").filter(([u]) => String(u).endsWith("/compose"))).toHaveLength(0);
+    const composed = callsTo("/c1/compose", "POST").filter(([u]) => String(u).endsWith("/compose"));
+    expect(composed.map(([, init]) => JSON.parse(String((init as RequestInit).body)).preset)).not.toContain("ingredient+product");
     await flush();
     expect(JSON.parse(String((callsTo("/compose/variants", "POST")[0][1] as RequestInit).body))).toEqual({ key: "ingredient+product" });
     fireEvent.click(screen.getByRole("button", { name: /뒤통수 한 방/ }));
@@ -225,6 +230,28 @@ describe("ThreadsAnswerPanel", () => {
     expect(editor().value).toBe(withJoke);
     expect(screen.getByRole("button", { name: /뒤통수 한 방/ }).getAttribute("aria-busy")).toBeNull();
     expect(screen.getByRole("button", { name: /뒤통수 한 방/ }).getAttribute("aria-pressed")).toBe("true");
+  });
+
+  it("버전 글을 고쳐 쓰고 다른 버전을 봤다가 다시 누르면 고친 글이 돌아온다 (10-01 초안 사라짐)", async () => {
+    extra = (url, init) => {
+      if (url.endsWith("/c1/compose") && !init?.method) return json({ presets: PRESETS });
+      if (url.endsWith("/c1/compose/variants") && init?.method === "POST") return json({ ok: true });
+      if (url.endsWith("/c1/compose/variants"))
+        return json({ variants: [{ key: "principle", draft: "원리 글", products: [] }, { key: "ingredient+product", draft: "성분 글", products: [] }], pending: [] });
+      return undefined;
+    };
+    await mount(vi.fn(), { persona: COPY });
+    await flush();
+    expect(editor().value).toBe("원리 글");
+    expect(screen.getByRole("button", { name: /원리 썰/ }).getAttribute("aria-pressed")).toBe("true");
+    fireEvent.change(editor(), { target: { value: "원리 글을 내가 고쳤어" } });
+    expect(screen.getByRole("button", { name: /원리 썰/ }).getAttribute("aria-pressed")).toBe("true");
+    fireEvent.click(screen.getByRole("button", { name: /성분 \+ 제품 3분할/ }));
+    expect(editor().value).toBe("성분 글");
+    // 고른 버전은 맨 앞에 온다
+    expect(within(screen.getByRole("group", { name: "답 버전" })).getAllByRole("button")[0].textContent).toMatch(/^성분 \+ 제품 3분할/);
+    fireEvent.click(screen.getByRole("button", { name: /원리 썰/ }));
+    expect(editor().value).toBe("원리 글을 내가 고쳤어");
   });
 
   it("버전을 새로 쓰다 실패하면 이유를 보여주고 글은 그대로 둔다", async () => {
