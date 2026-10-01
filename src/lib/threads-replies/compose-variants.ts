@@ -11,7 +11,7 @@
 //   ② 부분 저장: 한 벌 쓸 때마다 팩 private/compose-variants/<댓글>.json 에 저장. 도는 동안 heartbeat 로 updatedAt 을 민다.
 //   ③ 하드 타임아웃: 한 벌은 draftFor 안의 THREADS_COMPOSE_TIMEOUT_MS, 댓글 하나 전체는 THREADS_VARIANTS_JOB_TIMEOUT_MS.
 // 열쇠 = 댓글 id + 규칙책(AGENTS.md) git blob sha. 규칙책이 바뀌면 옛 벌은 버리고 다시 쓴다.
-// 순서: 전역에 잡 하나씩(CLI 슬롯 보호), 댓글 안에서는 한 벌씩 같은 Claude 세션에 이어 쓴다.
+// 순서: 전역에 잡 하나씩(CLI 슬롯 보호), 댓글 안에서는 추천 2벌을 각자 새 세션으로 한꺼번에 쓴다.
 // 범위: 대기 댓글 최신순 상위 PREFETCH_COMMENTS(60)개. 주인이 연 댓글은 줄 맨 앞으로 새치기한다.
 
 import { createHash } from "node:crypto";
@@ -25,11 +25,13 @@ import { listPersonaIds, packPrivateDir, packRulebookPath, readPersona } from "@
 import { parseToggles, type ComposeSection, type ComposeToggles, type ToggleSet } from "./compose";
 import { COMPOSE_KINDS, PRODUCT_CHANNELS } from "./compose-kinds";
 import { MAX_PRESETS } from "./compose-presets";
-import { draftFor, saveComposed, suggestForReply, withReplyLock } from "./compose-run";
+import { draftFor, saveComposed, suggestForReply } from "./compose-run";
 import { isPending, type ThreadsReply } from "./model";
 import { envMs, readRepliesLedger } from "./storage";
 
 export const MAX_VARIANTS = MAX_PRESETS;
+/** 댓글마다 미리 쓰는 벌 수: 추천 2개만 (2026-10-01 henry "토글 2개 정도만 생성, 나머지는 누르면"). 나머지는 누를 때 POST compose 로 쓴다. */
+export const PREFETCH_VARIANTS = 2;
 const FILE_VERSION = 6;
 const HEARTBEAT_MS = 20_000;
 const STALE_MS = 3 * 60 * 1000;
@@ -52,7 +54,7 @@ export async function restartVariants(replyIds: readonly string[]): Promise<{ qu
   return { queued, busy };
 }
 
-/** 목록 GET 이 미리 쓰는 댓글 수 상한. 댓글 하나 = 6벌 ≈ 1분이라 60개 ≈ 한 시간. THREADS_VARIANTS_PREFETCH 로 바꾼다. */
+/** 목록 GET 이 미리 쓰는 댓글 수 상한. 댓글 하나 = 추천 2벌. THREADS_VARIANTS_PREFETCH 로 바꾼다. */
 export const PREFETCH_COMMENTS = 60;
 
 // ── 조합 (순수) ─────────────────────────────────────────────────────
@@ -245,13 +247,11 @@ async function writeOne(persona: PersonaConfig, file: VariantsFile, key: string)
   const started = Date.now();
   const now = () => new Date().toISOString();
   try {
-    const out = await withReplyLock(file.replyId, () =>
-      draftFor(file.replyId, {
-        fresh: true,
-        toggles: planned.toggles,
-        ...(planned.name ? { version: { name: planned.name, ...(planned.guide ? { guide: planned.guide } : {}) } } : {}),
-      })
-    );
+    const out = await draftFor(file.replyId, {
+      fresh: true,
+      toggles: planned.toggles,
+      ...(planned.name ? { version: { name: planned.name, ...(planned.guide ? { guide: planned.guide } : {}) } } : {}),
+    });
     if ("error" in out) {
       await patchFile(persona, file.replyId, (f) => withFailure(f, key, out.error, now()));
       return;
@@ -270,7 +270,7 @@ async function prepare(persona: PersonaConfig, replyId: string): Promise<Variant
   if (isFresh(cur, sha)) return cur.status === "done" ? null : cur;
   const suggestion = await suggestForReply(replyId);
   if ("error" in suggestion) return null;
-  const planned = planFromPresets(suggestion.presets, suggestion.toggles);
+  const planned = planFromPresets(suggestion.presets, suggestion.toggles, PREFETCH_VARIANTS);
   if (!planned.length) return null;
   const file = newVariantsFile(replyId, sha, planned, new Date().toISOString());
   await writeVariantsFile(persona, file);
@@ -283,12 +283,10 @@ async function runReply(persona: PersonaConfig, replyId: string): Promise<void> 
   const deadline = Date.now() + envMs("THREADS_VARIANTS_JOB_TIMEOUT_MS", DEFAULT_JOB_TIMEOUT_MS);
   const heartbeat = setInterval(() => void patchFile(persona, replyId, (f) => ({ ...f, updatedAt: new Date().toISOString() })).catch(() => {}), HEARTBEAT_MS);
   try {
-    for (const key of pendingKeys(file)) {
-      if (Date.now() > deadline) break;
-      const cur = await readVariantsFile(persona, replyId);
-      if (!cur || cur.rulebookSha !== file.rulebookSha) return;
-      await writeOne(persona, cur, key);
-    }
+    // 벌마다 세션이 따로라 한꺼번에 쓴다 (미리 쓰는 벌은 추천 2개). 파일 쓰기는 patchFile 이 한 줄로 세운다.
+    const cur = await readVariantsFile(persona, replyId);
+    if (!cur || cur.rulebookSha !== file.rulebookSha) return;
+    if (Date.now() <= deadline) await Promise.all(pendingKeys(cur).map((key) => writeOne(persona, cur, key)));
     await patchFile(persona, replyId, (f) => {
       const left = pendingKeys(f);
       const failed = left.reduce((acc, k) => withFailure(acc, k, "잡 시간 초과", new Date().toISOString()), f);
