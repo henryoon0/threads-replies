@@ -6,8 +6,8 @@
 //  POST /api/threads-replies/[id]/compose { toggles, preset } → { draft, products }  아직 없는 버전 · [새로 쓰기]
 // 버튼을 누르면 미리 쓴 글로 바로 바뀐다. 아직 쓰는 중이면 다 되는 대로 바뀌고, 없으면 그 버전 하나만 새로 쓴다.
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { editSlot, openSlots, type DraftSlots } from "@/lib/threads-replies/draft-slots";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { editSlot, mergeOpened, openSlots, type DraftSlots } from "@/lib/threads-replies/draft-slots";
 
 export type ComposeToggles = Record<string, unknown>;
 
@@ -225,6 +225,12 @@ function slotsFor(slots: { id: string; s: DraftSlots }, replyId: string): DraftS
   return slots.id === replyId ? slots.s : EMPTY_SLOTS;
 }
 
+/** 서버에서 읽은 벌 + 이번에 누를 때 쓴 벌 (같은 열쇠면 서버 것을 쓴다) */
+function withMade(list: readonly ComposeVariant[], made: readonly ComposeVariant[]): ComposeVariant[] {
+  if (!made.length) return list as ComposeVariant[];
+  return [...list, ...made.filter((m) => !list.some((v) => v.key === m.key))];
+}
+
 /** 지금 고른 버전과 그 제품: 칸에 적힌 버전이 정본, 없으면 글이 같은 벌 */
 function currentSelection(slots: DraftSlots, shown: Shown | null, list: readonly ComposeVariant[], draft: string): { selected: string | null; products: VariantProduct[] } {
   if (!slots.selected) return selectionOf(shown, list, draft);
@@ -266,11 +272,10 @@ function openComment({ replyId, draft, list, presets, byHand, pick, setSlots }: 
   const stored = loadSlots(replyId);
   const texts = Object.fromEntries(list.map((v) => [v.key, v.draft]));
   const hand = byHand || Object.keys(stored.edits).length > 0;
-  const o = openSlots({ presets, variants: texts, saved: { draft, byHand: hand, ...(stored.selected ? { key: stored.selected } : {}) } });
-  const edits = { ...stored.edits, ...o.slots.edits };
+  const o = mergeOpened(stored, openSlots({ presets, variants: texts, saved: { draft, byHand: hand, ...(stored.selected ? { key: stored.selected } : {}) } }));
   // 손글이거나 이미 그 버전 글이면 고른 것으로 두고, 아니면 그 버전을 눌러 글을 바꾼다(성공해야 고른 것이 된다)
-  if (o.draft === draft) return setSlots({ selected: o.slots.selected, edits });
-  setSlots({ selected: null, edits });
+  if (o.draft === draft) return setSlots(o.slots);
+  setSlots({ selected: null, edits: o.slots.edits });
   if (o.slots.selected) pick(o.slots.selected);
 }
 
@@ -293,6 +298,7 @@ function useSlotSync({ replyId, draft, list, presets, ready, byHand, pick, setSl
 export function useCompose(replyId: string, draft: string, setDraft: (v: string) => void, saved: SavedDraft) {
   const { presets, status: presetStatus } = usePresets(replyId);
   const [working, setWorking] = useState(false);
+  const [made, setMade] = useState<{ id: string; list: ComposeVariant[] }>({ id: replyId, list: [] });
   const [note, setNote] = useState("");
   const [shown, setShown] = useState<Shown | null>(null);
   const [waiting, setWaiting] = useState<Waiting | null>(null);
@@ -334,7 +340,11 @@ export function useCompose(replyId: string, draft: string, setDraft: (v: string)
       const got = await requestCompose(id, preset);
       if (current.current !== id) return;
       setWorking(false);
-      if ("draft" in got) show(preset.id, got.draft, got.products, label);
+      if ("draft" in got) {
+        // 누를 때 쓴 버전도 바로 "써 둔 벌"로 둔다 — 다시 누르면 새로 쓰지 않는다 (서버도 버전 파일에 남긴다)
+        setMade((m) => ({ id, list: [...(m.id === id ? m.list : []).filter((v) => v.key !== preset.id), { key: preset.id, draft: got.draft, products: got.products }] }));
+        show(preset.id, got.draft, got.products, label);
+      }
       else setNote(got.missing ? "초안기를 준비하는 중이에요" : got.error);
     },
     [replyId, show]
@@ -360,7 +370,9 @@ export function useCompose(replyId: string, draft: string, setDraft: (v: string)
     [presets, nameOf, show, post, replyId]
   );
   const { cur: variants, kick } = useVariants(replyId, onFresh);
-  const list = variants.status === "ready" ? variants.variants : NO_VARIANTS;
+  const fetched = variants.status === "ready" ? variants.variants : NO_VARIANTS;
+  const mine = made.id === replyId ? made.list : NO_VARIANTS;
+  const list = useMemo(() => withMade(fetched, mine), [fetched, mine]);
 
   const pick = useCallback(
     (id: string) => {

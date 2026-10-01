@@ -47,3 +47,13 @@ export function openSlots(input: OpenInput): { slots: DraftSlots; draft: string 
   if (byHand && draft.trim()) return { slots: { selected: own, edits: { [own]: draft } }, draft };
   return pickSlot({ selected: null, edits: {} }, first.id, input.variants[first.id] ?? "");
 }
+
+/**
+ * 열 때 고른 결과(opened)에 브라우저에 남은 칸(stored)을 합친다. 브라우저 칸이 이긴다 (2026-10-02 codex 리뷰 4번):
+ * 서버 저장이 실패하면 서버엔 옛 초안이 남는데, 그걸로 최신 고친 글을 덮으면 안 된다.
+ */
+export function mergeOpened(stored: DraftSlots, opened: { slots: DraftSlots; draft: string }): { slots: DraftSlots; draft: string } {
+  const edits = { ...opened.slots.edits, ...stored.edits };
+  const sel = opened.slots.selected;
+  return { slots: { selected: sel, edits }, draft: sel && edits[sel] !== undefined ? edits[sel] : opened.draft };
+}

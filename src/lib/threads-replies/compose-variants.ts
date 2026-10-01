@@ -419,6 +419,25 @@ export async function variantsFor(replyId: string, kick = true): Promise<Variant
 
 export type ChooseResult = { variant: ComposeVariant; answer: unknown } | { error: string; status: number };
 
+/** 누를 때 쓴 벌을 버전 파일에 더한다 (파일이 없으면 끝난 파일을 새로 만든다). 순수. */
+export function rememberIn(file: VariantsFile | null, replyId: string, sha: string, v: ComposeVariant, now: string): VariantsFile {
+  const base = file ?? { ...newVariantsFile(replyId, sha, [], now), status: "done" as const };
+  return withVariant(base, v, v.sessionId, now);
+}
+
+/**
+ * 누를 때 쓴 버전(POST compose · preset)도 미리 쓴 벌처럼 남긴다 (2026-10-02 henry "한번 생성한 결과물은 화면을 나가도 남아야").
+ * 안 남기면 다른 버전을 봤다가 돌아올 때 같은 버전을 처음부터 다시 쓴다. 실패해도 답 자체는 이미 저장돼 있다.
+ */
+export async function rememberVariant(replyId: string, v: ComposeVariant): Promise<void> {
+  const persona = currentPersona();
+  const sha = await rulebookSha(persona);
+  const cur = await readVariantsFile(persona, replyId);
+  if (cur && !isFresh(cur, sha)) return; // 규칙책이 바뀐 옛 파일은 미리 쓰기가 갈아엎는다
+  if (cur) await patchFile(persona, replyId, (f) => rememberIn(f, replyId, sha, v, new Date().toISOString()));
+  else await writeVariantsFile(persona, rememberIn(null, replyId, sha, v, new Date().toISOString()));
+}
+
 /** 미리 쓴 벌 하나를 고른 초안으로 저장 (draft = aiDraft = 그 글). */
 export async function chooseVariant(replyId: string, key: string): Promise<ChooseResult> {
   const persona = currentPersona();

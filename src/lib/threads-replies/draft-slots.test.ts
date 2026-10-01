@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { editSlot, openSlots, pickSlot, type DraftSlots } from "./draft-slots";
+import { editSlot, mergeOpened, openSlots, pickSlot, type DraftSlots } from "./draft-slots";
 
 const empty: DraftSlots = { selected: null, edits: {} };
 
@@ -46,5 +46,15 @@ describe("댓글을 열 때", () => {
     const open = openSlots({ presets, variants, saved: { draft: "다른 글", byHand: false } });
     expect(open.slots.selected).toBe("X");
     expect(open.draft).toBe("다른 글");
+  });
+});
+
+describe("다시 열 때 브라우저에 남은 고친 글이 이긴다 (10-02 codex 4번)", () => {
+  it("서버 저장이 실패해 서버엔 옛 초안이 있어도, 브라우저에 남은 최신 고친 글을 보여준다", () => {
+    const stored: DraftSlots = { selected: "R1", edits: { R1: "브라우저의 최신 고친 글" } };
+    const opened = { slots: { selected: "R1", edits: { R1: "서버의 옛 초안" } }, draft: "서버의 옛 초안" };
+    const m = mergeOpened(stored, opened);
+    expect(m.slots.edits.R1).toBe("브라우저의 최신 고친 글");
+    expect(m.draft).toBe("브라우저의 최신 고친 글");
   });
 });

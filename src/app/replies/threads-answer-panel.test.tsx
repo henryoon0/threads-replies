@@ -280,6 +280,29 @@ describe("ThreadsAnswerPanel", () => {
     expect(editor().value).toBe("원리 글을 내가 고쳤어");
   });
 
+  it("누를 때 새로 쓴 버전은 다른 버전을 봤다가 돌아와도 다시 쓰지 않는다 (10-02)", async () => {
+    extra = (url, init) => {
+      if (url.endsWith("/c1/compose") && !init?.method) return json({ presets: PRESETS });
+      if (url.endsWith("/c1/compose") && init?.method === "POST") {
+        const preset = JSON.parse(String(init.body)).preset as string;
+        return json({ draft: `${preset} 새 글`, products: [], toggles: {}, sections: [] });
+      }
+      return undefined;
+    };
+    await mount(vi.fn(), { persona: COPY });
+    fireEvent.click(screen.getByRole("button", { name: /뒤통수 한 방/ }));
+    await flush();
+    expect(editor().value).toBe("joke 새 글");
+    fireEvent.click(screen.getByRole("button", { name: /원리 썰/ }));
+    await flush();
+    const writes = () => callsTo("/c1/compose", "POST").filter(([u]) => String(u).endsWith("/compose")).length;
+    const before = writes();
+    fireEvent.click(screen.getByRole("button", { name: /뒤통수 한 방/ }));
+    await flush();
+    expect(editor().value).toBe("joke 새 글");
+    expect(writes()).toBe(before);
+  });
+
   it("버전을 새로 쓰다 실패하면 이유를 보여주고 글은 그대로 둔다", async () => {
     extra = (url, init) => {
       if (url.endsWith("/c1/compose") && !init?.method) return json({ presets: PRESETS });

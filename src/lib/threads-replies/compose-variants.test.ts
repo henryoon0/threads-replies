@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  rememberIn,
   gitBlobSha,
   isFresh,
   isStale,
@@ -94,5 +95,19 @@ describe("미리 쓰기 범위·순서", () => {
   });
   it("줄을 새 순서로 다시 세운다 (순서에 없는 건 뒤에 그대로)", () => {
     expect(reorderQueue(["a", "b", "c", "x"], (k) => k, ["c", "a"])).toEqual(["c", "a", "b", "x"]);
+  });
+});
+
+describe("누를 때 쓴 버전도 남긴다 (10-02 henry: 한번 생성한 결과물은 화면을 나가도 남아야)", () => {
+  const v = { key: "joke", toggles: { joke: true }, draft: "드립 글", sections: [], products: [], ms: 0 };
+  it("버전 파일이 없으면 끝난 파일을 새로 만들어 그 벌을 담는다", () => {
+    const f = rememberIn(null, "c1", "sha1", v, "2026-10-02T00:00:00.000Z");
+    expect(f.status).toBe("done");
+    expect(f.variants.map((x) => x.draft)).toEqual(["드립 글"]);
+  });
+  it("있던 파일엔 다른 벌을 그대로 두고 더한다 (같은 열쇠면 바꾼다)", () => {
+    const base = rememberIn(null, "c1", "sha1", { ...v, key: "principle", draft: "원리 글" }, "2026-10-02T00:00:00.000Z");
+    const f = rememberIn(base, "c1", "sha1", v, "2026-10-02T00:01:00.000Z");
+    expect(f.variants.map((x) => x.key).sort()).toEqual(["joke", "principle"]);
   });
 });
