@@ -5,6 +5,7 @@
 // 이후 폴링은 ?answers=0 으로 원장만 다시 읽는다 (잡이 도는 동안만 빠르게).
 // 발송은 이 파일에서 하지 않는다. 오른쪽 ThreadsAnswerPanel 이 맡는다.
 
+import { useSendNotices } from "./use-send-notices";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowPathIcon } from "@heroicons/react/16/solid";
@@ -400,6 +401,8 @@ export function ThreadsClient({
   onChanged?: () => void;
 }) {
   const { data, error, reload } = useThreadsData(onChanged);
+  // 다른 댓글로 옮긴 뒤 끝난 보내기도 알리고 목록을 다시 읽는다
+  useSendNotices(reload);
   const persona = data?.persona;
   const gate = useGate(persona?.id ?? "glp1");
   const groups = useMemo(() => visibleGroups(data?.groups ?? [], view), [data, view]);

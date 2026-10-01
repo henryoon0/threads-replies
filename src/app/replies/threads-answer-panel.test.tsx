@@ -37,6 +37,30 @@ const question: ThreadsReply = {
 
 type Handler = (url: string, init?: RequestInit) => Response | undefined;
 let extra: Handler = () => undefined;
+
+// 가짜 서버 보내기 대기열: POST(delayMs) 로 맡기고, 시간이 지나면 GET 이 결과를 준다 (send-queue.ts 와 같은 흐름)
+type FakeSend = { message: string; dueAt: number; cancelled: boolean };
+let queued: FakeSend | null = null;
+let sendResult: { status: "sent" } | { status: "failed"; kind: string; error: string; reauthUrl?: string } = { status: "sent" };
+function fakeQueueStatus(): Response {
+  if (!queued || queued.cancelled) return json({ item: null });
+  const base = { replyId: "c1", message: queued.message, dueAt: new Date(queued.dueAt).toISOString() };
+  return json({ item: Date.now() < queued.dueAt ? { ...base, status: "waiting" } : { ...base, ...sendResult } });
+}
+function fakeQueueCancel(): Response {
+  if (!queued || Date.now() >= queued.dueAt) return json({ cancelled: false }, 409);
+  queued.cancelled = true;
+  return json({ cancelled: true });
+}
+function fakeSendQueue(url: string, init?: RequestInit): Response | undefined {
+  if (!url.endsWith("/c1/send")) return undefined;
+  if (init?.method === "DELETE") return fakeQueueCancel();
+  if (init?.method !== "POST") return fakeQueueStatus();
+  const body = JSON.parse(String(init.body)) as { message: string; delayMs?: number };
+  if (!body.delayMs) return undefined;
+  queued = { message: body.message, dueAt: Date.now() + body.delayMs, cancelled: false };
+  return json({ queued: { dueAt: new Date(queued.dueAt).toISOString() } }, 202);
+}
 const json = (b: unknown, status = 200) => new Response(JSON.stringify(b), { status });
 
 function fetchMock() {
@@ -55,11 +79,13 @@ beforeEach(() => {
   clearDraftSlots();
   vi.useFakeTimers();
   extra = () => undefined;
+  queued = null;
+  sendResult = { status: "sent" };
   vi.stubGlobal(
     "fetch",
     vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = String(input);
-      const hit = extra(url, init);
+      const hit = extra(url, init) ?? fakeSendQueue(url, init);
       if (hit) return hit;
       if (url.endsWith("/api/threads-replies/c1") && !init?.method) {
         return json({ reply: question, post: { id: "p1", text: "내 글", permalink: "https://www.threads.com/p", timestamp: "" }, conversation: [], drafting: false });
@@ -291,29 +317,39 @@ describe("ThreadsAnswerPanel", () => {
     expect(within(sheet).getByText("@kim 님에게 답글")).toBeTruthy();
     fireEvent.click(within(sheet).getByRole("button", { name: "취소" }));
     await flush(6000);
-    expect(callsTo("/send")).toHaveLength(0);
+    expect(callsTo("/send", "POST")).toHaveLength(0);
   });
 
-  it("시트에서 확정한 뒤 5초 안에 [되돌리기]를 누르면 발송을 부르지 않는다", async () => {
+  it("시트에서 확정한 뒤 5초 안에 [되돌리기]를 누르면 서버 대기열에서 빼고 보내지 않는다", async () => {
     const onNext = await mount();
     await confirmSend();
+    expect(callsTo("/send", "POST")).toHaveLength(1);
     await flush(2000);
     fireEvent.click(screen.getByRole("button", { name: "되돌리기" }));
     await flush(6000);
-    expect(callsTo("/send")).toHaveLength(0);
+    expect(callsTo("/send", "DELETE")).toHaveLength(1);
+    expect(queued?.cancelled).toBe(true);
     expect(onNext).not.toHaveBeenCalled();
   });
 
-  it("확정하고 5초가 지나면 초안을 보내고 다음 질문으로 넘긴다", async () => {
-    extra = (url) => (url.endsWith("/c1/send") ? json({ mode: "api", reply: { ...question, myReply: { id: "x", text: "t", timestamp: "" } } }) : undefined);
+  it("확정하면 바로 서버 대기열에 맡기고, 5초 뒤 서버가 보낸 결과를 받아 다음 질문으로 넘긴다", async () => {
     const onNext = await mount();
     await confirmSend();
-    await flush(4900);
-    expect(callsTo("/send")).toHaveLength(0);
-    await flush(200);
-    const [, init] = callsTo("/send")[0];
-    expect(JSON.parse(String((init as RequestInit).body))).toEqual({ message: question.answer!.draft });
+    const [, init] = callsTo("/send", "POST")[0];
+    expect(JSON.parse(String((init as RequestInit).body))).toEqual({ message: question.answer!.draft, delayMs: 5000 });
+    await flush(4000);
+    expect(onNext).not.toHaveBeenCalled();
+    await flush(2100);
     expect(onNext).toHaveBeenCalledTimes(1);
+  });
+
+  it("맡긴 뒤 패널이 닫혀도(다른 댓글로 이동) 되돌리기 요청을 보내지 않는다 — 보내기는 서버가 끝낸다 (10-02)", async () => {
+    await mount();
+    await confirmSend();
+    cleanup();
+    await flush(6000);
+    expect(callsTo("/send", "DELETE")).toHaveLength(0);
+    expect(queued?.cancelled).toBe(false);
   });
 
   it("복사 계정은 시트에서 복사하고 원글을 연 뒤 [달았어요]로 기록한다 (5초 대기 없음)", async () => {
@@ -344,7 +380,7 @@ describe("ThreadsAnswerPanel", () => {
 
   it("권한이 없으면 폴백을 띄우고 [달았어요]는 markedAnswered 로 기록한다", async () => {
     extra = (url, init) => {
-      if (url.endsWith("/c1/send")) return json({ error: "권한이 없어요", kind: "permission", reauthUrl: "https://threads.net/oauth" }, 403);
+      if (url.endsWith("/c1/send")) sendResult = { status: "failed", error: "권한이 없어요", kind: "permission", reauthUrl: "https://threads.net/oauth" };
       if (init?.method === "PATCH") return json({ reply: { ...question, myReply: { id: "manual", text: "t", timestamp: "" } } });
       return undefined;
     };
@@ -378,7 +414,7 @@ describe("ThreadsAnswerPanel", () => {
   describe("답글 이미지 (09-27 버그: 붙였는데 이미지 없이 올라감)", () => {
     const png = () => new File([new Uint8Array([137, 80, 78, 71])], "shot.png", { type: "image/png" });
     const sentImage = () => {
-      const [, init] = callsTo("/c1/send")[0] ?? [];
+      const [, init] = callsTo("/c1/send", "POST")[0] ?? [];
       return init ? (JSON.parse(String((init as RequestInit).body)) as { image?: string }).image : "보내기 안 됨";
     };
     async function sendNow() {
@@ -427,7 +463,7 @@ describe("ThreadsAnswerPanel", () => {
       await flush(50);
       expect(screen.getByText("근거 캡처가 같이 올라가요")).toBeTruthy();
       await sendNow();
-      const [, init] = callsTo("/c1/send")[0];
+      const [, init] = callsTo("/c1/send", "POST")[0];
       expect((JSON.parse(String((init as RequestInit).body)) as { evidenceImage?: string }).evidenceImage).toBe("/threads-evidence/c1/s2.png");
     });
 

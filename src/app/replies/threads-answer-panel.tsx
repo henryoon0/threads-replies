@@ -396,6 +396,12 @@ export function ThreadsAnswerPanel({
     [replaceReply, onChanged, onNext]
   );
   const sender = useUndoSend(onSent);
+  // 다시 열었을 때 서버에 맡긴 보내기가 기다리는 중이면 띠를, 실패했으면 이유를 되살린다
+  const { restore } = sender;
+  const username = a.view?.reply.username;
+  useEffect(() => {
+    if (username) void restore(replyId, username);
+  }, [replyId, username, restore]);
 
   const onSkip = async (skipped: boolean) => {
     try {
