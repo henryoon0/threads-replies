@@ -7,7 +7,7 @@ export interface AccountView {
   username?: string;
   intro?: string;
   expiresAt?: string;
-  caps?: { ai: { claude: boolean; codex: boolean }; capture: boolean; imageAttach: boolean };
+  caps?: { ai: { claude: boolean; codex: boolean; state?: "ready" | "logged-out" | "missing" }; capture: boolean; imageAttach: boolean };
   /** 켜질 때 이 컴퓨터에서 토큰을 찾아본 결과 */
   found?: { state: "connected"; username: string; from: string } | { state: "none"; tried: number } | null;
 }

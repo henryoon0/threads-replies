@@ -99,7 +99,7 @@ function Workbench({ account, reload }: { account: AccountView; reload: () => Pr
   const nav = <ThreadsNav summary={summary} place={place} go={setPlace} persona={{ current, list, onSwitch: switchPersona }} />;
   const left = daysLeft(account.expiresAt);
   const ai = account.caps?.ai;
-  const aiReady = Boolean(ai?.claude || ai?.codex);
+  const aiState = ai?.state ?? (ai?.claude || ai?.codex ? "ready" : "missing");
 
   const disconnect = async () => {
     await fetch("/api/account", { method: "DELETE" });
@@ -150,9 +150,11 @@ function Workbench({ account, reload }: { account: AccountView; reload: () => Pr
           </>
         }
       />
-      {aiReady ? null : (
+      {aiState === "ready" ? null : (
         <p className="mx-auto max-w-6xl px-6 pb-2 text-[12px] text-amber-700">
-          이 맥에 Claude Code나 Codex가 없어서 AI 초안이 꺼져 있어요. 답글은 직접 쓸 수 있어요.
+          {aiState === "logged-out"
+            ? "Claude Code(또는 Codex)가 로그인돼 있지 않아서 AI 초안이 꺼져 있어요. 터미널에 claude auth login 을 입력해 로그인한 뒤 새로고침해 주세요."
+            : "이 맥에 Claude Code나 Codex가 없어서 AI 초안이 꺼져 있어요. 답글은 직접 쓸 수 있어요."}
         </p>
       )}
       <VoiceBar />
