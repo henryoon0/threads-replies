@@ -24,6 +24,7 @@ import { useGate, type GateChecker } from "./threads-gate";
 import { ReceiptDock } from "./threads-receipt";
 import {
   filteredQueue,
+  splitByReady,
   focusOrder,
   nextId,
   visibleGroups,
@@ -484,6 +485,8 @@ function ListBody({
   return <ThreadsQueue items={queue} progress={progress} onMakeBatch={onMakeBatch} filter={filter} onFilter={onFilter} selectedId={openId} onSelect={onSelect} gate={gate} writingIds={writingIds} waitingIds={waitingIds} />;
 }
 
+const NO_IDS: ReadonlySet<string> = new Set();
+
 export function ThreadsClient({
   view,
   onChanged,
@@ -506,9 +509,12 @@ export function ThreadsClient({
   const groups = useMemo(() => visibleGroups(data?.groups ?? [], view), [data, view]);
   const { filter, setFilter, queue: filtered } = useQueue(data, view);
   // 준비된 답부터 (10-02): 위 칸 = 답 있음, 아래 칸 = 준비 중. "다음 댓글"도 이 순서
-  // 10-02 henry "답이 생길 때마다 화면이 바뀌어 불편": 준비된 답을 위로 올리던 칸 나누기를 뺐다.
-  // 목록은 고른 순서(기본 최신순) 그대로 두고, 답이 생기면 그 줄의 점·글자만 바뀐다.
-  const queue = filtered;
+  // 10-02 henry "답이 생길 때마다 화면이 바뀌어 불편"으로 칸 나누기를 뺐다가, 같은 날 "초록 점이 중간에 띄어지면 안 돼"로 되살렸다.
+  // 다시 쓰는 중이어도 이미 답이 있으면 위 칸에 둔다 (줄이 아래로 튀지 않게).
+  const queue = useMemo(() => {
+    const { ready, preparing } = splitByReady(filtered, NO_IDS);
+    return [...ready, ...preparing];
+  }, [filtered]);
   const order = useMemo(() => (view === "history" ? focusOrder(groups, view) : queue.map((r) => r.id)), [view, groups, queue]);
   const groupOf = useMemo(() => groupIndex(groups), [groups]);
   const { selectedId, select, reveal, selectNext } = useSelection(order, view);

@@ -21,7 +21,8 @@ const STATE_ICON = { ready: CheckIcon, check: ExclamationTriangleIcon, writing: 
 const STATE_TONE: Record<DraftState, string> = { ready: "text-emerald-700", check: "text-amber-700", writing: "text-emerald-700", waiting: "text-neutral-400", idle: "text-neutral-300" };
 
 function draftStateOf(draft: string, gate: GateChecker, phase: DraftPhase | undefined): DraftState {
-  if (phase) return phase;
+  // 이미 답이 있는 댓글이 다시 쓰기 차례를 기다리면 점을 지우지 않는다 — 초록 점 덩어리가 중간에 끊긴다 (10-02 henry)
+  if (phase === "writing" || (phase === "waiting" && !draft)) return phase;
   if (!draft) return "idle";
   return gate.check(draft).hits.length ? "check" : "ready";
 }

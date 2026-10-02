@@ -1,6 +1,7 @@
 // 스레드 댓글 목록의 보기 규칙 (순수 함수). 서버가 준 글별 묶음(PostGroup)을
 // 레일 칸(댓글 · 질문 · 기록)에 맞게 거르고, 줄기를 들여쓴 노드로 펴고, 선택 순서를 만든다.
 import { isPending, type ThreadsReply } from "@/lib/threads-replies/model";
+import { usableDraft } from "@/lib/threads-replies/usable-draft";
 import type { PostGroup, ReplyThread, ThreadsSummary } from "@/lib/threads-replies/summary";
 
 export type ThreadsView = "comments" | "questions" | "history";
@@ -174,7 +175,8 @@ export function filteredQueue(groups: PostGroup[], filter: QueueFilter): Threads
  * [보내기] 뒤 "다음 댓글"은 이 순서를 따르므로 준비된 답부터 열린다.
  */
 export function splitByReady(items: readonly ThreadsReply[], busy: ReadonlySet<string>): { ready: ThreadsReply[]; preparing: ThreadsReply[] } {
-  const isReady = (r: ThreadsReply) => Boolean(r.answer?.draft) && !busy.has(r.id);
+  // 줄의 초록 점과 같은 기준(usableDraft) — 점 있는 줄이 한 덩어리로 이어진다 (10-02 henry "중간에 띄어지면 안 돼")
+  const isReady = (r: ThreadsReply) => Boolean(usableDraft(r.answer)) && !busy.has(r.id);
   const ready = items.filter(isReady);
   return { ready, preparing: items.filter((r) => !isReady(r)) };
 }
