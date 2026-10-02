@@ -1,6 +1,6 @@
 "use client";
 
-// 보내기 (픽: scenes-th-send one-undo). [보내기] → 서버 대기열 + 5초 되돌리기 띠 → 시간이 다 되면 서버가 보낸다(화면을 떠나도).
+// 보내기. [보내기] → 서버 대기열에 맡기면 서버가 바로 보낸다(화면을 떠나도). 10-02 henry: 5초 되돌리기 띠·로딩 없이 바로.
 // 권한이 없으면 (threads_manage_replies) [복사하고 스레드에서 열기] + [달았어요] 폴백.
 // 콘텐츠 소재로 (픽: scenes-th-keep content-seed) 버튼도 여기 둔다.
 
@@ -23,7 +23,8 @@ import { cn } from "@/lib/utils";
 import { patchReply } from "./use-threads-answer";
 import { press } from "./threads-answer-verdict";
 
-export const UNDO_MS = 5000;
+/** 서버 대기열에 맡기되 기다리지 않는다 (대기열을 거쳐야 다른 댓글로 가도·창을 닫아도 보내진다) */
+export const SEND_DELAY_MS = 1;
 
 export interface PendingSend {
   replyId: string;
@@ -45,13 +46,13 @@ const sendUrl = (replyId: string) => `/api/threads-replies/${encodeURIComponent(
 
 type QueueItemView = { replyId: string; status: "waiting" | "sending" | "sent" | "failed"; dueAt: string; error?: string; kind?: string; reauthUrl?: string; message: string };
 
-/** [보내기]: 서버 대기열에 넣는다. 202 = 맡김(서버가 UNDO_MS 뒤 보낸다). 그 밖은 실패 이유. */
+/** [보내기]: 서버 대기열에 넣는다. 202 = 맡김(서버가 SEND_DELAY_MS 뒤 보낸다). 그 밖은 실패 이유. */
 async function queueSend(p: PendingSend): Promise<{ dueAt: string } | SendFailure> {
   try {
     const res = await fetch(sendUrl(p.replyId), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: p.message, image: p.image, evidenceImage: p.evidenceImage, delayMs: UNDO_MS }),
+      body: JSON.stringify({ message: p.message, image: p.image, evidenceImage: p.evidenceImage, delayMs: SEND_DELAY_MS }),
     });
     const body = (await res.json().catch(() => ({}))) as { queued?: { dueAt: string }; error?: string; kind?: string; reauthUrl?: string };
     if (res.status === 202 && body.queued) return { dueAt: body.queued.dueAt };
@@ -104,12 +105,12 @@ export function firstNotice(item: { replyId: string; dueAt: string; status: stri
 }
 
 /**
- * 5초 되돌리기 (2026-10-02 henry "한번 발송된 건 발송이 되어야 한다"): 시간은 서버가 잰다.
- * [보내기]를 누르면 바로 서버 대기열에 맡기고, 5초가 지나면 서버가 보낸다 — 다른 댓글로 가도·창을 닫아도 보낸다.
+ * 서버 대기열 (2026-10-02 henry "한번 발송된 건 발송이 되어야 한다"):
+ * [보내기]를 누르면 바로 서버 대기열에 맡기고 서버가 곧바로 보낸다 — 다른 댓글로 가도·창을 닫아도 보낸다.
  * 화면은 결과만 읽어 알린다(떠난 뒤 결과는 threads-client 의 대기열 알림이 알린다). 되돌리기는 보내기 시작 전에만 된다.
  */
 // ── 맡긴 보내기 띠 (10-02 henry "보내면 바로, 빨리 빨리") ──
-// [보내기]를 누르면 바로 다음 댓글로 넘어간다. 그래서 5초 되돌리기 띠는 패널 밖, 목록 화면에 하나 둔다(QueuedUndoBar).
+// [보내기]를 누르면 바로 다음 댓글로 넘어간다 (되돌리기 띠 없음, 10-02).
 // 보내기는 서버 대기열이 끝내고, 결과 알림은 use-send-notices 가 한다.
 type Queued = PendingSend & { dueAt: number };
 const queuedListeners = new Set<() => void>();
@@ -134,30 +135,6 @@ function useQueued(): Queued[] {
     () => queuedItems,
     () => QUEUED_EMPTY
   );
-}
-
-/** 목록 화면에 하나: 가장 최근에 맡긴 보내기의 5초 되돌리기. 시간이 지나면 저절로 사라진다. */
-const noop = () => () => {};
-export function QueuedUndoBar() {
-  const items = useQueued();
-  // 서버 그림에는 띠 자리가 없다 — 브라우저에서만 그려 hydration 이 어긋나지 않게 (10-02)
-  const client = useSyncExternalStore(noop, () => true, () => false);
-  const last = items[items.length - 1] ?? null;
-  useEffect(() => {
-    if (!last) return;
-    const t = setTimeout(() => dropQueued(last.replyId), Math.max(0, last.dueAt - Date.now()) + 300);
-    return () => clearTimeout(t);
-  }, [last]);
-  const undo = async () => {
-    if (!last) return;
-    const res = await fetch(sendUrl(last.replyId), { method: "DELETE" }).catch(() => null);
-    if (res?.ok) {
-      dropQueued(last.replyId);
-      toast.success(`@${last.username} 님께 보내기를 되돌렸어요`);
-    } else toast.error("이미 보내는 중이라 되돌릴 수 없어요");
-  };
-  if (!client) return null;
-  return <UndoBar pending={last} paused={false} sending={false} onPause={() => {}} onUndo={() => void undo()} />;
 }
 
 export function useUndoSend(onSent: (reply: ThreadsReply) => void, onQueued?: () => void) {
@@ -199,7 +176,7 @@ export function useUndoSend(onSent: (reply: ThreadsReply) => void, onQueued?: ()
     setPending(p);
     const got = await queueSend(p);
     if ("dueAt" in got) {
-      addQueued(p, Date.parse(got.dueAt) || Date.now() + UNDO_MS);
+      addQueued(p, Date.parse(got.dueAt) || Date.now() + SEND_DELAY_MS);
       onQueuedRef.current?.();
       return;
     }
@@ -233,67 +210,6 @@ export function useUndoSend(onSent: (reply: ThreadsReply) => void, onQueued?: ()
 
   // 서버가 시간을 재므로 멈추기는 없다 (띠는 그림일 뿐)
   return { pending, paused: false, setPaused: (_: boolean) => void _, sending, failure, clearFailure: () => setFailure(null), start, undo, restore };
-}
-
-export function UndoBar({
-  pending,
-  paused,
-  sending,
-  onPause,
-  onUndo,
-}: {
-  pending: PendingSend | null;
-  paused: boolean;
-  sending: boolean;
-  onPause: (paused: boolean) => void;
-  onUndo: () => void;
-}) {
-  const reduce = useReducedMotion();
-  if (typeof document === "undefined") return null;
-  return createPortal(
-    <div className="pointer-events-none fixed bottom-5 left-1/2 z-[60] -translate-x-1/2">
-      <style>{"@keyframes th-undo-countdown{from{transform:scaleX(1)}to{transform:scaleX(0)}}"}</style>
-      <AnimatePresence>
-        {pending ? (
-          <motion.div
-            key={pending.replyId}
-            role="status"
-            initial={{ opacity: 0, y: reduce ? 0 : 16, scale: reduce ? 1 : 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: reduce ? 0 : 8, transition: spring.moderate.exit }}
-            transition={spring.moderate}
-            onPointerEnter={() => onPause(true)}
-            onPointerLeave={() => onPause(false)}
-            className="pointer-events-auto relative w-[360px] overflow-hidden rounded-xl bg-white shadow-lg shadow-neutral-950/5 ring-1 ring-neutral-950/5"
-          >
-            <div className="flex items-center gap-2.5 px-4 py-3">
-              <PaperAirplaneIcon className="size-4 shrink-0 text-neutral-900" />
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-[13px] font-medium text-neutral-900">@{pending.username} 님께 답글을 보내요</p>
-                <p className="text-[12px] text-neutral-500">
-                  {sending ? "보내는 중이에요" : paused ? "멈췄어요. 손을 떼면 이어서 셉니다" : "5초 안에 되돌릴 수 있어요 · 다른 댓글로 가도 보내져요"}
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={onUndo}
-                disabled={sending}
-                className={cn("h-7 shrink-0 rounded-md bg-emerald-700 px-2.5 text-[12px] font-medium text-white hover:bg-emerald-800 disabled:opacity-40", press)}
-              >
-                되돌리기
-              </button>
-            </div>
-            <span
-              aria-hidden
-              style={{ animation: `th-undo-countdown ${UNDO_MS}ms linear forwards`, animationPlayState: paused || sending ? "paused" : "running" }}
-              className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-emerald-500"
-            />
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </div>,
-    document.body
-  );
 }
 
 /** 권한·토큰 문제로 못 보냈을 때. 스레드 앱에서 직접 달고 [달았어요]로 기록한다. */

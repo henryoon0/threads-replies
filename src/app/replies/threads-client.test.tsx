@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
 import { ThreadsClient } from "./threads-client";
 
@@ -8,6 +8,9 @@ import { ThreadsClient } from "./threads-client";
 vi.mock("./threads-answer-panel", () => ({
   ThreadsAnswerPanel: ({ replyId }: { replyId: string }) => <div data-testid="panel">{replyId}</div>,
 }));
+
+const toastSuccess = vi.hoisted(() => vi.fn());
+vi.mock("@/components/toast", () => ({ toast: { success: toastSuccess, error: vi.fn() } }));
 
 const reply = (id: string, extra: Partial<ThreadsReply> = {}): ThreadsReply => ({
   id,
@@ -61,24 +64,48 @@ describe("ThreadsClient — 한 줄 목록과 한 버튼 메뉴 (10-02 픽)", ()
 
   const ids = () => [...document.querySelectorAll("[data-reply-id]")].map((el) => el.getAttribute("data-reply-id"));
 
-  it("답이 준비된 댓글이 위 칸, 그다음 준비 중 칸 — 두 칸 안은 오래된 순. 첫 로드만 답 잡을 깨운다 (10-02)", async () => {
+  it("목록은 오래된 순 한 줄 — 답이 있어도 위로 올리지 않는다. 첫 로드만 답 잡을 깨운다 (10-02 henry)", async () => {
     render(<ThreadsClient view="comments" />);
-    // b 만 답이 있다 → 준비됨 칸 b, 준비 중 칸 a·q
-    expect((await screen.findByTestId("panel")).textContent).toBe("b");
+    expect((await screen.findByTestId("panel")).textContent).toBe("a");
     expect((fetch as ReturnType<typeof vi.fn>).mock.calls[0][0]).toBe("/api/threads-replies");
-    expect(ids()).toEqual(["b", "a", "q"]);
+    expect(ids()).toEqual(["a", "b", "q"]);
     expect(screen.getByRole("button", { name: /오래된 순/ })).toBeTruthy();
   });
 
-  it("메뉴에서 최근 순을 고르면 방금 달린 것부터, 질문만을 켜면 질문만 남는다", async () => {
+  it("메뉴는 정렬 둘뿐(질문만 없음) — 최근 순을 고르면 방금 달린 것부터 (10-02 henry)", async () => {
     render(<ThreadsClient view="comments" />);
     await screen.findByTestId("panel");
     fireEvent.click(screen.getByRole("button", { name: /오래된 순/ }));
+    expect(screen.queryByRole("menuitemcheckbox", { name: "질문만" })).toBeNull();
     fireEvent.click(screen.getByRole("menuitemradio", { name: "최근 순" }));
-    expect(ids()).toEqual(["b", "q", "a"]);
-    fireEvent.click(screen.getByRole("menuitemcheckbox", { name: "질문만" }));
-    expect(ids()).toEqual(["q"]);
-    expect(screen.getByRole("button", { name: /최근 순.*질문만/ })).toBeTruthy();
+    expect(ids()).toEqual(["q", "b", "a"]);
+  });
+
+  it("최근 순은 자동으로 쓰지 않고 [답 20개 만들기]로 — 위에서부터 답이 없는 댓글만 맡긴다 (10-02 henry)", async () => {
+    const posted: string[][] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (u: string, init?: RequestInit) => {
+        if (String(u).includes("gate-rules")) return new Response(JSON.stringify(rules), { status: 200 });
+        if (String(u).includes("/prefetch")) {
+          posted.push((JSON.parse(String(init?.body)) as { ids: string[] }).ids);
+          return new Response(JSON.stringify({ queued: [] }), { status: 200 });
+        }
+        return new Response(JSON.stringify(body), { status: 200 });
+      })
+    );
+    render(<ThreadsClient view="comments" />);
+    await screen.findByTestId("panel");
+    await waitFor(() => expect(posted).toHaveLength(1)); // 오래된 순 자동 묶음
+    expect(screen.queryByRole("button", { name: /답 20개 만들기/ })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: /오래된 순/ }));
+    fireEvent.click(screen.getByRole("menuitemradio", { name: "최근 순" }));
+    await act(async () => {});
+    expect(posted).toHaveLength(1); // 최근 순으로 바꿔도 새로 맡기지 않는다
+    fireEvent.click(screen.getByRole("button", { name: /답 20개 만들기/ }));
+    await waitFor(() => expect(posted).toHaveLength(2));
+    expect(posted[1]).toEqual(["q", "a"]); // b 는 이미 답이 있다
+    await waitFor(() => expect(screen.getByRole("region", { name: "답할 댓글" }).textContent).toContain("답 준비 0/2"));
   });
 
   it("목록에서 고르면 그 댓글이 패널에 열린다", async () => {
@@ -90,7 +117,7 @@ describe("ThreadsClient — 한 줄 목록과 한 버튼 메뉴 (10-02 픽)", ()
     expect(list.querySelector('[data-reply-id="b"]')?.getAttribute("aria-current")).toBe("true");
   });
 
-  it("줄에는 초안 글 대신 준비 상태만 — 관문에 걸린 초안은 '확인 필요', 빨간색 없이", async () => {
+  it("줄에는 댓글과 준비 상태만 — 답 내용은 안 보인다. 관문에 걸린 초안은 '확인 필요', 빨간색 없이 (10-02 henry)", async () => {
     render(<ThreadsClient view="comments" />);
     const list = await screen.findByRole("region", { name: "답할 댓글" });
     await waitFor(() => expect(list.textContent).toContain("확인 필요"));
@@ -117,7 +144,7 @@ describe("ThreadsClient — 한 줄 목록과 한 버튼 메뉴 (10-02 픽)", ()
     expect(await screen.findByText(/남은 3건을 모두 건너뛸까요/)).toBeTruthy();
   });
 
-  it("보고 있는 사이 답이 생긴 댓글엔 '새 답'이 붙고, 열면 사라진다 — 처음부터 준비된 댓글엔 안 붙는다 (10-02)", async () => {
+  it("보고 있는 사이 답이 생겨도 '새 답' 표시는 붙지 않는다 (10-02 henry: 뺌)", async () => {
     let withDraft = false;
     vi.stubGlobal(
       "fetch",
@@ -134,8 +161,96 @@ describe("ThreadsClient — 한 줄 목록과 한 버튼 메뉴 (10-02 픽)", ()
     expect(screen.queryByText("새 답")).toBeNull();
     withDraft = true;
     fireEvent.click(screen.getByRole("button", { name: "새로고침" }));
-    expect(await screen.findByText("새 답")).toBeTruthy();
-    fireEvent.click(document.querySelector<HTMLElement>('[data-reply-id="q"]')!);
-    await waitFor(() => expect(screen.queryByText("새 답")).toBeNull());
+    await waitFor(() => expect(screen.getByRole("button", { name: "새로고침" })).toBeTruthy());
+    await act(async () => {});
+    expect(screen.queryByText("새 답")).toBeNull();
+  });
+
+  it("미리 쓰기는 늘 가장 오래된 20개 — 고른 댓글·정렬과 상관없고, 답이 생겨도 밀리지 않는다 (10-02 henry)", async () => {
+    const day = (i: number) => new Date(Date.UTC(2026, 8, 1, 0, i)).toISOString();
+    const make = (ready: number[]) => [
+      {
+        ...body.groups[0],
+        threads: Array.from({ length: 30 }, (_, i) => i).filter((i) => !answered.includes(i)).map((i) => ({
+          root: reply(`r${i}`, { timestamp: day(i), ...(ready.includes(i) ? { answer: { draft: `답 ${i}` } as ThreadsReply["answer"] } : {}) }),
+          followUps: [],
+          pending: 1,
+        })),
+      },
+    ];
+    let ready: number[] = [];
+    let answered: number[] = [];
+    const posted: string[][] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (u: string, init?: RequestInit) => {
+        if (String(u).includes("gate-rules")) return new Response(JSON.stringify(rules), { status: 200 });
+        if (String(u).includes("/prefetch")) {
+          posted.push((JSON.parse(String(init?.body)) as { ids: string[] }).ids);
+          return new Response(JSON.stringify({ queued: [] }), { status: 200 });
+        }
+        return new Response(JSON.stringify({ ...body, groups: make(ready) }), { status: 200 });
+      })
+    );
+    render(<ThreadsClient view="comments" />);
+    await screen.findByTestId("panel");
+    await waitFor(() => expect(posted).toHaveLength(1));
+    // 미리 쓰기는 오래된 r0 … r19
+    expect(posted[0]).toEqual(Array.from({ length: 20 }, (_, i) => `r${i}`));
+    // 답이 준비돼도 목록 순서·묶음은 그대로 — 새로 보내지 않는다
+    ready = [3, 25, 26, 27];
+    fireEvent.click(screen.getByRole("button", { name: "새로고침" }));
+    await act(async () => {});
+    expect(posted).toHaveLength(1);
+    // 20개 밖 댓글(r27)을 눌러도 줄은 그대로
+    fireEvent.click(document.querySelector<HTMLElement>('[data-reply-id="r27"]')!);
+    await act(async () => {});
+    expect(posted).toHaveLength(1);
+    // 가장 오래된 r0 에 답하면(목록에서 빠지면) r20 이 들어온다
+    answered = [0];
+    fireEvent.click(screen.getByRole("button", { name: "새로고침" }));
+    await waitFor(() => expect(posted).toHaveLength(2));
+    expect(posted[1]).toEqual(Array.from({ length: 20 }, (_, i) => `r${i + 1}`));
+  });
+
+  it("저장된 목록을 먼저 보여 주고, 뒤에서 동기화하는 동안 '동기화 중…', 끝나면 알림 한 줄 (10-02 henry)", { timeout: 15_000 }, async () => {
+    toastSuccess.mockClear();
+    let syncing = true;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (u: string) => {
+        if (String(u).includes("gate-rules")) return new Response(JSON.stringify(rules), { status: 200 });
+        const groups = syncing
+          ? body.groups
+          : [{ ...body.groups[0], threads: [...body.groups[0].threads, { root: reply("n", { timestamp: "2026-09-30T00:00:00Z" }), followUps: [], pending: 1 }] }];
+        return new Response(JSON.stringify({ ...body, groups, syncing }), { status: 200 });
+      })
+    );
+    render(<ThreadsClient view="comments" />);
+    await screen.findByTestId("panel");
+    expect(screen.getByText("동기화 중…")).toBeTruthy();
+    expect(toastSuccess).not.toHaveBeenCalled();
+    // 동기화 중엔 5초마다 다시 읽는다
+    syncing = false;
+    await waitFor(() => expect(toastSuccess).toHaveBeenCalledWith("동기화 완료 · 새 댓글 1개"), { timeout: 8000 });
+    expect(screen.queryByText("동기화 중…")).toBeNull();
+  });
+
+  it("오래된 순은 진행 숫자 없이 알아서, 쓰는 중인 줄은 글자·테두리 빛 없이 점만 깜빡인다 (10-02 henry)", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (u: string) =>
+        new Response(JSON.stringify(String(u).includes("gate-rules") ? rules : { ...body, variantsQueue: { running: ["a"], queued: ["q"] } }), { status: 200 })
+      )
+    );
+    render(<ThreadsClient view="comments" />);
+    const list = await screen.findByRole("region", { name: "답할 댓글" });
+    expect(list.textContent).not.toContain("답 준비");
+    const row = list.querySelector<HTMLElement>('[data-reply-id="a"]')!;
+    expect(row.querySelector(".animate-pulse.rounded-full")).toBeTruthy();
+    // 화면 읽기용 글자(sr-only)만 남는다
+    expect(within(row).getByText("쓰는 중").className).toContain("sr-only");
+    expect(within(list.querySelector<HTMLElement>('[data-reply-id="q"]')!).getByText("차례 기다림").className).toContain("sr-only");
+    expect(document.querySelector("[data-border-beam], .border-beam")).toBeNull();
   });
 });

@@ -27,6 +27,7 @@ import { parseToggles, type ComposeSection, type ComposeToggles, type ToggleSet 
 import { COMPOSE_KINDS, PRODUCT_CHANNELS } from "./compose-kinds";
 import { MAX_PRESETS } from "./compose-presets";
 import { draftFor, saveComposed, suggestForReply } from "./compose-run";
+import { usableDraft } from "./usable-draft";
 import { isPending, type ThreadsReply } from "./model";
 import { readRepliesLedger } from "./storage";
 
@@ -279,7 +280,8 @@ const itemKey = (i: QueueItem) => `${i.persona.id}#${i.replyId}`;
  * 첫 추천 버전이고, 아직 초안이 없는 대기 댓글일 때만 — 있던 초안·주인이 고른 버전은 덮지 않는다.
  */
 export function adoptAsDraft(reply: ThreadsReply | undefined, firstKey: string, key: string): boolean {
-  return !!reply && key === firstKey && isPending(reply) && !reply.answer?.draft;
+  // 옛 3벌 잡 글은 초안으로 치지 않는다 — 그게 있으면 버전 글이 초안이 못 돼 옛 글이 계속 보였다 (10-02)
+  return !!reply && key === firstKey && isPending(reply) && !usableDraft(reply.answer);
 }
 
 /**

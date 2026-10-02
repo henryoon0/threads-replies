@@ -7,12 +7,12 @@
 
 import { useState, type DragEvent, type ReactNode } from "react";
 import {
+  ArrowTopRightOnSquareIcon,
   ArrowUturnLeftIcon,
   ForwardIcon,
   PaperAirplaneIcon,
   SparklesIcon,
 } from "@heroicons/react/16/solid";
-import { BorderBeam } from "@/components/border-beam";
 import type { GateResult } from "@/lib/threads-replies/model";
 import { cn } from "@/lib/utils";
 import { press } from "./threads-answer-verdict";
@@ -138,7 +138,7 @@ function MineHead({
 
 export interface ThreadSide {
   /** 상대 댓글 (@이름 · 시간 · 본문) */
-  them: { username: string; when: string; text: string };
+  them: { username: string; when: string; text: string; href?: string };
   me: { handle: string; mark: string };
 }
 
@@ -169,10 +169,27 @@ function TheirRow({ them }: { them: ThreadSide["them"] }) {
       </div>
       <div className="min-w-0 flex-1 pb-4">
         <p className="flex items-center gap-1.5 text-[14px]">
-          <span className="font-semibold text-neutral-950">
-            {them.username}
-          </span>
+          {them.href ? (
+            <a href={them.href} target="_blank" rel="noreferrer" className="font-semibold text-neutral-950 hover:underline">
+              {them.username}
+            </a>
+          ) : (
+            <span className="font-semibold text-neutral-950">{them.username}</span>
+          )}
           <span className="text-neutral-400">{them.when}</span>
+          {/* 10-02 henry: 여기서 바로 그 댓글(스레드)로 — 내 글이 아니라 댓글 자체의 주소 */}
+          {them.href ? (
+            <a
+              href={them.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="스레드에서 이 댓글 열기"
+              className="inline-flex items-center gap-0.5 text-[12px] text-neutral-400 hover:text-neutral-700"
+            >
+              원문
+              <ArrowTopRightOnSquareIcon className="size-3" />
+            </a>
+          ) : null}
         </p>
         <p className="mt-0.5 whitespace-pre-wrap break-keep text-[15px] leading-[1.45] text-neutral-950">
           {them.text}
@@ -250,7 +267,8 @@ function FinalFooter({
 function statusOf(error: string | null, working: boolean): ReactNode {
   if (working)
     return (
-      <span className="px-1 text-[11px] text-neutral-500">
+      <span className="inline-flex items-center gap-1.5 px-1 text-[11px] text-neutral-500">
+        <span aria-hidden className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
         초안을 쓰는 중이에요
       </span>
     );
@@ -347,12 +365,14 @@ export function FinalAnswer({
                   : "답글을 써 주세요"
               }
               onSubmit={onSend}
-              className="min-h-[9rem] whitespace-pre-wrap break-keep pb-3 pt-0.5 text-[15px] leading-[1.45] text-neutral-950 [overflow-wrap:anywhere]"
+              // 높이를 고정한다 (10-02 henry "생성될 때 화면이 변하고 이동"): 글이 들어와도 아래 버전 버튼이 밀리지 않게. 넘치면 칸 안에서 굴린다 (약 10줄)
+              className="h-[14.5rem] min-h-[14.5rem] overflow-y-auto whitespace-pre-wrap break-keep pb-3 pt-0.5 text-[15px] leading-[1.45] text-neutral-950 [overflow-wrap:anywhere]"
             />
           </div>
         </div>
       </div>
-      <p className={cn("px-3 pb-2 text-[11.5px]", line.tone)}>
+      {/* 안내가 없어도 한 줄 자리를 잡아 둔다 */}
+      <p className={cn("min-h-[25px] px-3 pb-2 text-[11.5px]", line.tone)}>
         {line.text}
         <NoteFix
           gate={gate}
@@ -373,7 +393,6 @@ export function FinalAnswer({
         onSkip={onSkip}
         onSend={onSend}
       />
-      {working ? <BorderBeam radius={18} /> : null}
     </section>
   );
 }

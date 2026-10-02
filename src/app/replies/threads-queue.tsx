@@ -1,11 +1,12 @@
 "use client";
 
 // 답할 댓글 목록 (10-02 픽 "한 버튼 메뉴"). 옛 "지금 답할 5개 + 나머지 N개" 두 덩어리를 한 줄 목록으로 합쳤다.
-// 머리의 버튼 하나 [오래된 순 ▾] 를 누르면 정렬 2개 + 질문만. 줄 모양은 지금 답할 5개(UrgentRow) 그대로.
+// 머리의 버튼 하나 [오래된 순 ▾] 를 누르면 정렬 2개 (10-02 henry: "질문만"은 뺐다 — 질문을 따로 가를 필요가 없다).
+// 줄 모양은 UrgentRow (댓글 두 줄 + 상태 점).
 // 10-02: 줄 위 [버전 전부 새로 쓰기] 아이콘은 뺐다 — 답 칸의 [새로 쓰기 · 전부]와 같은 일이고, 목록에서 잘못 누르면 AI 비용만 든다.
 
-import { Fragment, useState } from "react";
-import { CheckIcon, ChevronDownIcon } from "@heroicons/react/16/solid";
+import { useState } from "react";
+import { CheckIcon, ChevronDownIcon, SparklesIcon } from "@heroicons/react/16/solid";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
 import { cn } from "@/lib/utils";
 import { press } from "./threads-answer-verdict";
@@ -50,9 +51,6 @@ function FilterMenu({
         )}
       >
         {SORT_LABEL[filter.sort]}
-        {filter.questionsOnly ? (
-          <span className="text-emerald-700">· 질문만</span>
-        ) : null}
         <ChevronDownIcon
           className={cn(
             "size-3.5 text-neutral-400 transition-transform duration-150",
@@ -80,77 +78,23 @@ function FilterMenu({
               {SORT_LABEL[sort]}
             </button>
           ))}
-          <div className="my-1 shadow-[0_-1px_0_0_rgba(10,10,10,0.05)]" />
-          <button
-            type="button"
-            role="menuitemcheckbox"
-            aria-checked={filter.questionsOnly}
-            onClick={() =>
-              onFilter({ ...filter, questionsOnly: !filter.questionsOnly })
-            }
-            className={row}
-          >
-            {tick(filter.questionsOnly)}
-            질문만
-          </button>
+
         </div>
       ) : null}
     </div>
   );
 }
 
-/**
- * 보고 있는 사이 답이 생긴 댓글 (10-02 henry "생성되면 생성됐다는 느낌") — 열어 보면 지운다.
- * 처음 그릴 때 이미 준비된 댓글은 "새 답"이 아니다.
- */
-function useFreshReady(
-  items: ThreadsReply[],
-  selectedId: string | null,
-): Set<string> {
-  const key = items
-    .filter((r) => r.answer?.draft)
-    .map((r) => r.id)
-    .join("\n");
-  const [st, setSt] = useState<{ key: string | null; fresh: Set<string> }>({
-    key: null,
-    fresh: new Set(),
-  });
-  // 그리는 중에 지난 값과 비교해 고친다 (useSelection 과 같은 방식 — effect 에서 setState 하지 않는다)
-  if (st.key !== key) {
-    const before = new Set(st.key ? st.key.split("\n") : []);
-    const added =
-      st.key === null
-        ? []
-        : (key ? key.split("\n") : []).filter((id) => !before.has(id));
-    setSt({
-      key,
-      fresh: added.length ? new Set([...st.fresh, ...added]) : st.fresh,
-    });
-  } else if (selectedId && st.fresh.has(selectedId)) {
-    setSt({
-      key,
-      fresh: new Set([...st.fresh].filter((id) => id !== selectedId)),
-    });
-  }
-  return st.fresh;
-}
-
-/** 칸 머리: "답 준비됨 · 7" / "준비 중 · 13" */
-function SectionHead({ label, count }: { label: string; count: number }) {
-  return (
-    <li
-      aria-hidden
-      className="flex items-center gap-1.5 px-2.5 pb-1 pt-2.5 text-[11px] font-medium text-neutral-400"
-    >
-      {label}
-      <span className="tabular-nums">· {count.toLocaleString()}</span>
-    </li>
-  );
+/** 미리 쓰는 20개 중 몇 개가 준비됐나 — 줄마다 글자를 바꾸는 대신 여기 한 줄로 (10-02) */
+export interface PrepProgress {
+  ready: number;
+  total: number;
 }
 
 export function ThreadsQueue({
   items,
-  readyCount,
+  progress,
+  onMakeBatch,
   filter,
   onFilter,
   selectedId,
@@ -160,8 +104,10 @@ export function ThreadsQueue({
   waitingIds = [],
 }: {
   items: ThreadsReply[];
-  /** items 앞에서 몇 개가 "답 준비됨" 칸인가 (나머지는 "준비 중") — 없으면 칸을 나누지 않는다 */
-  readyCount?: number;
+  /** 미리 쓰기 진행 — "답 준비 12/20" (오래된 순: 오래된 20개 · 최근 순: [답 20개 만들기]로 맡긴 묶음) */
+  progress?: PrepProgress;
+  /** 최근 순일 때만: 아직 답이 없는 위쪽 20개를 손으로 맡긴다 (10-02 henry "최근 순은 자동으로 안 쓰고 버튼으로 20개씩") */
+  onMakeBatch?: () => void;
   filter: QueueFilter;
   onFilter: (f: QueueFilter) => void;
   selectedId: string | null;
@@ -171,7 +117,6 @@ export function ThreadsQueue({
   writingIds?: string[];
   waitingIds?: string[];
 }) {
-  const fresh = useFreshReady(items, selectedId);
   return (
     <section
       aria-label="답할 댓글"
@@ -179,43 +124,38 @@ export function ThreadsQueue({
     >
       <div className="flex items-center gap-2 px-1.5 pb-1.5 pt-1">
         <FilterMenu filter={filter} onFilter={onFilter} />
+        {onMakeBatch ? (
+          <button
+            type="button"
+            onClick={onMakeBatch}
+            className={cn("inline-flex h-8 items-center gap-1 rounded-lg px-2.5 text-[12px] font-medium text-emerald-700 ring-1 ring-neutral-950/5 hover:bg-emerald-50", press)}
+          >
+            <SparklesIcon className="size-3.5" aria-hidden />
+            답 20개 만들기
+          </button>
+        ) : null}
         <span className="ml-auto text-[11.5px] tabular-nums text-neutral-400">
+          {/* 10-02 henry: 오래된 순 20개는 알아서 준비되니 진행 숫자는 안 보인다 — [답 20개 만들기]로 맡긴 묶음만 */}
+          {progress && progress.total && onMakeBatch ? (
+            <span className={progress.ready < progress.total ? "text-emerald-700" : undefined}>
+              답 준비 {progress.ready}/{progress.total} ·{" "}
+            </span>
+          ) : null}
           {items.length.toLocaleString()}개
         </span>
       </div>
       {items.length ? (
         <ol className="space-y-0.5">
-          {items.map((reply, i) => (
-            <Fragment key={reply.id}>
-              {readyCount !== undefined && i === 0 && readyCount > 0 ? (
-                <SectionHead label="답 준비됨" count={readyCount} />
-              ) : null}
-              {readyCount !== undefined && i === readyCount ? (
-                <SectionHead
-                  label="준비 중"
-                  count={items.length - readyCount}
-                />
-              ) : null}
-              <li>
-                <UrgentRow
-                  item={{
-                    reply,
-                    reasons: reply.intent === "question" ? ["질문"] : [],
-                  }}
-                  selected={reply.id === selectedId}
-                  onSelect={onSelect}
-                  gate={gate}
-                  phase={
-                    writingIds.includes(reply.id)
-                      ? "writing"
-                      : waitingIds.includes(reply.id)
-                        ? "waiting"
-                        : undefined
-                  }
-                  fresh={fresh.has(reply.id)}
-                />
-              </li>
-            </Fragment>
+          {items.map((reply) => (
+            <li key={reply.id}>
+              <UrgentRow
+                item={{ reply, reasons: reply.intent === "question" ? ["질문"] : [] }}
+                selected={reply.id === selectedId}
+                onSelect={onSelect}
+                gate={gate}
+                phase={writingIds.includes(reply.id) ? "writing" : waitingIds.includes(reply.id) ? "waiting" : undefined}
+              />
+            </li>
           ))}
         </ol>
       ) : (

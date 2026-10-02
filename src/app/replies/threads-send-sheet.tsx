@@ -1,7 +1,7 @@
 "use client";
 
 // 확인 시트 (시안 픽 14 sd-sheet). [보내기]를 누르면 스레드 모양 최종 미리보기 · 관문 결과 · 첨부를 보고 확정한다.
-//  · api 계정(AICC): [보내기] → 시트가 닫히고 5초 되돌리기 띠 → 시간이 다 되면 그때 서버가 보낸다.
+//  · api 계정(AICC): [보내기] → 시트가 닫히고 서버가 바로 보낸다 (10-02 되돌리기 띠 뺌).
 //  · copy 계정(박약사): [복사하고 스레드 열기] → 서버가 관문을 다시 돌고 보낼 글을 돌려준다(올리지 않음)
 //    → 클립보드에 넣고 원글을 연다 → 스레드에서 단 뒤 [달았어요]로 기록한다 (PATCH markedAnswered).
 
@@ -183,7 +183,7 @@ export function SendSheet({
   image: string | null;
   gate: GateResult;
   permalink?: string;
-  /** api 계정: 확정 → 5초 되돌리기 시작 */
+  /** api 계정: 확정 → 바로 보내기 */
   onConfirmApi: () => void;
   /** copy 계정: [달았어요] 기록 끝 */
   onMarked: (reply: ThreadsReply) => void;
@@ -198,7 +198,7 @@ export function SendSheet({
       <DialogContent size="lg" aria-describedby={undefined}>
         <DialogTitle>{copyMode ? "복사해서 스레드에 달아요" : "이대로 보낼까요"}</DialogTitle>
         <DialogDescription className="mt-1">
-          {copyMode ? `@${persona.handle} 은 직접 보내지 않아요. 복사한 글을 스레드에 붙여 달아 주세요.` : "보낸 뒤 5초 안에 되돌릴 수 있어요."}
+          {copyMode ? `@${persona.handle} 은 직접 보내지 않아요. 복사한 글을 스레드에 붙여 달아 주세요.` : "누르면 바로 스레드에 올라가요."}
         </DialogDescription>
         <div className="mt-4 space-y-2.5">
           <Preview persona={persona} to={to} message={message} image={image} gate={gate} />

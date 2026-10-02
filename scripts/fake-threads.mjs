@@ -21,7 +21,10 @@ const conversations = {
     { id: "c2", text: "요약 길이는 어디서 바꾸나요?", username: "lee", timestamp: iso(400), replied_to: { id: "p1" } },
     { id: "c3", text: "ㅋㅋㅋ 회의록 공감돼요", username: "park", timestamp: iso(300), replied_to: { id: "p1" } },
   ],
-  p2: [{ id: "c4", text: "저도 해볼게요!", username: "choi", timestamp: iso(2000), replied_to: { id: "p2" } }],
+  p2: [
+    { id: "c4", text: "저도 해볼게요!", username: "choi", timestamp: iso(2000), replied_to: { id: "p2" } },
+    { id: "c5", text: "이건 바로 보내 주세요", username: "jung", timestamp: iso(1500), replied_to: { id: "p2" } },
+  ],
 };
 // 말투 만들기가 읽는 내 지난 답글 (짝이 되는 원댓글은 parents)
 const parents = {};

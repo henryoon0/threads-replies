@@ -1,7 +1,7 @@
 "use client";
 
 // 5개 한꺼번에 (박약사 운영자 09-29): 지금 답할 5개를 위아래로 쌓고, 댓글마다 완성된 답 칸 · [새로 쓰기] · [OK].
-// OK 는 하나씩 화면과 같은 확인 시트를 연다 — api 계정은 5초 되돌리기 뒤 발송, copy 계정은 복사하고 [달았어요]로 기록.
+// OK 는 하나씩 화면과 같은 확인 시트를 연다 — api 계정은 바로 발송, copy 계정은 복사하고 [달았어요]로 기록.
 // 고친 글은 칸을 떠날 때 원장에 저장한다.
 
 import { notesOnly } from "@/lib/threads-replies/editor-paint";
@@ -10,7 +10,7 @@ import { ArrowPathIcon, CheckIcon } from "@heroicons/react/16/solid";
 import type { ReplyAnswer, ThreadsReply } from "@/lib/threads-replies/model";
 import { cn } from "@/lib/utils";
 import { press } from "./threads-answer-verdict";
-import { UndoBar, useUndoSend, type PendingSend } from "./threads-answer-send";
+import { useUndoSend, type PendingSend } from "./threads-answer-send";
 import { GateEditor, gateLine, type GateChecker } from "./threads-gate";
 import { announceReceipt } from "./threads-receipt";
 import { SendSheet, type SheetPersona } from "./threads-send-sheet";
@@ -164,7 +164,7 @@ export function ThreadsBatch({
   return (
     <>
       <p className="px-1 pb-2 text-[11.5px] text-neutral-500">
-        지금 답할 {items.length}개 · {persona.send === "copy" ? "OK 를 누르면 복사하고 스레드에서 단 뒤 기록해요" : "OK 를 누르면 확인하고 5초 뒤 보내요"}
+        지금 답할 {items.length}개 · {persona.send === "copy" ? "OK 를 누르면 복사하고 스레드에서 단 뒤 기록해요" : "OK 를 누르면 확인하고 바로 보내요"}
       </p>
       <ol className="space-y-3">
         {items.map((it, i) => (
@@ -192,7 +192,6 @@ export function ThreadsBatch({
           }}
         />
       ) : null}
-      <UndoBar pending={sender.pending} paused={sender.paused} sending={sender.sending} onPause={sender.setPaused} onUndo={sender.undo} />
     </>
   );
 }

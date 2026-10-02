@@ -3,7 +3,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { clearDraftSlots } from "./use-compose";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
-import { QueuedUndoBar } from "./threads-answer-send";
 import { ThreadsAnswerPanel } from "./threads-answer-panel";
 import type { GateChecker } from "./threads-gate";
 import { checkGate, applyGateMode, type GateRules } from "@/lib/personas/gate";
@@ -110,20 +109,14 @@ const gateOf = (mode: "light" | "strict"): GateChecker => ({ mode, check: (t) =>
 const COPY = { id: "glp1", name: "박약사", handle: "glp1.pharmacy", send: "copy" as const };
 
 async function mount(onNext = vi.fn(), props: Partial<React.ComponentProps<typeof ThreadsAnswerPanel>> = {}) {
-  // 되돌리기 띠는 패널 밖(목록 화면)에 하나 — 다음 댓글로 넘어가도 남는다 (10-02)
-  render(
-    <>
-      <ThreadsAnswerPanel replyId="c1" onChanged={vi.fn()} onNext={onNext} gate={gateOf("light")} {...props} />
-      <QueuedUndoBar />
-    </>
-  );
+  render(<ThreadsAnswerPanel replyId="c1" onChanged={vi.fn()} onNext={onNext} gate={gateOf("light")} {...props} />);
   await flush();
   return onNext;
 }
 
 const editor = () => screen.getByRole("textbox", { name: "완성된 답" }) as HTMLTextAreaElement;
 
-/** [보내기] 한 번 — 바로 보내는 계정은 확인 시트 없이 5초 되돌리기로 간다 (10-02) */
+/** [보내기] 한 번 — 바로 보내는 계정은 확인 시트 없이 바로 보낸다 (10-02) */
 async function confirmSend() {
   fireEvent.click(screen.getByRole("button", { name: /^보내기/ }));
   await flush();
@@ -381,34 +374,33 @@ describe("ThreadsAnswerPanel", () => {
     expect(patch.at(-1)).toEqual({ replyId: "c1", draft: "처방한 의사쌤께 물어봐해요" });
   });
 
-  it("바로 보내는 계정은 [보내기] 한 번에 확인 창 없이 5초 되돌리기 띠로 간다 — 답 칸이 이미 스레드 모양 미리보기다 (10-02)", async () => {
+  it("댓글 카드의 [원문]·이름은 내 글이 아니라 그 댓글 자체로 간다 — 댓글 주소가 없으면 링크를 달지 않는다 (10-02 henry)", async () => {
+    const permalink = "https://www.threads.com/@kim/post/Cmt1";
+    extra = (url, init) => (url.endsWith("/api/threads-replies/c1") && !init?.method ? json({ reply: { ...question, permalink }, post: { id: "p1", text: "내 글", permalink: "https://www.threads.com/@me/post/P1", timestamp: "" }, conversation: [], drafting: false }) : undefined);
     await mount();
-    fireEvent.click(screen.getByRole("button", { name: /^보내기/ }));
-    await flush();
+    expect(screen.getByRole("link", { name: "스레드에서 이 댓글 열기" }).getAttribute("href")).toBe(permalink);
+    expect(screen.getByRole("link", { name: "kim" }).getAttribute("href")).toBe(permalink);
+    cleanup();
+    extra = () => undefined;
+    await mount();
+    expect(screen.queryByRole("link", { name: "스레드에서 이 댓글 열기" })).toBeNull();
+  });
+
+  it("바로 보내는 계정은 [보내기] 한 번에 확인 창·되돌리기 띠 없이 바로 보낸다 (10-02 henry '로딩 없이 바로')", async () => {
+    await mount();
+    await confirmSend();
     expect(screen.queryByRole("dialog")).toBeNull();
     expect(callsTo("/send", "POST")).toHaveLength(1);
-    expect(screen.getByRole("button", { name: "되돌리기" })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "되돌리기" })).toBeNull();
+    expect(screen.queryByText(/5초/)).toBeNull();
   });
 
-  it("보낸 뒤 5초 안에 [되돌리기]를 누르면 서버 대기열에서 빼고 보내지 않는다", async () => {
-    const onNext = await mount();
-    await confirmSend();
-    expect(callsTo("/send", "POST")).toHaveLength(1);
-    await flush(2000);
-    fireEvent.click(screen.getByRole("button", { name: "되돌리기" }));
-    await flush(6000);
-    expect(callsTo("/send", "DELETE")).toHaveLength(1);
-    expect(queued?.cancelled).toBe(true);
-  });
-
-  it("[보내기]를 누르면 서버 대기열에 맡기고 바로 다음 댓글로 넘어간다 — 5초를 기다리지 않는다 (10-02 henry '빨리 빨리')", async () => {
+  it("[보내기]를 누르면 서버 대기열에 맡기고(기다림 없음) 바로 다음 댓글로 넘어간다 (10-02 henry '빨리 빨리')", async () => {
     const onNext = await mount();
     await confirmSend();
     const [, init] = callsTo("/send", "POST")[0];
-    expect(JSON.parse(String((init as RequestInit).body))).toEqual({ message: question.answer!.draft, delayMs: 5000 });
+    expect(JSON.parse(String((init as RequestInit).body))).toEqual({ message: question.answer!.draft, delayMs: 1 });
     expect(onNext).toHaveBeenCalledTimes(1);
-    // 되돌리기 띠는 남아 있다
-    expect(screen.getByRole("button", { name: "되돌리기" })).toBeTruthy();
     await flush(6100);
     expect(onNext).toHaveBeenCalledTimes(1);
   });

@@ -3,9 +3,10 @@
 // 답할 댓글 목록의 한 줄 (시안 픽 7 ib-briefing 의 줄 모양). 10-02 픽으로 "지금 답할 5개 + 나머지" 덩어리는
 // 한 줄 목록(threads-queue.tsx)이 됐고, 줄 모양만 여기 남았다. 초안 글 대신 준비 상태(답 준비됨·확인 필요·쓰는 중)만 보인다.
 
+import { memo } from "react";
 import { CheckIcon, ClockIcon, EllipsisHorizontalIcon, ExclamationTriangleIcon } from "@heroicons/react/16/solid";
-import { BorderBeam } from "@/components/border-beam";
 import { cn } from "@/lib/utils";
+import { usableDraft } from "@/lib/threads-replies/usable-draft";
 import { relativeTime } from "./comments-shared";
 import type { GateChecker } from "./threads-gate";
 import type { UrgentItem } from "./threads-view";
@@ -26,13 +27,12 @@ function draftStateOf(draft: string, gate: GateChecker, phase: DraftPhase | unde
 }
 
 
-export function UrgentRow({
+function UrgentRowView({
   item,
   selected,
   onSelect,
   gate,
   phase,
-  fresh = false,
 }: {
   item: UrgentItem;
   selected: boolean;
@@ -40,11 +40,9 @@ export function UrgentRow({
   gate: GateChecker;
   /** 미리 쓰기 줄에서의 자리 (없으면 글이 있나로 판단) */
   phase?: DraftPhase;
-  /** 보고 있는 사이 답이 막 생겼고 아직 안 열어 봄 → "새 답" (10-02 henry "생성됐다는 티") */
-  fresh?: boolean;
 }) {
   const { reply } = item;
-  const state = draftStateOf(reply.answer?.draft ?? "", gate, phase);
+  const state = draftStateOf(usableDraft(reply.answer), gate, phase);
   return (
     // 10-02 픽 r-trim "덜어내기": 번호·'답 준비됨'·'전' 을 뺀다. 준비 안 된 것만 글자로 (10-02 henry: 질문 점도 뺌)
     <button
@@ -52,48 +50,45 @@ export function UrgentRow({
       data-reply-id={reply.id}
       aria-current={selected ? "true" : undefined}
       onClick={() => onSelect(reply.id)}
-      className={rowClass(selected, fresh)}
+      className={rowClass(selected)}
     >
-      {/* 지금 AI 가 이 댓글 답을 쓰는 중 — 박스 테두리를 도는 빛 (10-02 henry "어떤 댓글에서 쓰는 중인지 박스에서") */}
-      {state === "writing" ? <BorderBeam radius={10} duration={3} /> : null}
       <span className="flex min-w-0 items-center gap-1.5 text-[11.5px]">
         <ReadyDot state={state} />
         <span className="truncate font-medium text-neutral-800">@{reply.username}</span>
-        <FreshChip show={fresh && !selected} />
         <span className="ml-auto" />
         <StateNote state={state} />
         <span className="shrink-0 tabular-nums text-neutral-400">{shortAgo(reply.timestamp)}</span>
       </span>
-      {/* line-clamp 는 display:-webkit-box 라 block 을 같이 쓰면 잘리지 않는다 (10-02 7줄까지 다 보이던 원인). 전문은 풍선 글·답 칸에 */}
+      {/* 10-02 henry: 답 내용은 목록에 안 보인다 (답 칸에서 본다). line-clamp 는 display:-webkit-box 라 block 을 같이 쓰면 잘리지 않는다 */}
       <span title={reply.text} className="mt-0.5 line-clamp-2 break-keep text-[12.5px] leading-[1.45] text-neutral-700 [overflow-wrap:anywhere]">{reply.text}</span>
     </button>
   );
 }
 
-function rowClass(selected: boolean, fresh: boolean): string {
-  const tone = selected ? "bg-emerald-50" : fresh ? "bg-white ring-1 ring-emerald-300 hover:bg-emerald-50/50" : "hover:bg-neutral-950/[0.03]";
+// 10-02 henry: "새 답" 표시·테두리는 뺐다 (왜 있는지 모르겠다)
+function rowClass(selected: boolean): string {
+  const tone = selected ? "bg-emerald-50" : "hover:bg-neutral-950/[0.03]";
   return cn("relative w-full rounded-[10px] px-2.5 py-2 text-left transition-[background-color,scale,box-shadow] duration-150 active:scale-[0.99]", tone);
 }
 
-/** 답이 준비된 댓글은 이름 앞 초록 점 — 눌러 볼 수 있다는 표시 (확인 필요는 주황) */
+/**
+ * 이름 앞 점 하나로 상태를 말한다 (10-02 henry: 테두리 빛 애니메이션은 렉이 걸려 뺐다).
+ * 답 준비됨 = 초록 점 · 쓰는 중 = 초록 점이 깜빡임 · 확인 필요 = 주황 점. 차례 기다림·준비 전은 점 없음.
+ * 점 자리는 늘 잡아 둬서 상태가 바뀌어도 이름이 밀리지 않는다.
+ */
 function ReadyDot({ state }: { state: DraftState }) {
-  if (state !== "ready" && state !== "check") return null;
-  return <span aria-hidden className={cn("size-1.5 shrink-0 rounded-full", state === "ready" ? "bg-emerald-500" : "bg-amber-500")} />;
+  const tone = state === "ready" || state === "writing" ? "bg-emerald-500" : state === "check" ? "bg-amber-500" : "bg-transparent";
+  return <span aria-hidden className={cn("size-1.5 shrink-0 rounded-full", tone, state === "writing" && "animate-pulse")} />;
 }
 
-/** 보고 있는 사이 막 생긴 답 — 열어 볼 때까지 */
-function FreshChip({ show }: { show: boolean }) {
-  return show ? <span className="shrink-0 rounded-full bg-emerald-700 px-1.5 py-px text-[10px] font-medium text-white">새 답</span> : null;
-}
-
-/** 준비됨은 기본이라 말하지 않는다 — 쓰는 중·차례 기다림·확인 필요만 */
+/** 글자는 "확인 필요"만 — 나머지는 점이 말한다 (화면이 덜 바뀌게, 10-02) */
 function StateNote({ state }: { state: DraftState }) {
-  if (state === "ready") return <span className="sr-only">{STATE_LABEL.ready}</span>;
-  const Icon = STATE_ICON[state];
+  if (state !== "check") return <span className="sr-only">{STATE_LABEL[state]}</span>;
+  const Icon = STATE_ICON.check;
   return (
-    <span className={cn("inline-flex shrink-0 items-center gap-0.5", STATE_TONE[state])}>
-      {Icon ? <Icon className={cn("size-3", state === "writing" && "animate-pulse")} aria-hidden /> : null}
-      {STATE_LABEL[state]}
+    <span className={cn("inline-flex shrink-0 items-center gap-0.5", STATE_TONE.check)}>
+      <Icon className="size-3" aria-hidden />
+      {STATE_LABEL.check}
     </span>
   );
 }
@@ -102,3 +97,23 @@ function StateNote({ state }: { state: DraftState }) {
 function shortAgo(iso: string): string {
   return relativeTime(iso).replace(/\s*전$/, "");
 }
+
+/**
+ * 줄은 바뀐 것만 다시 그린다 (10-02 henry "렉"): 미리 쓰는 동안 3초마다 목록 전체(800여 줄)를 새로 받는데,
+ * 받은 객체는 매번 새것이라 내용으로 비교한다.
+ */
+export const UrgentRow = memo(UrgentRowView, (a, b) => {
+  const x = a.item.reply;
+  const y = b.item.reply;
+  return (
+    x.id === y.id &&
+    x.text === y.text &&
+    x.username === y.username &&
+    x.timestamp === y.timestamp &&
+    usableDraft(x.answer) === usableDraft(y.answer) &&
+    a.selected === b.selected &&
+    a.phase === b.phase &&
+    a.gate === b.gate &&
+    a.onSelect === b.onSelect
+  );
+});

@@ -115,15 +115,10 @@ function failureFor(sender: Sender, replyId: string) {
   return sender.failure?.replyId === replyId ? sender.failure : null;
 }
 
-/** 초안이 없고 쓰는 중도 아니면 [초안 만들기]를 띄운다 */
-function canMakeDraft(reply: ThreadsReply, a: AnswerState): boolean {
-  return !reply.answer && !a.drafting && !a.regenerating;
-}
-
 /** 답 칸 스레드 모양에 들어갈 상대 댓글과 내 계정 */
 function threadSideOf(reply: ThreadsReply, persona: SheetPersona): ThreadSide {
   return {
-    them: { username: reply.username, when: ago(reply.timestamp), text: reply.text },
+    them: { username: reply.username, when: ago(reply.timestamp), text: reply.text, href: reply.permalink },
     me: { handle: persona.handle, mark: MARKS[persona.id] ?? persona.name.slice(0, 1) },
   };
 }
@@ -290,7 +285,7 @@ function useSendFlow({
   const result = noteOnly(a.draft, gate);
   const hasBody = Boolean(a.draft.trim()) || Boolean(attach.image.dataUrl);
   const canSend = hasBody && !a.regenerating && result.status !== "block";
-  // 바로 보내는 계정은 확인 창을 건너뛴다 — 답 칸이 이미 스레드 모양 미리보기고, 5초 되돌리기가 안전망이다 (10-02 henry "바로바로")
+  // 바로 보내는 계정은 확인 창을 건너뛴다 — 답 칸이 이미 스레드 모양 미리보기고(10-02 henry "바로바로")
   const openSheet = () => {
     if (!canSend || sender.pending) return;
     a.flushDraft();
@@ -413,7 +408,6 @@ function OpenReply({
   useAutoShots(reply.id, used, ev.request);
   const flow = useSendFlow({ view, a, sender, ev, gate, direct: persona.send === "api" });
   const failure = failureFor(sender, reply.id);
-  const canMake = canMakeDraft(reply, a);
   const compose = useCompose(
     reply.id,
     a.draft,
@@ -441,7 +435,8 @@ function OpenReply({
             attachment={flow.attach.row}
             toolbar={<ComposeSlot a={a} compose={compose} />}
             onImage={flow.waiting ? null : flow.attach.image.pick}
-            onMakeDraft={canMake ? () => void a.regenerate() : null}
+            // [초안 만들기]는 옛 3벌 잡을 불렀다 — 그 글은 이제 쓰지 않는다(usable-draft). 버전 버튼·[새로 쓰기]가 대신한다 (10-02)
+            onMakeDraft={null}
             onSkip={() => onSkip(true)}
             onSend={flow.openSheet}
             thread={{
@@ -449,6 +444,8 @@ function OpenReply({
                 username: reply.username,
                 when: ago(reply.timestamp),
                 text: reply.text,
+                // 이 댓글 자체의 주소만 (10-02 henry: 내 글이 아니라 그 댓글로). 없으면 링크를 안 단다
+                href: reply.permalink,
               },
               me: {
                 handle: persona.handle,
@@ -542,7 +539,7 @@ export function ThreadsAnswerPanel({
     },
     [replaceReply, onChanged],
   );
-  /** [보내기]로 서버 대기열에 맡기면 5초를 기다리지 않고 바로 다음 댓글로 (10-02 henry "빨리 빨리") */
+  /** [보내기]로 서버 대기열에 맡기면 기다리지 않고 바로 다음 댓글로 (10-02 henry "빨리 빨리") */
   const onQueued = useCallback(() => {
     if (shown.current === replyId) onNext();
   }, [replyId, onNext]);
@@ -565,7 +562,7 @@ export function ThreadsAnswerPanel({
     }
   };
 
-  // 5초 되돌리기 띠는 목록 화면의 QueuedUndoBar 하나가 그린다 — 다음 댓글로 넘어가도 남게 (10-02)
+  // 보내기 결과 알림은 목록 화면의 use-send-notices 가 한다 — 다음 댓글로 넘어가도 (10-02)
   const bar = null;
 
   const view = a.view;

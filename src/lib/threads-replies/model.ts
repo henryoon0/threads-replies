@@ -24,6 +24,12 @@ export interface ThreadsReply {
   timestamp: string;
   /** 이 댓글 자체의 스레드 주소 (수집 때 댓글 코드를 받았을 때만) */
   permalink?: string;
+  /**
+   * 동기화가 대화 트리로 정한 "이미 끝난 댓글" (10-02). 없으면 답할 차례일 수 있다.
+   *  - answered:  이 댓글 바로 아래는 아니어도 그 아래 대화 어딘가에 내 답이 있다
+   *  - continued: 아래에 내 답은 없지만 대화가 이어졌다 — 답할 차례는 대화 끝의 댓글로 넘어갔다 (이 댓글은 그 댓글의 앞 맥락)
+   */
+  settled?: "answered" | "continued";
   /** 무엇에 단 답인지. postId 와 같으면 원글에 단 댓글, 아니면 대화 줄기 속 답. */
   repliedToId: string;
   /** repliedToId 가 내 답글일 때 그 본문 (대화 줄기 그리기용) */
@@ -224,7 +230,10 @@ export function createRepliesLedger(): ThreadsRepliesLedger {
   return { posts: [], replies: [], sync: {} };
 }
 
-/** 아직 답할 차례인 댓글 (내 답 없음 · 건너뛰지 않음). */
+/**
+ * 아직 답할 차례인 댓글 (10-02 henry "내가 답한 게 대기에 있으면 안 된다"):
+ * 상대가 남기고 대화가 끝난 자리만 — 내 답 없음 · 건너뛰지 않음 · 이 댓글 아래에 이어진 말(settled)이 없음.
+ */
 export function isPending(r: ThreadsReply): boolean {
-  return !r.myReply && !r.skipped;
+  return !r.myReply && !r.skipped && !r.settled;
 }

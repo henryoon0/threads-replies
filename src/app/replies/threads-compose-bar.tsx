@@ -30,14 +30,14 @@ function VersionButton({ preset, on, ready, loading, disabled, onClick }: { pres
       disabled={disabled}
       title={versionTitle(preset, ready)}
       onClick={onClick}
-      // 아이콘을 넣다 빼면 버튼 폭이 바뀌어 옆 버튼이 밀린다 — 고른 건 색, 쓰는 중은 글자 깜빡임으로만 (2026-10-02)
+      // 아이콘을 넣다 빼면 버튼 폭이 바뀌어 옆 버튼이 밀린다 — 고른 건 색, 쓰는 중은 모서리의 깜빡이는 점으로만 (10-02 henry: 버튼 전체 깜빡임 대신 점)
       className={cn(
-        "inline-flex h-8 items-center gap-1 rounded-full px-3 text-[12.5px] font-medium transition-colors duration-150 disabled:opacity-50",
+        "relative inline-flex h-8 items-center gap-1 rounded-full px-3 text-[12.5px] font-medium transition-colors duration-150 disabled:opacity-50",
         versionTone(on, ready),
-        loading && "animate-pulse",
         press
       )}
     >
+      {loading ? <span aria-hidden className="absolute right-1 top-1 size-1.5 animate-pulse rounded-full bg-emerald-500" /> : null}
       {preset.name}
       {preset.recommended ? <span className={cn("ml-0.5 text-[10.5px] font-normal", on ? "text-white/75" : "text-emerald-700")}>추천</span> : null}
     </button>
