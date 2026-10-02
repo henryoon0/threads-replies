@@ -6,6 +6,9 @@
 import { randomUUID } from "crypto";
 import { registerSweepAdapter, type ActiveJobRef, type ListResumeSweepAdapter } from "@/lib/jobs/sweep";
 import { currentPersona } from "@/lib/personas/context";
+import { frontLoad, nextAnswerId } from "./answer-order";
+import { autoDraftPolicy } from "./auto-draft-policy";
+import { mergeLateConsistency } from "./late-consistency";
 import { withConsistency } from "./consistency";
 import { generateAnswer } from "./draft";
 import { pastSaidFor } from "./past-said";
@@ -134,8 +137,8 @@ async function draftOne(
       },
       { signal: controller.signal, resumeSessionId }
     );
-    // 예전 답과 어긋나는 문장 칠하기 (글은 바꾸지 않는다)
-    const answer = await withConsistency(pastSaid.length ? { ...drafted, pastSaid } : drafted, persona.ownerName);
+    // 예전 답과 어긋나는 문장 칠하기는 저장한 뒤 따로 붙인다(attachConsistencyLater) — 초안이 16초를 기다리지 않게 (10-02)
+    const answer = pastSaid.length ? { ...drafted, pastSaid } : drafted;
     return { answer, trace };
   })();
   return withDeadline(work, controller, envMs("THREADS_ANSWER_TIMEOUT_MS", DEFAULT_ANSWER_TIMEOUT_MS));
@@ -152,6 +155,27 @@ async function saveAnswer(replyId: string, answer: ReplyAnswer): Promise<void> {
   }));
 }
 
+/** 저장한 초안에 예전 답 대조를 나중에 붙인다. 그사이 초안이 바뀌었으면 붙이지 않는다. 실패해도 조용히. */
+async function attachConsistencyLater(replyId: string, answer: ReplyAnswer): Promise<void> {
+  if (!answer.pastSaid?.length) return;
+  try {
+    const checked = await withConsistency(answer, currentPersona().ownerName);
+    await updateRepliesLedger((l) => ({
+      ...l,
+      replies: l.replies.map((r) => (r.id === replyId ? { ...r, answer: mergeLateConsistency(r.answer, checked) } : r)),
+    }));
+  } catch {
+    // 칠하기가 없을 뿐 — 초안은 이미 저장됐다
+  }
+}
+
+/** 초안 저장 + 대조는 뒤에서 */
+async function saveDraft(replyId: string, answer: ReplyAnswer): Promise<void> {
+  await saveAnswer(replyId, answer);
+  // 예전 답 대조는 보여 주는 화면이 없어 자동으로 돌리지 않는다 (10-02 비용 3)
+  if (autoDraftPolicy(currentPersona()).autoConsistency) void attachConsistencyLater(replyId, answer);
+}
+
 function isActiveJob(job: AnswerJob | null, jobId: string): job is AnswerJob {
   return !!job && job.id === jobId && job.status === "running";
 }
@@ -162,18 +186,15 @@ function alreadyHandled(job: AnswerJob, replyId: string): boolean {
 
 async function draftAndSave(jobId: string, ledger: ThreadsRepliesLedger, reply: ThreadsReply): Promise<void> {
   const replyId = reply.id;
-  await patchJob(jobId, (j) => ({ ...j, current: replyId }));
+  await patchJob(jobId, (j) => ({ ...j, current: replyId, working: [...(j.working ?? []).filter((x) => x !== replyId), replyId] }));
+  const off = (j: AnswerJob) => ({ working: (j.working ?? []).filter((x) => x !== replyId), current: j.current === replyId ? undefined : j.current });
   try {
     const { answer } = await draftOne(ledger, reply);
-    await saveAnswer(replyId, answer);
-    await patchJob(jobId, (j) => ({ ...j, current: undefined, done: [...j.done, replyId] }));
+    await saveDraft(replyId, answer);
+    await patchJob(jobId, (j) => ({ ...j, ...off(j), done: [...j.done, replyId] }));
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    await patchJob(jobId, (j) => ({
-      ...j,
-      current: undefined,
-      failed: [...j.failed, { replyId, error: message.slice(0, 300) }],
-    }));
+    await patchJob(jobId, (j) => ({ ...j, ...off(j), failed: [...j.failed, { replyId, error: message.slice(0, 300) }] }));
   }
 }
 
@@ -193,6 +214,31 @@ async function stepJob(jobId: string, replyId: string): Promise<boolean> {
   return true;
 }
 
+/** 동시에 쓸 초안 수. 전역 CLI 캡(기본 5)보다 작게 — 버전 미리 쓰기·비슷한 글 몫을 남긴다 */
+function answerParallel(): number {
+  const n = Number(process.env.THREADS_ANSWER_PARALLEL);
+  return Number.isFinite(n) && n > 0 ? Math.min(Math.floor(n), 5) : 3;
+}
+
+/**
+ * 일꾼 하나: 한 건 끝날 때마다 잡 파일을 다시 읽어 다음 차례를 고른다 —
+ * 그 사이 화면이 앞으로 당긴 댓글(bumpAnswers)이 먼저 오고, 다른 일꾼이 쥔 댓글(claimed)은 건너뛴다.
+ */
+async function worker(jobId: string, claimed: Set<string>): Promise<"done" | "stopped"> {
+  for (;;) {
+    const job = await readAnswerJob();
+    if (!isActiveJob(job, jobId)) return "stopped";
+    const replyId = nextAnswerId(job, claimed);
+    if (!replyId) return "done";
+    claimed.add(replyId);
+    try {
+      if (!(await stepJob(jobId, replyId))) return "stopped";
+    } finally {
+      claimed.delete(replyId);
+    }
+  }
+}
+
 /** 잡 실행 — 멱등, 절대 reject 하지 않는다. sweep·GET 이 언제든 다시 불러도 안전. */
 export async function runAnswerJob(jobId: string): Promise<void> {
   const running = runningSet();
@@ -200,11 +246,12 @@ export async function runAnswerJob(jobId: string): Promise<void> {
   running.add(jobId);
   const heartbeat = setInterval(() => void patchJob(jobId, (j) => j).catch(() => {}), HEARTBEAT_MS);
   try {
-    const job = await readAnswerJob();
-    if (!isActiveJob(job, jobId)) return;
-    for (const replyId of job.replyIds) {
-      if (!(await stepJob(jobId, replyId))) return; // 중지됨
-    }
+    // 일꾼 여럿이 같은 줄에서 하나씩 가져간다 (10-02: 한 번에 하나라 "차례 기다림"이 길었다)
+    // 재시작으로 끊긴 일꾼이 남긴 "쓰는 중" 표시는 지운다 — 다시 쓰면 다시 붙는다
+    await patchJob(jobId, (j) => ({ ...j, working: [], current: undefined }));
+    const claimed = new Set<string>();
+    const results = await Promise.all(Array.from({ length: answerParallel() }, () => worker(jobId, claimed)));
+    if (results.includes("stopped")) return;
     await patchJob(jobId, (j) => (j.status === "running" ? { ...j, status: "done" } : j));
   } catch {
     // settle — 잡 파일 접근 자체가 실패. 다음 sweep 이 재시도한다.
@@ -244,6 +291,26 @@ export async function ensureAnswers(scope: AnswerScope = "all", opts: { limit?: 
   return job;
 }
 
+/**
+ * 화면이 지금 볼 댓글(고른 댓글부터 다음 몇 개)의 초안을 먼저 쓰게 한다 (10-02).
+ * 도는 잡이 있으면 그 줄 맨 앞으로 당기고, 없으면 초안 없는 것만 모아 새 잡을 연다.
+ */
+export async function bumpAnswers(ids: readonly string[]): Promise<void> {
+  const ledger = await readRepliesLedger();
+  const needs = ids.filter((id) => {
+    const r = ledger.replies.find((x) => x.id === id);
+    return r && isPending(r) && !r.answer;
+  });
+  if (!needs.length) return;
+  const job = await readAnswerJob();
+  if (job?.status === "running") {
+    await patchJob(job.id, (j) => frontLoad(j, needs));
+    void runAnswerJob(job.id);
+    return;
+  }
+  await ensureAnswers({ replyIds: needs });
+}
+
 /** 도는 잡을 멈춘다 (지금 처리 중인 1건은 끝까지 가고 저장된다). */
 export async function stopAnswerJob(): Promise<AnswerJob | null> {
   const job = await readAnswerJob();
@@ -263,7 +330,7 @@ export async function regenerateAnswer(
   const reply = ledger.replies.find((r) => r.id === replyId);
   if (!reply) return null;
   const result = await draftOne(ledger, reply, opts, reply.answer?.sessionId);
-  await saveAnswer(replyId, result.answer);
+  await saveDraft(replyId, result.answer);
   return result;
 }
 

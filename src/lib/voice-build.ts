@@ -14,6 +14,9 @@ import { graphFetch, THREADS_GRAPH_BASE, resolveAccessToken } from "@/lib/thread
 import { runClaudeCLI } from "@/lib/ai/claude-cli";
 import { readProfile, ownerLine } from "@/lib/profile";
 import { styleBookPath, threadsRepliesDataDir, toVoiceExamples, SITUATION_LABEL, type ReplySituation } from "@/lib/threads-replies/voice";
+import { access } from "node:fs/promises";
+import { packRulebookPath } from "@/lib/personas/registry";
+import { DEFAULT_PERSONA_ID } from "@/lib/personas/model";
 import { measureVoice, formatVoiceStats, type VoiceStats } from "./voice-stats";
 
 const MAX_REPLIES = 1000;
@@ -61,6 +64,19 @@ function isRunning(job: VoiceBuildJob): boolean {
 const g = globalThis as typeof globalThis & { __voiceBuildRunning?: boolean };
 
 /** 이미 도는 중이면 무시한다 (같은 프로세스·끊기지 않은 잡) */
+/**
+ * 기본 계정 팩에 다듬어 둔 규칙책(AGENTS.md)이 있으면 말투를 따로 만들 필요가 없다.
+ * 초안은 팩 규칙책을 읽고, 여기서 만드는 threads-reply-style.md 는 팩이 없을 때만 쓰인다.
+ */
+export async function packHasRulebook(): Promise<boolean> {
+  try {
+    await access(packRulebookPath(DEFAULT_PERSONA_ID));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function startVoiceBuild(): void {
   if (g.__voiceBuildRunning) return;
   g.__voiceBuildRunning = true;

@@ -34,10 +34,8 @@ export function ChannelMark({ channel, size = 13, className = "" }: { channel: C
   );
 }
 
-const OPTIONS: { key: Channel; label: string }[] = [
-  { key: "instagram", label: "인스타" },
-  { key: "threads", label: "스레드" },
-];
+// 공유 앱은 스레드만 다룬다 — 인스타 칸은 뺀다.
+const OPTIONS: { key: Channel; label: string }[] = [{ key: "threads", label: "스레드" }];
 
 export function ChannelSwitch({
   value,

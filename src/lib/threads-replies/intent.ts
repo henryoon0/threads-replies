@@ -13,13 +13,21 @@ export function coreText(text: string): string {
 
 // 정보를 묻는 말끝 (문장 끝 또는 물음표 앞). 놀람 말끝(다구요·네요·군요)은 뺀다.
 const ASKING_ENDING =
-  /(나요|까요|[인는한된던은건]가요|[을를]?까|는지요?|ㄴ지요?|인지요?|건지요?|거죠|건가|뭔가요|하죠|되죠|나\?|냐|니\?|요\?\s*$)/u;
+  /(어때|어떨까|[할될볼좋갈일]까|나요|까요|[인는한된던은건]가요|[을를]?까|는지요?|ㄴ지요?|인지요?|건지요?|거죠|건가|뭔가요|하죠|되죠|나\?|냐|니\?|요\?\s*$)/u;
 const ASKING_ENDING_AT_END =
-  /(나요|까요|[인는한된던은건]가요|을까|는지요?|인지요?|건지요?|거죠|건가|뭔가요|되죠)[\s.!?~^;…ㅎㅋㅠㅜ)\p{Extended_Pictographic}]*$/u;
+  /(어때요?|어떨까요?|[할될볼좋갈일]까|나요|까요|[인는한된던은건]가요|을까|는지요?|인지요?|건지요?|거죠|건가|뭔가요|되죠)[\s.!?~^;…ㅎㅋㅠㅜ)\p{Extended_Pictographic}]*$/u;
 const SURPRISE_ENDING = /(다구요|라구요|했구요|네요|군요|구나|거네|잖아요?)[\s?!.~…]*$/u;
 // 되묻는 척하는 제안·추측 ("인앤아웃버거 아닐까요 😁") — 답을 주는 말이지 묻는 말이 아니다.
 const HEDGE = /(아닐까요?|않을까요?|지 않나요?|않나)/u;
 const WH_WORD = /(어떻게|어떤|어디|언제(?!나)|얼마|무엇|뭘|뭐가|뭐예요|뭔가요|누구|몇|왜|차이|방법|가능한가|되나|있나|없나)/u;
+
+// 물음표 없는 부탁도 정보를 묻는 말이다 ("추천해줘~!", "추천 좀 해줘!", "추천 부탁할게") — 10-02 질문 점이 안 붙던 것
+const REQUEST = /(추천\s?(좀|죰)|추천\s?해\s?(줘|죠|주세|주셔|주실)|부탁\s?(해|드려|드립|할게)|도와\s?줘|도와\s?주세|어떻게\s?생각해|추천\s?좀|소개\s?해\s?줘|소개\s?해\s?주|알려\s?주|궁금해|궁금합니다|궁금하네|추천\s?받고\s?싶|알고\s?싶어|(추천|알려|가르쳐|골라|정리)\s?(좀\s?)?(해\s?줘|해\s?주세요|해\s?주실|해\s?줄\s?수|줘|주세요|주실)|(추천|조언)\s?(좀\s?)?부탁)/u;
+
+// 문장 가운데의 묻는 말끝 ("없나요 ㅠㅠ 250먹어도…", "할 수 있을까 ㅜㅜ 챙겨…", "해봐야하는걸까 또…") — 뒤에 말이 더 붙어 끝 검사에 안 걸리던 것
+const MID_ASK = /(나요|까요|[있없할될걸볼좋을]까|(야하|[되대])나)(?=[\sㅠㅜ.…,]|$)(?!봐)/u;
+// "..?" "....?" 처럼 말줄임 뒤 물음표 — 감탄 말줄임("…?")과 달리 점을 찍고 되묻는 반말 질문
+const DOTS_ASK = /[가-힣]\.{2,}\s*[?？]/u;
 
 // 짧은 칭찬·감사·감탄 (길어지면 chat 으로 넘긴다)
 const REACTION_WORDS =
@@ -41,13 +49,20 @@ export function isQuestionShaped(text: string): boolean {
   return sentences(text).some((s) => ASKING_ENDING_AT_END.test(s));
 }
 
+/** 그냥 물음표 문장인가 — "띠용!?"·"?!" 감탄, "…?" 말줄임, 아주 짧은 감탄은 뺀다 */
+function plainAsk(s: string): boolean {
+  if (!/[?？]/.test(s) || /[!！][?？]|[?？][!！]|(…|\.\.\.)\s*[?？]/u.test(s)) return false;
+  return coreText(s).length > TINY_CORE;
+}
+
 /** 정보를 묻는가: 물음이 담긴 문장 중 하나라도 의문사나 묻는 말끝을 가졌고, 놀람 말끝이 아니다. */
 export function asksForInfo(text: string): boolean {
   return sentences(text).some((s) => {
     const shaped = /[?？]/.test(s) || ASKING_ENDING_AT_END.test(s);
     if (!shaped) return false;
     if ((SURPRISE_ENDING.test(s) || HEDGE.test(s)) && !WH_WORD.test(s)) return false;
-    return ASKING_ENDING.test(s) || ASKING_ENDING_AT_END.test(s) || WH_WORD.test(s);
+    // 반말 물음("먹어도대?", "없어?", "가능해?")은 말끝 목록에 없다 — 놀람이 아닌 물음표 문장이면 묻는 말로 본다 (10-02)
+    return plainAsk(s) || ASKING_ENDING.test(s) || ASKING_ENDING_AT_END.test(s) || WH_WORD.test(s);
   });
 }
 
@@ -59,6 +74,7 @@ export function classifyIntent(text: string, isReplyToMyReply: boolean): ReplyIn
   const core = coreText(text);
   if (core.length <= TINY_CORE) return "reaction";
   if (isQuestionShaped(text) && asksForInfo(text)) return "question";
+  if (REQUEST.test(text) || MID_ASK.test(text) || DOTS_ASK.test(text)) return "question";
   if (core.length <= SHORT_REACTION_CORE && REACTION_WORDS.test(text)) return "reaction";
   if (isReplyToMyReply) return "conversation";
   return "chat";

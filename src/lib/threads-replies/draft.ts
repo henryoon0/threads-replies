@@ -46,7 +46,9 @@ import {
   type VoiceExample,
 } from "./voice";
 
+// 답 초안·버전 쓰기의 모델과 effort 는 여기 한 곳에서 바꾼다 (compose-run 도 이 값을 쓴다).
 export const ANSWER_MODEL = "claude-opus-5-5";
+export const ANSWER_EFFORT = "medium" as const;
 const DEFAULT_TIMEOUT_MS = 240_000;
 const STYLE_EXAMPLE_COUNT = 10;
 const DETAILED_CATEGORIES = 5;
@@ -809,9 +811,10 @@ interface DraftEnv {
 function defaultRun(prompt: string, opts: RunOptions): Promise<string> {
   return runClaudeCLI(prompt, {
     model: ANSWER_MODEL,
-    effort: "medium",
+    effort: ANSWER_EFFORT,
     timeoutMs: answerTimeoutMs(),
     requireClaude: true,
+    noTools: true,
     systemAppend: opts.systemAppend,
     signal: opts.signal,
     ...(opts.workspace ? { workspace: opts.workspace } : {}),

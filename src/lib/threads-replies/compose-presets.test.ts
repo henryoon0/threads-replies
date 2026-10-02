@@ -28,16 +28,16 @@ describe("버전 뽑기", () => {
     const presets = derivePresets(labels);
     expect(presets).toHaveLength(6);
     expect(presets.map((p) => p.id)).toEqual(["product", "ingredient+product", "principle", "principle+ingredient+product", "empathy+principle+ingredient", "joke"]);
-    expect(presets.map((p) => p.name)).toEqual(["제품만 3분할", "성분 + 제품 3분할", "원리 썰", "원리부터 제품까지", "성실 장문", "뒤통수 한 방"]);
-    expect(presets[4].parts).toBe("공감+원리+성분");
+    expect(presets.map((p) => p.name)).toEqual(["제품만 추천", "성분 + 제품 추천", "이유 설명", "이유부터 제품까지", "자세히 길게", "짧게 농담으로"]);
+    expect(presets[4].parts).toBe("공감+이유+성분");
   });
   it("조각이 다 들어 있으면 채우지 않는다", () => {
     expect(derivePresets(labels, 8).map((p) => p.id)).toContain("empathy+principle+ingredient+product");
   });
   it("이름 규칙", () => {
-    expect(presetName(["empathy", "principle", "ingredient", "product"])).toBe("성실 장문 + 제품");
-    expect(presetName(["joke", "principle"])).toBe("뒤통수 + 원리");
-    expect(presetName(["empathy", "product"])).toBe("공감 + 제품 3분할");
+    expect(presetName(["empathy", "principle", "ingredient", "product"])).toBe("자세히 길게 + 제품");
+    expect(presetName(["joke", "principle"])).toBe("농담 + 이유");
+    expect(presetName(["empathy", "product"])).toBe("공감 + 제품 추천");
   });
   it("제품이 든 버전은 늘 세 경로", () => {
     expect(presetSet({ kinds: ["product", "ingredient"] })).toEqual({ kinds: ["ingredient", "product"], channels: ["pharmacy", "online", "overseas"] });

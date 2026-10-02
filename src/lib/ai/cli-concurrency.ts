@@ -15,6 +15,8 @@
 // AI_CLI_MAX_PARALLEL 로 조절(기본 5 — 전 호출처가 캡을 지나게 되면서 3은 긴 생성
 // 뒤 대기가 과해져 2026-08-30에 상향).
 
+import { AsyncLocalStorage } from "node:async_hooks";
+
 const MAX = Math.max(1, Number(process.env.AI_CLI_MAX_PARALLEL) || 5);
 
 // dev 핫 리로드가 모듈을 갈아끼워도 카운터가 이어지도록 globalThis 에 둔다
@@ -24,17 +26,38 @@ type SlotState = { active: number; waiters: Array<() => void> };
 const g = globalThis as typeof globalThis & { __aiCliSlots?: SlotState };
 const state: SlotState = (g.__aiCliSlots ??= { active: 0, waiters: [] });
 
-/** 슬롯을 얻을 때까지 대기한 뒤 fn 을 실행하고, 끝나면 다음 대기자를 깨운다. */
+// ── 칸(lane) (2026-10-02 henry "20개가 한 번에") ──
+// 스레드 답 미리 쓰기는 보는 곳 20개를 한꺼번에 쓴다. 전체 캡(5)을 올리면 대시보드 모든 기능의 팬아웃이 같이 풀리므로,
+// 그 호출들만 자기 칸(runInCliLane)에서 따로 센다. 칸은 AsyncLocalStorage 로 따라가서 호출처 시그니처를 바꾸지 않는다.
+type Lane = { name: string; max: number };
+const laneStore: AsyncLocalStorage<Lane> = ((g as typeof g & { __aiCliLaneStore?: AsyncLocalStorage<Lane> }).__aiCliLaneStore ??= new AsyncLocalStorage<Lane>());
+const laneStates: Map<string, SlotState> = ((g as typeof g & { __aiCliLanes?: Map<string, SlotState> }).__aiCliLanes ??= new Map());
+
+/** fn 안에서 시작한 CLI 호출은 name 칸(동시 max 개)을 쓴다 */
+export function runInCliLane<T>(name: string, max: number, fn: () => Promise<T>): Promise<T> {
+  return laneStore.run({ name, max: Math.max(1, Math.floor(max)) }, fn);
+}
+
+function slotFor(): { st: SlotState; max: number } {
+  const lane = laneStore.getStore();
+  if (!lane) return { st: state, max: MAX };
+  let st = laneStates.get(lane.name);
+  if (!st) laneStates.set(lane.name, (st = { active: 0, waiters: [] }));
+  return { st, max: lane.max };
+}
+
+/** 슬롯을 얻을 때까지 대기한 뒤 fn 을 실행하고, 끝나면 다음 대기자를 깨운다. 칸 안이면 그 칸에서 센다. */
 export async function withCliSlot<T>(fn: () => Promise<T>): Promise<T> {
-  if (state.active >= MAX) {
-    await new Promise<void>((resolve) => state.waiters.push(resolve));
+  const { st, max } = slotFor();
+  if (st.active >= max) {
+    await new Promise<void>((resolve) => st.waiters.push(resolve));
   }
-  state.active += 1;
+  st.active += 1;
   try {
     return await fn();
   } finally {
-    state.active -= 1;
-    const next = state.waiters.shift();
+    st.active -= 1;
+    const next = st.waiters.shift();
     if (next) next();
   }
 }

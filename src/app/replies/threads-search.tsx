@@ -3,7 +3,8 @@
 // 스레드 계정 검색 (09-29 요청 4). "/" 로 바로 가는 검색칸 — 이 계정의 댓글 · 내 글 · 내가 예전에 단 답.
 // 댓글을 고르면 그 댓글이 오른쪽 답 패널에 열리고, 예전 답·글은 그 자리에서 펼쳐 읽고 복사한다.
 
-import { useEffect, useRef, useState } from "react";
+import { HoverHint } from "./hover-hint";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowTopRightOnSquareIcon, ClipboardDocumentIcon, MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import { toast } from "@/components/toast";
 import type { AccountHit, AccountSearchResult } from "@/lib/threads-replies/search";
@@ -107,10 +108,35 @@ function ReadRow({ hit }: { hit: AccountHit }) {
   );
 }
 
+/** 10-02 픽: 평소엔 돋보기 아이콘만. 누르거나 / 를 치면 펼쳐진다 */
+function SearchField({ expanded, q, onClear, children }: { expanded: boolean; q: string; onClear: () => void; children: ReactNode }) {
+  const field = (
+    <label
+      className={cn(
+        "flex h-9 cursor-text items-center gap-2 rounded-[10px] transition-[width,background-color] duration-150",
+        expanded ? "w-80 bg-white px-2.5 ring-2 ring-emerald-700/40" : "w-9 justify-center hover:bg-neutral-950/[0.04]"
+      )}
+    >
+      <MagnifyingGlassIcon className={cn("size-4 shrink-0", expanded ? "text-neutral-400" : "text-neutral-500")} aria-hidden />
+      {children}
+      {q ? (
+        <button type="button" aria-label="검색어 지우기" onClick={onClear} className="rounded p-0.5 text-neutral-400 hover:text-neutral-700">
+          <XMarkIcon className="size-4" />
+        </button>
+      ) : expanded ? (
+        <kbd className="shrink-0 rounded bg-neutral-950/[0.04] px-1.5 py-px text-[10.5px] text-neutral-500">/</kbd>
+      ) : null}
+    </label>
+  );
+  return expanded ? field : <HoverHint label="찾기 (/)">{field}</HoverHint>;
+}
+
 export function ThreadsSearch({ onPickComment }: { onPickComment: (id: string) => void }) {
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
   const input = useRef<HTMLInputElement>(null);
+  const [focused, setFocused] = useState(false);
+  const expanded = focused || Boolean(q);
   const box = useRef<HTMLDivElement>(null);
   const { result, busy } = useAccountSearch(q);
 
@@ -142,9 +168,8 @@ export function ThreadsSearch({ onPickComment }: { onPickComment: (id: string) =
   };
 
   return (
-    <div ref={box} className="relative w-full max-w-md">
-      <label className="flex h-9 items-center gap-2 rounded-[10px] bg-white px-2.5 ring-1 ring-neutral-950/10 focus-within:ring-2 focus-within:ring-emerald-700/40">
-        <MagnifyingGlassIcon className="size-4 shrink-0 text-neutral-400" aria-hidden />
+    <div ref={box} className="relative">
+      <SearchField expanded={expanded} q={q} onClear={() => setQ("")}>
         <input
           ref={input}
           value={q}
@@ -152,7 +177,11 @@ export function ThreadsSearch({ onPickComment }: { onPickComment: (id: string) =
             setQ(e.target.value);
             setOpen(true);
           }}
-          onFocus={() => setOpen(true)}
+          onFocus={() => {
+            setOpen(true);
+            setFocused(true);
+          }}
+          onBlur={() => setFocused(false)}
           onKeyDown={(e) => {
             if (e.key === "Escape") {
               setOpen(false);
@@ -161,18 +190,11 @@ export function ThreadsSearch({ onPickComment }: { onPickComment: (id: string) =
           }}
           placeholder="댓글·내 글·예전 답 찾기"
           aria-label="스레드 계정 검색"
-          className="min-w-0 flex-1 bg-transparent text-[13px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none"
+          className={cn("min-w-0 bg-transparent text-[13px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none", expanded ? "flex-1" : "w-0")}
         />
-        {q ? (
-          <button type="button" aria-label="검색어 지우기" onClick={() => setQ("")} className="rounded p-0.5 text-neutral-400 hover:text-neutral-700">
-            <XMarkIcon className="size-4" />
-          </button>
-        ) : (
-          <kbd className="shrink-0 rounded bg-neutral-950/[0.04] px-1.5 py-px text-[10.5px] text-neutral-500">/</kbd>
-        )}
-      </label>
+      </SearchField>
       {open && q.trim() ? (
-        <div className="absolute left-0 right-0 top-11 z-30 max-h-[70dvh] overflow-y-auto overscroll-contain rounded-[14px] bg-white p-1 shadow-card ring-1 ring-neutral-950/5 sm:w-[32rem] sm:right-auto">
+        <div className="absolute right-0 top-11 z-30 max-h-[70dvh] w-[min(32rem,calc(100vw-2rem))] overflow-y-auto overscroll-contain rounded-[14px] bg-white p-1 shadow-card ring-1 ring-neutral-950/5">
           {!result ? (
             <p className="px-3 py-4 text-[12px] text-neutral-500">{busy ? "찾는 중이에요" : " "}</p>
           ) : total === 0 ? (

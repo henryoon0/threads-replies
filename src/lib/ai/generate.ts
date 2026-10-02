@@ -52,6 +52,8 @@ export interface TextGenRequest {
    * (이미 Claude).
    */
   transport?: "claude";
+  /** Claude 경로에서 도구 목록을 싣지 않는다(도구를 안 쓰는 글쓰기). Codex 경로는 무시. */
+  noTools?: boolean;
 }
 
 // fast(codex) 호출 타임아웃. 분류·추출은 짧게.

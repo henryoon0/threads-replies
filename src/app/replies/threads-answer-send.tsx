@@ -4,7 +4,7 @@
 // 권한이 없으면 (threads_manage_replies) [복사하고 스레드에서 열기] + [달았어요] 폴백.
 // 콘텐츠 소재로 (픽: scenes-th-keep content-seed) 버튼도 여기 둔다.
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -108,14 +108,68 @@ export function firstNotice(item: { replyId: string; dueAt: string; status: stri
  * [보내기]를 누르면 바로 서버 대기열에 맡기고, 5초가 지나면 서버가 보낸다 — 다른 댓글로 가도·창을 닫아도 보낸다.
  * 화면은 결과만 읽어 알린다(떠난 뒤 결과는 threads-client 의 대기열 알림이 알린다). 되돌리기는 보내기 시작 전에만 된다.
  */
-export function useUndoSend(onSent: (reply: ThreadsReply) => void) {
+// ── 맡긴 보내기 띠 (10-02 henry "보내면 바로, 빨리 빨리") ──
+// [보내기]를 누르면 바로 다음 댓글로 넘어간다. 그래서 5초 되돌리기 띠는 패널 밖, 목록 화면에 하나 둔다(QueuedUndoBar).
+// 보내기는 서버 대기열이 끝내고, 결과 알림은 use-send-notices 가 한다.
+type Queued = PendingSend & { dueAt: number };
+const queuedListeners = new Set<() => void>();
+let queuedItems: Queued[] = [];
+const QUEUED_EMPTY: Queued[] = [];
+function setQueued(next: Queued[]) {
+  queuedItems = next;
+  for (const l of queuedListeners) l();
+}
+function addQueued(p: PendingSend, dueAt: number) {
+  setQueued([...queuedItems.filter((q) => q.replyId !== p.replyId), { ...p, dueAt }]);
+}
+function dropQueued(replyId: string) {
+  if (queuedItems.some((q) => q.replyId === replyId)) setQueued(queuedItems.filter((q) => q.replyId !== replyId));
+}
+function useQueued(): Queued[] {
+  return useSyncExternalStore(
+    (l) => {
+      queuedListeners.add(l);
+      return () => queuedListeners.delete(l);
+    },
+    () => queuedItems,
+    () => QUEUED_EMPTY
+  );
+}
+
+/** 목록 화면에 하나: 가장 최근에 맡긴 보내기의 5초 되돌리기. 시간이 지나면 저절로 사라진다. */
+const noop = () => () => {};
+export function QueuedUndoBar() {
+  const items = useQueued();
+  // 서버 그림에는 띠 자리가 없다 — 브라우저에서만 그려 hydration 이 어긋나지 않게 (10-02)
+  const client = useSyncExternalStore(noop, () => true, () => false);
+  const last = items[items.length - 1] ?? null;
+  useEffect(() => {
+    if (!last) return;
+    const t = setTimeout(() => dropQueued(last.replyId), Math.max(0, last.dueAt - Date.now()) + 300);
+    return () => clearTimeout(t);
+  }, [last]);
+  const undo = async () => {
+    if (!last) return;
+    const res = await fetch(sendUrl(last.replyId), { method: "DELETE" }).catch(() => null);
+    if (res?.ok) {
+      dropQueued(last.replyId);
+      toast.success(`@${last.username} 님께 보내기를 되돌렸어요`);
+    } else toast.error("이미 보내는 중이라 되돌릴 수 없어요");
+  };
+  if (!client) return null;
+  return <UndoBar pending={last} paused={false} sending={false} onPause={() => {}} onUndo={() => void undo()} />;
+}
+
+export function useUndoSend(onSent: (reply: ThreadsReply) => void, onQueued?: () => void) {
   const [pending, setPending] = useState<PendingSend | null>(null);
   const [sending, setSending] = useState(false);
   const [failure, setFailure] = useState<SendFailure | null>(null);
   const onSentRef = useRef(onSent);
+  const onQueuedRef = useRef(onQueued);
   useEffect(() => {
     onSentRef.current = onSent;
-  }, [onSent]);
+    onQueuedRef.current = onQueued;
+  }, [onSent, onQueued]);
 
   // 맡긴 뒤 결과를 읽는다. 패널이 사라지면 읽기만 멈추고, 보내기는 서버가 끝낸다.
   useEffect(() => {
@@ -144,7 +198,11 @@ export function useUndoSend(onSent: (reply: ThreadsReply) => void) {
     setFailure(null);
     setPending(p);
     const got = await queueSend(p);
-    if ("dueAt" in got) return;
+    if ("dueAt" in got) {
+      addQueued(p, Date.parse(got.dueAt) || Date.now() + UNDO_MS);
+      onQueuedRef.current?.();
+      return;
+    }
     setPending(null);
     setFailure(got);
     if (got.kind !== "permission") toast.error(got.error);
@@ -155,6 +213,7 @@ export function useUndoSend(onSent: (reply: ThreadsReply) => void) {
     const res = await fetch(sendUrl(pending.replyId), { method: "DELETE" }).catch(() => null);
     if (res?.ok) {
       setPending(null);
+      dropQueued(pending.replyId);
       return;
     }
     toast.error("이미 보내는 중이라 되돌릴 수 없어요");
@@ -165,7 +224,10 @@ export function useUndoSend(onSent: (reply: ThreadsReply) => void) {
     const item = await readSendStatus(replyId);
     if (!item) return;
     const p = { replyId, username, message: item.message };
-    if (item.status === "waiting" || item.status === "sending") setPending(p);
+    if (item.status === "waiting" || item.status === "sending") {
+      setPending(p);
+      addQueued(p, Date.parse(item.dueAt) || Date.now());
+    }
     else if (item.status === "failed") setFailure({ ...p, kind: item.kind ?? "other", error: item.error ?? "보내지 못했어요", reauthUrl: item.reauthUrl });
   }, []);
 

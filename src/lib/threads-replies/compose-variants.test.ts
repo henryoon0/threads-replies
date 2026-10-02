@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
+  restartedFile,
+  jobKeys,
+  MAX_WRITES_PER_JOB,
+  adoptAsDraft,
+  variantsParallel,
   rememberIn,
   gitBlobSha,
   isFresh,
@@ -10,6 +15,7 @@ import {
   pendingOrder,
   planFromPresets,
   prefetchLimit,
+  prefetchProgress,
   reorderQueue,
   variantKey,
   withFailure,
@@ -77,7 +83,7 @@ describe("부분 저장", () => {
 describe("미리 쓰기 범위·순서", () => {
   const r = (id: string, ts: string, intent: "question" | "chat" | "reaction" = "chat", extra = {}) =>
     ({ id, postId: "p", username: "u", text: id, timestamp: ts, repliedToId: "p", intent, ...extra }) as unknown as ThreadsReply;
-  it("최신 댓글 먼저, 반응은 맨 뒤, 답했거나 넘긴 건 뺀다", () => {
+  it("질문 먼저, 그 안에서 최신순, 반응은 맨 뒤, 답했거나 넘긴 건 뺀다", () => {
     const order = pendingOrder([
       r("old-q", "2026-09-27T00:00:00Z", "question"),
       r("new-chat", "2026-09-29T00:00:00Z"),
@@ -85,13 +91,19 @@ describe("미리 쓰기 범위·순서", () => {
       r("done", "2026-09-29T02:00:00Z", "question", { myReply: { text: "x" } }),
       r("skipped", "2026-09-29T02:00:00Z", "question", { skipped: true }),
     ]).map((x) => x.id);
-    expect(order).toEqual(["new-chat", "old-q", "new-react"]);
+    expect(order).toEqual(["old-q", "new-chat", "new-react"]);
   });
-  it("상한은 env 가 양의 정수일 때만 바꾼다", () => {
-    expect(prefetchLimit(undefined)).toBe(60);
+  it("기본은 대기 댓글 전부, env 가 양의 정수일 때만 상한을 둔다", () => {
+    expect(prefetchLimit(undefined)).toBe(Infinity);
     expect(prefetchLimit("200")).toBe(200);
-    expect(prefetchLimit("0")).toBe(60);
-    expect(prefetchLimit("abc")).toBe(60);
+    expect(prefetchLimit("0")).toBe(Infinity);
+    expect(prefetchLimit("abc")).toBe(Infinity);
+  });
+  it("진행률: 규칙책이 같고 끝난 파일만 센다", () => {
+    const done = { ...newVariantsFile("a", "sha", [], "t"), status: "done" as const };
+    const running = newVariantsFile("b", "sha", [], "t");
+    const oldBook = { ...newVariantsFile("c", "old", [], "t"), status: "done" as const };
+    expect(prefetchProgress([done, running, oldBook, null], "sha")).toEqual({ done: 1, total: 4 });
   });
   it("줄을 새 순서로 다시 세운다 (순서에 없는 건 뒤에 그대로)", () => {
     expect(reorderQueue(["a", "b", "c", "x"], (k) => k, ["c", "a"])).toEqual(["c", "a", "b", "x"]);
@@ -109,5 +121,58 @@ describe("누를 때 쓴 버전도 남긴다 (10-02 henry: 한번 생성한 결�
     const base = rememberIn(null, "c1", "sha1", { ...v, key: "principle", draft: "원리 글" }, "2026-10-02T00:00:00.000Z");
     const f = rememberIn(base, "c1", "sha1", v, "2026-10-02T00:01:00.000Z");
     expect(f.variants.map((x) => x.key).sort()).toEqual(["joke", "principle"]);
+  });
+});
+
+describe("버전 글이 목록의 '준비됨'이 된다 (10-02 비용 1 — 답 초안 잡을 끈 계정)", () => {
+  const reply = (extra: Partial<ThreadsReply> = {}): ThreadsReply => ({ id: "c1", postId: "p", username: "u", text: "q?", timestamp: "2026-10-01T00:00:00Z", repliedToId: "p", intent: "question", ...extra });
+  it("첫 추천 버전이고 초안이 없는 대기 댓글이면 그 글을 초안으로 삼는다", () => {
+    expect(adoptAsDraft(reply(), "principle", "principle")).toBe(true);
+  });
+  it("두 번째 버전·이미 초안이 있는 댓글·답했거나 넘긴 댓글은 건드리지 않는다", () => {
+    expect(adoptAsDraft(reply(), "principle", "product")).toBe(false);
+    expect(adoptAsDraft(reply({ answer: { draft: "있음" } as ThreadsReply["answer"] }), "principle", "principle")).toBe(false);
+    expect(adoptAsDraft(reply({ skipped: true }), "principle", "principle")).toBe(false);
+    expect(adoptAsDraft(undefined, "principle", "principle")).toBe(false);
+  });
+});
+
+describe("동시에 미리 쓰는 댓글 수", () => {
+  it("기본 10 (댓글마다 2벌 동시 = CLI 20), env 가 양의 정수면 그 값 (최대 10)", () => {
+    expect(variantsParallel(undefined)).toBe(10);
+    expect(variantsParallel("3")).toBe(3);
+    expect(variantsParallel("99")).toBe(10);
+    expect(variantsParallel("0")).toBe(10);
+  });
+});
+
+describe("새로 쓰기는 추천 2벌만 (10-02 실측: 눌러서 늘어난 6벌을 전부 다시 써 109초·비용 3배)", () => {
+  it("벌을 비우고, 계획은 앞의 추천 2개만 남긴다", () => {
+    const planned = ["a", "b", "c", "d", "e", "f"].map((key) => ({ key, toggles: {} }));
+    const file = { ...newVariantsFile("c1", "sha", planned as never, "t0"), status: "done" as const };
+    const out = restartedFile(file, "t1");
+    expect(out.planned.map((p) => p.key)).toEqual(["a", "b"]);
+    expect(out).toMatchObject({ status: "running", variants: [], failed: [], updatedAt: "t1" });
+    expect(out.sessionId).toBeUndefined();
+  });
+});
+
+describe("비용 관문: 한 잡의 AI 호출은 상한을 넘지 않는다 (10-02 사고 재발 방지)", () => {
+  const planned = ["a", "b", "c", "d", "e", "f"].map((key) => ({ key, toggles: {} }));
+  it("6벌 계획이 남은 옛 파일이 와도 쓰는 건 상한만큼, 나머지는 버린 목록으로", () => {
+    const file = newVariantsFile("c1", "sha", planned as never, "t0");
+    const { write, dropped } = jobKeys(file);
+    expect(write).toEqual(["a", "b"]);
+    expect(write.length).toBeLessThanOrEqual(MAX_WRITES_PER_JOB);
+    expect(dropped).toEqual(["c", "d", "e", "f"]);
+  });
+  it("이미 쓴 벌은 다시 쓰지 않고, 남은 것 중 앞에서부터", () => {
+    const v = { key: "a", toggles: {}, draft: "x", sections: [], products: [], ms: 1 } as unknown as ComposeVariant;
+    const file = withVariant(newVariantsFile("c1", "sha", planned.slice(0, 2) as never, "t0"), v, undefined, "t1");
+    expect(jobKeys(file)).toEqual({ write: ["b"], dropped: [] });
+  });
+  it("새로 쓰기 파일 → 관문 통과 = 정확히 2번", () => {
+    const file = { ...newVariantsFile("c1", "sha", planned as never, "t0"), status: "done" as const };
+    expect(jobKeys(restartedFile(file, "t1")).write).toHaveLength(2);
   });
 });

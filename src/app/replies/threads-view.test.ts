@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
 import type { PostGroup, ReplyThread } from "@/lib/threads-replies/summary";
-import { chainOf, focusOrder, isExpandedThread, nextId, urgentReplies, visibleGroups } from "./threads-view";
+import { chainOf, filteredQueue, focusOrder, isExpandedThread, nextId, splitByReady, urgentReplies, visibleGroups } from "./threads-view";
 
 function reply(id: string, extra: Partial<ThreadsReply> = {}): ThreadsReply {
   return {
@@ -91,4 +91,49 @@ describe("nextId — 다음 댓글로", () => {
     expect(nextId(["a", "c"], "b", ["a", "b", "c"])).toBe("c");
     expect(nextId(["a"], "b", ["a", "b"])).toBe("a");
   });
+});
+
+describe("filteredQueue — 한 버튼 메뉴(오래된 순·최근 순 · 질문만)", () => {
+  const old = reply("old", { timestamp: "2026-09-20T00:00:00Z", intent: "question" });
+  const mid = reply("mid", { timestamp: "2026-09-25T00:00:00Z" });
+  const recent = reply("new", { timestamp: "2026-09-30T00:00:00Z", intent: "question" });
+  const done = reply("done", { timestamp: "2026-09-19T00:00:00Z", myReply: mine("m", "답") });
+  const groups = [group([thread(mid), thread(recent)]), group([thread(old), thread(done)], "p2")];
+
+  it("오래된 순: 답 안 한 댓글을 글과 상관없이 가장 오래 기다린 것부터 한 줄로", () => {
+    expect(filteredQueue(groups, { sort: "old", questionsOnly: false }).map((r) => r.id)).toEqual(["old", "mid", "new"]);
+  });
+
+  it("최근 순은 방금 달린 것부터", () => {
+    expect(filteredQueue(groups, { sort: "new", questionsOnly: false }).map((r) => r.id)).toEqual(["new", "mid", "old"]);
+  });
+
+  it("질문만 켜면 질문 댓글만 남긴다", () => {
+    expect(filteredQueue(groups, { sort: "old", questionsOnly: true }).map((r) => r.id)).toEqual(["old", "new"]);
+  });
+});
+
+describe("splitByReady — 완성된 순서대로 배달 (10-02 henry)", () => {
+  const at = (id: string, ts: string, done?: string) =>
+    reply(id, { timestamp: ts, ...(done ? { answer: { draft: `답 ${id}`, generatedAt: done } as ThreadsReply["answer"] } : {}) });
+  const list = [
+    at("a", "2026-09-20T00:00:00Z", "2026-10-02T00:00:30Z"),
+    at("b", "2026-09-21T00:00:00Z"),
+    at("c", "2026-09-22T00:00:00Z", "2026-10-02T00:00:10Z"),
+    at("d", "2026-09-23T00:00:00Z", "2026-10-02T00:00:20Z"),
+  ];
+
+  it("답이 있는 댓글은 위 칸, 없는 댓글은 아래 칸 — 두 칸 다 목록 순서 그대로 (새로 완성된 답은 위 칸 제자리로 들어간다)", () => {
+    // 완성 시각 순으로 세우면 예전에 써 둔 답 수백 개 뒤로 새 답이 밀린다 (10-02 실데이터: 421개 중 ~400개가 이미 답 있음)
+    const { ready, preparing } = splitByReady(list, new Set());
+    expect(ready.map((r) => r.id)).toEqual(["a", "c", "d"]);
+    expect(preparing.map((r) => r.id)).toEqual(["b"]);
+  });
+
+  it("다시 쓰는 중(줄에 있음)이면 옛 답이 있어도 준비 중 칸", () => {
+    const { ready, preparing } = splitByReady(list, new Set(["d"]));
+    expect(ready.map((r) => r.id)).toEqual(["a", "c"]);
+    expect(preparing.map((r) => r.id)).toEqual(["b", "d"]);
+  });
+
 });

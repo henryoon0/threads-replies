@@ -147,3 +147,33 @@ export function urgentReplies(
   scored.sort((a, b) => a.rank - b.rank || b.waited - a.waited);
   return scored.slice(0, n).map(({ reply, reasons }) => ({ reply, reasons }));
 }
+
+export type QueueSort = "old" | "new";
+export interface QueueFilter {
+  sort: QueueSort;
+  questionsOnly: boolean;
+}
+
+/**
+ * 한 버튼 메뉴(10-02 픽)의 목록: 답 안 한 댓글을 글 묶음 없이 한 줄로.
+ * 오래된 순 = 가장 오래 기다린 것부터, 최근 순 = 방금 달린 것부터. 질문만 = 아직 안 답한 질문.
+ */
+export function filteredQueue(groups: PostGroup[], filter: QueueFilter): ThreadsReply[] {
+  const view: ThreadsView = filter.questionsOnly ? "questions" : "comments";
+  const out: ThreadsReply[] = [];
+  for (const g of groups) for (const t of g.threads) for (const r of repliesOf(t)) if (isFocusable(r, view)) out.push(r);
+  const dir = filter.sort === "old" ? 1 : -1;
+  return out.sort((a, b) => dir * (Date.parse(a.timestamp) - Date.parse(b.timestamp)));
+}
+
+/**
+ * 완성된 것부터 배달 (10-02 henry "유저가 빠르게 대응하는 게 목표"): 답이 있는 댓글은 위 칸, 아직 없거나 다시 쓰는 중(busy)은 아래 칸.
+ * (10-02 henry 재확인: 쓰는 중은 아래 칸이 맞다 — 제자리에 두는 안은 되돌렸다)
+ * 두 칸 다 목록 순서(오래된 순 등) 그대로 — 완성 시각 순으로 세우면 예전에 써 둔 답 수백 개 뒤로 새 답이 밀린다.
+ * [보내기] 뒤 "다음 댓글"은 이 순서를 따르므로 준비된 답부터 열린다.
+ */
+export function splitByReady(items: readonly ThreadsReply[], busy: ReadonlySet<string>): { ready: ThreadsReply[]; preparing: ThreadsReply[] } {
+  const isReady = (r: ThreadsReply) => Boolean(r.answer?.draft) && !busy.has(r.id);
+  const ready = items.filter(isReady);
+  return { ready, preparing: items.filter((r) => !isReady(r)) };
+}

@@ -7,16 +7,17 @@
 // 나머지 벌이 첫 벌의 조각만 넣고 뺀 글이 됐다. 이제 벌마다 앞 초안 없이 새 세션으로 따로 쓴다. 벌마다 세션을 남겨 고른 뒤 이어 쓴다.
 //
 // fire-and-forget 3종 세트 (AGENTS.md):
-//   ① 고아 자동 재개: ensureVariants(목록 GET·변형 GET)와 registerComposeVariantsSweep 이 멈춘 잡을 다시 줄 세운다(멱등).
+//   ① 고아 자동 재개: requestVersions(목록 GET·변형 GET)와 registerComposeVariantsSweep 이 멈춘 잡을 다시 줄 세운다(멱등).
 //   ② 부분 저장: 한 벌 쓸 때마다 팩 private/compose-variants/<댓글>.json 에 저장. 도는 동안 heartbeat 로 updatedAt 을 민다.
-//   ③ 하드 타임아웃: 한 벌은 draftFor 안의 THREADS_COMPOSE_TIMEOUT_MS, 댓글 하나 전체는 THREADS_VARIANTS_JOB_TIMEOUT_MS.
+//   ③ 하드 타임아웃: 한 벌은 draftFor 안의 THREADS_COMPOSE_TIMEOUT_MS. 댓글 안의 벌은 동시에 쓰므로 댓글 전체도 이 상한 안에 끝난다.
 // 열쇠 = 댓글 id + 규칙책(AGENTS.md) git blob sha. 규칙책이 바뀌면 옛 벌은 버리고 다시 쓴다.
-// 순서: 전역에 잡 하나씩(CLI 슬롯 보호), 댓글 안에서는 추천 2벌을 각자 새 세션으로 한꺼번에 쓴다.
-// 범위: 대기 댓글 최신순 상위 PREFETCH_COMMENTS(60)개. 주인이 연 댓글은 줄 맨 앞으로 새치기한다.
+// 순서: 댓글 10개를 한꺼번에(THREADS_VARIANTS_PARALLEL, 자기 CLI 칸), 댓글 안의 추천 2벌도 동시에(= CLI 20개), 벌마다 새 세션.
+// 범위: 화면이 보내는 "지금 보는 댓글부터 10개"만 (10-02 비용 2 — 예전엔 대기 댓글 전부였다). 주인이 연 댓글은 줄 맨 앞으로 새치기한다.
 
 import { createHash } from "node:crypto";
 import { mkdir, readdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { runInCliLane } from "@/lib/ai/cli-concurrency";
 import { registerSweepAdapter } from "@/lib/jobs/sweep";
 import { currentPersona, runWithPersonaConfig } from "@/lib/personas/context";
 import type { PersonaConfig } from "@/lib/personas/model";
@@ -27,7 +28,7 @@ import { COMPOSE_KINDS, PRODUCT_CHANNELS } from "./compose-kinds";
 import { MAX_PRESETS } from "./compose-presets";
 import { draftFor, saveComposed, suggestForReply } from "./compose-run";
 import { isPending, type ThreadsReply } from "./model";
-import { envMs, readRepliesLedger } from "./storage";
+import { readRepliesLedger } from "./storage";
 
 export const MAX_VARIANTS = MAX_PRESETS;
 /** 댓글마다 미리 쓰는 벌 수: 추천 2개만 (2026-10-01 henry "토글 2개 정도만 생성, 나머지는 누르면"). 나머지는 누를 때 POST compose 로 쓴다. */
@@ -35,27 +36,60 @@ export const PREFETCH_VARIANTS = 2;
 const FILE_VERSION = 6;
 const HEARTBEAT_MS = 20_000;
 const STALE_MS = 3 * 60 * 1000;
-const DEFAULT_JOB_TIMEOUT_MS = 20 * 60 * 1000;
 /**
- * 미리 쓴 벌을 버리고 처음부터 다시 쓴다 (2026-09-30 henry: "5개를 새로 돌리고, 한 댓글의 버전 전부를 새로 돌릴 수 있어야").
- * 지금 도는 댓글은 건드리지 않는다(쓰는 중인 파일을 갈아엎으면 옛 벌이 섞인다). 돌려주는 값 = 다시 줄 선 댓글 id.
+ * 버전 쓰기의 단 하나의 입구 (2026-10-02 사고: 입구 4곳이 파일의 planned 를 각자 믿어서, 쌓인 6벌을 새로 쓰기가 전부 다시 썼다).
+ * 몇 벌 쓸지는 파일 기록이 아니라 행동이 정한다. 어느 행동이든 한 댓글에 AI 를 MAX_WRITES_PER_JOB 번 넘게 부르지 않는다.
+ *   prefetch: 아직 안 쓴 추천 벌만 (다 쓴 댓글은 건너뜀). front 면 줄 맨 앞.
+ *   rewrite : 써 둔 벌을 버리고 추천 벌만 다시. 지금 도는 댓글은 busy 로 돌려준다(쓰는 중인 파일을 갈아엎으면 옛 벌이 섞인다).
+ *   resume  : 멈춘 잡을 다시 줄 세운다 (스윕).
+ * 누를 때 쓰는 한 벌(POST compose)은 여기를 거치지 않고 1번만 쓰고 rememberVariant 로 창고에만 넣는다.
  */
-export async function restartVariants(replyIds: readonly string[]): Promise<{ queued: string[]; busy: string[] }> {
+export type VersionAction = "prefetch" | "rewrite" | "resume";
+
+export async function requestVersions(
+  replyIds: readonly string[],
+  action: VersionAction,
+  opts: { front?: boolean } = {}
+): Promise<{ queued: string[]; busy: string[] }> {
+  if (action !== "rewrite") return { queued: await ensureVariants(replyIds, { front: opts.front }), busy: [] };
   const persona = currentPersona();
   const q = queue();
   const busy = replyIds.filter((id) => q.running.has(`${persona.id}#${id}`));
   const todo = replyIds.filter((id) => !busy.includes(id));
   for (const id of todo) {
     const cur = await readVariantsFile(persona, id);
-    // 끝난 파일을 running 으로 되돌리고 벌을 비운다 — prepare 가 규칙책이 같으면 이 파일을 이어 쓴다
-    if (cur) await writeVariantsFile(persona, { ...cur, status: "running", variants: [], failed: [], sessionId: undefined, updatedAt: new Date().toISOString() });
+    if (!cur) continue;
+    // 계획은 옛 파일이 아니라 지금 추천에서 다시 뽑는다 (10-02: 어제 추천을 다시 써서 화면이 기다리는 버전이 안 왔다)
+    const suggestion = await suggestForReply(id);
+    const planned = "error" in suggestion ? cur.planned : planFromPresets(suggestion.presets, suggestion.toggles, PREFETCH_VARIANTS);
+    await writeVariantsFile(persona, restartedFile({ ...cur, planned }, new Date().toISOString()));
   }
-  const queued = await ensureVariants(todo, { front: true });
-  return { queued, busy };
+  return { queued: await ensureVariants(todo, { front: true }), busy };
 }
 
-/** 목록 GET 이 미리 쓰는 댓글 수 상한. 댓글 하나 = 추천 2벌. THREADS_VARIANTS_PREFETCH 로 바꾼다. */
-export const PREFETCH_COMMENTS = 60;
+/** 한 잡이 AI 를 부르는 최대 횟수. 어떤 입구·어떤 옛 파일이 와도 이 수를 넘지 않는다. */
+export const MAX_WRITES_PER_JOB = PREFETCH_VARIANTS;
+
+/**
+ * 이번 잡에서 실제로 쓸 열쇠 (AI 호출 직전의 마지막 관문). 순수.
+ * 옛 파일의 planned 가 상한보다 길 때 어떻게 할지가 이 함수의 결정이다.
+ */
+export function jobKeys(file: VariantsFile, max = MAX_WRITES_PER_JOB): { write: string[]; dropped: string[] } {
+  const left = pendingKeys(file);
+  // 추천 순서를 믿고 앞에서부터 쓴다 (답이 비는 것보다 덜 쓰는 편이 낫다)
+  return { write: left.slice(0, max), dropped: left.slice(max) };
+}
+
+/**
+ * 새로 쓰기용 파일: 벌·실패·세션을 비우고, 계획은 앞의 추천 PREFETCH_VARIANTS 개만 (10-02 — 눌러서 늘어난 벌까지 전부 다시 쓰던 것).
+ * 나머지 버전은 누를 때 다시 쓴다.
+ */
+export function restartedFile(cur: VariantsFile, now: string): VariantsFile {
+  return { ...cur, planned: cur.planned.slice(0, PREFETCH_VARIANTS), status: "running", variants: [], failed: [], sessionId: undefined, updatedAt: now };
+}
+
+/** 목록 GET 이 미리 쓰는 댓글 수 상한. 기본은 대기 댓글 전부, 댓글 하나 = 추천 2벌. THREADS_VARIANTS_PREFETCH 로 줄인다. */
+export const PREFETCH_COMMENTS = Infinity;
 
 // ── 조합 (순수) ─────────────────────────────────────────────────────
 
@@ -240,6 +274,32 @@ function queue(): QueueState {
 
 const itemKey = (i: QueueItem) => `${i.persona.id}#${i.replyId}`;
 
+/**
+ * 이 버전 글을 댓글의 초안(answer)으로 삼을까 (10-02 비용 1): 답 초안 잡을 끈 계정은 버전 글이 첫 초안이다.
+ * 첫 추천 버전이고, 아직 초안이 없는 대기 댓글일 때만 — 있던 초안·주인이 고른 버전은 덮지 않는다.
+ */
+export function adoptAsDraft(reply: ThreadsReply | undefined, firstKey: string, key: string): boolean {
+  return !!reply && key === firstKey && isPending(reply) && !reply.answer?.draft;
+}
+
+/**
+ * 동시에 미리 쓰는 댓글 수. 댓글 안의 추천 2벌도 동시에 쓰므로 CLI 수 = 이 값 × 2 (10-02: 기본 10 → CLI 20, 예전 "20개 한 번에"와 같은 부하).
+ * 전역 캡(5)이 아니라 자기 칸(runInCliLane "variants-prefetch")에서 센다. claude -p 하나 ≈ 200MB.
+ */
+export function variantsParallel(raw = process.env.THREADS_VARIANTS_PARALLEL): number {
+  const n = Number(raw);
+  return raw && Number.isFinite(n) && n > 0 ? Math.min(Math.floor(n), 10) : 10;
+}
+
+/** 첫 추천 버전 글을 초안으로 저장 (목록 '준비됨'·화면 기본 글). 조건은 adoptAsDraft */
+async function adoptFirstVariant(replyId: string, firstKey: string, v: ComposeVariant): Promise<void> {
+  const ledger = await readRepliesLedger();
+  if (!adoptAsDraft(ledger.replies.find((r) => r.id === replyId), firstKey, v.key)) return;
+  const set = parseToggles(v.toggles);
+  if (typeof set === "string") return;
+  await saveComposed(replyId, { draft: v.draft, sections: v.sections }, set, v.sessionId);
+}
+
 /** 한 벌 쓰기. 앞 벌을 보여주지 않고 새 세션으로 따로 쓴다 (앞 벌을 주면 그 글의 변형이 된다). */
 async function writeOne(persona: PersonaConfig, file: VariantsFile, key: string): Promise<void> {
   const planned = file.planned.find((p) => p.key === key);
@@ -258,6 +318,7 @@ async function writeOne(persona: PersonaConfig, file: VariantsFile, key: string)
     }
     const v: ComposeVariant = { key, toggles: planned.toggles, draft: out.composed.draft, sections: out.composed.sections, products: out.products, ms: Date.now() - started, ...(out.sessionId ? { sessionId: out.sessionId } : {}) };
     await patchFile(persona, file.replyId, (f) => withVariant(f, v, out.sessionId, now()));
+    await adoptFirstVariant(file.replyId, file.planned[0]?.key ?? "", v).catch(() => {});
   } catch (e) {
     await patchFile(persona, file.replyId, (f) => withFailure(f, key, e instanceof Error ? e.message : String(e), now()));
   }
@@ -280,16 +341,19 @@ async function prepare(persona: PersonaConfig, replyId: string): Promise<Variant
 async function runReply(persona: PersonaConfig, replyId: string): Promise<void> {
   const file = await prepare(persona, replyId);
   if (!file) return;
-  const deadline = Date.now() + envMs("THREADS_VARIANTS_JOB_TIMEOUT_MS", DEFAULT_JOB_TIMEOUT_MS);
   const heartbeat = setInterval(() => void patchFile(persona, replyId, (f) => ({ ...f, updatedAt: new Date().toISOString() })).catch(() => {}), HEARTBEAT_MS);
   try {
-    // 벌마다 세션이 따로라 한꺼번에 쓴다 (미리 쓰는 벌은 추천 2개). 파일 쓰기는 patchFile 이 한 줄로 세운다.
     const cur = await readVariantsFile(persona, replyId);
     if (!cur || cur.rulebookSha !== file.rulebookSha) return;
-    if (Date.now() <= deadline) await Promise.all(pendingKeys(cur).map((key) => writeOne(persona, cur, key)));
+    // 추천 1번 먼저, 그다음 2번 (10-02): 20개 댓글이 한꺼번에 돌 때 CLI 수 = 댓글 수, 첫 답이 모두 빨리 나온다
+    const { write, dropped } = jobKeys(cur);
+    if (dropped.length) console.warn(`[compose-variants] ${replyId}: 상한 ${MAX_WRITES_PER_JOB}벌을 넘는 계획 ${dropped.length}개를 쓰지 않음 (${dropped.join(", ")})`);
+    // 추천 벌을 동시에 쓴다 (10-02 henry "버튼도 동시에") — 호출 수는 같고 기다림만 줄어든다. 시간 상한은 draftFor 의 한 벌 타임아웃이 지킨다
+    await Promise.all(write.map((key) => writeOne(persona, cur, key)));
     await patchFile(persona, replyId, (f) => {
-      const left = pendingKeys(f);
-      const failed = left.reduce((acc, k) => withFailure(acc, k, "잡 시간 초과", new Date().toISOString()), f);
+      const trimmed = { ...f, planned: f.planned.filter((p) => !dropped.includes(p.key)) };
+      const left = pendingKeys(trimmed);
+      const failed = left.reduce((acc, k) => withFailure(acc, k, "잡 시간 초과", new Date().toISOString()), trimmed);
       return { ...failed, status: "done", updatedAt: new Date().toISOString() };
     });
   } finally {
@@ -297,26 +361,31 @@ async function runReply(persona: PersonaConfig, replyId: string): Promise<void> 
   }
 }
 
-/** 줄 선 댓글을 하나씩 처리한다. 절대 reject 하지 않는다. */
+/** 줄 선 댓글을 일꾼 여럿(variantsParallel)이 하나씩 가져가 처리한다. 절대 reject 하지 않는다. */
 async function work(): Promise<void> {
   const q = queue();
   if (q.working) return;
   q.working = true;
   try {
-    for (let item = q.items.shift(); item; item = q.items.shift()) {
-      const current = item;
-      q.running.add(itemKey(current));
-      q.pinned?.delete(itemKey(current));
-      try {
-        await runWithPersonaConfig(current.persona, () => runReply(current.persona, current.replyId));
-      } catch (e) {
-        console.warn(`[compose-variants] ${current.replyId} 실패: ${e instanceof Error ? e.message : String(e)}`);
-      } finally {
-        q.running.delete(itemKey(current));
-      }
-    }
+    const n = variantsParallel();
+    await runInCliLane("variants-prefetch", n, () => Promise.all(Array.from({ length: n }, () => workerLoop(q))));
   } finally {
     q.working = false;
+  }
+}
+
+async function workerLoop(q: QueueState): Promise<void> {
+  for (let item = q.items.shift(); item; item = q.items.shift()) {
+    const current = item;
+    q.running.add(itemKey(current));
+    q.pinned?.delete(itemKey(current));
+    try {
+      await runWithPersonaConfig(current.persona, () => runReply(current.persona, current.replyId));
+    } catch (e) {
+      console.warn(`[compose-variants] ${current.replyId} 실패: ${e instanceof Error ? e.message : String(e)}`);
+    } finally {
+      q.running.delete(itemKey(current));
+    }
   }
 }
 
@@ -346,6 +415,17 @@ export function reorderQueue<T>(items: readonly T[], keyOf: (t: T) => string, or
   return items.map((t, i) => ({ t, i })).sort((a, b) => at(a.t) - at(b.t) || a.i - b.i).map((x) => x.t);
 }
 
+/** 지금 계정의 미리 쓰기 줄: 쓰는 중(running)·차례 기다림(queued) 댓글 id. 목록 표시용 (10-02 — 답 초안 잡을 끈 뒤 진행 표시의 기준) */
+export function variantsQueueState(personaId: string): { running: string[]; queued: string[] } {
+  const q = queue();
+  const mine = (key: string) => key.startsWith(`${personaId}#`);
+  const idOf = (key: string) => key.slice(personaId.length + 1);
+  return {
+    running: [...q.running].filter(mine).map(idOf),
+    queued: q.items.map(itemKey).filter(mine).map(idOf),
+  };
+}
+
 /** 이미 도는 중이거나 줄 서 있나 */
 export function isQueued(personaId: string, replyId: string): boolean {
   const q = queue();
@@ -358,7 +438,7 @@ export function isQueued(personaId: string, replyId: string): boolean {
  * 끝났고 규칙책이 같은 댓글은 건너뛴다. running 인데 이 프로세스에서 안 도는 잡(고아)은 다시 줄 세운다.
  * 돌려주는 값 = 새로 줄 선 댓글 id.
  */
-export async function ensureVariants(replyIds: readonly string[], opts: { front?: boolean } = {}): Promise<string[]> {
+async function ensureVariants(replyIds: readonly string[], opts: { front?: boolean } = {}): Promise<string[]> {
   const persona = currentPersona();
   const sha = await rulebookSha(persona);
   const added: string[] = [];
@@ -385,17 +465,29 @@ export async function ensureVariantsForPending(limit = prefetchLimit()): Promise
   const ledger = await readRepliesLedger();
   const persona = currentPersona();
   const top = pendingOrder(ledger.replies).slice(0, limit);
-  const added = await ensureVariants(top.map((r) => r.id));
+  const { queued: added } = await requestVersions(top.map((r) => r.id), "prefetch");
   const q = queue();
   q.items = reorderQueue(q.items, itemKey, [...(q.pinned ?? []), ...top.map((r) => `${persona.id}#${r.id}`)]);
   return added;
 }
 
-/** 최신 댓글 먼저. 반응(이모지·짧은 감탄)은 맨 뒤 — 버전 6벌이 필요 없는 경우가 많다. */
+/** 질문 먼저, 그 안에서 최신순. 반응(이모지·짧은 감탄)은 맨 뒤 — 버전이 필요 없는 경우가 많다. */
 export function pendingOrder(replies: readonly ThreadsReply[]): ThreadsReply[] {
-  return replies
-    .filter(isPending)
-    .sort((a, b) => Number(a.intent === "reaction") - Number(b.intent === "reaction") || Date.parse(b.timestamp) - Date.parse(a.timestamp));
+  const rank = (r: ThreadsReply) => (r.intent === "question" ? 0 : r.intent === "reaction" ? 2 : 1);
+  return replies.filter(isPending).sort((a, b) => rank(a) - rank(b) || Date.parse(b.timestamp) - Date.parse(a.timestamp));
+}
+
+/** 미리 쓰기 진행률: 지금 규칙책으로 끝난 댓글 수 / 대기 댓글 수 */
+export function prefetchProgress(files: readonly (VariantsFile | null)[], sha: string): { done: number; total: number } {
+  return { done: files.filter((f) => isFresh(f, sha) && f.status === "done").length, total: files.length };
+}
+
+/** 지금 페르소나의 대기 댓글 미리 쓰기 진행률 (목록 GET 이 화면에 싣는다) */
+export async function pendingPrefetchProgress(): Promise<{ done: number; total: number }> {
+  const persona = currentPersona();
+  const ids = pendingOrder((await readRepliesLedger()).replies).map((r) => r.id);
+  const files = await Promise.all(ids.map((id) => readVariantsFile(persona, id)));
+  return prefetchProgress(files, await rulebookSha(persona));
 }
 
 // ── 화면용 읽기·고르기 ──────────────────────────────────────────────
@@ -412,7 +504,7 @@ export async function variantsFor(replyId: string, kick = true): Promise<Variant
   const persona = currentPersona();
   const cur = await readVariantsFile(persona, replyId);
   const fresh = isFresh(cur, await rulebookSha(persona));
-  if (kick && (!fresh || cur.status !== "done")) await ensureVariants([replyId], { front: true });
+  if (kick && (!fresh || cur.status !== "done")) await requestVersions([replyId], "prefetch", { front: true });
   if (!fresh) return { variants: [], pending: [], failed: [], status: isQueued(persona.id, replyId) ? "queued" : "none" };
   return { variants: cur.variants, pending: pendingKeys(cur), failed: cur.failed, status: cur.status };
 }
@@ -476,7 +568,7 @@ export function registerComposeVariantsSweep(): void {
       for (const id of await listPersonaIds()) {
         const persona = await readPersona(id);
         const stale = await staleIn(persona, Date.now());
-        if (stale.length) await runWithPersonaConfig(persona, () => ensureVariants(stale));
+        if (stale.length) await runWithPersonaConfig(persona, () => requestVersions(stale, "resume"));
       }
     },
   });

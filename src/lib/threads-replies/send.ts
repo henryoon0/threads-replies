@@ -19,6 +19,8 @@ import { removeEphemeralMedia, uploadEphemeralMedia } from "@/lib/share/ephemera
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { currentPersona } from "@/lib/personas/context";
+import { resolveSendMode } from "@/lib/personas/registry";
+import { postedText } from "./posted-text";
 import { gateForPersona } from "@/lib/personas/gate-rules";
 import { startReplyOutcomeTimer } from "@/lib/personas/learning/outcome";
 import { aiDraftOf, logReply, sentAction, type ReplyLogAction, type ReplyLogEntry } from "@/lib/personas/learning/reply-log";
@@ -226,7 +228,7 @@ async function postAndRecord(reply: ThreadsReply, text: string, gate: GateResult
 }
 
 export async function sendThreadsReply(replyId: string, message: string, image?: ReplyImage): Promise<SendResult> {
-  const text = message.trim();
+  const text = postedText(message);
   const checked = await precheck(replyId, text, Boolean(image));
   if ("ok" in checked) return checked;
   const { reply, ledger } = checked;
@@ -237,7 +239,7 @@ export async function sendThreadsReply(replyId: string, message: string, image?:
     await logSafely(reply, text, "gate_blocked", gate);
     return { ok: false, kind: "gate", message: GATE_MESSAGE, gate };
   }
-  if (persona.send === "copy") {
+  if ((await resolveSendMode(persona)) === "copy") {
     return { ok: true, mode: "copy", text, permalink: ledger.posts.find((p) => p.id === reply.postId)?.permalink };
   }
   return postAndRecord(reply, text, gate, image);

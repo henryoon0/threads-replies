@@ -114,8 +114,10 @@ export interface AnswerJob {
   createdAt: string;
   /** heartbeat — 처리 중에도 주기적으로 갱신 (sweep stale 판정용) */
   updatedAt: string;
-  /** 지금 처리 중인 댓글 */
+  /** 지금 처리 중인 댓글 (마지막으로 시작한 것) */
   current?: string;
+  /** 동시에 쓰고 있는 댓글들 (10-02 — 일꾼 여럿) */
+  working?: string[];
 }
 
 export async function readAnswerJob(filePath = answerJobPath()): Promise<AnswerJob | null> {

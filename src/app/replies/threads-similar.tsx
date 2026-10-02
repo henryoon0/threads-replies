@@ -8,6 +8,7 @@ import { ArrowTopRightOnSquareIcon, ClipboardDocumentIcon, PlusIcon } from "@her
 import { toast } from "@/components/toast";
 import type { SimilarItem } from "@/lib/threads-replies/similar";
 import { cn } from "@/lib/utils";
+import { ClampText } from "./clamp-text";
 import { clearPastFocus, pinFocused, usePastFocus } from "./past-focus";
 import { press } from "./threads-answer-verdict";
 
@@ -28,7 +29,20 @@ function useSimilar(replyId: string): State {
   return state.id === replyId ? state.s : { status: "loading" };
 }
 
-function Item({ item, onInsert, focused, focusSeq }: { item: SimilarItem; onInsert: (text: string) => void; focused?: boolean; focusSeq?: number }) {
+export interface SimilarMe {
+  handle: string;
+  mark: string;
+}
+
+function MiniAvatar({ mark, me }: { mark: string; me?: boolean }) {
+  return (
+    <span aria-hidden className={cn("inline-flex size-7 shrink-0 items-center justify-center rounded-full text-[11px] font-medium", me ? "bg-emerald-700 text-white" : "bg-neutral-200 text-neutral-500")}>
+      {mark}
+    </span>
+  );
+}
+
+function Item({ item, me, onInsert, focused, focusSeq }: { item: SimilarItem; me: SimilarMe; onInsert: (text: string) => void; focused?: boolean; focusSeq?: number }) {
   const ref = useRef<HTMLLIElement>(null);
   // 누를 때마다(seq) 그 칸을 보이는 곳으로 가져온다
   useEffect(() => {
@@ -51,12 +65,29 @@ function Item({ item, onInsert, focused, focusSeq }: { item: SimilarItem; onInse
       )}
     >
       {focused ? <p className="mb-1 text-[10.5px] font-medium text-sky-800">누른 문장과 다른 예전 답</p> : null}
-      {item.comment ? <p className="line-clamp-2 text-[11.5px] leading-snug text-neutral-500 break-keep">받은 댓글 · {item.comment}</p> : null}
-      <p className="mt-1 whitespace-pre-line text-[13px] leading-[1.6] text-neutral-800 break-keep">{item.text}</p>
-      <div className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[10.5px] text-neutral-500">
+      {/* 스레드 모양: 받은 댓글 → 대화선 → 내 답 (10-02 henry "실제 스레드 UI 형태로") */}
+      {item.comment ? (
+        <div className="flex gap-2.5">
+          <div className="flex flex-col items-center">
+            <MiniAvatar mark="?" />
+            <span aria-hidden className="mt-1 w-0.5 flex-1 rounded-full bg-neutral-200" />
+          </div>
+          <div className="min-w-0 flex-1 pb-2.5">
+            <p className="text-[12px] text-neutral-400">받은 댓글{item.date ? ` · ${item.date}` : ""}</p>
+            <ClampText text={item.comment} lines={2} className="text-[13px] leading-[1.45] text-neutral-600" />
+          </div>
+        </div>
+      ) : null}
+      <div className="flex gap-2.5">
+        <MiniAvatar mark={me.mark} me />
+        <div className="min-w-0 flex-1">
+          <p className="text-[12.5px] font-semibold text-neutral-900">{me.handle}</p>
+          <ClampText text={item.text} lines={6} className="text-[13.5px] leading-[1.5] text-neutral-900" />
+        </div>
+      </div>
+      <div className="mt-1.5 flex flex-wrap items-center gap-1.5 pl-[38px] text-[10.5px] text-neutral-500">
         {item.product ? <span className="rounded-full bg-emerald-50 px-1.5 py-px font-medium text-emerald-800">제품</span> : null}
         {item.sameCommenter ? <span className="rounded-full bg-neutral-100 px-1.5 py-px">같은 사람</span> : null}
-        {item.date ? <span className="tabular-nums">{item.date}</span> : null}
         {item.permalink ? (
           <a href={item.permalink} target="_blank" rel="noreferrer" className="inline-flex items-center gap-0.5 hover:text-neutral-800">
             원문
@@ -77,37 +108,35 @@ function Item({ item, onInsert, focused, focusSeq }: { item: SimilarItem; onInse
   );
 }
 
-export function SimilarPast({ replyId, onInsert }: { replyId: string; onInsert: (text: string) => void }) {
+/** 읽는 동안 칸 자리 */
+function SimilarSkeleton() {
+  return (
+    <div aria-busy="true" className="space-y-2 py-3">
+      <div className="h-3 w-3/4 animate-pulse rounded bg-neutral-100" />
+      <div className="h-3 w-full animate-pulse rounded bg-neutral-100" />
+      <div className="h-3 w-2/3 animate-pulse rounded bg-neutral-100" />
+    </div>
+  );
+}
+
+/** 예전 답이 없거나 못 찾았으면 칸을 그리지 않는다 (빈 칸·실패 안내는 정보가 없다, 2026-10-02 henry "불필요한 정보 제거") */
+export function SimilarPast({ replyId, me, onInsert }: { replyId: string; me: SimilarMe; onInsert: (text: string) => void }) {
   const state = useSimilar(replyId);
   const focus = usePastFocus();
   // 다른 댓글로 넘어가면 누른 표시를 지운다
   useEffect(() => clearPastFocus, [replyId]);
   const { items, focusedId } = pinFocused(state.status === "done" ? state.items : [], focus);
-  const products = items.filter((i) => i.product).length;
+  const loading = state.status === "loading";
+  if (!loading && items.length === 0) return null;
   return (
     <section aria-label="비슷한 맥락에서 남긴 글" className="rounded-[18px] bg-white px-3 pb-1 pt-2.5 ring-1 ring-neutral-950/5">
-      <div className="flex items-baseline gap-1.5">
-        <h3 className="text-[12.5px] font-semibold text-neutral-900">비슷한 맥락에서 남긴 글</h3>
-        {state.status === "done" && items.length ? (
-          <span className="text-[11px] tabular-nums text-neutral-500">
-            {items.length}개{products ? ` · 제품 ${products}` : ""}
-          </span>
-        ) : null}
-      </div>
-      {state.status === "loading" ? (
-        <div aria-busy="true" className="space-y-2 py-3">
-          <div className="h-3 w-3/4 animate-pulse rounded bg-neutral-100" />
-          <div className="h-3 w-full animate-pulse rounded bg-neutral-100" />
-          <div className="h-3 w-2/3 animate-pulse rounded bg-neutral-100" />
-        </div>
-      ) : state.status === "failed" && !focusedId ? (
-        <p className="py-3 text-[11.5px] text-neutral-500">예전 답을 찾지 못했어요</p>
-      ) : items.length === 0 && !focusedId ? (
-        <p className="py-3 text-[11.5px] text-neutral-500">이 댓글과 관련 있는 예전 답이 없어요</p>
+      <h3 className="text-[12.5px] font-semibold text-neutral-900">비슷한 맥락에서 남긴 글</h3>
+      {loading ? (
+        <SimilarSkeleton />
       ) : (
         <ul className="mt-1">
           {items.map((it) => (
-            <Item key={it.id} item={it} onInsert={onInsert} focused={it.id === focusedId} focusSeq={focus?.seq} />
+            <Item key={it.id} item={it} me={me} onInsert={onInsert} focused={it.id === focusedId} focusSeq={focus?.seq} />
           ))}
         </ul>
       )}

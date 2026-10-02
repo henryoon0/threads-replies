@@ -1,72 +1,56 @@
 "use client";
 
-// 답 화면 위 가로 막대: [계정·칸·학습(lead)] … 검색(/) · 하나씩 / 5개 한꺼번에 · 목록 펴기/접기.
-// 09-29 henry: 넓게 보기가 기본. 목록은 필요할 때만 편다.
+// 답 화면 위 가로 막대: [계정 · 남은 수(lead)] … 찾기 · 새로고침 · ···
+// 10-02 픽 "목록 + 스레드 모양 답": 하나씩/5개 한꺼번에·학습·기록·모두 건너뛰기는 ··· 메뉴로, 목록 접기는 뺐다(목록은 늘 편다).
 
-import { ArrowsPointingOutIcon, QueueListIcon } from "@heroicons/react/16/solid";
+import { HoverHint } from "./hover-hint";
+import { ArrowPathIcon } from "@heroicons/react/16/solid";
 import { cn } from "@/lib/utils";
 import { press } from "./threads-answer-verdict";
+import { ThreadsMoreMenu, type MoreSection } from "./threads-more-menu";
 import { ThreadsSearch } from "./threads-search";
-import { setThreadsWide } from "./use-wide";
 
 export type WorkMode = "one" | "batch";
 
+export interface SyncState {
+  busy: boolean;
+  /** 실패 문구. 있으면 새로고침 옆에 빨갛게 */
+  error: string;
+  /** "9분 전 동기화" — 새로고침 아이콘의 풍선 글과 ··· 메뉴 아래에 */
+  last: string;
+  run: () => void;
+}
+
 export function ThreadsModeBar({
-  mode,
-  onMode,
-  wide,
-  onPickComment,
-  batchable,
   lead,
+  onPickComment,
+  sync,
+  menu,
 }: {
-  /** 왼쪽 끝: 계정 · 댓글/질문/기록 · 학습 (workbench 가 넘긴다) */
+  /** 왼쪽 끝: 계정 · 남은 수 (workbench 가 넘긴다) */
   lead?: React.ReactNode;
-  mode: WorkMode;
-  onMode: (m: WorkMode) => void;
-  wide: boolean;
   onPickComment: (id: string) => void;
-  /** 기록 칸처럼 답할 댓글이 없는 곳에선 5개 한꺼번에를 숨긴다 */
-  batchable: boolean;
+  sync: SyncState;
+  menu: MoreSection[];
 }) {
   return (
-    <div className="mb-4 flex flex-wrap items-center gap-2">
+    <div className="mb-4 flex flex-wrap items-center gap-1">
       {lead}
       <span className="ml-auto" />
+      {sync.error ? <span className="mr-1 text-[11.5px] text-rose-700">{sync.error}</span> : null}
       <ThreadsSearch onPickComment={onPickComment} />
-      {batchable ? (
-        <div role="radiogroup" aria-label="작업 방식" className="inline-flex h-9 items-center rounded-[10px] bg-neutral-950/[0.04] p-0.5">
-          {(
-            [
-              ["one", "하나씩"],
-              ["batch", "5개 한꺼번에"],
-            ] as const
-          ).map(([m, label]) => (
-            <button
-              key={m}
-              type="button"
-              role="radio"
-              aria-checked={mode === m}
-              onClick={() => onMode(m)}
-              className={cn(
-                "h-8 rounded-[8px] px-3 text-[12px] font-medium",
-                mode === m ? "bg-white text-neutral-900 shadow-sm ring-1 ring-neutral-950/5" : "text-neutral-500 hover:text-neutral-800",
-                press
-              )}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      ) : null}
+      <HoverHint label={sync.busy ? "가져오는 중" : sync.last ? `새로고침 · ${sync.last}` : "새로고침"}>
       <button
         type="button"
-        onClick={() => setThreadsWide(!wide)}
-        aria-pressed={wide}
-        className={cn("inline-flex h-9 items-center gap-1.5 rounded-[10px] px-2.5 text-xs font-medium text-neutral-600 ring-1 ring-neutral-950/10 hover:bg-neutral-950/[0.03] hover:text-neutral-900", press)}
+        onClick={sync.run}
+        disabled={sync.busy}
+        aria-label="새로고침"
+        className={cn("inline-flex size-9 items-center justify-center rounded-[10px] text-neutral-500 hover:bg-neutral-950/[0.04] hover:text-neutral-900 disabled:opacity-60", press)}
       >
-        {wide ? <QueueListIcon className="size-3.5" /> : <ArrowsPointingOutIcon className="size-3.5" />}
-        {wide ? "목록 펴기" : "목록 접기"}
+        <ArrowPathIcon className={cn("size-4", sync.busy && "animate-spin")} aria-hidden />
       </button>
+      </HoverHint>
+      <ThreadsMoreMenu sections={menu} />
     </div>
   );
 }

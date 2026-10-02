@@ -37,7 +37,7 @@ import {
 import { stripMarkers, suggestToggles, voiceViolations, type ComposeKind, type LabeledComment, type PairLabel } from "./compose-kinds";
 import { derivePresets, presetSet, presetsFromCategories, rankByNeighbors, rankByOrder, type RankedPreset } from "./compose-presets";
 import { buildComposePrompt, buildVoiceFixPrompt, type KindSegment } from "./compose-prompts";
-import { ANSWER_MODEL, canRetryFresh, detailedCategories, ownerLine, packWorkspaceDir, pastSaidBlock, readSafety, systemAppendFor } from "./draft";
+import { ANSWER_EFFORT, ANSWER_MODEL, canRetryFresh, detailedCategories, ownerLine, packWorkspaceDir, pastSaidBlock, readSafety, systemAppendFor } from "./draft";
 import type { ThreadsRepliesLedger, ThreadsReply } from "./model";
 import { withTimeout } from "./more-options";
 import { envMs, keyedLock, ledgerPath, readRepliesLedger, updateRepliesLedger } from "./storage";
@@ -161,9 +161,10 @@ export interface CallEnv {
 function call(env: CallEnv, prompt: string, sessionId: string, resume: boolean): Promise<string> {
   return runClaudeCLI(prompt, {
     model: ANSWER_MODEL,
-    effort: "medium",
+    effort: ANSWER_EFFORT,
     timeoutMs: envMs("THREADS_COMPOSE_CALL_TIMEOUT_MS", CALL_TIMEOUT_MS),
     requireClaude: true,
+    noTools: true,
     systemAppend: env.systemAppend,
     signal: env.signal,
     ...(env.workspaceDir ? { workspace: { dir: env.workspaceDir, sessionId, ...(resume ? { resume } : {}) } } : {}),

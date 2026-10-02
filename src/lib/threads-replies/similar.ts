@@ -83,3 +83,24 @@ export async function similarFor(personaId: string, ledger: Pick<ThreadsRepliesL
   const kept = await gateRelevant(reply.text.trim(), candidates);
   return composeSimilar(kept.filter((p) => p.sameCommenter), kept.filter((p) => !p.sameCommenter), max);
 }
+
+const warming = new Set<string>();
+/**
+ * 다음에 열 댓글들의 비슷한 글을 미리 계산해 둔다 (10-02 실측: 처음 열면 관련성 게이트로 5~11초, 두 번째부터 0.03초).
+ * 결과는 similar-gate 의 메모리 캐시에 남는다. 한 번에 하나씩 — CLI 슬롯을 초안 쓰기와 다투지 않게.
+ */
+export async function warmSimilar(personaId: string, ledger: Pick<ThreadsRepliesLedger, "replies">, ids: readonly string[]): Promise<void> {
+  for (const id of ids) {
+    const key = `${personaId}:${id}`;
+    const reply = ledger.replies.find((r) => r.id === id);
+    if (!reply || warming.has(key)) continue;
+    warming.add(key);
+    try {
+      await similarFor(personaId, ledger, reply);
+    } catch {
+      // 미리 계산은 실패해도 된다 — 열 때 다시 계산한다
+    } finally {
+      warming.delete(key);
+    }
+  }
+}

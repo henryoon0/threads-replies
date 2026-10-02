@@ -57,7 +57,7 @@ async function readCache(file: string): Promise<ReadingOutcome | null> {
 
 async function ask(persona: PersonaConfig, input: ReadingInput, examples: readonly ReadingExample[], profile: CommenterProfile | null): Promise<CommentReading | null> {
   const prompt = buildReadingPrompt({ owner: persona.ownerName, ownerLine: input.ownerLine, post: input.post, conversation: input.conversation, comment: input.comment, commenter: input.commenter, profile, safety: input.safety, examples });
-  const text = await generateText({ tier: "reasoning", prompt, json: true, timeoutMs: envMs("THREADS_READING_TIMEOUT_MS", DEFAULT_READING_TIMEOUT_MS) });
+  const text = await generateText({ tier: "reasoning", prompt, json: true, noTools: true, timeoutMs: envMs("THREADS_READING_TIMEOUT_MS", DEFAULT_READING_TIMEOUT_MS) });
   return parseReading(parseJsonObject(text));
 }
 

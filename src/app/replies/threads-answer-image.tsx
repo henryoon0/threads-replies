@@ -97,10 +97,11 @@ export function ReplyImageRow({ image, evidence, disabled }: { image: ReplyImage
           type="button"
           onClick={() => input.current?.click()}
           disabled={disabled}
-          className={cn("inline-flex h-8 items-center gap-1.5 rounded-[10px] px-2 text-xs text-neutral-500 hover:bg-neutral-50 hover:text-neutral-700 disabled:opacity-40", press)}
+          aria-label="이미지 붙이기"
+          title="이미지 붙이기 · 끌어 놓아도 돼요"
+          className={cn("inline-flex size-8 items-center justify-center rounded-[10px] text-neutral-500 hover:bg-neutral-50 hover:text-neutral-700 disabled:opacity-40", press)}
         >
-          <PhotoIcon className="size-3.5" />
-          이미지 붙이기
+          <PhotoIcon className="size-4" />
         </button>
       )}
       <span className="min-w-0 truncate text-[11px] text-neutral-500">
@@ -110,9 +111,7 @@ export function ReplyImageRow({ image, evidence, disabled }: { image: ReplyImage
           "근거 캡처가 같이 올라가요"
         ) : image.dataUrl ? (
           "보내면 올린 뒤 바로 지워요"
-        ) : (
-          "붙여넣기·끌어 놓기도 돼요"
-        )}
+        ) : null}
       </span>
       <input
         ref={input}

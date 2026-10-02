@@ -62,6 +62,12 @@ export interface ClaudeCliOpts {
    * 2026-09-29 실측: 규칙책 반영됨 · 첫 턴 5초 · 이어 쓰기 6초 · backpass scan 이 t1(정확)으로 잡음.
    */
   workspace?: { dir: string; sessionId: string; resume?: boolean };
+  /**
+   * 도구 목록을 싣지 않는다(--tools ""). 도구를 안 쓰는 글쓰기 호출용.
+   * 2026-10-02 실측: "OK" 한 마디 입력 21.9k → 5.2k 토큰(도구 설명이 76%).
+   * 웹 검색 호출에는 적용하지 않는다(검색 도구가 필요하다).
+   */
+  noTools?: boolean;
 }
 
 const DEFAULT_TIMEOUT_MS = 360_000;
@@ -137,6 +143,11 @@ function webSearchCliArgs(opts: ClaudeCliOpts): { tools: string[]; extraArgs: st
 // --bare는 구독(OAuth) 로그인을 안 읽어서 못 쓴다. cwd를 지정한 호출은 그 폴더의
 // 스킬이 필요한 경우라 제외하고, CLAUDE_CLI_LOAD_USER_SETTINGS=1이면 예전처럼 돈다.
 function isolationCliArgs(opts: ClaudeCliOpts, searchArgs: readonly string[]): string[] {
+  const noTools = opts.noTools && !searchArgs.length ? ["--tools", ""] : [];
+  return [...baseIsolationArgs(opts, searchArgs), ...noTools];
+}
+
+function baseIsolationArgs(opts: ClaudeCliOpts, searchArgs: readonly string[]): string[] {
   if (opts.workspace) return workspaceCliArgs(opts.workspace, searchArgs);
   if (opts.cwd || process.env.CLAUDE_CLI_LOAD_USER_SETTINGS === "1") return [];
   const args = ["--setting-sources=", "--disable-slash-commands", "--no-session-persistence"];
@@ -510,5 +521,6 @@ export async function generateViaClaude(req: TextGenRequest): Promise<string> {
     deadlineMs: req.deadlineMs,
     effort: EFFORT_FOR_TIER[req.tier],
     signal: req.signal,
+    noTools: req.noTools,
   });
 }

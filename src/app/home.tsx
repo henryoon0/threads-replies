@@ -1,17 +1,18 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { ArrowPathIcon, FolderOpenIcon } from "@heroicons/react/16/solid";
+import { ArrowPathIcon } from "@heroicons/react/16/solid";
 import { PageHeader } from "@/components/page-header";
 import { useAccount, type AccountView } from "@/hooks/use-account";
 import { usePolling } from "@/hooks/use-polling";
 import { ThreadsClient } from "./replies/threads-client";
 import { ThreadsLearn } from "./replies/threads-learn";
 import { isLearnView, type ThreadsPlace } from "./replies/threads-place";
-import { ThreadsNav } from "./replies/threads-rail";
+import { ThreadsNav, threadsPlaceMenu } from "./replies/threads-rail";
+import { ChannelSwitch } from "./replies/channel-switch";
+import { ThreadsMoreMenu, type MoreSection } from "./replies/threads-more-menu";
 import { AttachContext } from "./replies/threads-mark";
 import { usePersona } from "./replies/use-persona";
-import { useThreadsWide } from "./replies/use-wide";
 import type { ThreadsSummary } from "@/lib/threads-replies/summary";
 import { TokenModal } from "./token-modal";
 
@@ -26,6 +27,8 @@ interface VoiceJob {
   pairs?: number;
   error?: string;
   starter?: boolean;
+  /** 팩 규칙책이 있어 말투 만들기가 필요 없다 */
+  pack?: boolean;
 }
 
 const VOICE_STEP: Record<string, string> = {
@@ -50,7 +53,8 @@ function VoiceBar() {
     await fetch("/api/voice", { method: "POST" });
     await load();
   };
-  if (!job) return null;
+  // 다 익혔으면 줄을 숨긴다 (다시 만들기는 ··· 메뉴). 익히는 중·실패·아직일 때만 보인다.
+  if (!job || job.pack || (job.state === "done" && !job.starter)) return null;
   let text: string;
   if (running) text = `말투 익히는 중 · ${VOICE_STEP[job.state]}${job.replies ? ` · 답글 ${job.replies}개` : ""}`;
   else if (job.state === "done")
@@ -60,7 +64,7 @@ function VoiceBar() {
   else if (job.state === "failed") text = `말투 만들기 실패: ${job.error ?? "알 수 없는 오류"}`;
   else text = "아직 말투를 익히지 않았어요.";
   return (
-    <div className="mx-auto flex max-w-6xl items-center gap-2 px-6 pb-2 text-[12px] text-neutral-600">
+    <div className="mx-auto flex max-w-[1760px] items-center gap-2 px-6 pt-3 text-[12px] text-neutral-600">
       {running ? <span className="size-1.5 animate-pulse rounded-full bg-emerald-500" /> : null}
       <span className={job.state === "failed" ? "text-rose-700" : ""}>{text}</span>
       {running ? null : (
@@ -85,19 +89,35 @@ function useSummary(persona: string) {
   return [summary, load] as const;
 }
 
+/** 계정 묶음: 답하는 데 매번 쓰지 않는 것이라 ··· 메뉴에 둔다. */
+function accountSection(account: AccountView, ask: () => void, disconnect: () => void): MoreSection {
+  const left = daysLeft(account.expiresAt);
+  const openDocs = () => void fetch("/api/my-docs", { method: "POST" });
+  const items = account.connected
+    ? [
+        { label: "내 자료 폴더 열기", onSelect: openDocs },
+        { label: "연결 해제", onSelect: disconnect },
+      ]
+    : [
+        { label: "토큰 넣기", onSelect: ask },
+        { label: "내 자료 폴더 열기", onSelect: openDocs },
+      ];
+  const note = account.connected ? `@${account.username ?? "연결됨"}${left !== null ? ` · 토큰 ${left}일 남음(자동 연장)` : ""}` : "아직 연결 안 됨";
+  return { title: "계정", items, note };
+}
+
 function Workbench({ account, reload }: { account: AccountView; reload: () => Promise<void> }) {
   const [place, setPlace] = useState<ThreadsPlace>("comments");
   // 토큰이 없어도 화면은 그대로 보여주고, 처음 들어오면 토큰 팝업을 띄운다.
+  // 이 컴퓨터에 이미 연결한 토큰이 있으면 서버(GET /api/account)가 먼저 붙여서 팝업이 뜨지 않는다.
   const [ask, setAsk] = useState(!account.connected);
   const { persona, current, list, switchPersona, reloadList } = usePersona("glp1");
   const [summary, loadSummary] = useSummary(persona);
-  const wide = useThreadsWide();
   const onChanged = useCallback(() => {
     void loadSummary();
     reloadList();
   }, [loadSummary, reloadList]);
   const nav = <ThreadsNav summary={summary} place={place} go={setPlace} persona={{ current, list, onSwitch: switchPersona }} />;
-  const left = daysLeft(account.expiresAt);
   const ai = account.caps?.ai;
   const aiState = ai?.state ?? (ai?.claude || ai?.codex ? "ready" : "missing");
 
@@ -105,7 +125,7 @@ function Workbench({ account, reload }: { account: AccountView; reload: () => Pr
     await fetch("/api/account", { method: "DELETE" });
     await reload();
   };
-  const openDocs = () => void fetch("/api/my-docs", { method: "POST" });
+  const menu = [...threadsPlaceMenu(place, setPlace, summary), accountSection(account, () => setAsk(true), () => void disconnect())];
 
   return (
     <div className="min-h-screen">
@@ -120,56 +140,36 @@ function Workbench({ account, reload }: { account: AccountView; reload: () => Pr
         />
       ) : null}
       <PageHeader
-        className="mx-auto max-w-6xl !px-6"
-        title="스레드 답글"
-        subtitle="내 글에 달린 댓글에 내 말투로 초안을 쓰고, 근거를 찾아 붙여요. 보내기는 직접 누른 것만 나가요."
-        actions={
-          <>
-            {account.connected ? (
-              <span className="rounded-full bg-white px-3 py-1.5 text-xs text-neutral-700 ring-1 ring-neutral-950/5">
-                @{account.username ?? "연결됨"}
-                {left !== null ? <span className="text-neutral-400"> · 토큰 {left}일 남음(자동 연장)</span> : null}
-              </span>
-            ) : (
-              <button onClick={() => setAsk(true)} className="btn-accent px-3 py-1.5 text-xs">
-                토큰 넣기
-              </button>
-            )}
-            <button
-              onClick={openDocs}
-              title="여기 넣은 .md·.txt 파일이 답글 근거가 돼요"
-              className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs text-neutral-600 ring-1 ring-neutral-950/5 hover:bg-white"
-            >
-              <FolderOpenIcon className="size-3.5" />내 자료 폴더
-            </button>
-            {account.connected ? (
-              <button onClick={disconnect} className="rounded-full px-3 py-1.5 text-xs text-neutral-500 ring-1 ring-neutral-950/5 hover:bg-white">
-                연결 해제
-              </button>
-            ) : null}
-          </>
-        }
+        title="소통"
+        subtitle="스레드 글에 달린 댓글에 답해요. 스레드는 댓글만 있어요."
+        actions={<ChannelSwitch value="threads" onChange={() => {}} counts={{ threads: summary?.pending }} />}
       />
       {aiState === "ready" ? null : (
-        <p className="mx-auto max-w-6xl px-6 pb-2 text-[12px] text-amber-700">
+        <p className="mx-auto max-w-[1760px] px-6 pt-3 text-[12px] text-amber-700">
           {aiState === "logged-out"
             ? "Claude Code(또는 Codex)가 로그인돼 있지 않아서 AI 초안이 꺼져 있어요. 터미널에 claude auth login 을 입력해 로그인한 뒤 새로고침해 주세요."
             : "이 맥에 Claude Code나 Codex가 없어서 AI 초안이 꺼져 있어요. 답글은 직접 쓸 수 있어요."}
         </p>
       )}
       <VoiceBar />
-      <div className={`mx-auto px-6 pb-12 pt-2 ${wide ? "max-w-none" : "max-w-[1760px]"}`}>
-        <AttachContext.Provider value={Boolean(account.caps?.imageAttach)}>
-          {isLearnView(place) ? (
-            <>
-              <div className="mb-4">{nav}</div>
-              <ThreadsLearn key={`${persona}-${place}`} view={place} persona={persona} />
-            </>
-          ) : (
-            // 계정을 바꾸면 통째로 새로 그린다 — 받은함·초안·보내기 대기가 섞이지 않게.
-            <ThreadsClient key={persona} view={place} onChanged={onChanged} nav={nav} />
-          )}
-        </AttachContext.Provider>
+      <div className="mx-auto flex max-w-[1760px] gap-6 px-6 pt-5">
+        <div className="min-w-0 flex-1 pb-6">
+          <AttachContext.Provider value={Boolean(account.caps?.imageAttach)}>
+            {isLearnView(place) ? (
+              <>
+                <div className="mb-4 flex items-center gap-2">
+                  {nav}
+                  <span className="ml-auto" />
+                  <ThreadsMoreMenu sections={menu} />
+                </div>
+                <ThreadsLearn key={`${persona}-${place}`} view={place} persona={persona} />
+              </>
+            ) : (
+              // 계정을 바꾸면 통째로 새로 그린다 — 받은함·초안·보내기 대기가 섞이지 않게.
+              <ThreadsClient key={persona} view={place} onChanged={onChanged} nav={nav} menu={menu} />
+            )}
+          </AttachContext.Provider>
+        </div>
       </div>
     </div>
   );

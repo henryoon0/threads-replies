@@ -96,12 +96,12 @@ export async function connectAccount(rawToken: string, intro = "", nowMs = Date.
 
 /** 연결 직후: 지난 글 모으기 → 말투 만들기. 둘 다 뒤에서 돌고, 화면이 진행을 보여준다. */
 async function startFirstRun(): Promise<void> {
-  const [{ startSync }, { startVoiceBuild }] = await Promise.all([
+  const [{ startSync }, { startVoiceBuild, packHasRulebook }] = await Promise.all([
     import("@/lib/threads-archive/sync"),
     import("@/lib/voice-build"),
   ]);
   startSync();
-  startVoiceBuild();
+  if (!(await packHasRulebook())) startVoiceBuild();
 }
 
 export async function disconnectAccount(): Promise<void> {

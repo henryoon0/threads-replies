@@ -34,12 +34,14 @@ export interface RankedPreset extends ComposePreset {
   recommended: boolean;
 }
 
+// 버튼 이름은 "어떤 답이 나오는지"로 짓는다 (2026-10-02 henry "토글 네이밍이 더 직관적이게").
+// 안쪽 열쇠(principle·joke…)와 프롬프트 말은 그대로다 — 이름만 바꿔서 써 둔 벌은 그대로 쓴다.
 export const PART_NAME: Record<ComposeKind, string> = {
   empathy: "공감",
-  joke: "드립",
-  principle: "원리",
+  joke: "농담",
+  principle: "이유",
   ingredient: "성분",
-  product: "제품 3분할",
+  product: "제품 추천",
 };
 
 /** 조합 열쇠: 정해진 순서로 이은 조각 이름. 예) "principle+ingredient+product" */
@@ -55,17 +57,17 @@ export function presetSet(p: Pick<ComposePreset, "kinds">): { kinds: ComposeKind
 
 const SINGLE_NAME: Record<ComposeKind, string> = {
   empathy: "공감 한마디",
-  joke: "뒤통수 한 방",
-  principle: "원리 썰",
-  ingredient: "성분 짚기",
-  product: "제품만 3분할",
+  joke: "짧게 농담으로",
+  principle: "이유 설명",
+  ingredient: "성분 설명",
+  product: "제품만 추천",
 };
 
 const MIX_NAME: Record<string, string> = {
-  "ingredient+product": "성분 + 제품 3분할",
-  "principle+product": "원리 + 제품 3분할",
-  "principle+ingredient": "원리 + 성분",
-  "principle+ingredient+product": "원리부터 제품까지",
+  "ingredient+product": "성분 + 제품 추천",
+  "principle+product": "이유 + 제품 추천",
+  "principle+ingredient": "이유 + 성분",
+  "principle+ingredient+product": "이유부터 제품까지",
 };
 
 /** 조합 → 버튼 이름 */
@@ -74,8 +76,8 @@ export function presetName(kinds: readonly ComposeKind[]): string {
   const list = key.split("+") as ComposeKind[];
   if (list.length === 1) return SINGLE_NAME[list[0]];
   if (MIX_NAME[key]) return MIX_NAME[key];
-  if (list.includes("empathy") && list.length >= 3) return list.includes("product") ? "성실 장문 + 제품" : "성실 장문";
-  if (list.includes("joke") && list.length === 2) return `뒤통수 + ${PART_NAME[list.find((k) => k !== "joke") as ComposeKind]}`;
+  if (list.includes("empathy") && list.length >= 3) return list.includes("product") ? "자세히 길게 + 제품" : "자세히 길게";
+  if (list.includes("joke") && list.length === 2) return `농담 + ${PART_NAME[list.find((k) => k !== "joke") as ComposeKind]}`;
   return list.map((k) => PART_NAME[k]).join(" + ");
 }
 

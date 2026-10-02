@@ -12,6 +12,7 @@
 import { NextResponse } from "next/server";
 import { parseReplyImage, readEvidenceImage, sendThreadsReply, type ReplyImage, type SendResult } from "@/lib/threads-replies/send";
 import { currentPersona, withPersonaRequest } from "@/lib/personas/context";
+import { resolveSendMode } from "@/lib/personas/registry";
 import { cancelSend, enqueueSend, sendStatus } from "@/lib/threads-replies/send-queue";
 
 export const runtime = "nodejs";
@@ -70,7 +71,7 @@ async function handlePOST(request: Request, { params }: { params: Promise<{ id: 
   const message = typeof body.message === "string" ? body.message : "";
   const delay = delayOf(body.delayMs);
   // 복사 팩은 서버가 올리지 않으니 대기열이 필요 없다
-  if (delay !== null && currentPersona().send !== "copy") {
+  if (delay !== null && (await resolveSendMode(currentPersona())) !== "copy") {
     const payload = queuePayloadOf(body, message);
     if (!payload) return NextResponse.json({ error: "보낼 답글이 비어 있어요.", kind: "empty" }, { status: 400 });
     return NextResponse.json({ queued: await enqueueSend(id, payload, delay) }, { status: 202 });

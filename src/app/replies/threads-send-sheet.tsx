@@ -9,6 +9,7 @@ import { useState } from "react";
 import { ArrowTopRightOnSquareIcon, CheckIcon, ClipboardDocumentIcon, PaperAirplaneIcon } from "@heroicons/react/16/solid";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import type { GateResult, ThreadsReply } from "@/lib/threads-replies/model";
+import { postedText } from "@/lib/threads-replies/posted-text";
 import { cn } from "@/lib/utils";
 import { press } from "./threads-answer-verdict";
 import { GateText, gateLine } from "./threads-gate";
@@ -22,6 +23,12 @@ export interface SheetPersona {
 }
 
 const MARKS: Record<string, string> = { glp1: "약" };
+
+/** 미리보기는 앞 공백을 잘라 그리므로, 원래 글 기준인 형광펜 위치도 그만큼 당긴다. */
+function shiftHits(hits: GateResult["hits"], message: string): GateResult["hits"] {
+  const cut = message.replace(/\r\n?/g, "\n").length - message.replace(/\r\n?/g, "\n").trimStart().length;
+  return cut ? hits.map((h) => ({ ...h, start: h.start - cut, end: h.end - cut })).filter((h) => h.start >= 0) : hits;
+}
 
 function Preview({ persona, to, message, image, gate }: { persona: SheetPersona; to: string; message: string; image: string | null; gate: GateResult }) {
   return (
@@ -43,9 +50,9 @@ function Preview({ persona, to, message, image, gate }: { persona: SheetPersona;
           </p>
           <p className="text-[11.5px] text-neutral-500">@{to} 님에게 답글</p>
           <GateText
-            text={message}
-            hits={gate.hits}
-            className="mt-1.5 block whitespace-pre-line text-[14px] leading-[1.6] text-neutral-900 break-keep"
+            text={postedText(message)}
+            hits={shiftHits(gate.hits, message)}
+            className="mt-1.5 block whitespace-pre-wrap text-[14px] leading-[1.6] text-neutral-900 break-keep"
           />
           {image ? (
             // eslint-disable-next-line @next/next/no-img-element -- 붙일 이미지 미리보기 (data URL·로컬 캡처)

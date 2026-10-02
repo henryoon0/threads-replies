@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { clearDraftSlots } from "./use-compose";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
+import { QueuedUndoBar } from "./threads-answer-send";
 import { ThreadsAnswerPanel } from "./threads-answer-panel";
 import type { GateChecker } from "./threads-gate";
 import { checkGate, applyGateMode, type GateRules } from "@/lib/personas/gate";
@@ -109,19 +110,22 @@ const gateOf = (mode: "light" | "strict"): GateChecker => ({ mode, check: (t) =>
 const COPY = { id: "glp1", name: "박약사", handle: "glp1.pharmacy", send: "copy" as const };
 
 async function mount(onNext = vi.fn(), props: Partial<React.ComponentProps<typeof ThreadsAnswerPanel>> = {}) {
-  render(<ThreadsAnswerPanel replyId="c1" onChanged={vi.fn()} onNext={onNext} gate={gateOf("light")} {...props} />);
+  // 되돌리기 띠는 패널 밖(목록 화면)에 하나 — 다음 댓글로 넘어가도 남는다 (10-02)
+  render(
+    <>
+      <ThreadsAnswerPanel replyId="c1" onChanged={vi.fn()} onNext={onNext} gate={gateOf("light")} {...props} />
+      <QueuedUndoBar />
+    </>
+  );
   await flush();
   return onNext;
 }
 
 const editor = () => screen.getByRole("textbox", { name: "완성된 답" }) as HTMLTextAreaElement;
 
-/** [보내기] → 확인 시트 → 시트의 [보내기] */
+/** [보내기] 한 번 — 바로 보내는 계정은 확인 시트 없이 5초 되돌리기로 간다 (10-02) */
 async function confirmSend() {
   fireEvent.click(screen.getByRole("button", { name: /^보내기/ }));
-  await flush();
-  const sheet = screen.getByRole("dialog");
-  fireEvent.click(within(sheet).getByRole("button", { name: /^보내기/ }));
   await flush();
 }
 
@@ -146,51 +150,25 @@ const PRESETS = [
 ];
 
 describe("ThreadsAnswerPanel", () => {
-  it("가져온 자료를 카드로 보여주고(쓴 문장 번호), 버전 초안기가 없으면(404) [새로 쓰기]가 옛 다시 쓰기로 간다", async () => {
+  it("참고 칸엔 비슷한 예전 답만 둔다 — 자료·팟캐스트·제품·내가 해 온 말 칸은 없다 (10-02)", async () => {
+    await mount();
+    expect(screen.queryByText("“실패만 직접 연다”")).toBeNull();
+    expect(screen.queryByText(/가져온 자료/)).toBeNull();
+    expect(screen.queryByRole("button", { name: "이 주제에 내가 해 온 말" })).toBeNull();
+    expect(screen.queryByText(/답에 든 제품/)).toBeNull();
+    expect(callsTo("/c1/stance")).toHaveLength(0);
+  });
+
+  it("버전 초안기가 없으면(404) [새로 쓰기]가 옛 다시 쓰기로 간다", async () => {
     extra = (url) => (url.endsWith("/c1/compose") ? json({ error: "없음" }, 404) : undefined);
     await mount(vi.fn(), { persona: COPY });
     expect(screen.getByText(/버전 초안기를 준비하는 중/)).toBeTruthy();
     expect(screen.queryByRole("button", { name: /성분/ })).toBeNull();
-    expect(screen.getByText("일부만 자료로 답할 수 있어요")).toBeTruthy();
-    const card = screen.getByText("“실패만 직접 연다”").closest("li")!;
-    expect(card.getAttribute("data-source")).toBe("s1");
-    expect(within(card).getByText("문장 1")).toBeTruthy();
-    expect(within(card).getByText("실패만 직접 열어봐요")).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: /새로 쓰기/ }));
     await flush();
     expect(callsTo("/c1/answer", "POST")).toHaveLength(1);
   });
 
-  it("팟캐스트 발언은 말한 사람·원문 그대로·한국어 요약·그 초에서 여는 링크를 보여준다", async () => {
-    const podcast: ThreadsReply = {
-      ...question,
-      answer: {
-        ...question.answer!,
-        sources: [
-          {
-            id: "s1",
-            kind: "팟캐스트 발언",
-            title: "Andrew Huberman · 마그네슘 (관점일 뿐, 추천 근거 아님)",
-            quote: "neurons need sodium, they need magnesium",
-            claimKo: "뉴런이 기능하려면 마그네슘이 필요하다",
-            speaker: "Andrew Huberman",
-            videoTitle: "Daily Tools",
-            startSec: 1645,
-            url: "https://www.youtube.com/watch?v=aXvDEmo6uS4&t=1645s",
-          },
-        ],
-        dropped: [{ text: "마그네슘은 하루 400mg이 좋아", reason: "자료에 없는 말: 400, mg" }],
-      },
-    };
-    extra = (url, init) => (url.endsWith("/api/threads-replies/c1") && !init?.method ? json({ reply: podcast, post: null, conversation: [], drafting: false }) : undefined);
-    await mount();
-    expect(screen.getByText("Andrew Huberman")).toBeTruthy();
-    expect(screen.getByText("“neurons need sodium, they need magnesium”")).toBeTruthy();
-    expect(screen.getByText(/뉴런이 기능하려면/)).toBeTruthy();
-    expect(screen.getByRole("link", { name: /27:25부터 보기/ }).getAttribute("href")).toBe("https://www.youtube.com/watch?v=aXvDEmo6uS4&t=1645s");
-    expect(screen.getByText("근거 없어 뺀 문장 1")).toBeTruthy();
-    expect(screen.getByText("마그네슘은 하루 400mg이 좋아")).toBeTruthy();
-  });
 
   it("완성된 답 글 위에 형광펜을 칠하지 않는다 (근거 없는 숫자가 있어도 보내기는 열려 있다, 10-01)", async () => {
     await mount(vi.fn(), { gate: gateOf("strict") });
@@ -274,8 +252,8 @@ describe("ThreadsAnswerPanel", () => {
     expect(screen.getByRole("button", { name: /원리 썰/ }).getAttribute("aria-pressed")).toBe("true");
     fireEvent.click(screen.getByRole("button", { name: /성분 \+ 제품 3분할/ }));
     expect(editor().value).toBe("성분 글");
-    // 고른 버전은 맨 앞에 온다
-    expect(within(screen.getByRole("group", { name: "답 버전" })).getAllByRole("button")[0].textContent).toMatch(/^성분 \+ 제품 3분할/);
+    // 눌러도 자리는 그대로다 (댓글마다 정한 순서 고정)
+    expect(within(screen.getByRole("group", { name: "답 버전" })).getAllByRole("button")[0].textContent).toMatch(/^원리 썰/);
     fireEvent.click(screen.getByRole("button", { name: /원리 썰/ }));
     expect(editor().value).toBe("원리 글을 내가 고쳤어");
   });
@@ -301,6 +279,78 @@ describe("ThreadsAnswerPanel", () => {
     await flush();
     expect(editor().value).toBe("joke 새 글");
     expect(writes()).toBe(before);
+  });
+
+  it("미리 쓰기가 도는 중에도 추천 2개만 '쓰는 중'이고, 나머지는 바로 눌러 새로 쓴다 (10-02)", async () => {
+    extra = (url, init) => {
+      if (url.endsWith("/c1/compose") && !init?.method) return json({ presets: PRESETS });
+      if (url.endsWith("/c1/compose/variants") && !init?.method) return json({ variants: [], pending: [], status: "running" });
+      if (url.endsWith("/c1/compose") && init?.method === "POST") return json({ draft: "드립 새 글", products: [], toggles: {}, sections: [] });
+      return undefined;
+    };
+    await mount(vi.fn(), { persona: COPY });
+    const btn = (name: RegExp) => screen.getByRole("button", { name }) as HTMLButtonElement;
+    expect(btn(/원리 썰/).getAttribute("aria-busy")).toBe("true");
+    expect(btn(/뒤통수 한 방/).getAttribute("aria-busy")).toBeNull();
+    expect(btn(/뒤통수 한 방/).disabled).toBe(false);
+    fireEvent.click(btn(/뒤통수 한 방/));
+    await flush();
+    expect(editor().value).toBe("드립 새 글");
+  });
+
+  it("새로 쓰는 중에도 다른 버전으로 옮길 수 있고, 다 쓰여도 보고 있는 글을 덮지 않는다 (10-02)", async () => {
+    let finish: (r: Response) => void = () => {};
+    extra = (url, init) => {
+      if (url.endsWith("/c1/compose") && !init?.method) return json({ presets: PRESETS });
+      if (url.endsWith("/c1/compose/variants") && !init?.method) return json({ variants: [{ key: "principle", draft: "원리 글", products: [] }], pending: [] });
+      if (url.endsWith("/c1/compose") && init?.method === "POST") return new Promise<Response>((r) => (finish = r)) as unknown as Response;
+      return undefined;
+    };
+    await mount(vi.fn(), { persona: COPY });
+    expect(editor().value).toBe("원리 글");
+    const btn = (name: RegExp) => screen.getByRole("button", { name }) as HTMLButtonElement;
+    fireEvent.click(btn(/뒤통수 한 방/));
+    await flush();
+    // 쓰는 중: 그 버튼만 돌고, 다른 버전은 누를 수 있다
+    expect(btn(/뒤통수 한 방/).getAttribute("aria-busy")).toBe("true");
+    expect(btn(/원리 썰/).disabled).toBe(false);
+    fireEvent.click(btn(/원리 썰/));
+    await flush();
+    expect(editor().value).toBe("원리 글");
+    finish(json({ draft: "드립 글", products: [], toggles: {}, sections: [] }));
+    await flush();
+    // 다 쓰였어도 보고 있던 원리 글은 그대로, 뒤통수를 누르면 바로 나온다
+    expect(editor().value).toBe("원리 글");
+    expect(btn(/뒤통수 한 방/).getAttribute("aria-busy")).toBeNull();
+    fireEvent.click(btn(/뒤통수 한 방/));
+    await flush();
+    expect(editor().value).toBe("드립 글");
+  });
+
+  it("AI 가 쓰는 동안 손으로 쓴 글은 도착해도 덮지 않고, 그 버전 버튼은 AI 글을 보여준다 ([내 글] 버튼은 10-02 henry 삭제)", async () => {
+    let finish: (r: Response) => void = () => {};
+    extra = (url, init) => {
+      if (url.endsWith("/c1/compose") && !init?.method) return json({ presets: PRESETS });
+      if (url.endsWith("/c1/compose/variants") && !init?.method) return json({ variants: [{ key: "principle", draft: "원리 글", products: [] }], pending: [] });
+      if (url.endsWith("/c1/compose") && init?.method === "POST") return new Promise<Response>((r) => (finish = r)) as unknown as Response;
+      return undefined;
+    };
+    await mount(vi.fn(), { persona: COPY });
+    const btn = (name: RegExp) => screen.getByRole("button", { name }) as HTMLButtonElement;
+    fireEvent.click(btn(/뒤통수 한 방/));
+    await flush();
+    // 쓰는 중에 손으로 친다
+    fireEvent.change(editor(), { target: { value: "춁 내가 먼저 쓴 답" } });
+    await flush();
+    expect(screen.queryByRole("button", { name: /^내 글$/ })).toBeNull();
+    finish(json({ draft: "드립 글", products: [], toggles: {}, sections: [] }));
+    await flush();
+    // 도착해도 쓰던 글은 그대로
+    expect(editor().value).toBe("춁 내가 먼저 쓴 답");
+    // 그 버전 버튼은 AI 글
+    fireEvent.click(btn(/뒤통수 한 방/));
+    await flush();
+    expect(editor().value).toBe("드립 글");
   });
 
   it("버전을 새로 쓰다 실패하면 이유를 보여주고 글은 그대로 둔다", async () => {
@@ -331,19 +381,16 @@ describe("ThreadsAnswerPanel", () => {
     expect(patch.at(-1)).toEqual({ replyId: "c1", draft: "처방한 의사쌤께 물어봐해요" });
   });
 
-  it("[보내기]는 확인 시트를 열고, 취소하면 아무것도 보내지 않는다", async () => {
+  it("바로 보내는 계정은 [보내기] 한 번에 확인 창 없이 5초 되돌리기 띠로 간다 — 답 칸이 이미 스레드 모양 미리보기다 (10-02)", async () => {
     await mount();
     fireEvent.click(screen.getByRole("button", { name: /^보내기/ }));
     await flush();
-    const sheet = screen.getByRole("dialog");
-    expect(within(sheet).getByText("이대로 보낼까요")).toBeTruthy();
-    expect(within(sheet).getByText("@kim 님에게 답글")).toBeTruthy();
-    fireEvent.click(within(sheet).getByRole("button", { name: "취소" }));
-    await flush(6000);
-    expect(callsTo("/send", "POST")).toHaveLength(0);
+    expect(screen.queryByRole("dialog")).toBeNull();
+    expect(callsTo("/send", "POST")).toHaveLength(1);
+    expect(screen.getByRole("button", { name: "되돌리기" })).toBeTruthy();
   });
 
-  it("시트에서 확정한 뒤 5초 안에 [되돌리기]를 누르면 서버 대기열에서 빼고 보내지 않는다", async () => {
+  it("보낸 뒤 5초 안에 [되돌리기]를 누르면 서버 대기열에서 빼고 보내지 않는다", async () => {
     const onNext = await mount();
     await confirmSend();
     expect(callsTo("/send", "POST")).toHaveLength(1);
@@ -352,17 +399,17 @@ describe("ThreadsAnswerPanel", () => {
     await flush(6000);
     expect(callsTo("/send", "DELETE")).toHaveLength(1);
     expect(queued?.cancelled).toBe(true);
-    expect(onNext).not.toHaveBeenCalled();
   });
 
-  it("확정하면 바로 서버 대기열에 맡기고, 5초 뒤 서버가 보낸 결과를 받아 다음 질문으로 넘긴다", async () => {
+  it("[보내기]를 누르면 서버 대기열에 맡기고 바로 다음 댓글로 넘어간다 — 5초를 기다리지 않는다 (10-02 henry '빨리 빨리')", async () => {
     const onNext = await mount();
     await confirmSend();
     const [, init] = callsTo("/send", "POST")[0];
     expect(JSON.parse(String((init as RequestInit).body))).toEqual({ message: question.answer!.draft, delayMs: 5000 });
-    await flush(4000);
-    expect(onNext).not.toHaveBeenCalled();
-    await flush(2100);
+    expect(onNext).toHaveBeenCalledTimes(1);
+    // 되돌리기 띠는 남아 있다
+    expect(screen.getByRole("button", { name: "되돌리기" })).toBeTruthy();
+    await flush(6100);
     expect(onNext).toHaveBeenCalledTimes(1);
   });
 
@@ -415,24 +462,10 @@ describe("ThreadsAnswerPanel", () => {
     await flush();
     const patch = callsTo("/api/threads-replies", "PATCH").map(([, i]) => JSON.parse(String((i as RequestInit).body)));
     expect(patch).toContainEqual({ replyId: "c1", markedAnswered: question.answer!.draft });
-    expect(onNext).toHaveBeenCalledTimes(1);
+    // 맡길 때 한 번(바로 다음 댓글로), 돌아와서 [달았어요] 할 때 한 번 (10-02)
+    expect(onNext).toHaveBeenCalledTimes(2);
   });
 
-  it("질문이면 이 주제에 내가 해 온 말 카드를 번호 붙은 원 답과 함께 보여준다", async () => {
-    extra = (url) =>
-      url.endsWith("/c1/stance")
-        ? json({ topic: "검증", summary: "실패만 직접 연다고 말해 왔어요 [1]", items: [{ n: 1, text: "실패한 것만 열어 봐요", date: "2026-09-01T00:00:00Z", permalink: "https://t/1" }], source: "local" })
-        : undefined;
-    await mount();
-    // 덜 쓰는 칸이라 접혀 있고, 펼쳐야 서버를 부른다
-    expect(callsTo("/c1/stance")).toHaveLength(0);
-    fireEvent.click(screen.getByRole("button", { name: "이 주제에 내가 해 온 말" }));
-    await flush();
-    const card = screen.getByRole("region", { name: "이 주제에 내가 해 온 말" });
-    expect(within(card).getByText("검증")).toBeTruthy();
-    expect(within(card).getByText("실패한 것만 열어 봐요")).toBeTruthy();
-    expect(within(card).getByRole("link", { name: "원 답 열기" }).getAttribute("href")).toBe("https://t/1");
-  });
 
   describe("답글 이미지 (09-27 버그: 붙였는데 이미지 없이 올라감)", () => {
     const png = () => new File([new Uint8Array([137, 80, 78, 71])], "shot.png", { type: "image/png" });

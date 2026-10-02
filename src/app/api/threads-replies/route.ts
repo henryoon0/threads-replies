@@ -1,7 +1,7 @@
 // 스레드 댓글 작업대 — 원장 보기(글별 묶음 + 대화 줄기)와 로컬 편집. 발송은 여기서 하지 않는다.
 import { NextRequest, NextResponse } from "next/server";
 import { ensureAnswers } from "@/lib/threads-replies/answer-job";
-import { ensureVariantsForPending } from "@/lib/threads-replies/compose-variants";
+import { ensureVariantsForPending, variantsQueueState } from "@/lib/threads-replies/compose-variants";
 import { chooseOption, withOwnerDraft } from "@/lib/threads-replies/draft";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
 import { recordMarkedAnswered } from "@/lib/threads-replies/send";
@@ -10,28 +10,30 @@ import { groupByPost, summarize } from "@/lib/threads-replies/summary";
 import { syncIfStale } from "@/lib/threads-replies/sync";
 import { currentPersona, withPersonaRequest } from "@/lib/personas/context";
 import { readProfile } from "@/lib/profile";
+import { autoDraftPolicy } from "@/lib/threads-replies/auto-draft-policy";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-const COPY_PERSONA_BATCH = 10;
 
 // GET: 10분 넘게 지났으면 동기화한 뒤 원장을 글별로 묶어 준다.
 // 초안 없는 댓글은 백그라운드로 채운다 (?answers=0 이면 건너뜀 — 점검용).
 async function handleGET(request: NextRequest) {
   const ledger = await syncIfStale();
   const persona = currentPersona();
+  const policy = autoDraftPolicy(persona);
   if (request.nextUrl.searchParams.get("answers") !== "0") {
-    // 수집본만 있는 팩(박약사)은 댓글이 수백 개라 한 번에 10개씩만 미리 쓴다 (질문·최신 순).
-    void ensureAnswers("all", persona.send === "copy" ? { limit: COPY_PERSONA_BATCH } : {}).catch(() => {});
-    // 대기 댓글 최신순 상위 60개의 버전 6벌을 미리 써 둔다 — 버튼을 누르면 바로 바뀌게.
-    void ensureVariantsForPending().catch(() => {});
+    // 첫 초안 잡은 근거 캡처를 쓰는 계정만 (10-02 비용 1) — 다른 계정은 버전 글만 화면에 나온다.
+    if (policy.answerJob) void ensureAnswers("all").catch(() => {});
+    // 대기 댓글 전부 미리 쓰기는 끔 (10-02 비용 2) — 화면이 지금 보는 댓글부터 10개를 POST /prefetch 로 보낸다.
+    if (policy.prefetchAllOnOpen) void ensureVariantsForPending().catch(() => {});
   }
   return NextResponse.json({
     groups: groupByPost(ledger),
     summary: summarize(ledger),
     sync: ledger.sync,
     job: await readAnswerJob(),
+    // 미리 쓰기 줄 (쓰는 중·차례 기다림) — 목록 표시와 빠른 새로 읽기의 기준. 예전 전체 진행률(파일 421개 읽기)은 뺐다
+    variantsQueue: variantsQueueState(persona.id),
     persona: { id: persona.id, name: persona.name, handle: persona.handle, send: persona.send, gate: persona.gate },
     me: (await readProfile()).username || persona.handle,
   });

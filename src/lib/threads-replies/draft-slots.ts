@@ -11,10 +11,20 @@ export interface DraftSlots {
   edits: Record<string, string>;
 }
 
-/** 지금 고른 버전 칸에 고친 글을 적는다. 고른 버전이 없으면 그대로. */
-export function editSlot(slots: DraftSlots, text: string): DraftSlots {
+/**
+ * "내 글" 칸 (2026-10-02 henry): AI 가 아직 쓰는 버전에서 손으로 친 글은 그 버전이 아니라 여기에 둔다.
+ * 그래야 AI 글이 도착했을 때 버전 버튼은 AI 글을, [내 글]은 내가 쓴 글을 보여준다 (예전엔 손글이 버전 칸을 차지해 AI 글이 안 보였다).
+ */
+export const MINE = "mine";
+
+/**
+ * 지금 고른 칸에 고친 글을 적는다. 고른 버전이 없으면 그대로.
+ * versionReady=false (고른 버전의 AI 글이 아직 없음) 이면 내 글 칸에 적고 내 글을 고른다.
+ */
+export function editSlot(slots: DraftSlots, text: string, opts: { versionReady?: boolean } = {}): DraftSlots {
   if (!slots.selected) return slots;
-  return { ...slots, edits: { ...slots.edits, [slots.selected]: text } };
+  const key = slots.selected !== MINE && opts.versionReady === false ? MINE : slots.selected;
+  return { selected: key, edits: { ...slots.edits, [key]: text } };
 }
 
 /** 버전을 누른다: 고친 글이 있으면 그것, 없으면 미리 써 둔 글. */
@@ -39,13 +49,34 @@ export interface OpenInput {
  */
 export function openSlots(input: OpenInput): { slots: DraftSlots; draft: string } {
   const first = input.presets.find((p) => p.recommended) ?? input.presets[0];
-  const { draft, byHand, key } = input.saved;
+  const { draft, byHand } = input.saved;
   if (!first) return { slots: { selected: null, edits: {} }, draft };
-  const same = draft.trim() ? input.presets.find((p) => input.variants[p.id]?.trim() === draft.trim()) : undefined;
-  if (same) return { slots: { selected: same.id, edits: {} }, draft };
-  const own = key && input.presets.some((p) => p.id === key) ? key : first.id;
+  // 마지막으로 고른 버전이 있고 그 글이 있으면 그 버전 (뒤에서 다 쓰인 다른 버전이 서버 초안에 남아 있어도)
+  const last = lastChosen(input);
+  if (!byHand && last) return pickSlot({ selected: null, edits: {} }, last, input.variants[last]);
+  const same = sameVariant(input);
+  if (same) return { slots: { selected: same, edits: {} }, draft };
+  const own = ownSlot(input, first.id);
   if (byHand && draft.trim()) return { slots: { selected: own, edits: { [own]: draft } }, draft };
   return pickSlot({ selected: null, edits: {} }, first.id, input.variants[first.id] ?? "");
+}
+
+/** 마지막으로 고른 버전 (그 버전 글이 있을 때만) */
+function lastChosen(input: OpenInput): string | undefined {
+  const key = input.saved.key;
+  return key && input.variants[key] !== undefined ? key : undefined;
+}
+
+/** 저장된 초안과 글이 같은 버전 */
+function sameVariant(input: OpenInput): string | undefined {
+  const t = input.saved.draft.trim();
+  return t ? input.presets.find((p) => input.variants[p.id]?.trim() === t)?.id : undefined;
+}
+
+/** 손글을 넣을 칸: 고쳤던 버전, 모르면 추천 1순위 */
+function ownSlot(input: OpenInput, fallback: string): string {
+  const key = input.saved.key;
+  return key && (key === MINE || input.presets.some((p) => p.id === key)) ? key : fallback;
 }
 
 /**

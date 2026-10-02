@@ -127,11 +127,20 @@ export async function hasPersonaToken(p: PersonaConfig): Promise<boolean> {
   return exists(personaTokenPath(p.id));
 }
 
+/**
+ * 실제로 쓸 보내기 방식. 설정이 copy 여도 팩에 토큰을 연결했으면 바로 보낸다.
+ * copy 는 "토큰이 없을 때 복사해서 달기"라는 대비책이다 (2026-10-02 henry "토큰을 연결한 상태에서는 바로 보내져야 해").
+ */
+export async function resolveSendMode(p: PersonaConfig): Promise<"api" | "copy"> {
+  if (p.send === "api") return "api";
+  return (await hasPersonaToken(p)) ? "api" : "copy";
+}
+
 export async function listPersonas(): Promise<PersonaSummary[]> {
   const out: PersonaSummary[] = [];
   for (const id of await listPersonaIds()) {
     const p = await readPersona(id);
-    out.push({ id: p.id, name: p.name, handle: p.handle, register: p.register, gate: p.gate, send: p.send, hasToken: await hasPersonaToken(p) });
+    out.push({ id: p.id, name: p.name, handle: p.handle, register: p.register, gate: p.gate, send: await resolveSendMode(p), hasToken: await hasPersonaToken(p) });
   }
   return out;
 }

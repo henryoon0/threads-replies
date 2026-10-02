@@ -12,7 +12,7 @@ main() {
   # 계정 팩(박약사 원장·발송 기록)은 복사본으로 시험한다 — 진짜 팩에 시험 기록이 남지 않게
   cp -R personas "$DATA/personas"
   start_app() {
-    THREADS_GRAPH_BASE_URL="http://127.0.0.1:$FAKE/v1.0" THREADS_REPLIES_DISABLE_SCHEDULER=1 \
+    HOME="${APP_HOME:-$HOME}" THREADS_GRAPH_BASE_URL="http://127.0.0.1:$FAKE/v1.0" THREADS_REPLIES_DISABLE_SCHEDULER=1 \
       THREADS_ARCHIVE_DIR="$DATA/archive" THREADS_REPLIES_DIR="$DATA/replies" THREADS_REPLIES_DATA="$DATA" \
       MY_DOCS_DIR="$DATA/docs" SHARE_DATA_DIR="$DATA/share" REPLY_PERSONAS_DIR="$DATA/personas" \
       node node_modules/next/dist/bin/next start -p "$PORT" &
@@ -63,6 +63,19 @@ main() {
   start_app
   for _ in $(seq 1 15); do sent_to c4 && break; sleep 1; done
   sent_to c4
+
+  echo "· 이미 연결한 토큰: 앱을 다시 켜도 다시 연결하라고 하지 않는다"
+  curl -fsS "http://localhost:$PORT/api/account" | grep -q '"connected":true'
+
+  echo "· 기록 폴더가 비어도 이 맥에 남은 토큰(백업)을 찾아 스스로 붙는다"
+  kill "$APP_PID"; wait "$APP_PID" 2>/dev/null || true
+  local BACKUP="$DATA/home/.threads-replies/data-backup-1/threads-archive"
+  mkdir -p "$BACKUP"
+  mv "$DATA/archive/token.json" "$BACKUP/token.json"
+  # 자동 찾기는 기본 계정과 아이디가 같은 토큰만 붙인다 — 시험 사본의 계정을 가짜 서버 아이디(tester)로 맞춘다
+  node -e 'const f=process.argv[1];const p=JSON.parse(require("fs").readFileSync(f,"utf8"));p.handle="tester";require("fs").writeFileSync(f,JSON.stringify(p))' "$DATA/personas/glp1/persona.json"
+  APP_HOME="$DATA/home" start_app
+  curl -fsS "http://localhost:$PORT/api/account" | grep -q '"connected":true'
   echo "끝까지 통과"
 }
 
