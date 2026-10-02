@@ -64,11 +64,11 @@ describe("ThreadsClient — 한 줄 목록과 한 버튼 메뉴 (10-02 픽)", ()
 
   const ids = () => [...document.querySelectorAll("[data-reply-id]")].map((el) => el.getAttribute("data-reply-id"));
 
-  it("목록은 오래된 순 한 줄 — 답이 있어도 위로 올리지 않는다. 첫 로드만 답 잡을 깨운다 (10-02 henry)", async () => {
+  it("목록은 답 있는 댓글이 한 덩어리로 위, 그 안팎은 오래된 순. 첫 로드만 답 잡을 깨운다 (10-02 henry \"초록 점이 띄어지면 안 돼\")", async () => {
     render(<ThreadsClient view="comments" />);
-    expect((await screen.findByTestId("panel")).textContent).toBe("a");
+    expect((await screen.findByTestId("panel")).textContent).toBe("b");
     expect((fetch as ReturnType<typeof vi.fn>).mock.calls[0][0]).toBe("/api/threads-replies");
-    expect(ids()).toEqual(["a", "b", "q"]);
+    expect(ids()).toEqual(["b", "a", "q"]);
     expect(screen.getByRole("button", { name: /오래된 순/ })).toBeTruthy();
   });
 
@@ -78,7 +78,7 @@ describe("ThreadsClient — 한 줄 목록과 한 버튼 메뉴 (10-02 픽)", ()
     fireEvent.click(screen.getByRole("button", { name: /오래된 순/ }));
     expect(screen.queryByRole("menuitemcheckbox", { name: "질문만" })).toBeNull();
     fireEvent.click(screen.getByRole("menuitemradio", { name: "최근 순" }));
-    expect(ids()).toEqual(["q", "b", "a"]);
+    expect(ids()).toEqual(["b", "q", "a"]);
   });
 
   it("최근 순은 자동으로 쓰지 않고 [답 20개 만들기]로 — 위에서부터 답이 없는 댓글만 맡긴다 (10-02 henry)", async () => {
