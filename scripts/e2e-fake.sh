@@ -8,6 +8,9 @@ main() {
   local PORT=3470 FAKE=4568
   DATA="$(mktemp -d)"
   trap 'kill $(jobs -p) 2>/dev/null || true; rm -rf "$DATA"' EXIT
+  # 진짜 스레드에는 절대 닿지 않는다: 모든 Graph 호출은 THREADS_GRAPH_BASE_URL(가짜 서버)로 가고,
+  # HOME 도 빈 폴더로 바꿔 이 맥에 남은 진짜 토큰을 찾아 쓰지 못하게 한다.
+  mkdir -p "$DATA/home"
   node scripts/fake-threads.mjs &
   # 계정 팩(박약사 원장·발송 기록)은 복사본으로 시험한다 — 진짜 팩에 시험 기록이 남지 않게
   cp -R personas "$DATA/personas"
@@ -32,7 +35,7 @@ main() {
   curl -fsS "http://localhost:$PORT/api/threads-replies?answers=0" | node -e '
     const d = JSON.parse(require("fs").readFileSync(0, "utf8"));
     const ids = d.groups.flatMap((g) => g.threads.flatMap((t) => [t.root, ...t.followUps])).map((r) => r.id).sort();
-    if (ids.join() !== "c1,c2,c3,c4" || d.me !== "tester") { console.error(ids, d.me); process.exit(1); }'
+    if (ids.join() !== "c1,c2,c3,c4,c5" || d.me !== "tester") { console.error(ids, d.me); process.exit(1); }'
   echo "· 답글 보내기"
   curl -fsS -X POST "http://localhost:$PORT/api/threads-replies/c1/send" -H 'content-type: application/json' -d '{"message":"감사해요 !"}' >/dev/null
   curl -fsS "http://127.0.0.1:$FAKE/__sent" | grep -q '"reply_to_id":"c1"'
@@ -54,6 +57,18 @@ main() {
   curl -fsS -X DELETE "http://localhost:$PORT/api/threads-replies/c3/send" | grep -q '"cancelled":true'
   sleep 4
   not_sent c3
+
+  echo "· 화면이 보내는 방식(10-02: 되돌리기 띠 없이 바로): 맡기자마자 스레드에 답글로 올라간다"
+  queue c5 1
+  for _ in $(seq 1 10); do sent_to c5 && break; sleep 0.5; done
+  curl -fsS "http://127.0.0.1:$FAKE/__sent" | node -e '
+    const sent = JSON.parse(require("fs").readFileSync(0, "utf8")).filter((s) => s.reply_to_id === "c5");
+    if (sent.length !== 1 || sent[0].text !== "대기열 c5" || sent[0].media_type !== "TEXT") { console.error(sent); process.exit(1); }'
+  curl -fsS "http://localhost:$PORT/api/threads-replies/c5/send" | grep -q '"status":"sent"'
+  curl -fsS "http://localhost:$PORT/api/threads-replies?answers=0" | node -e '
+    const d = JSON.parse(require("fs").readFileSync(0, "utf8"));
+    const r = d.groups.flatMap((g) => g.threads.flatMap((t) => [t.root, ...t.followUps])).find((x) => x.id === "c5");
+    if (!r || r.myReply?.text !== "대기열 c5") { console.error("원장에 보낸 답이 안 남았어요", r); process.exit(1); }'
 
   echo "· 대기열: 기다리는 중 앱이 꺼져도 다시 켜지면 보낸다"
   queue c4 2000

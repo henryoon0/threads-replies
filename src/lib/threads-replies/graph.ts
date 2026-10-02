@@ -16,10 +16,11 @@ import { personaTokenPath } from "@/lib/personas/registry";
 import { envMs } from "./storage";
 
 const DEFAULT_FETCH_TIMEOUT_MS = 30_000;
-const MAX_CONVERSATION_PAGES = 10;
+// 10쪽(1,000건)이면 댓글 1,200개 넘는 글에서 가장 오래된 댓글·내 답이 잘려 "안 답함"으로 남았다 (10-02 실측 1,237건·13쪽).
+const MAX_CONVERSATION_PAGES = 50;
 
 const POST_FIELDS = "id,text,timestamp,permalink";
-const CONVERSATION_FIELDS = "id,text,username,timestamp,replied_to,is_reply_owned_by_me,has_replies";
+const CONVERSATION_FIELDS = "id,text,username,timestamp,permalink,replied_to,is_reply_owned_by_me,has_replies";
 
 export interface RawPost {
   id: string;
@@ -33,6 +34,7 @@ export interface RawConversationReply {
   text?: string;
   username?: string;
   timestamp?: string;
+  permalink?: string;
   replied_to?: { id?: string };
   is_reply_owned_by_me?: boolean;
   has_replies?: boolean;

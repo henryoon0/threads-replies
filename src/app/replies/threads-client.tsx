@@ -6,6 +6,7 @@
 // 발송은 이 파일에서 하지 않는다. 오른쪽 ThreadsAnswerPanel 이 맡는다.
 
 import { useSendNotices } from "./use-send-notices";
+import { toast } from "@/components/toast";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
@@ -15,16 +16,15 @@ import { ThreadsAnswerPanel } from "./threads-answer-panel";
 import { ThreadsBatch } from "./threads-batch";
 import { ThreadsModeBar, type SyncState, type WorkMode } from "./threads-mode-bar";
 import type { MoreSection } from "./threads-more-menu";
-import { ThreadsQueue } from "./threads-queue";
+import { ThreadsQueue, type PrepProgress } from "./threads-queue";
+import { usableDraft } from "@/lib/threads-replies/usable-draft";
 import { ThreadsList } from "./threads-list";
 import { ThreadsSkipAll } from "./threads-skip-all";
 import { useGate, type GateChecker } from "./threads-gate";
 import { ReceiptDock } from "./threads-receipt";
-import { QueuedUndoBar } from "./threads-answer-send";
 import {
   filteredQueue,
   focusOrder,
-  splitByReady,
   nextId,
   visibleGroups,
   type QueueFilter,
@@ -46,7 +46,9 @@ export interface ThreadsPersona {
 type LoadedData = ThreadsData & {
   job?: { status?: string; current?: string; working?: string[] } | null;
   /** 버전 미리 쓰기 줄 — 쓰는 중·차례 기다림 */
-  variantsQueue?: { running: string[]; queued: string[] }; persona?: ThreadsPersona };
+  variantsQueue?: { running: string[]; queued: string[] }; persona?: ThreadsPersona;
+  /** 서버가 뒤에서 동기화하는 중 — 끝나면 새 댓글이 보이게 빨리 다시 읽는다 */
+  syncing?: boolean };
 
 const EMPTY: Record<ThreadsView, string> = {
   comments: "지금 답할 스레드 댓글이 없어요",
@@ -104,15 +106,15 @@ function useThreadsData(onChanged?: () => void) {
 
   const prefetching = (data?.variantsQueue?.running.length ?? 0) + (data?.variantsQueue?.queued.length ?? 0) > 0;
   const answering = data?.job?.status === "running";
-  const jobRunning = answering || prefetching;
+  const jobRunning = answering || prefetching || !!data?.syncing;
   // 답 잡이 도는 동안엔 초안이 도착하는 대로 보이게 5초, 미리 쓰기만 돌면 15초, 평소엔 1분 (숨은 탭에선 쉼)
   usePolling(
     async () => {
       await load();
       if (jobRunning) onChanged?.();
     },
-    // 미리 쓰기가 도는 동안엔 3초마다 — 써지는 대로 목록 표시가 바뀌게 (10-02)
-    { label: "threads-replies", active: jobRunning, activeMs: 3_000, idleMs: 60_000 }
+    // 미리 쓰기·동기화가 도는 동안엔 5초마다 (10-02 henry "렉": 3초마다 목록 전체 2MB 를 받던 것을 줄였다. 버전 한 벌은 15초쯤)
+    { label: "threads-replies", active: jobRunning, activeMs: 5_000, idleMs: 60_000 }
   );
 
   const reload = useCallback(() => {
@@ -121,29 +123,57 @@ function useThreadsData(onChanged?: () => void) {
       .catch(() => {});
   }, [load, onChanged]);
 
-  return { data, error, reload };
+  return { data, error, reload, load };
 }
 
-/** 새로고침(동기화). 10-02 픽: 글자 줄 대신 머리줄 아이콘 하나, 동기화 시각은 풍선 글···· 메뉴로 */
-function useSync(data: LoadedData | null, onSynced: () => void): SyncState {
-  const [busy, setBusy] = useState(false);
+/** 목록에 있는 댓글 id 전부 (동기화 전후를 비교해 새 댓글 수를 센다) */
+function commentIds(d: LoadedData | null): Set<string> {
+  return new Set((d?.groups ?? []).flatMap((g) => g.threads.flatMap((t) => [t.root.id, ...t.followUps.map((f) => f.id)])));
+}
+
+/**
+ * 새로고침(동기화). 10-02 픽: 글자 줄 대신 머리줄 아이콘 하나, 동기화 시각은 풍선 글···· 메뉴로.
+ * 10-02 henry "저장된 게 먼저 뜨고, 동기화될 때는 심플하게 노티": 서버가 뒤에서 동기화하는 동안(syncing) 아이콘이 돌며 "동기화 중",
+ * 끝나면 알림 한 줄 — "새 댓글 3개" 또는 "최신 상태예요".
+ */
+function useSync(data: LoadedData | null, load: () => Promise<void>, onSynced: () => void): SyncState {
+  const [running, setRunning] = useState(false);
   const [error, setError] = useState("");
   const run = useCallback(async () => {
-    setBusy(true);
+    setRunning(true);
     setError("");
     try {
       const res = await fetch("/api/threads-replies/sync", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
       const body = (await res.json().catch(() => ({}))) as { sync?: { lastError?: string } };
       if (!res.ok) setError(body.sync?.lastError ?? "새로고침에 실패했어요");
+      await load().catch(() => {});
       onSynced();
     } catch {
       setError("새로고침에 실패했어요");
     } finally {
-      setBusy(false);
+      setRunning(false);
     }
-  }, [onSynced]);
+  }, [load, onSynced]);
+  const busy = running || !!data?.syncing;
+  useSyncNotice(data, busy);
   const lastAt = data?.sync.lastSyncAt;
   return { busy, error, last: lastAt ? `${relativeTime(lastAt)} 동기화` : "", run: () => void run() };
+}
+
+/** 동기화가 끝나면 알림 한 줄. 시작할 때 목록을 적어 두고 끝난 뒤 목록과 비교한다. */
+function useSyncNotice(data: LoadedData | null, busy: boolean) {
+  const before = useRef<Set<string> | null>(null);
+  useEffect(() => {
+    if (busy) {
+      before.current ??= commentIds(data);
+      return;
+    }
+    if (!before.current) return;
+    const prev = before.current;
+    before.current = null;
+    const added = [...commentIds(data)].filter((id) => !prev.has(id)).length;
+    toast.success(added ? `동기화 완료 · 새 댓글 ${added}개` : "동기화 완료 · 최신 상태예요");
+  }, [busy, data]);
 }
 
 /** 고른 댓글. 칸을 바꾸면 그 칸의 첫 댓글부터, 고른 댓글이 목록에서 빠지면(답함·건너뜀) 옛 순서에서 그 다음 것을. */
@@ -332,14 +362,42 @@ function batchOf(queue: ThreadsReply[]): UrgentItem[] {
 }
 
 /**
- * 지금 고른 댓글부터 다음 몇 개의 버전 6벌·비슷한 글을 서버 줄 맨 앞에 세운다 — 버전 버튼·참고 칸이 바로 뜨게.
- * 10-02: 목록 맨 위 10개만 보내던 것을 고른 자리부터로 (아래로 내려가면 미리 쓰기가 따라오지 않았다).
+ * 버전 6벌·비슷한 글을 미리 쓰는 20개 — 버전 버튼·참고 칸이 바로 뜨게.
+ * 10-02 henry: "누른 댓글부터가 아니라 오래 쌓인 것 기준으로 20개". 고른 댓글·정렬·질문만과 상관없이
+ * 아직 답 안 한 댓글 중 가장 오래된 20개. 답하거나 건너뛰면 목록에서 빠지고 그다음 오래된 것이 들어온다.
  */
-/** 10-02 henry: 지금 보는 댓글부터 20개 */
-const PREFETCH_AHEAD = 20;
-function usePrefetchVariants(order: string[], view: ThreadsView, selectedId: string | null, onQueued: () => void) {
-  const at = Math.max(0, selectedId ? order.indexOf(selectedId) : 0);
-  const key = view === "history" ? "" : order.slice(at, at + PREFETCH_AHEAD).join("\n");
+const PREFETCH_BATCH = 20;
+function oldestReplies(groups: LoadedData["groups"]): ThreadsReply[] {
+  return filteredQueue(groups, { sort: "old", questionsOnly: false }).slice(0, PREFETCH_BATCH);
+}
+export function oldestBatch(groups: LoadedData["groups"]): string[] {
+  return oldestReplies(groups).map((r) => r.id);
+}
+/**
+ * 최근 순 [답 20개 만들기] (10-02 henry): 최근 순은 자동으로 쓰지 않는다. 누를 때마다 지금 목록 위에서부터
+ * 아직 답이 없고 쓰는 중도 아닌 댓글 20개를 맡긴다. 진행은 맡긴 묶음 기준으로 "답 준비 N/20".
+ */
+function useManualBatch(queue: ThreadsReply[], writingIds: string[], waitingIds: string[], onQueued: () => void) {
+  const [ids, setIds] = useState<string[]>([]);
+  const make = useCallback(() => {
+    const busy = new Set([...writingIds, ...waitingIds]);
+    const next = queue.filter((r) => !usableDraft(r.answer) && !busy.has(r.id)).slice(0, PREFETCH_BATCH).map((r) => r.id);
+    if (!next.length) return toast.success("위쪽 댓글은 답이 다 준비돼 있어요");
+    setIds(next);
+    void fetch("/api/threads-replies/prefetch", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ids: next }) })
+      .then((r) => (r.ok ? onQueued() : toast.error("답 만들기를 맡기지 못했어요")))
+      .catch(() => toast.error("답 만들기를 맡기지 못했어요"));
+  }, [queue, writingIds, waitingIds, onQueued]);
+  const progress = useMemo(() => {
+    if (!ids.length) return undefined;
+    const ready = new Set(queue.filter((r) => usableDraft(r.answer)).map((r) => r.id));
+    return { ready: ids.filter((id) => ready.has(id)).length, total: ids.length };
+  }, [ids, queue]);
+  return { make, progress };
+}
+
+function usePrefetchVariants(data: LoadedData | null, view: ThreadsView, onQueued: () => void) {
+  const key = view === "history" || !data ? "" : oldestBatch(data.groups).join("\n");
   useEffect(() => {
     if (!key) return;
     // 새로 줄을 세웠으면 목록을 바로 다시 읽는다 — 안 그러면 1분 쉬는 사이 15초짜리 쓰기가 화면에 안 잡힌다 (10-02)
@@ -352,15 +410,6 @@ function usePrefetchVariants(order: string[], view: ThreadsView, selectedId: str
     // onQueued 가 바뀌어도 다시 보내지 않는다 (같은 줄을 또 세울 일은 없다)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
-}
-
-/** 준비된 답부터: 위 칸(답 있음) + 아래 칸(준비 중·다시 쓰는 중) — splitByReady */
-function useDelivery(items: ThreadsReply[], writingIds: string[], waitingIds: string[]) {
-  const busyKey = [...writingIds, ...waitingIds].join("\n");
-  return useMemo(() => {
-    const { ready, preparing } = splitByReady(items, new Set(busyKey ? busyKey.split("\n") : []));
-    return { queue: [...ready, ...preparing], readyCount: ready.length };
-  }, [items, busyKey]);
 }
 
 /** 목록 순서(한 버튼 메뉴). 질문 칸으로 들어오면 질문만이 켜진 채로 시작한다. */
@@ -401,12 +450,13 @@ function loadedBits(data: LoadedData | null) {
 
 /** 기록 칸은 글별 목록, 나머지는 한 버튼 메뉴 목록 */
 function ListBody({
+  progress,
+  onMakeBatch,
   view,
   groups,
   groupOf,
   handle,
   queue,
-  readyCount,
   filter,
   onFilter,
   openId,
@@ -420,7 +470,8 @@ function ListBody({
   groupOf: Map<string, string>;
   handle: string;
   queue: ThreadsReply[];
-  readyCount: number;
+  progress?: PrepProgress;
+  onMakeBatch?: () => void;
   filter: QueueFilter;
   onFilter: (f: QueueFilter) => void;
   openId: string | null;
@@ -430,7 +481,7 @@ function ListBody({
   waitingIds: string[];
 }) {
   if (view === "history") return <ThreadsList groups={groups} view={view} selectedId={openId} onSelect={onSelect} groupOf={groupOf} handle={handle} gate={gate} />;
-  return <ThreadsQueue items={queue} readyCount={readyCount} filter={filter} onFilter={onFilter} selectedId={openId} onSelect={onSelect} gate={gate} writingIds={writingIds} waitingIds={waitingIds} />;
+  return <ThreadsQueue items={queue} progress={progress} onMakeBatch={onMakeBatch} filter={filter} onFilter={onFilter} selectedId={openId} onSelect={onSelect} gate={gate} writingIds={writingIds} waitingIds={waitingIds} />;
 }
 
 export function ThreadsClient({
@@ -447,7 +498,7 @@ export function ThreadsClient({
   /** 남은 수가 바뀌면 레일·스위치 숫자를 다시 읽게 알린다 */
   onChanged?: () => void;
 }) {
-  const { data, error, reload } = useThreadsData(onChanged);
+  const { data, error, reload, load } = useThreadsData(onChanged);
   // 다른 댓글로 옮긴 뒤 끝난 보내기도 알리고 목록을 다시 읽는다
   useSendNotices(reload);
   const { persona, personaId, handle, writingIds, waitingIds } = loadedBits(data);
@@ -455,15 +506,20 @@ export function ThreadsClient({
   const groups = useMemo(() => visibleGroups(data?.groups ?? [], view), [data, view]);
   const { filter, setFilter, queue: filtered } = useQueue(data, view);
   // 준비된 답부터 (10-02): 위 칸 = 답 있음, 아래 칸 = 준비 중. "다음 댓글"도 이 순서
-  const { queue, readyCount } = useDelivery(filtered, writingIds, waitingIds);
+  // 10-02 henry "답이 생길 때마다 화면이 바뀌어 불편": 준비된 답을 위로 올리던 칸 나누기를 뺐다.
+  // 목록은 고른 순서(기본 최신순) 그대로 두고, 답이 생기면 그 줄의 점·글자만 바뀐다.
+  const queue = filtered;
   const order = useMemo(() => (view === "history" ? focusOrder(groups, view) : queue.map((r) => r.id)), [view, groups, queue]);
   const groupOf = useMemo(() => groupIndex(groups), [groups]);
   const { selectedId, select, reveal, selectNext } = useSelection(order, view);
-  usePrefetchVariants(order, view, selectedId, reload);
+  usePrefetchVariants(data, view, reload);
+  const manual = useManualBatch(queue, writingIds, waitingIds, reload);
+  // 진행 숫자는 최근 순 [답 20개 만들기] 묶음만 (오래된 순 20개는 알아서 준비된다, 10-02 henry)
+  const progress = filter.sort === "new" ? manual.progress : undefined;
   const w = useWorkMode(order, select, reveal);
   const openId = w.openIdOr(selectedId);
   const batch = w.mode === "batch" && view !== "history";
-  const sync = useSync(data, reload);
+  const sync = useSync(data, load, reload);
   const [skipArmed, setSkipArmed] = useState(false);
 
   return (
@@ -471,7 +527,7 @@ export function ThreadsClient({
       <ThreadsModeBar lead={nav} onPickComment={w.pickFromSearch} sync={sync} menu={workMenu(menu, view, w.mode, w.setMode, () => setSkipArmed(true), sync)} />
       <div className="flex items-start gap-4">
         <ListColumn data={data} error={error} view={view} groups={groups} order={order} reload={reload} skipArmed={skipArmed} onSkipClose={() => setSkipArmed(false)}>
-          <ListBody view={view} groups={groups} groupOf={groupOf} handle={handle} queue={queue} readyCount={readyCount} filter={filter} onFilter={setFilter} openId={openId} onSelect={w.pick} gate={gate} writingIds={writingIds} waitingIds={waitingIds} />
+          <ListBody progress={progress} onMakeBatch={filter.sort === "new" ? manual.make : undefined} view={view} groups={groups} groupOf={groupOf} handle={handle} queue={queue} filter={filter} onFilter={setFilter} openId={openId} onSelect={w.pick} gate={gate} writingIds={writingIds} waitingIds={waitingIds} />
         </ListColumn>
         {batch ? (
           <BatchSide items={batchOf(queue)} persona={persona} gate={gate} onChanged={reload} onOpen={w.openOne} />
@@ -479,7 +535,6 @@ export function ThreadsClient({
           <AnswerSide selectedId={openId} loaded={Boolean(data)} onChanged={reload} onNext={selectNext} persona={persona} gate={gate} />
         )}
         <ReceiptDock />
-        <QueuedUndoBar />
       </div>
     </div>
   );

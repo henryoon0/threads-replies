@@ -6,6 +6,7 @@
 //
 // 세션: 이 댓글의 Claude 세션(answer.sessionId)에 이어 쓴다. 토글을 끄면 앞 초안을 base 로 주고 그 조각만 빼게 한다.
 // 이어 쓰기가 실패하면 새 세션으로 처음부터(맥락 전부 싣고). 조각을 빼기만 하는데 모델이 실패하면 코드가 뺀다.
+import { isStaleJobDraft } from "./usable-draft";
 import { randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
@@ -308,7 +309,8 @@ export async function saveComposed(replyId: string, composed: ComposedDraft, set
     ...l,
     replies: l.replies.map((r) => {
       if (r.id !== replyId) return r;
-      saved = withComposed(r.answer, composed, set, { model: ANSWER_MODEL, now, sessionId });
+      // 옛 3벌 잡 글(근거·판정·3벌)은 이어받지 않고 새로 시작한다 (10-02)
+      saved = withComposed(isStaleJobDraft(r.answer) ? undefined : r.answer, composed, set, { model: ANSWER_MODEL, now, sessionId });
       return { ...r, answer: saved };
     }),
   }));

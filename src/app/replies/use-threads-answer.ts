@@ -3,6 +3,7 @@
 // 스레드 답 패널의 데이터: 댓글 한 건 읽기 · 초안 저장(600ms 디바운스) · 다시 쓰기 · 원문 캡처 캐시.
 // 요청은 replyId 로 묶는다. 다른 댓글로 넘어간 뒤 늦게 온 응답은 화면에 쓰지 않는다.
 
+import { usableDraft } from "@/lib/threads-replies/usable-draft";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AnswerSource, EvidenceShot, ReplyAnswer, SourceKind, ThreadsPostRef, ThreadsReply } from "@/lib/threads-replies/model";
 
@@ -86,7 +87,8 @@ export function useThreadsAnswer(replyId: string, onChanged: () => void) {
     if (current.current !== id) return;
     setView(next);
     setError(null);
-    setDraftState((d) => (d.trim() ? d : next.reply.answer?.draft ?? ""));
+    // 옛 3벌 잡이 남긴 글은 답 칸에 넣지 않는다 — 버전 버튼과 안 이어지는 "제대로 안 된 결과물" (10-02)
+    setDraftState((d) => (d.trim() ? d : usableDraft(next.reply.answer)));
   }, []);
   const fail = useCallback((id: string, e: unknown) => {
     if (current.current === id) setError(e instanceof Error ? e.message : String(e));

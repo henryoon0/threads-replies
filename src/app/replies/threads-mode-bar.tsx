@@ -38,6 +38,8 @@ export function ThreadsModeBar({
       {lead}
       <span className="ml-auto" />
       {sync.error ? <span className="mr-1 text-[11.5px] text-rose-700">{sync.error}</span> : null}
+      {/* 10-02 henry: 동기화 중이면 글자로도 (저장된 목록이 먼저 떠 있으므로) */}
+      {sync.busy ? <span role="status" className="mr-1 text-[11.5px] text-neutral-500">동기화 중…</span> : null}
       <ThreadsSearch onPickComment={onPickComment} />
       <HoverHint label={sync.busy ? "가져오는 중" : sync.last ? `새로고침 · ${sync.last}` : "새로고침"}>
       <button

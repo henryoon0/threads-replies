@@ -1,13 +1,14 @@
 // 스레드 댓글 작업대 — 원장 보기(글별 묶음 + 대화 줄기)와 로컬 편집. 발송은 여기서 하지 않는다.
 import { NextRequest, NextResponse } from "next/server";
 import { ensureAnswers } from "@/lib/threads-replies/answer-job";
-import { ensureVariantsForPending, variantsQueueState } from "@/lib/threads-replies/compose-variants";
+import { ensureVariantsForPending, requestVersions, variantsQueueState } from "@/lib/threads-replies/compose-variants";
+import { oldestPendingIds, PREP_BATCH } from "@/lib/threads-replies/prep-batch";
 import { chooseOption, withOwnerDraft } from "@/lib/threads-replies/draft";
 import type { ThreadsReply } from "@/lib/threads-replies/model";
 import { recordMarkedAnswered } from "@/lib/threads-replies/send";
 import { readAnswerJob, updateRepliesLedger } from "@/lib/threads-replies/storage";
 import { groupByPost, summarize } from "@/lib/threads-replies/summary";
-import { syncIfStale } from "@/lib/threads-replies/sync";
+import { ledgerSyncingInBackground } from "@/lib/threads-replies/sync";
 import { currentPersona, withPersonaRequest } from "@/lib/personas/context";
 import { readProfile } from "@/lib/profile";
 import { autoDraftPolicy } from "@/lib/threads-replies/auto-draft-policy";
@@ -15,22 +16,25 @@ import { autoDraftPolicy } from "@/lib/threads-replies/auto-draft-policy";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// GET: 10분 넘게 지났으면 동기화한 뒤 원장을 글별로 묶어 준다.
+// GET: 저장된 원장을 글별로 묶어 바로 준다. 5분 넘게 지났으면 동기화는 뒤에서 돌리고 syncing: true 로 알린다.
 // 초안 없는 댓글은 백그라운드로 채운다 (?answers=0 이면 건너뜀 — 점검용).
 async function handleGET(request: NextRequest) {
-  const ledger = await syncIfStale();
+  const { ledger, syncing } = await ledgerSyncingInBackground();
   const persona = currentPersona();
   const policy = autoDraftPolicy(persona);
   if (request.nextUrl.searchParams.get("answers") !== "0") {
     // 첫 초안 잡은 근거 캡처를 쓰는 계정만 (10-02 비용 1) — 다른 계정은 버전 글만 화면에 나온다.
     if (policy.answerJob) void ensureAnswers("all").catch(() => {});
-    // 대기 댓글 전부 미리 쓰기는 끔 (10-02 비용 2) — 화면이 지금 보는 댓글부터 10개를 POST /prefetch 로 보낸다.
+    // 대기 댓글 전부 미리 쓰기는 끔 (10-02 비용 2).
     if (policy.prefetchAllOnOpen) void ensureVariantsForPending().catch(() => {});
+    // 화면이 켜지자마자 가장 오래된 20개부터 쓴다 (10-02 henry) — 화면의 POST /prefetch 를 기다리지 않는다. 다 쓴 댓글은 건너뛴다.
+    void requestVersions(oldestPendingIds(ledger, PREP_BATCH), "prefetch", { front: true }).catch(() => {});
   }
   return NextResponse.json({
     groups: groupByPost(ledger),
     summary: summarize(ledger),
     sync: ledger.sync,
+    syncing,
     job: await readAnswerJob(),
     // 미리 쓰기 줄 (쓰는 중·차례 기다림) — 목록 표시와 빠른 새로 읽기의 기준. 예전 전체 진행률(파일 421개 읽기)은 뺐다
     variantsQueue: variantsQueueState(persona.id),

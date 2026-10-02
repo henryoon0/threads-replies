@@ -28,7 +28,7 @@ export function summarize(ledger: ThreadsRepliesLedger): ThreadsSummary {
     pending: pending.length,
     questions: questions.length,
     questionsReady: questions.filter((r) => r.answer?.verdict === "answerable").length,
-    history: ledger.replies.filter((r) => !isPending(r)).length,
+    history: ledger.replies.filter((r) => !!r.myReply || !!r.skipped || r.settled === "answered").length,
   };
 }
 

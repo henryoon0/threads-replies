@@ -40,7 +40,8 @@ function repliesOf(thread: ReplyThread): ThreadsReply[] {
 
 /** 이 보기에서 누를 수 있는(오른쪽 패널로 열 수 있는) 댓글인가 */
 export function isFocusable(r: ThreadsReply, view: ThreadsView): boolean {
-  if (view === "history") return !isPending(r);
+  // 기록 = 내가 답했거나(아래 대화에서 답한 것 포함) 건너뛴 것. 대화가 이어져 차례가 넘어간 댓글(continued)은 기록이 아니다
+  if (view === "history") return !!r.myReply || !!r.skipped || r.settled === "answered";
   if (view === "questions") return isOpenQuestion(r);
   return isPending(r);
 }

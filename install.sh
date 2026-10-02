@@ -111,6 +111,18 @@ main() {
     rm -rf "$APP.old"
     [ -d "$APP" ] && mv "$APP" "$APP.old"
     mv "$SRC" "$APP"
+    # 팩 기록(personas/<id>/private: 원장·보내기 기록·버전 글)은 쓰던 앱 것을 그대로 둔다.
+    # 저장소 사본으로 덮으면 업데이트할 때마다 그동안 쌓인 기록이 저장소 시점으로 되돌아간다 (10-02 실제로 겪음).
+    if [ -d "$APP.old/personas" ]; then
+      local d id
+      for d in "$APP.old"/personas/*/private; do
+        [ -d "$d" ] || continue
+        id="$(basename "$(dirname "$d")")"
+        mkdir -p "$APP/personas/$id"
+        rm -rf "$APP/personas/$id/private"
+        cp -a "$d" "$APP/personas/$id/private"
+      done
+    fi
     # 기록 폴더 바로가기(data)는 빌드가 끝난 뒤에 만든다. 빌드 도구(Turbopack)가 data 안을 훑다가
     # 앱 폴더 밖을 가리키는 바로가기를 만나면 빌드를 멈춘다 — 기록이 있는 사람의 업데이트가 실패했다.
     if (

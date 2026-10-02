@@ -501,6 +501,19 @@ export function useCompose(replyId: string, draft: string, setDraft: (v: string)
   // 쓰는 중인 버전 = 지금 누른 것 + 기다리는 것 + 서버가 미리 쓰는 것 (10-02 henry "2개가 돌면 2개 다") — 이미 써진 건 뺀다
   const serverPending = variants.status === "ready" ? variants.pending.filter((k) => k !== "*") : NO_KEYS;
   const loadingIds = [...new Set([...inFlight, ...(waiting ? [waiting.id] : []), ...serverPending])].filter((k) => !ready.has(k) || inFlight.includes(k));
+  // 스스로 바로잡기 (10-02 실측: 쓰는 중에 열면 버전이 다 써졌는데도 답 칸이 빈 채로 남은 적이 있다):
+  // 답 칸이 비었고, 손으로 쓰지 않았고, 기다리는 버전이 없는데 써 둔 버전이 새로 도착했으면 — 원하던 버전(없으면 추천 1순위)을 보여 준다.
+  const arrived = useRef({ id: replyId, n: 0 });
+  useEffect(() => {
+    const before = arrived.current.id === replyId ? arrived.current.n : 0;
+    arrived.current = { id: replyId, n: list.length };
+    if (list.length <= before || draft.trim() || waiting || cur.selected === MINE || wantRef.current === MINE) return;
+    const v = list.find((x) => x.key === wantRef.current) ?? firstArrived(list, presets);
+    if (!v) return;
+    wantRef.current = v.key;
+    show(v.key, v.draft, v.products ?? [], `${nameOf(v.key)} 버전이에요`);
+    chooseVariant(replyId, v.key);
+  }, [list, draft, waiting, cur.selected, presets, replyId, show, nameOf]);
   // 내 글을 쓰기 시작하면 "지금 원하는 것"도 내 글이다 — 그사이 도착한 AI 글은 화면을 덮지 않고 그 버전 버튼에 남는다 (10-02)
   useEffect(() => {
     if (cur.selected === MINE) wantRef.current = MINE;
